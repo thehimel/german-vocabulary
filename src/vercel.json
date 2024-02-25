@@ -20,11 +20,13 @@
   "routes": [
     {
       "src": "/static/(.*)",
-      "dest": "src/static/$1"
+      "dest": "/static/$1"
     },
     {
       "src": "/(.*)",
       "dest": "core/wsgi.py"
     }
-  ]
+  ],
+
+  "outputDirectory": "staticfiles"
 }
