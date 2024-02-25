@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 
 import dj_database_url
-
 from decouple import config
 
 from core.vars import DEVELOPMENT, PRODUCTION
