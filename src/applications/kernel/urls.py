@@ -1,6 +1,6 @@
 from django.urls import path
 
-from kernel.views import HomeView
+from applications.kernel.views import HomeView
 
 app_name = "kernel"
 
