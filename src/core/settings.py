@@ -29,6 +29,9 @@ TEMPLATE_DIR = BASE_DIR / "templates"
 
 ENVIRONMENT = config("ENVIRONMENT", default=DEVELOPMENT)
 
+if ENVIRONMENT is not DEVELOPMENT:
+    SECURE_SSL_REDIRECT = True
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config("SECRET_KEY")
 
