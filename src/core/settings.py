@@ -12,7 +12,11 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 
+import dj_database_url
+
 from decouple import config
+
+from core.vars import DEVELOPMENT, PRODUCTION
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,6 +26,8 @@ TEMPLATE_DIR = BASE_DIR / "templates"
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
+
+ENVIRONMENT = config("ENVIRONMENT", default=DEVELOPMENT)
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config("SECRET_KEY")
@@ -78,12 +84,12 @@ WSGI_APPLICATION = "core.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
-}
+database_url = f"sqlite:///{BASE_DIR / 'db.sqlite3'}"
+
+if ENVIRONMENT == PRODUCTION:
+    database_url = config("DATABASE_URL")
+
+DATABASES = {"default": dj_database_url.parse(database_url, conn_max_age=600)}
 
 
 # Password validation
