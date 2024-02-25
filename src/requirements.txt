@@ -9,3 +9,4 @@ Pillow
 psycopg2-binary
 whitenoise
 gunicorn
+django-bootstrap-v5
