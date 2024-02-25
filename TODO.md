@@ -1,6 +1,9 @@
 ## TODO
 
 * Connect Postgres database.
+* Create home page with a button to login page.
+* Create login page.
+  * Users are created via management command.
 * Connect cloudinary.
   * Directory format: words/a/a.jpg
 * Add app 'vocabulary'
