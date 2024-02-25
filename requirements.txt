@@ -1,0 +1,11 @@
+black
+isort
+pylint
+python-decouple
+Django
+djangorestframework
+dj-database-url
+Pillow
+psycopg2-binary
+whitenoise
+gunicorn
