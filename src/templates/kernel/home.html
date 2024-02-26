@@ -1,7 +1,14 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
-  <div>
-    <h1>Hello</h1>
+<div class="text-center m-2">
+  <img class="pb-4 img-fluid rotate-continuously" src="{% static 'img/favicon/android-chrome-512x512.png' %}" alt="brand-logo" width="100">
+  <div class="display-5">Welcome to German Vocabulary</div>
+  <div class="display-6">Login or Register to Continue</div>
+  <div class="pt-4">
+    <button class="btn btn-outline-secondary" type="button">Login</button>
+    <button class="btn btn-outline-dark" type="button">Register</button>
   </div>
+</div>
 {% endblock content %}

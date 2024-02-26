@@ -1,0 +1,16 @@
+html, body {
+  height: 100%;
+}
+
+@keyframes rotateAnimation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rotate-continuously {
+  animation: rotateAnimation 20s infinite linear; /* Adjust the duration as needed */
+}
