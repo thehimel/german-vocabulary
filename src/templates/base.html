@@ -20,7 +20,7 @@
 </head>
 
 <body>
-<div >
+<header>
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
@@ -68,10 +68,11 @@
       </div>
     </div>
   </nav>
+</header>
+<main>
   {% block content %}
   {% endblock content %}
-</div>
+</main>
 {% bootstrap_javascript %}
 </body>
-
 </html>
