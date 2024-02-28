@@ -21,7 +21,7 @@
       {% url 'account_signup' as action_url %}
       <form class="signup" method="post" action="{{ action_url }}">
         {% csrf_token %}
-        <div class="mb-2">{{ form|crispy }}</div>
+        <div>{{ form|crispy }}</div>
 
         {% if redirect_field_value %}
           <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
