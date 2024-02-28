@@ -7,8 +7,8 @@
   <div class="display-5">Welcome to German Vocabulary</div>
   <div class="display-6">Login or Register to Continue</div>
   <div class="pt-4">
-    <button class="btn btn-outline-secondary" type="button">Login</button>
-    <button class="btn btn-outline-dark" type="button">Register</button>
+    <a href="{% url 'account_login' %}"><button class="btn btn-outline-secondary" type="button">Login</button></a>
+    <a href="{% url 'account_signup' %}"><button class="btn btn-outline-dark" type="button">Register</button></a>
   </div>
 </div>
 {% endblock content %}
