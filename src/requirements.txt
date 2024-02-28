@@ -10,5 +10,6 @@ psycopg2-binary
 whitenoise
 gunicorn
 django-bootstrap-v5
-django-cleanup
 django-allauth
+django-crispy-forms
+django-cleanup
