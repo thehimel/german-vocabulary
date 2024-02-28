@@ -162,8 +162,7 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
 
-ACCOUNT_RATE_LIMITS = {"login_failed": 5}
-LOGIN_REDIRECT_URL = "kernel:home"
+LOGIN_REDIRECT_URL = "base:home"
 ACCOUNT_LOGOUT_REDIRECT_URL = "/"
 # LOGIN_URL = '/'
 
@@ -172,4 +171,4 @@ EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_HOST_USER = config("EMAIL_USER", default="")
 EMAIL_HOST_PASSWORD = config("EMAIL_PASSWORD", default="")
-DEFAULT_FROM_EMAIL = "user <info@domain.com>"  # Default sender is mandatory.
+DEFAULT_FROM_EMAIL = "German Vocabulary <info@domain.com>"  # Default sender is mandatory.
