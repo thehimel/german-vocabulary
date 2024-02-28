@@ -1,6 +1,6 @@
 ## TODO
 
-* Create log in and sign up pages.
+* Beautify password reset related pages.
 * Create users app. Update default users model in settings.
 * Connect cloudinary.
   * Directory format: words/a/a.jpg
