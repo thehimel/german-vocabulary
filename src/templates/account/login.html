@@ -6,11 +6,11 @@
 
 {% load allauth account %}
 
-{% block head_title %}{% trans "Sign In" %}{% endblock head_title %}
+{% block head_title %}{% trans "Log In" %}{% endblock head_title %}
 
 {% block content %}
-  <div class="container d-flex align-items-center justify-content-center">
-    <div class="col-lg-6">
+  <div class="container d-grid col-lg-6 d-flex align-items-center justify-content-center">
+    <div>
       {% element h1 %}{% trans "Sign In" %}{% endelement %}
       <p>
         {% blocktrans %}If you have not created an account yet, then please
@@ -24,7 +24,7 @@
         {% if redirect_field_value %}
           <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
         {% endif %}
-        <div class="d-grid gap-2 col-12 mx-auto">
+        <div class="d-grid col-12 mx-auto">
           <button type="submit" class="btn btn-success btn-block">{% trans "Sign In" %}</button>
         </div>
       </form>
