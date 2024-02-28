@@ -19,15 +19,12 @@ from core.vars import DEVELOPMENT, PRODUCTION
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 TEMPLATE_DIR = BASE_DIR / "templates"
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 ENVIRONMENT = config("ENVIRONMENT", default=DEVELOPMENT)
-
 SECURE_SSL_REDIRECT = False if ENVIRONMENT == DEVELOPMENT else True
 
 # SECURITY WARNING: keep the secret key used in production secret!
@@ -38,9 +35,7 @@ DEBUG = config("DEBUG", cast=bool, default=False)
 
 ALLOWED_HOSTS = ["*"]
 
-
 # Application definition
-
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -49,13 +44,20 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "applications.base",
+    # For allauth
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
     "bootstrap5",
+    "crispy_forms",
+    "crispy_bootstrap5",
+    # For django-cleanup. Must be on the bottom of INSTALLED_APPS.
+    "django_cleanup.apps.CleanupConfig",
 ]
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    # From WhiteNoise to serve static files in PaaS from Django.
-    # Remove this if you are using S3.
+    # To serve static files in PaaS. To be removed if S3 is being used.
     "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -63,6 +65,8 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    # The allauth account middleware.
+    "allauth.account.middleware.AccountMiddleware",
 ]
 
 ROOT_URLCONF = "core.urls"
@@ -78,6 +82,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "django.template.context_processors.request",  # `allauth` needs this from django.
             ],
         },
     },
@@ -85,10 +90,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "core.wsgi.application"
 
-
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
 database_url = f"sqlite:///{BASE_DIR / 'db.sqlite3'}"
 
 if ENVIRONMENT == PRODUCTION:
@@ -99,7 +102,6 @@ DATABASES = {"default": dj_database_url.parse(database_url, conn_max_age=600)}
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
@@ -115,39 +117,59 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
 LANGUAGE_CODE = "en-us"
-
 TIME_ZONE = "UTC"
-
 USE_I18N = True
-
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
-
 STATIC_ROOT = BASE_DIR / "staticfiles"
 STATIC_URL = "static/"
 
-
 # Keep your static files here.
 # collectstatic will use this directory to generate static files in STATIC_ROOT.
-
 STATICFILES_DIRS = [BASE_DIR / "static"]
-
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-
 # Media files (Uploaded by the users)
-
 MEDIA_URL = "media/"
 MEDIA_ROOT = BASE_DIR / "media"
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+# The allauth configurations.
+AUTHENTICATION_BACKENDS = [
+    # Needed to log in by username in Django admin, regardless of `allauth`.
+    "django.contrib.auth.backends.ModelBackend",
+    # `allauth` specific authentication methods, such as login by email.
+    "allauth.account.auth_backends.AuthenticationBackend",
+]
+
+ACCOUNT_ADAPTER = "core.adapter.UsernameMaxAdapter"
+
+# Use username or email as the primary identifier
+ACCOUNT_AUTHENTICATION_METHOD = "username_email"
+ACCOUNT_SIGNUP_EMAIL_ENTER_TWICE = True
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
+
+ACCOUNT_RATE_LIMITS = {"login_failed": 5}
+LOGIN_REDIRECT_URL = "kernel:home"
+ACCOUNT_LOGOUT_REDIRECT_URL = "/"
+# LOGIN_URL = '/'
+
+EMAIL_USE_TLS = True  # This must be True.
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = config("EMAIL_USER", default="")
+EMAIL_HOST_PASSWORD = config("EMAIL_PASSWORD", default="")
+DEFAULT_FROM_EMAIL = "user <info@domain.com>"  # Default sender is mandatory.
