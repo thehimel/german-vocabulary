@@ -165,6 +165,7 @@ ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
 LOGIN_REDIRECT_URL = "base:home"
 ACCOUNT_LOGOUT_REDIRECT_URL = "/"
 # LOGIN_URL = '/'
+ACCOUNT_LOGOUT_ON_GET = True  # No confirmation page for logout.
 
 EMAIL_USE_TLS = True  # This must be True.
 EMAIL_HOST = "smtp.gmail.com"
