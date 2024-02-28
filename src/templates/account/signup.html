@@ -1,10 +1,13 @@
 {% extends "account/base_entrance.html" %}
 
+{% load crispy_forms_tags %}
+
 {% load allauth i18n %}
 
 {% block head_title %}{% trans "Sign up" %}{% endblock head_title %}
 
 {% block content %}
+    <div class="container p-4">
     {% element h1 %}{% trans "Sign Up" %}{% endelement %}
     <p>
         {% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}
@@ -13,8 +16,7 @@
     {% element form form=form method="post" action=action_url tags="entrance,signup" %}
         {% slot body %}
             {% csrf_token %}
-            {% element fields form=form unlabeled=True %}
-            {% endelement %}
+            {% crispy form %}
             {% if redirect_field_value %}
                 <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
             {% endif %}
@@ -22,4 +24,5 @@
         {% slot actions %}{% element button tags="prominent,signup" type="submit" %}{% trans "Sign Up" %}{% endelement %}
         {% endslot %}
     {% endelement %}
+    </div>
 {% endblock content %}
