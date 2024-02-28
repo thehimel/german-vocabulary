@@ -7,7 +7,8 @@
 {% block head_title %}{% trans "Sign up" %}{% endblock head_title %}
 
 {% block content %}
-    <div class="container p-4">
+    <div class="container d-flex align-items-center justify-content-center">
+    <div class="col-lg-6">
     {% element h1 %}{% trans "Sign Up" %}{% endelement %}
     <p>
         {% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}
@@ -24,5 +25,6 @@
         {% slot actions %}{% element button tags="prominent,signup" type="submit" %}{% trans "Sign Up" %}{% endelement %}
         {% endslot %}
     {% endelement %}
+    </div>
     </div>
 {% endblock content %}
