@@ -10,7 +10,7 @@ psycopg2-binary
 whitenoise
 gunicorn
 django-bootstrap-v5
-django-allauth
+django-allauth>=0.61.1
 crispy-bootstrap5
 django-cleanup
-fontawesomefree
+fontawesomefree>=6.5.1
