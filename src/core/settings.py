@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     "bootstrap5",
     "crispy_forms",
     "crispy_bootstrap5",
+    "fontawesomefree",
     # For django-cleanup. Must be on the bottom of INSTALLED_APPS.
     "django_cleanup.apps.CleanupConfig",
 ]

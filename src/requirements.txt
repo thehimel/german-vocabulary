@@ -13,3 +13,4 @@ django-bootstrap-v5
 django-allauth
 crispy-bootstrap5
 django-cleanup
+fontawesomefree
