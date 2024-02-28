@@ -4,27 +4,35 @@
 
 {% load allauth i18n %}
 
-{% block head_title %}{% trans "Sign up" %}{% endblock head_title %}
+{% block head_title %}{% trans "Sign Up" %}{% endblock head_title %}
 
 {% block content %}
-    <div class="container d-flex align-items-center justify-content-center">
+  <div class="container d-flex align-items-center justify-content-center">
     <div class="col-lg-6">
+
     {% element h1 %}{% trans "Sign Up" %}{% endelement %}
-    <p>
-        {% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}
-    </p>
-    {% url 'account_signup' as action_url %}
-    {% element form form=form method="post" action=action_url tags="entrance,signup" %}
-        {% slot body %}
-            {% csrf_token %}
-            {% crispy form %}
-            {% if redirect_field_value %}
-                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-            {% endif %}
-        {% endslot %}
-        {% slot actions %}{% element button tags="prominent,signup" type="submit" %}{% trans "Sign Up" %}{% endelement %}
-        {% endslot %}
-    {% endelement %}
+      <p>
+        {% blocktrans %}
+          Already have an account? Then please
+          <a style="text-decoration: none !important" href="{{ login_url }}">sign in</a>.
+        {% endblocktrans %}
+      </p>
+
+      {% url 'account_signup' as action_url %}
+      <form class="signup" method="post" action="{{ action_url }}">
+        {% csrf_token %}
+        <div class="mb-2">{{ form|crispy }}</div>
+
+        {% if redirect_field_value %}
+          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+        {% endif %}
+
+        <div class="text-center">
+          <button type="submit" class="btn btn-outline-dark me-2">{% trans "Sign Up" %}</button>
+          <a class="btn btn-outline-danger" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+        </div>
+      </form>
+
     </div>
-    </div>
+  </div>
 {% endblock content %}
