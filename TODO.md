@@ -1,6 +1,5 @@
 ## TODO
 
-* Create home page with a button to login page.
 * Create login page.
   * Users are created via management command.
 * Connect cloudinary.
