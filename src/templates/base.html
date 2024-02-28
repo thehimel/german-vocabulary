@@ -64,12 +64,8 @@
                 <button class="btn btn-outline-secondary">Log out</button>
               </a>
             {% else %}
-              <a class="nav-link" href="{% url 'account_login' %}">
-                <button class="btn btn-outline-secondary">Log in</button>
-              </a>
-              <a class="nav-link" href="{% url 'account_signup' %}">
-                <button class="btn btn-outline-dark">Sign up</button>
-              </a>
+              <a class="nav-link" href="{% url 'account_signup' %}">Sign up</a>
+              <a class="nav-link" href="{% url 'account_login' %}">Log in</a>
             {% endif %}
           </div>
         </div>
