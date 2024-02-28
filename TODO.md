@@ -1,7 +1,7 @@
 ## TODO
 
-* Create login page.
-  * Users are created via management command.
+* Create login and signup pages.
+* Create users app. Update default users model in settings.
 * Connect cloudinary.
   * Directory format: words/a/a.jpg
 * Add app 'vocabulary'
