@@ -18,16 +18,16 @@
         {% endblocktrans %}
       </p>
       {% url 'account_login' as login_url %}
-        <form class="login" method="post" action="{{ action_url }}">
-          {% csrf_token %}
-          <div>{{ form|crispy }}</div>
-          {% if redirect_field_value %}
-            <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-          {% endif %}
-          <div class="text-center">
-            <button type="submit" class="btn btn-outline-secondary">{% trans "Sign In" %}</button>
-          </div>
-        </form>
+      <form class="login" method="post" action="{{ action_url }}">
+        {% csrf_token %}
+        <div>{{ form|crispy }}</div>
+        {% if redirect_field_value %}
+          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+        {% endif %}
+        <div class="d-grid gap-2 col-12 mx-auto">
+          <button type="submit" class="btn btn-success btn-block">{% trans "Sign In" %}</button>
+        </div>
+      </form>
     </div>
   </div>
 {% endblock content %}
