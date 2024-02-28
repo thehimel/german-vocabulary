@@ -11,5 +11,5 @@ whitenoise
 gunicorn
 django-bootstrap-v5
 django-allauth
-django-crispy-forms
+crispy-bootstrap5
 django-cleanup
