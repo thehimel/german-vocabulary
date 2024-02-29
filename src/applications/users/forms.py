@@ -11,6 +11,10 @@ class UserUpdateForm(forms.ModelForm):
 
 
 class UserSignupForm(SignupForm):
+    def __init__(self, *args, **kwargs):
+        super(UserSignupForm, self).__init__(*args, **kwargs)
+        self.fields['password1'].help_text = None
+
     first_name = forms.CharField(
         max_length=NAME_MAX_LENGTH, widget=forms.TextInput(attrs={"placeholder": "First name"})
     )
