@@ -15,7 +15,7 @@
       <a style="text-decoration: none !important" href="{{ signup_url }}">sign up</a> first.
     {% endblocktrans %}
   </p>
-  {% url 'account_login' as login_url %}
+  {% url 'account_login' as action_url %}
   <form class="login" method="post" action="{{ action_url }}">
     {% csrf_token %}
     <div>{{ form|crispy }}</div>
