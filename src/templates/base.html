@@ -23,7 +23,12 @@
   <!-- Custom Styles -->
   <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 
-  <title>German Vocabulary</title>
+  <title>
+    {% block head_title %}
+    {% endblock head_title %}
+  </title>
+  {% block extra_head %}
+  {% endblock extra_head %}
 </head>
 
 <body class="d-flex">
@@ -86,6 +91,12 @@
   </header>
 
   <main class="container mb-auto">
+    {% if messages %}
+      <div>
+        <strong>{% trans "Messages:" %}</strong>
+        <ul>{% for message in messages %}<li>{{ message }}</li>{% endfor %}</ul>
+      </div>
+    {% endif %}
     {% block content %}
     {% endblock content %}
   </main>
