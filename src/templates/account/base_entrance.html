@@ -1,1 +1,20 @@
 {% extends "base.html" %}
+
+{% block content %}
+  <div class="container d-grid col-lg-6 d-flex align-items-center justify-content-center">
+    <div>
+      {% if messages %}
+        <div>
+          {% for message in messages %}
+            <div class="alert alert-info alert-dismissible fade show" role="alert">
+              {{ message }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+      {% block extra_content %}
+      {% endblock extra_content %}
+    </div>
+  </div>
+{% endblock content %}

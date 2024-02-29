@@ -6,33 +6,27 @@
 
 {% block head_title %}{% trans "Sign Up" %}{% endblock head_title %}
 
-{% block content %}
-  <div class="container d-grid col-lg-6 d-flex align-items-center justify-content-center">
-    <div>
+{% block extra_content %}
+  {% element h1 %}{% trans "Sign Up" %}{% endelement %}
+    <p>
+      {% blocktrans %}
+        Already have an account? Then please
+        <a style="text-decoration: none !important" href="{{ login_url }}">sign in</a>.
+      {% endblocktrans %}
+    </p>
 
-    {% element h1 %}{% trans "Sign Up" %}{% endelement %}
-      <p>
-        {% blocktrans %}
-          Already have an account? Then please
-          <a style="text-decoration: none !important" href="{{ login_url }}">sign in</a>.
-        {% endblocktrans %}
-      </p>
+    {% url 'account_signup' as action_url %}
+    <form class="signup" method="post" action="{{ action_url }}">
+      {% csrf_token %}
+      <div>{{ form|crispy }}</div>
 
-      {% url 'account_signup' as action_url %}
-      <form class="signup" method="post" action="{{ action_url }}">
-        {% csrf_token %}
-        <div>{{ form|crispy }}</div>
+      {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% endif %}
 
-        {% if redirect_field_value %}
-          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-        {% endif %}
-
-        <div class="d-grid gap-2 col-12 mx-auto">
-          <button type="submit" class="btn btn-success">{% trans "Sign Up" %}</button>
-          <a class="btn btn-secondary" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
-        </div>
-      </form>
-
-    </div>
-  </div>
-{% endblock content %}
+      <div class="d-grid gap-2 col-12 mx-auto">
+        <button type="submit" class="btn btn-success">{% trans "Sign Up" %}</button>
+        <a class="btn btn-secondary" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+      </div>
+    </form>
+{% endblock extra_content %}

@@ -8,26 +8,22 @@
 
 {% block head_title %}{% trans "Log In" %}{% endblock head_title %}
 
-{% block content %}
-  <div class="container d-grid col-lg-6 d-flex align-items-center justify-content-center">
-    <div>
-      {% element h1 %}{% trans "Log In" %}{% endelement %}
-      <p>
-        {% blocktrans %}If you have not created an account yet, then please
-          <a style="text-decoration: none !important" href="{{ signup_url }}">sign up</a> first.
-        {% endblocktrans %}
-      </p>
-      {% url 'account_login' as login_url %}
-      <form class="login" method="post" action="{{ action_url }}">
-        {% csrf_token %}
-        <div>{{ form|crispy }}</div>
-        {% if redirect_field_value %}
-          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-        {% endif %}
-        <div class="d-grid col-12 mx-auto">
-          <button type="submit" class="btn btn-success btn-block">{% trans "Log In" %}</button>
-        </div>
-      </form>
+{% block extra_content %}
+  {% element h1 %}{% trans "Log In" %}{% endelement %}
+  <p>
+    {% blocktrans %}If you have not created an account yet, then please
+      <a style="text-decoration: none !important" href="{{ signup_url }}">sign up</a> first.
+    {% endblocktrans %}
+  </p>
+  {% url 'account_login' as login_url %}
+  <form class="login" method="post" action="{{ action_url }}">
+    {% csrf_token %}
+    <div>{{ form|crispy }}</div>
+    {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+    {% endif %}
+    <div class="d-grid col-12 mx-auto">
+      <button type="submit" class="btn btn-success btn-block">{% trans "Log In" %}</button>
     </div>
-  </div>
-{% endblock content %}
+  </form>
+{% endblock extra_content %}
