@@ -22,6 +22,4 @@ DATABASE_URL="GET_DATA"
 
 ## Allauth Pages Updated
 
-* `accounts/base_entrance.html`
-* `accounts/login.html`
-* `accounts/signup.html`
+* `accounts/*.html`
