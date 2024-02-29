@@ -27,6 +27,7 @@
 </head>
 
 <body class="d-flex">
+{% block body %}
 <div class="d-flex w-100 mx-auto flex-column">
   <header class="mb-auto">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -90,5 +91,8 @@
   </main>
 </div>
 {% bootstrap_javascript %}
+{% endblock body %}
+{% block extra_body %}
+{% endblock extra_body %}
 </body>
 </html>
