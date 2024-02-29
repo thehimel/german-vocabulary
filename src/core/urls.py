@@ -19,9 +19,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
+from django.views.generic.base import RedirectView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("users/", include("applications.users.urls", namespace="users")),
+    path("accounts/signup/", RedirectView.as_view(pattern_name="users:signup", permanent=False)),
     path("accounts/", include("allauth.urls")),
     path("", include("applications.base.urls", namespace="base")),
 ]
