@@ -13,6 +13,11 @@ DATABASE_URL="GET_DATA"
 
 * Command: `python src/manage.py runserver 8080`
 
+## Workflow:
+
+* Stuff member adds the data.
+* Admin will have to approve the data.
+* Only approved data will be listed in list view.
 
 ## Resources
 
