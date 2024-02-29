@@ -15,7 +15,7 @@
       {% endblocktrans %}
     </p>
 
-    {% url "users:signup" as action_url %}
+    {% url "account_signup" as action_url %}
     <form class="signup" method="post" action="{{ action_url }}">
       {% csrf_token %}
       <div>{{ form|crispy }}</div>

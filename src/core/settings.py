@@ -176,5 +176,5 @@ EMAIL_HOST_USER = config("EMAIL_USER", default="")
 EMAIL_HOST_PASSWORD = config("EMAIL_PASSWORD", default="")
 DEFAULT_FROM_EMAIL = "German Vocabulary <info@domain.com>"  # Default sender is mandatory.
 
-# We have custom user model. Thus, we need to add this.
-AUTH_USER_MODEL = "users.User"
+AUTH_USER_MODEL = "users.User"  # We have custom user model.
+ACCOUNT_FORMS = {"signup": "applications.users.forms.UserSignupForm"}
