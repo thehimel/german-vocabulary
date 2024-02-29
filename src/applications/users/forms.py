@@ -13,7 +13,9 @@ class UserUpdateForm(forms.ModelForm):
 class UserSignupForm(SignupForm):
     def __init__(self, *args, **kwargs):
         super(UserSignupForm, self).__init__(*args, **kwargs)
-        self.fields['password1'].help_text = None
+        self.fields["password1"].help_text = (
+            "Your password must contain at least 8 characters and can’t be entirely numeric."
+        )
 
     first_name = forms.CharField(
         max_length=NAME_MAX_LENGTH, widget=forms.TextInput(attrs={"placeholder": "First name"})
