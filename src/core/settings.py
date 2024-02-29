@@ -43,7 +43,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # Applications
     "applications.base",
+    "applications.users",
     # For allauth
     "allauth",
     "allauth.account",
@@ -173,3 +175,6 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = config("EMAIL_USER", default="")
 EMAIL_HOST_PASSWORD = config("EMAIL_PASSWORD", default="")
 DEFAULT_FROM_EMAIL = "German Vocabulary <info@domain.com>"  # Default sender is mandatory.
+
+# We have custom user model. Thus, we need to add this.
+AUTH_USER_MODEL = "users.User"

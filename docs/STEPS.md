@@ -8,3 +8,4 @@
 * Add and configure allauth and crispy-forms.
 * Configure credentials via `Manage your Google Account/Security/2FA/APP Passwords` to sending emails via SMTP.
 * Integrate crispy-forms for the `Log in` and `Sign up` pages.
+* Configure allauth and update templates.
