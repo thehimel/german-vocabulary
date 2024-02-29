@@ -6,7 +6,7 @@
 
 {% block head_title %}{% trans "German Vocabulary" %}{% endblock head_title %}
 
-{% block content %}
+{% block main_content %}
   <div class="text-center m-2">
     <img class="pb-4 img-fluid rotate-continuously" src="{% static 'img/favicon/android-chrome-512x512.png' %}" alt="brand-logo" width="100">
     <div class="display-5">Welcome to German Vocabulary</div>
@@ -16,4 +16,4 @@
       <a href="{% url 'account_signup' %}"><button class="btn btn-outline-dark" type="button">Sign up</button></a>
     </div>
   </div>
-{% endblock content %}
+{% endblock main_content %}

@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block content %}
+{% block main_content %}
   <div class="container d-grid col-lg-6 d-flex align-items-center justify-content-center">
     <div>
       {% if messages %}
@@ -13,8 +13,8 @@
           {% endfor %}
         </div>
       {% endif %}
-      {% block extra_content %}
-      {% endblock extra_content %}
+      {% block content %}
+      {% endblock content %}
     </div>
   </div>
-{% endblock content %}
+{% endblock main_content %}

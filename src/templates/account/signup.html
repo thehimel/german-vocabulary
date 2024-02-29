@@ -6,7 +6,7 @@
 
 {% block head_title %}{% trans "Sign Up" %}{% endblock head_title %}
 
-{% block extra_content %}
+{% block content %}
   {% element h1 %}{% trans "Sign Up" %}{% endelement %}
     <p>
       {% blocktrans %}
@@ -29,4 +29,4 @@
         <a class="btn btn-secondary" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
       </div>
     </form>
-{% endblock extra_content %}
+{% endblock content %}
