@@ -35,7 +35,7 @@
 {% block body %}
 <div class="d-flex w-100 mx-auto flex-column">
   <header class="mb-auto">
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
         <a class="navbar-brand" href="{% url 'base:home' %}">
           <img src="{% static 'img/favicon/android-chrome-512x512.png' %}" alt="brand-logo" height="24" class="d-inline-block align-text-top">
@@ -90,7 +90,7 @@
     </nav>
   </header>
 
-  <main class="container mb-auto">
+  <main class="container mb-auto pt-5">
     {% block main_content %}
     {% endblock main_content %}
   </main>
