@@ -16,12 +16,15 @@
       <ul class="list-group list-group-flush">
         <li class="list-group-item"><i class="fa-solid fa-user me-2"></i>{{ object.username }}</li>
         <li class="list-group-item"><i class="fa-solid fa-envelope me-2"></i>{{ object.email }}</li>
-      </ul>
-        {% if user == object %}
-            <div class="card-body d-flex btn-group">
-                <a href="{% url 'users:profile_update' slug=user.username %}" class="btn btn-success">Edit</a>
-            </div>
+        {% if request.user.username == object.username %}
+          <li class="list-group-item d-flex btn-group pt-3 pb-3">
+            <a href="{% url 'users:profile_update' slug=user.username %}" class="btn btn-success">Edit Profile</a>
+          </li>
+          <div class="card-body d-flex btn-group">
+            <a href="{% url 'account_change_password' %}" class="btn btn-danger">Change Password</a>
+          </div>
         {% endif %}
+      </ul>
     </div>
   </div>
 {% endblock main_content %}
