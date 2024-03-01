@@ -1,3 +1,5 @@
+APP_NAME = "users"
+
 GENERAL = "G"
 MANAGER = "M"
 

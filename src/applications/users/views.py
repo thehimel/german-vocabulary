@@ -1,12 +1,19 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import DetailView
+from django.views.generic import DetailView, UpdateView
 from django.contrib.auth import get_user_model
+from applications.users.constants import APP_NAME
 
 
 class ProfileView(LoginRequiredMixin, DetailView):
-    template_name = "users/profile.html"
-    extra_context = {
-        "head_title": "Profile",
-    }
+    template_name = f"{APP_NAME}/profile.html"
     model = get_user_model()
+    slug_field = "username"
+
+
+class ProfileUpdateView(LoginRequiredMixin, UpdateView):
+    """UpdateView for the user profile."""
+
+    template_name = "users/profile_update.html"
+    model = get_user_model()
+    fields = ["first_name", "last_name", "gender"]
     slug_field = "username"

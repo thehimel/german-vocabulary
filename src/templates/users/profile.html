@@ -19,7 +19,7 @@
       </ul>
         {% if user == object %}
             <div class="card-body d-flex btn-group">
-                <a href="{% url 'users:profile' slug=user.username %}" class="btn btn-primary">Update</a>
+                <a href="{% url 'users:profile_update' slug=user.username %}" class="btn btn-success">Edit</a>
             </div>
         {% endif %}
     </div>
