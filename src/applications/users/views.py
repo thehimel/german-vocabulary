@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import DetailView
-from applications.users.models import User
+from django.contrib.auth import get_user_model
 
 
 class ProfileView(LoginRequiredMixin, DetailView):
@@ -8,5 +8,5 @@ class ProfileView(LoginRequiredMixin, DetailView):
     extra_context = {
         "head_title": "Profile",
     }
-    model = User
+    model = get_user_model()
     slug_field = "username"
