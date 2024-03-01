@@ -2,7 +2,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 from applications.users.constants import DEFAULT_PROFILE_PICTURE, GENERAL, MANAGER, NAME_MAX_LENGTH
-from applications.users.utilities import profile_picture_directory, validate_file_size
+from applications.users.utils import profile_picture_directory, validate_file_size
 from utilities.images import resize_image
 
 
