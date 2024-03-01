@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% load i18n %}
+
+{% block head_title %}{% blocktrans %}{{ title }}{% endblocktrans %}{% endblock head_title %}
+
+{% block main_content %}
+  <div class="text-center m-2">
+    <div class="display-5">{% blocktrans %}{{ title }}{% endblocktrans %}</div>
+    {% if messages %}
+      <div>
+        {% for message in messages %}
+          <div class="display-6">{% blocktrans %}{{ message }}{% endblocktrans %}</div>
+        {% endfor %}
+      </div>
+    {% else %}
+      {% url 'base:home' as home_url %}
+      <script>
+        window.location.href = "{% if home_url %}{{ home_url }}{% else %}/{% endif %}";
+      </script>
+    {% endif %}
+  </div>
+{% endblock main_content %}
