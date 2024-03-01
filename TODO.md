@@ -14,3 +14,7 @@
 * Create a view to list the words to approve.
 * Create a rest api to get data for a word.
 * Create a command line script to get the full database in a json file.
+
+## Bugs
+
+* Media files are not accessible in production.
