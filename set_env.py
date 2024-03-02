@@ -21,7 +21,7 @@ def read_data(file_path: str | Path) -> dict:
 
 def write_data(file_path: str | Path, data: dict):
     file_path = Path(file_path)
-    if file_path.is_file():
+    if not file_path.is_file():
         with open(file_path, "w") as file:
             for key, value in data.items():
                 file.write(f"{key}='{value}'\n")
