@@ -186,8 +186,6 @@ AUTH_USER_MODEL = "users.User"  # We have custom user model.
 ACCOUNT_FORMS = {"signup": "apps.users.forms.UserSignupForm"}
 
 if ENVIRONMENT == PRODUCTION:
-    # Cloudinary Credentials
-    # CLOUDINARY_INFO="CLOUD_NAME:API_KEY:API_SECRET"
     CLOUDINARY_URL = config("CLOUDINARY_URL")
     CLOUDINARY_STORAGE = parse_cloudinary_url(cloudinary_url=CLOUDINARY_URL)
 
