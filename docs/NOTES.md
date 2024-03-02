@@ -1,12 +1,31 @@
 # Configuration
 
+## Django Cleanup
+
+### Setup
+
+* Install library: [django-cleanup](https://pypi.org/project/django-cleanup/)
+
+#### Update `settings.py`
+
+```
+INSTALLED_APPS = (
+    ...,
+    
+    # Must be on the bottom of INSTALLED_APPS.
+    'django_cleanup.apps.CleanupConfig',
+)
+```
+
+> Note: It does not delete files in local deployment. It deletes file in production i.e. cloudinary.
+
 ## Cloudinary
 
 ### Setup
 
 * Install library: [django-cloudinary-storage](https://pypi.org/project/django-cloudinary-storage/)
 
-#### Updated settings.py
+#### Update `settings.py`
 
 ```
 INSTALLED_APPS = [
