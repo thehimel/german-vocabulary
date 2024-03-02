@@ -1,2 +1,4 @@
 pip install -r src/requirements.txt
-./env.sh
+python set_env.py --env_template .env_template
+python src/manage.py makemigrations
+python src/manage.py migrate
