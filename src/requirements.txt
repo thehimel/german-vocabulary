@@ -13,4 +13,5 @@ isort>=5.13.2
 Pillow>=10.2.0
 python-decouple>=3.8
 psycopg2-binary>=2.9.9
+urllib3==1.26.6
 whitenoise>=6.6.0
