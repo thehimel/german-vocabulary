@@ -2,7 +2,7 @@ from django.views.generic import TemplateView
 
 
 class HomeView(TemplateView):
-    template_name = "base/home.html"
+    template_name = "base/index.html"
 
 
 class MessageView(TemplateView):
