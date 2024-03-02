@@ -16,6 +16,7 @@ import dj_database_url
 from decouple import config
 
 from core.vars import DEVELOPMENT, PRODUCTION
+from apps.base.utils.cloudinary import parse_cloudinary_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -187,13 +188,8 @@ ACCOUNT_FORMS = {"signup": "apps.users.forms.UserSignupForm"}
 if ENVIRONMENT == PRODUCTION:
     # Cloudinary Credentials
     # CLOUDINARY_INFO="CLOUD_NAME:API_KEY:API_SECRET"
-    CLOUDINARY_URL = config("CLOUDINARY_URL").split(":")
-
-    CLOUDINARY_STORAGE = {
-        "CLOUD_NAME": CLOUDINARY_URL[0],
-        "API_KEY": CLOUDINARY_URL[1],
-        "API_SECRET": CLOUDINARY_URL[2]
-    }
+    CLOUDINARY_URL = config("CLOUDINARY_URL")
+    CLOUDINARY_STORAGE = parse_cloudinary_url(cloudinary_url=CLOUDINARY_URL)
 
     # For images
     DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"

@@ -30,4 +30,4 @@ jobs:
         # Using double quotes because SECRET_KEY may contain parenthesis.
         SECRET_KEY: "${{ secrets.SECRET_KEY }}"
       run: |
-        python src/manage.py test
+        python src/manage.py test src
