@@ -1,7 +1,7 @@
 from django import forms
-from applications.users.models import User
+from apps.users.models import User
 from allauth.account.forms import SignupForm
-from applications.users.constants import NAME_MAX_LENGTH
+from apps.users.constants import NAME_MAX_LENGTH
 
 
 class UserUpdateForm(forms.ModelForm):

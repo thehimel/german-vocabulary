@@ -1,5 +1,5 @@
 from django.urls import path
-from applications.users.views import ProfileView, ProfileUpdateView
+from apps.users.views import ProfileView, ProfileUpdateView
 
 
 app_name = "users"
