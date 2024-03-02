@@ -1,11 +1,11 @@
 black>=24.2.0
-cloudinary>=1.39.0
 crispy-bootstrap5>=2024.2
 dj-database-url>=2.1.0
 Django>=4.2.10
 django-allauth>=0.61.1
 django-bootstrap-v5>=1.0.11
 django-cleanup>=8.1.0
+django-cloudinary-storage>=0.3.0
 djangorestframework>=3.14.0
 fontawesomefree>=6.5.1
 gunicorn>=21.2.0
