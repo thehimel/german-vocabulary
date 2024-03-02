@@ -60,7 +60,7 @@ INSTALLED_APPS = [
     "cloudinary_storage",
     "cloudinary",
 
-    # For django-cleanup. Must be on the bottom of INSTALLED_APPS.
+    # Must be on the bottom of INSTALLED_APPS.
     "django_cleanup.apps.CleanupConfig",
 ]
 
