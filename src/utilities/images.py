@@ -1,7 +1,8 @@
 import sys
-from PIL import Image
 from io import BytesIO
+
 from django.core.files.uploadedfile import InMemoryUploadedFile
+from PIL import Image
 
 
 def resize_image(form_data, field_name, height_limit=300, square=True):

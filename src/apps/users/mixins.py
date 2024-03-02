@@ -1,8 +1,9 @@
-from django.urls import reverse
 from django.contrib import messages
-from django.shortcuts import redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
-from core.constants import UNAUTHORIZED_MESSAGE, HTTP_401_UNAUTHORIZED
+from django.shortcuts import redirect
+from django.urls import reverse
+
+from core.constants import HTTP_401_UNAUTHORIZED, UNAUTHORIZED_MESSAGE
 
 
 class UserIsOwnerMixin(LoginRequiredMixin):

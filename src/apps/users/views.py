@@ -1,6 +1,7 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import DetailView, UpdateView
-from django.contrib.auth import get_user_model
+
 from apps.users.constants import APP_NAME
 from apps.users.mixins import UserIsOwnerMixin
 
