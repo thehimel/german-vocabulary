@@ -1,6 +1,6 @@
 import os
 
-from utilities.validators import validate_file_size
+from apps.base.utils.validators import validate_file_size
 
 
 def profile_picture_directory(instance, filename):

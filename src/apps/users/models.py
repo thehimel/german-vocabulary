@@ -4,7 +4,7 @@ from django.urls import reverse
 
 from apps.users.constants import APP_NAME, DEFAULT_PROFILE_PICTURE, GENERAL, MANAGER, NAME_MAX_LENGTH
 from apps.users.utils import profile_picture_directory, validate_file_size
-from utilities.images import resize_image
+from apps.base.utils.images import resize_image
 
 
 class User(AbstractUser):

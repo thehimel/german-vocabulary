@@ -43,17 +43,22 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    # Applications
+
     "apps.base",
     "apps.users",
-    # For allauth
+
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+
     "bootstrap5",
     "crispy_forms",
     "crispy_bootstrap5",
     "fontawesomefree",
+
+    "cloudinary_storage",
+    "cloudinary",
+
     # For django-cleanup. Must be on the bottom of INSTALLED_APPS.
     "django_cleanup.apps.CleanupConfig",
 ]
@@ -178,3 +183,17 @@ DEFAULT_FROM_EMAIL = "German Vocabulary <info@domain.com>"  # Default sender is 
 
 AUTH_USER_MODEL = "users.User"  # We have custom user model.
 ACCOUNT_FORMS = {"signup": "apps.users.forms.UserSignupForm"}
+
+if ENVIRONMENT == PRODUCTION:
+    # Cloudinary Credentials
+    # CLOUDINARY_INFO="CLOUD_NAME:API_KEY:API_SECRET"
+    CLOUDINARY_URL = config("CLOUDINARY_URL").split(":")
+
+    CLOUDINARY_STORAGE = {
+        "CLOUD_NAME": CLOUDINARY_URL[0],
+        "API_KEY": CLOUDINARY_URL[1],
+        "API_SECRET": CLOUDINARY_URL[2]
+    }
+
+    # For images
+    DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
