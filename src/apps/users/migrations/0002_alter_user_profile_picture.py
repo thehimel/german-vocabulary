@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
             name="profile_picture",
             field=models.ImageField(
                 default="images/defaults/profile-picture.jpg",
-                upload_to=apps.users.utils.profile_picture_directory,
+                upload_to=apps.users.utils.user_directory_path,
                 validators=[apps.base.utils.validators.validate_file_size],
             ),
         ),

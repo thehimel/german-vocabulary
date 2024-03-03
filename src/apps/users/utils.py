@@ -3,7 +3,7 @@ import os
 from apps.base.utils.validators import validate_file_size
 
 
-def profile_picture_directory(instance, filename):
+def user_directory_path(instance, filename):
     _, extension = os.path.splitext(filename)
     filename = f"picture{extension}"
     return f"users/{instance.username}/profile/{filename}"

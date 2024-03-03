@@ -3,7 +3,7 @@ from django.db import models
 from django.urls import reverse
 
 from apps.users.constants import APP_NAME, DEFAULT_PROFILE_PICTURE, GENERAL, MANAGER, NAME_MAX_LENGTH
-from apps.users.utils import profile_picture_directory, validate_file_size
+from apps.users.utils import user_directory_path, validate_file_size
 from apps.base.utils.images import resize_image
 
 
@@ -18,7 +18,7 @@ class User(AbstractUser):
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, blank=True)
     profile_picture = models.ImageField(
         default=DEFAULT_PROFILE_PICTURE,
-        upload_to=profile_picture_directory,
+        upload_to=user_directory_path,
         validators=[validate_file_size],
     )
 
