@@ -9,6 +9,7 @@ django-cloudinary-storage>=0.3.0
 djangorestframework>=3.14.0
 fontawesomefree>=6.5.1
 gunicorn>=21.2.0
+iso639-lang>=2.2.3
 isort>=5.13.2
 Pillow>=10.2.0
 python-decouple>=3.8
