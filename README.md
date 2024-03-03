@@ -21,12 +21,6 @@ DATABASE_URL="GET_DATA"
 * Admin will have to approve the data.
 * Only approved data will be listed in list view.
 
-### Unauthorized Access
-
-* If a user tries to access a unauthorized resource, then it adds message in the messages.
-* Then direct takes place to the `MessageView()` where title for the page is passed as well.
-* If there is no message, then `MessageView()` redirects to home.
-
 ## Resources
 
 * [crispy-bootstrap5](https://github.com/django-crispy-forms/crispy-bootstrap5)
