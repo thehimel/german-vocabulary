@@ -1,6 +1,5 @@
 ## TODO
 
-* Connect cloudinary. Directory format: words/a/a.jpg
 * Add app 'vocabulary'
 * Add vocabulary model.
   * There will be table for each language i.e. english, bengali.
