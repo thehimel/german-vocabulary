@@ -1,8 +1,11 @@
+from django import forms
+from django.utils.translation import gettext as _
 from django.core.exceptions import ValidationError
+from django.shortcuts import get_object_or_404
 
 
 def validate_file_size(file, max_size=2):
-    """The max_size is in MB."""
+    """The max_size in MB."""
 
     max_limit = max_size * 1024 * 1024
     if file.size > max_limit:
@@ -29,3 +32,20 @@ def validate_content_type_jpeg(value):
     content_types = ["image/jpeg"]
     message = "Only JPG or JPEG file is accepted."
     validate_content_type(value, content_types, message)
+
+
+def validate_field_unchanged(model, field):
+    """Ensure the field is not be changed."""
+    def decorator(func):
+        def wrapper(self, *args, **kwargs):
+            if self.instance.pk:
+                old_instance = get_object_or_404(klass=model, pk=self.instance.pk)
+                old_value = getattr(old_instance, field, None)
+                new_value = self.cleaned_data.get(field, None)
+
+                if old_value and new_value and old_value != new_value:
+                    raise forms.ValidationError(_(f"The {field} field cannot be changed."))
+
+            return func(self, *args, **kwargs)
+        return wrapper
+    return decorator
