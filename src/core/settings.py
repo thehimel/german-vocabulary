@@ -47,6 +47,7 @@ INSTALLED_APPS = [
 
     "apps.base",
     "apps.users",
+    "apps.words",
 
     "allauth",
     "allauth.account",
