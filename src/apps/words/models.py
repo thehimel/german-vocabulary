@@ -1,3 +1,7 @@
 from django.db import models
+from pprint import pprint
 
-# Create your models here.
+
+class Language(models.Model):
+    code = models.CharField(max_length=2)
+    slug = models.SlugField(unique=True, editable=False)
