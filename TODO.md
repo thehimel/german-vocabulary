@@ -1,7 +1,6 @@
 ## TODO
 
-* Add app 'vocabulary'
-* Add vocabulary model.
+* Add words model.
   * There will be table for each language i.e. english, bengali.
   * There will be a common part for all languages.
     * Common fields are: image, parts of speech, approved
