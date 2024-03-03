@@ -1,12 +1,14 @@
 from django.core.exceptions import ValidationError
 
 
-def validate_file_size(value, max_limit_in_mb=1):
-    max_limit = max_limit_in_mb * 1024 * 1024
-    if value.size > max_limit:
+def validate_file_size(file, max_size=2):
+    """The max_size is in MB."""
+
+    max_limit = max_size * 1024 * 1024
+    if file.size > max_limit:
         raise ValidationError(
-            f"File size too large. File size should not exceed {max_limit_in_mb} MB. "
-            f"Current file size is {value.size/(1024*1024):.2f} MB."
+            f"File size too large. File size should not exceed {max_size} MB. "
+            f"Current file size is {file.size / (1024 * 1024):.2f} MB."
         )
 
 
