@@ -2,8 +2,19 @@ from django.conf import settings
 from django.db import models
 from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
+from apps.base.utils.decorators import auto_generate_slug
 
 
+@auto_generate_slug(field_name="article")
+class Article(models.Model):
+    slug = models.SlugField(editable=False)
+    article = models.CharField(max_length=5)
+
+    def __str__(self):
+        return self.article
+
+
+@auto_generate_slug(field_name="code")
 class Language(models.Model):
     """
     During adding a language, it shows all the available languages from settings where the list of languages are saved
@@ -21,12 +32,22 @@ class Language(models.Model):
         code_choices.append(language)
         languages.update([language])
 
-    code = models.CharField(unique=True, max_length=7, choices=code_choices)
     slug = models.SlugField(editable=False)
-
-    def save(self, *args, **kwargs):
-        self.slug = slugify(self.code)
-        super().save(*args, **kwargs)
+    code = models.CharField(unique=True, max_length=7, choices=code_choices)
+    articles = models.ManyToManyField(Article, blank=True)
 
     def __str__(self):
         return str(self.languages.get(self.code, self.code))
+
+
+@auto_generate_slug(field_name="word")
+class Vocabulary(models.Model):
+    word = models.CharField(max_length=100)
+    language = models.ForeignKey(Language, on_delete=models.CASCADE)
+    slug = models.SlugField(editable=False)
+
+    class Meta:
+        verbose_name_plural = "Vocabulary"
+
+    def __str__(self):
+        return f"{self.word} | {self.language}"
