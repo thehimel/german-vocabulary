@@ -24,7 +24,7 @@ class User(AbstractUser):
     )
 
     def save(self, *args, **kwargs):
-        resize_image(form_data=self, field_name="profile_picture")
+        resize_image(instance=self, field_name="profile_picture")
         super().save(*args, **kwargs)
 
     @property

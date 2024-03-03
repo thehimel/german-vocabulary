@@ -5,10 +5,10 @@ from django.core.files.uploadedfile import InMemoryUploadedFile
 from PIL import Image
 
 
-def resize_image(form_data, field_name, height_limit=300, square=True):
+def resize_image(instance, field_name, height_limit=300, square=True):
     """Resize image to the given limit and crop from center if square is needed."""
 
-    source = getattr(form_data, field_name)
+    source = getattr(instance, field_name)
 
     # Opening the uploaded image.
     image = Image.open(source)
@@ -62,4 +62,4 @@ def resize_image(form_data, field_name, height_limit=300, square=True):
     )
 
     # As can not update the attribute with equal sign, we set new value to the attribute with setattr().
-    setattr(form_data, field_name, compressed_source)
+    setattr(instance, field_name, compressed_source)
