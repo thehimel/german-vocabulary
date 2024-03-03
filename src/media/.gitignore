@@ -1,1 +1,5 @@
-*
+# Ignores everything in the root directory.
+/*
+
+# Excludes the "defaults" directory from the previous rule.
+!/defaults/

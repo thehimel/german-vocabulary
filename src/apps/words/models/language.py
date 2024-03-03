@@ -1,19 +1,9 @@
-from django.conf import settings
 from django.db import models
-from apps.users.constants import DEFAULT_PROFILE_PICTURE
-from apps.base.utils.validators import validate_file_size
+from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 
 from apps.base.utils.decorators import auto_generate_slug
-
-
-@auto_generate_slug(field_name="article")
-class Article(models.Model):
-    slug = models.SlugField(editable=False)
-    article = models.CharField(max_length=5)
-
-    def __str__(self):
-        return self.article
+from apps.words.models.article import Article
 
 
 @auto_generate_slug(field_name="code")
@@ -40,24 +30,3 @@ class Language(models.Model):
 
     def __str__(self):
         return str(self.languages.get(self.code, self.code))
-
-
-class Image(models.Model):
-    image = models.ImageField(default=DEFAULT_PROFILE_PICTURE, upload_to='words/', validators=[validate_file_size])
-    description = models.TextField(blank=True, null=True)
-
-
-@auto_generate_slug(field_name="word")
-class Vocabulary(models.Model):
-    slug = models.SlugField(editable=False)
-    word = models.CharField(max_length=100)
-    language = models.ForeignKey(Language, on_delete=models.CASCADE)
-    articles = models.ManyToManyField(Article, blank=True)
-    images = models.OneToOneField(Image, on_delete=models.CASCADE, blank=True)
-
-    class Meta:
-        verbose_name_plural = "Vocabulary"
-        unique_together = ["word", "language"]
-
-    def __str__(self):
-        return f"{self.word} | {self.language}"
