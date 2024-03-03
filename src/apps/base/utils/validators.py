@@ -36,6 +36,7 @@ def validate_content_type_jpeg(value):
 
 def validate_field_unchanged(model, field):
     """Ensure the field is not be changed."""
+
     def decorator(func):
         def wrapper(self, *args, **kwargs):
             if self.instance.pk:
@@ -47,5 +48,7 @@ def validate_field_unchanged(model, field):
                     raise forms.ValidationError(_(f"The {field} field cannot be changed."))
 
             return func(self, *args, **kwargs)
+
         return wrapper
+
     return decorator

@@ -1,6 +1,5 @@
 from django.conf import settings
 from django.db import models
-from django.utils.text import slugify
 from django.utils.translation import gettext_lazy as _
 from apps.base.utils.decorators import auto_generate_slug
 
@@ -42,12 +41,14 @@ class Language(models.Model):
 
 @auto_generate_slug(field_name="word")
 class Vocabulary(models.Model):
+    slug = models.SlugField(editable=False)
     word = models.CharField(max_length=100)
     language = models.ForeignKey(Language, on_delete=models.CASCADE)
-    slug = models.SlugField(editable=False)
+    articles = models.ManyToManyField(Article, blank=True)
 
     class Meta:
         verbose_name_plural = "Vocabulary"
+        unique_together = ["word", "language"]
 
     def __str__(self):
         return f"{self.word} | {self.language}"
