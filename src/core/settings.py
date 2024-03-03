@@ -15,8 +15,8 @@ from pathlib import Path
 import dj_database_url
 from decouple import config
 
-from core.vars import DEVELOPMENT, PRODUCTION
 from apps.base.utils.cloudinary import parse_cloudinary_url
+from core.vars import DEVELOPMENT, PRODUCTION
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -44,23 +44,18 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
     "apps.base",
     "apps.users",
     "apps.words",
-
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
-
     "bootstrap5",
     "crispy_forms",
     "crispy_bootstrap5",
     "fontawesomefree",
-
     "cloudinary_storage",
     "cloudinary",
-
     # Must be on the bottom of INSTALLED_APPS.
     "django_cleanup.apps.CleanupConfig",
 ]

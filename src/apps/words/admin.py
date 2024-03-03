@@ -1,7 +1,8 @@
 from django.contrib import admin
-from apps.words.models import Article, Language, Vocabulary
-from apps.words.forms import LanguageForm, VocabularyForm
+
 from apps.base.utils.decorators import make_slug_readonly_during_update
+from apps.words.forms import LanguageForm, VocabularyForm
+from apps.words.models import Article, Language, Vocabulary
 
 
 @make_slug_readonly_during_update

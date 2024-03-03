@@ -1,6 +1,7 @@
 from django import forms
-from apps.words.models import Article, Language, Vocabulary
+
 from apps.base.utils.validators import validate_field_unchanged
+from apps.words.models import Article, Language, Vocabulary
 
 
 class LanguageForm(forms.ModelForm):

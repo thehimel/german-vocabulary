@@ -2,10 +2,10 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.urls import reverse
 
-from apps.users.constants import APP_NAME, DEFAULT_PROFILE_PICTURE, GENERAL, MANAGER, NAME_MAX_LENGTH
-from apps.users.utils import user_directory_path
 from apps.base.utils.images import resize_image
 from apps.base.utils.validators import validate_file_size
+from apps.users.constants import APP_NAME, DEFAULT_PROFILE_PICTURE, GENERAL, MANAGER, NAME_MAX_LENGTH
+from apps.users.utils import user_directory_path
 
 
 class User(AbstractUser):

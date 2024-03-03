@@ -1,4 +1,5 @@
 from django.test import TestCase
+
 from apps.base.utils.cloudinary import parse_cloudinary_url
 
 

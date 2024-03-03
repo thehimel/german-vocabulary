@@ -1,5 +1,5 @@
-from django.utils.text import slugify
 from django.contrib import admin
+from django.utils.text import slugify
 
 
 def auto_generate_slug(field_name: str):
