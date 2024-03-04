@@ -6,9 +6,9 @@
 
 .cardContainer {
   color: rgb(211, 211, 211);
-  perspective: 800px;
-  height: 600px;
-  width: 400px;
+  perspective: 600px;
+  height: 500px;
+  width: 360px;
 }
 
 .rotate {
