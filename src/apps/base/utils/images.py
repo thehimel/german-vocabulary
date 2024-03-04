@@ -1,11 +1,11 @@
-import sys
+import os
 from io import BytesIO
 
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from PIL import Image
 
 
-def resize_image(instance, field_name, height_limit=300, square=True):
+def resize_image(instance, field_name, file_name=None, height_limit=300, square=True):
     """Resize image to the given limit and crop from center if square is needed."""
 
     source = getattr(instance, field_name)
@@ -55,9 +55,12 @@ def resize_image(instance, field_name, height_limit=300, square=True):
     # Here format can be, format='JPEG', format='PNG'.
     image.save(output, format=file_format, quality=90)
 
+    file_name = f"{file_name}{os.path.splitext(source.name)[1]}" if file_name else source.name
+    print(file_name)
+
     # Update the ImageField value to be the newly modified image value.
     output.seek(0)
-    compressed_source = InMemoryUploadedFile(output, None, source.name, content_type, output.getbuffer().nbytes, None)
+    compressed_source = InMemoryUploadedFile(output, None, file_name, content_type, output.getbuffer().nbytes, None)
 
     # As can not update the attribute with equal sign, we set new value to the attribute with setattr().
     setattr(instance, field_name, compressed_source)

@@ -52,3 +52,8 @@ def validate_field_unchanged(model, field):
         return wrapper
 
     return decorator
+
+
+def validate_alphanumeric(value):
+    if not value.isalnum():
+        raise ValidationError("Only alphanumeric characters are allowed.")
