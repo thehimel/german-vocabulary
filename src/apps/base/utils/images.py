@@ -5,7 +5,7 @@ from django.core.files.uploadedfile import InMemoryUploadedFile
 from PIL import Image
 
 
-def resize_image(instance, field_name, file_name=None, height_limit=300, square=True):
+def resize_image(instance, field_name, title=None, height_limit=300, square=True):
     """Resize image to the given limit and crop from center if square is needed."""
 
     source = getattr(instance, field_name)
@@ -55,8 +55,7 @@ def resize_image(instance, field_name, file_name=None, height_limit=300, square=
     # Here format can be, format='JPEG', format='PNG'.
     image.save(output, format=file_format, quality=90)
 
-    file_name = f"{file_name}{os.path.splitext(source.name)[1]}" if file_name else source.name
-    print(file_name)
+    file_name = f"{title}{os.path.splitext(source.name)[1]}" if title else source.name
 
     # Update the ImageField value to be the newly modified image value.
     output.seek(0)

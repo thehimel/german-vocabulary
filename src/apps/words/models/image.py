@@ -11,7 +11,7 @@ class Image(models.Model):
     description = models.TextField(default="", blank=True, null=True)
 
     def save(self, *args, **kwargs):
-        resize_image(instance=self, field_name="image", file_name=self.title)
+        resize_image(instance=self, field_name="image", title=self.title)
         super().save(*args, **kwargs)
 
     def __str__(self):
