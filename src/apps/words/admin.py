@@ -5,7 +5,7 @@ from apps.words.forms import LanguageForm, VocabularyForm
 from apps.words.models.image import Image
 from apps.words.models.article import Article
 from apps.words.models.language import Language
-from apps.words.models.vocabulary import Vocabulary
+from apps.words.models.word import Word
 
 
 @make_slug_readonly_during_update
@@ -20,4 +20,4 @@ class VocabularyAdmin(admin.ModelAdmin):
 admin.site.register(Article)
 admin.site.register(Image)
 admin.site.register(Language, LanguageAdmin)
-admin.site.register(Vocabulary, VocabularyAdmin)
+admin.site.register(Word, VocabularyAdmin)

@@ -7,7 +7,7 @@ from apps.words.models.language import Language
 
 
 @auto_generate_slug(field_name="word")
-class Vocabulary(models.Model):
+class Word(models.Model):
     slug = models.SlugField(editable=False)
     word = models.CharField(max_length=100)
     language = models.ForeignKey(Language, on_delete=models.CASCADE)

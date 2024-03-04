@@ -4,7 +4,7 @@ from apps.base.utils.validators import validate_field_unchanged
 
 from apps.words.models.article import Article
 from apps.words.models.language import Language
-from apps.words.models.vocabulary import Vocabulary
+from apps.words.models.word import Word
 
 
 class LanguageForm(forms.ModelForm):
@@ -19,7 +19,7 @@ class LanguageForm(forms.ModelForm):
 
 class VocabularyForm(forms.ModelForm):
     class Meta:
-        model = Vocabulary
+        model = Word
         fields = "__all__"
 
     def __init__(self, *args, **kwargs):
