@@ -1,11 +1,32 @@
+// Flip the card on click except click on the play button
 document.getElementById('flashCard').addEventListener('click', function (event) {
-  if (!event.target.classList.contains('play-button')) {
-    // If the clicked element does not have the class 'play-button', flip the card
-    const flip_card = document.getElementById('flip_card');
+  if (event.target !== document.getElementById('playButton')) {
+    // If the clicked element does not have the class 'playButton', flip the card
+    const flipAudio = document.getElementById('flipAudio');
     document.getElementById('flashCard').classList.toggle('rotate');
-    flip_card.play();
+    flipAudio.play();
   }
 });
+
+function changeText() {
+  const button = document.getElementById('playButton');
+  button.innerHTML = 'Playing...';
+  speakText('Ich bin sehr glücklich.', 'de-DE', 0.7); // German language code: "de-DE"
+}
+
+function speakText(text, lang) {
+  const speechSynthesis = window.speechSynthesis; // Using the Web Speech API for text-to-speech
+  const utterance = new SpeechSynthesisUtterance(text);
+
+  utterance.lang = lang;
+
+  utterance.onend = function () {
+    const button = document.getElementById("playButton");
+    button.innerHTML = "Play"; // Change button text when TTS is complete
+  };
+
+  speechSynthesis.speak(utterance);
+}
 
 document.addEventListener('DOMContentLoaded', function () {
   const fadeContainer = document.querySelector('.fade-in-container');
@@ -25,22 +46,3 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
-function changeText() {
-  const button = document.getElementById("myButton");
-  button.innerHTML = "Playing...";
-  speakText("Ich bin sehr glücklich.", "de-DE", 0.7); // German language code: "de-DE"
-}
-
-function speakText(text, lang) {
-  const speechSynthesis = window.speechSynthesis; // Using the Web Speech API for text-to-speech
-  const utterance = new SpeechSynthesisUtterance(text);
-
-  utterance.lang = lang;
-
-  utterance.onend = function () {
-    const button = document.getElementById("myButton");
-    button.innerHTML = "Play"; // Change button text when TTS is complete
-  };
-
-  speechSynthesis.speak(utterance);
-}

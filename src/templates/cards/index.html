@@ -17,7 +17,7 @@
         <h3>Book</h3>
         <p>Das ist mein Buch.</p>
         <p>This is my book.</p>
-        <button class="play-button" id="myButton" onclick="changeText()">Click me</button>
+        <button id="playButton" onclick="changeText()">Click me</button>
       </div>
     </div>
   </div>
@@ -25,6 +25,6 @@
     <a href="{% url 'cards:home' %}" class="cardButton me-2"><i class="fa-solid fa-circle-left"></i></a>
     <a href="{% url 'cards:home' %}" class="cardButton"><i class="fa-solid fa-circle-right"></i></a>
   </div>
-  <audio id="flip_card" src="{% static 'cards/audio/flip_card.mp3' %}"></audio>
+  <audio id="flipAudio" src="{% static 'cards/audio/flip_card.mp3' %}"></audio>
   <script src="{% static 'cards/scripts/base.js' %}"></script>
 {% endblock main_content %}
