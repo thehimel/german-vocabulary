@@ -15,6 +15,9 @@ class Word(models.Model):
     articles = models.ManyToManyField(Article, blank=True)
     image = models.ManyToManyField(Image, blank=True)
     translations = models.ManyToManyField("self", blank=True, symmetrical=True)
+    level = models.CharField(
+        max_length=2, choices=[("a1", "A1"), ("a2", "A2"), ("b1", "B1"), ("b2", "B2"), ("c2", "C2")]
+    )
 
     class Meta:
         unique_together = ["title", "language"]
