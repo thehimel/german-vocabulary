@@ -7,8 +7,8 @@
 {% block head_title %}{% trans "Flashcards" %}{% endblock head_title %}
 
 {% block main_content %}
-  <div class="container cardContainer fade-in-container pt-3 pe-3" onclick="rotateCard(this)">
-    <div class="flashcard">
+  <div class="container cardContainer fade-in-container pt-3 pe-3">
+    <div class="flashcard" id="flashCard">
       <div class="front">
         <h2>Buch</h2>
       </div>
@@ -17,6 +17,7 @@
         <h3>Book</h3>
         <p>Das ist mein Buch.</p>
         <p>This is my book.</p>
+        <button class="play-button" id="myButton" onclick="changeText()">Click me</button>
       </div>
     </div>
   </div>
