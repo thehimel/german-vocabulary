@@ -13,9 +13,9 @@ class Word(models.Model):
     language = models.ForeignKey(Language, on_delete=models.CASCADE)
     articles = models.ManyToManyField(Article, blank=True)
     image = models.ManyToManyField(Image, blank=True)
+    translations = models.ManyToManyField('self', blank=True, symmetrical=True)
 
     class Meta:
-        verbose_name_plural = "Words"
         unique_together = ["word", "language"]
 
     def __str__(self):
