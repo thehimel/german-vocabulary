@@ -11,6 +11,7 @@ class Image(models.Model):
     description = models.TextField(default="", blank=True, null=True)
 
     def save(self, *args, **kwargs):
+        self.title = self.title.lower()
         resize_image(instance=self, field_name="image", title=self.title)
         super().save(*args, **kwargs)
 
