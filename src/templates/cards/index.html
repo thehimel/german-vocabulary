@@ -24,5 +24,6 @@
     <a href="{% url 'cards:home' %}" class="cardButton me-2"><i class="fa-solid fa-circle-left"></i></a>
     <a href="{% url 'cards:home' %}" class="cardButton"><i class="fa-solid fa-circle-right"></i></a>
   </div>
+  <audio id="flip_card" src="{% static 'cards/audio/flip_card.mp3' %}"></audio>
   <script src="{% static 'cards/scripts/base.js' %}"></script>
 {% endblock main_content %}
