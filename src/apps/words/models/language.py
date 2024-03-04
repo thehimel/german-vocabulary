@@ -2,11 +2,11 @@ from django.db import models
 from django.conf import settings
 from django.utils.translation import gettext_lazy as _
 
-from apps.base.utils.decorators import auto_generate_slug
+from apps.base.utils.decorators import auto_slugify
 from apps.words.models.article import Article
 
 
-@auto_generate_slug(field_name="code")
+@auto_slugify(field_name="code")
 class Language(models.Model):
     """
     During adding a language, it shows all the available languages from settings where the list of languages are saved
