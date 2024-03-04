@@ -2,11 +2,10 @@ from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 
-from apps.base.utils.decorators import auto_slugify
 from apps.words.models.article import Article
+from apps.words.models.pos import PartOfSpeech
 
 
-@auto_slugify(field_name="code")
 class Language(models.Model):
     """
     During adding a language, it shows all the available languages from settings where the list of languages are saved
@@ -24,9 +23,9 @@ class Language(models.Model):
         code_choices.append(language)
         languages.update([language])
 
-    slug = models.SlugField(editable=False)
-    code = models.CharField(unique=True, max_length=7, choices=code_choices)
+    title = models.CharField(unique=True, max_length=7, choices=code_choices)
     articles = models.ManyToManyField(Article, blank=True)
+    parts_of_speech = models.ManyToManyField(PartOfSpeech, blank=True, verbose_name="Parts of Speech")
 
     def __str__(self):
-        return str(self.languages.get(self.code, self.code))
+        return str(self.languages.get(self.title, self.title))

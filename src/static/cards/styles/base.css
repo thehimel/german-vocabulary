@@ -1,0 +1,68 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.cardContainer {
+  color: rgb(211, 211, 211);
+  perspective: 800px;
+  height: 600px;
+  width: 400px;
+}
+
+.rotate {
+  transform: rotateY(-180deg);
+  cursor: pointer;
+}
+
+.flashcard {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+}
+
+.front,
+.back {
+  height: 100%;
+  width: 100%;
+  border-radius: 4rem;
+  box-shadow: 0 0 5px 2px rgba(50, 50, 50, 0.25);
+  position: absolute;
+  backface-visibility: hidden;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.front {
+  background: linear-gradient(to top, #900C3F, #DAF7A6);
+}
+
+.back {
+  background: linear-gradient(to top, purple, blue);
+  transform: rotateY(180deg);
+}
+
+.cardButton {
+  font-size: 3em;
+  color: #900C3F;
+}
+
+.cardButton:hover {
+  color: #C70039;
+}
+
+.fade-in-container {
+  opacity: 0; /* Initially set opacity to 0 */
+  transition: opacity 500ms ease; /* Add a transition for the opacity property over 1 second */
+}
+
+.fade-in-container.loaded {
+  opacity: 1; /* Set opacity to 1 when the loaded class is added */
+}

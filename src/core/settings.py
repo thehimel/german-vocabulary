@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "apps.base",
     "apps.users",
     "apps.words",
+    "apps.cards",
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
@@ -54,6 +55,7 @@ INSTALLED_APPS = [
     "crispy_forms",
     "crispy_bootstrap5",
     "fontawesomefree",
+    "django_extensions",
     "cloudinary_storage",
     "cloudinary",
     # Must be on the bottom of INSTALLED_APPS.

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Flashcards" %}{% endblock head_title %}
+
+{% block main_content %}
+  <div class="container cardContainer pt-3 fade-in-container" onclick="rotateCard(this)">
+    <div class="flashcard">
+      <div class="front">
+        <h2>Buch</h2>
+      </div>
+      <div class="back">
+        <h2>das Buch</h2>
+        <h3>Book</h3>
+        <p>Das ist mein Buch.</p>
+        <p>This is my book.</p>
+      </div>
+    </div>
+  </div>
+  <div class="container text-center pt-3">
+    <a href="{% url 'cards:home' %}" class="cardButton me-2"><i class="fa-solid fa-circle-left"></i></a>
+    <a href="{% url 'cards:home' %}" class="cardButton"><i class="fa-solid fa-circle-right"></i></a>
+  </div>
+  <script src="{% static 'cards/scripts/base.js' %}"></script>
+{% endblock main_content %}

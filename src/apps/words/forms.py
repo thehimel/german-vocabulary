@@ -1,9 +1,9 @@
 from django import forms
 
+from apps.base.utils.decorators import filter_data_by_field
 from apps.base.utils.validators import validate_field_unchanged
-from apps.words.models.article import Article
-from apps.words.models.language import Language
-from apps.words.models.word import Word
+from apps.words.models import Article, Language, Word
+from apps.words.models.pos import PartOfSpeech
 
 
 class LanguageForm(forms.ModelForm):
@@ -13,24 +13,25 @@ class LanguageForm(forms.ModelForm):
 
     @validate_field_unchanged(model=Language, field_name="code")
     def clean_code(self):
-        return self.cleaned_data["code"]
+        return self.cleaned_data["title"]
 
 
-class VocabularyForm(forms.ModelForm):
+class WordForm(forms.ModelForm):
     class Meta:
         model = Word
         fields = "__all__"
 
+    @filter_data_by_field(
+        destination_class=Article,
+        destination_field_name="articles",
+        source_class=Language,
+        source_field_name="language",
+    )
+    @filter_data_by_field(
+        destination_class=PartOfSpeech,
+        destination_field_name="parts_of_speech",
+        source_class=Language,
+        source_field_name="language",
+    )
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        if "language" in self.fields:
-            # Get the selected language from the form data (if available)
-            selected_language = self.data.get("language") or self.initial.get("language")
-
-            # If a language is selected, filter the articles based on that language
-            if selected_language:
-                language = Language.objects.get(pk=selected_language)
-                self.fields["articles"].queryset = language.articles.all()
-            else:
-                # If no language is selected, set the articles queryset to all articles
-                self.fields["articles"].queryset = Article.objects.all()

@@ -6,12 +6,14 @@ django-allauth>=0.61.1
 django-bootstrap-v5>=1.0.11
 django-cleanup>=8.1.0
 django-cloudinary-storage>=0.3.0
+django-extensions>=3.2.3
 djangorestframework>=3.14.0
 fontawesomefree>=6.5.1
+graphviz>=0.20.1
 gunicorn>=21.2.0
-iso639-lang>=2.2.3
 isort>=5.13.2
 Pillow>=10.2.0
+pydotplus>=2.0.2
 python-decouple>=3.8
 psycopg2-binary>=2.9.9
 urllib3==1.26.6
