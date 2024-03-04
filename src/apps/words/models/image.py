@@ -6,7 +6,9 @@ from apps.users.constants import DEFAULT_WORD_IMAGE
 
 
 class Image(models.Model):
-    image = models.ImageField(default=DEFAULT_WORD_IMAGE, upload_to="words/", validators=[validate_file_size])
+    image = models.ImageField(
+        default=DEFAULT_WORD_IMAGE, upload_to="words/", validators=[validate_file_size], unique=True
+    )
     description = models.TextField(default="", blank=True, null=True)
 
     def save(self, *args, **kwargs):
