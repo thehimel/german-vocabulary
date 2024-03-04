@@ -1,35 +1,40 @@
-function changeText() {
-  const playButton = document.getElementById('playButton');
-  let text = 'Ich bin sehr glücklich.'
-  let lang = 'de-DE'
-  let speed = 0.6
-
-  if (playButton.innerHTML === 'Playing...') {
-    stopTextToSpeech();
-  } else {
-    playButton.innerHTML = 'Playing...';
-    speakText(text, lang, speed);
-  }
-}
+let playing = false
+const playIcon = 'fa-circle-play'
+const stopIcon = 'fa-circle-stop'
 
 function speakText(text, lang) {
-  const speechSynthesis = window.speechSynthesis;
   const utterance = new SpeechSynthesisUtterance(text);
-
   utterance.lang = lang;
-  utterance.onend = function () {
-    const playButton = document.getElementById('playButton');
-    playButton.innerHTML = 'Play'; // Change button text when TTS is complete
-  };
-
+  utterance.onend = () => togglePlayIcon();
   speechSynthesis.speak(utterance);
 }
 
-function stopTextToSpeech() {
-  const speechSynthesis = window.speechSynthesis;
+function stopSpeakText() {
   if (speechSynthesis.speaking) {
     speechSynthesis.cancel();
-    // Reset play button text when stopping TTS
-    document.getElementById('playButton').innerHTML = 'Play';
+  }
+}
+
+function playText(text, lang) {
+  if (!playing) {
+    togglePlayIcon();
+    speakText(text, lang);
+  } else {
+    stopSpeakText();
+    togglePlayIcon();
+  }
+}
+
+function togglePlayIcon() {
+  const hasPlayIcon = playButton.classList.contains(playIcon);
+
+  if (hasPlayIcon) {
+    playing = true;
+    playButton.classList.remove(playIcon)
+    playButton.classList.add(stopIcon)
+  } else {
+    playing = false;
+    playButton.classList.remove(stopIcon)
+    playButton.classList.add(playIcon)
   }
 }

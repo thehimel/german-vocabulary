@@ -17,7 +17,7 @@
         <h3>Book</h3>
         <p>Das ist mein Buch.</p>
         <p>This is my book.</p>
-        <button id="playButton" onclick="changeText()">Click me</button>
+        <i class="fa-regular fa-circle-play" id="playButton" onclick="playText('Das ist mein Buch.', 'de-DE')" style="font-size: 3em;" ></i>
       </div>
     </div>
   </div>
@@ -27,7 +27,7 @@
   </div>
   <audio id="flipAudio" src="{% static 'cards/audio/flip_card.mp3' %}"></audio>
 
+  <script src="{% static 'cards/scripts/base.js' %}"></script>
   <script src="{% static 'cards/scripts/loadCard.js' %}"></script>
-  <script src="{% static 'cards/scripts/flip.js' %}"></script>
   <script src="{% static 'cards/scripts/tts.js' %}"></script>
 {% endblock main_content %}
