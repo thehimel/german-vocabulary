@@ -1,7 +1,7 @@
 from django.db import models
 
 from apps.base.utils.images import resize_image
-from apps.base.utils.validators import validate_file_size, validate_alphanumeric
+from apps.base.utils.validators import validate_alphanumeric, validate_file_size
 from apps.users.constants import DEFAULT_WORD_IMAGE
 
 
