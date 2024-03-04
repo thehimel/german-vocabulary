@@ -30,8 +30,8 @@ function togglePlayIcon() {
 
   if (hasPlayIcon) {
     playing = true;
-    playButton.classList.remove(playIcon)
-    playButton.classList.add(stopIcon)
+    playButton.classList.remove(playIcon);
+    playButton.classList.add(stopIcon);
   } else {
     playing = false;
     playButton.classList.remove(stopIcon)
