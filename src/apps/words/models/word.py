@@ -1,8 +1,8 @@
 from django.db import models
-from apps.base.utils.decorators import auto_slugify
 
-from apps.words.models.image import Image
+from apps.base.utils.decorators import auto_slugify
 from apps.words.models.article import Article
+from apps.words.models.image import Image
 from apps.words.models.language import Language
 
 
@@ -13,7 +13,7 @@ class Word(models.Model):
     language = models.ForeignKey(Language, on_delete=models.CASCADE)
     articles = models.ManyToManyField(Article, blank=True)
     image = models.ManyToManyField(Image, blank=True)
-    translations = models.ManyToManyField('self', blank=True, symmetrical=True)
+    translations = models.ManyToManyField("self", blank=True, symmetrical=True)
 
     class Meta:
         unique_together = ["word", "language"]

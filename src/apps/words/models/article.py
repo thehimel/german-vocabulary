@@ -1,4 +1,5 @@
 from django.db import models
+
 from apps.base.utils.decorators import auto_slugify
 
 
