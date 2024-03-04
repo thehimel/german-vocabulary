@@ -6,7 +6,7 @@ from apps.words.models.image import Image
 from apps.words.models.language import Language
 
 
-@auto_slugify(field_name="word")
+@auto_slugify(field_name="title")
 class Word(models.Model):
     slug = models.SlugField(editable=False)
     title = models.CharField(max_length=100)
