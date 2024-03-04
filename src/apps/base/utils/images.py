@@ -59,7 +59,14 @@ def resize_image(instance, field_name, title=None, height_limit=300, square=True
 
     # Update the ImageField value to be the newly modified image value.
     output.seek(0)
-    compressed_source = InMemoryUploadedFile(output, None, file_name, content_type, output.getbuffer().nbytes, None)
+    compressed_source = InMemoryUploadedFile(
+        file=output,
+        field_name=None,
+        name=file_name,
+        content_type=content_type,
+        size=output.getbuffer().nbytes,
+        charset=None,
+    )
 
     # As can not update the attribute with equal sign, we set new value to the attribute with setattr().
     setattr(instance, field_name, compressed_source)
