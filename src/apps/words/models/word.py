@@ -15,7 +15,7 @@ class Word(models.Model):
     image = models.ManyToManyField(Image, blank=True)
 
     class Meta:
-        verbose_name_plural = "Vocabulary"
+        verbose_name_plural = "Words"
         unique_together = ["word", "language"]
 
     def __str__(self):
