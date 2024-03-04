@@ -7,7 +7,7 @@ from apps.users.constants import DEFAULT_WORD_IMAGE
 
 class Image(models.Model):
     image = models.ImageField(default=DEFAULT_WORD_IMAGE, upload_to="words/", validators=[validate_file_size])
-    description = models.TextField(blank=True, null=True)
+    description = models.TextField(default="")
 
     def save(self, *args, **kwargs):
         resize_image(instance=self, field_name="image")
