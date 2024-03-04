@@ -34,18 +34,18 @@ def validate_content_type_jpeg(value):
     validate_content_type(value, content_types, message)
 
 
-def validate_field_unchanged(model, field):
+def validate_field_unchanged(model, field_name):
     """Ensure the field is not be changed."""
 
     def decorator(func):
         def wrapper(self, *args, **kwargs):
             if self.instance.pk:
                 old_instance = get_object_or_404(klass=model, pk=self.instance.pk)
-                old_value = getattr(old_instance, field, None)
-                new_value = self.cleaned_data.get(field, None)
+                old_value = getattr(old_instance, field_name, None)
+                new_value = self.cleaned_data.get(field_name, None)
 
                 if old_value and new_value and old_value != new_value:
-                    raise forms.ValidationError(_(f"The {field} field cannot be changed."))
+                    raise forms.ValidationError(_(f"The {field_name} field cannot be changed."))
 
             return func(self, *args, **kwargs)
 
