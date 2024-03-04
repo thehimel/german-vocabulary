@@ -1,8 +1,8 @@
 function rotateCard(cardContainer) {
   const flashcard = cardContainer.querySelector('.flashcard');
-  const sound = document.getElementById('flip_card');
-  sound.play();
+  const flip_card = document.getElementById('flip_card');
   flashcard.classList.toggle('rotate');
+  flip_card.play();
 }
 
 document.addEventListener('DOMContentLoaded', function () {
