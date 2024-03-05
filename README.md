@@ -13,6 +13,11 @@ DATABASE_URL="GET_DATA"
 
 * Command: `python src/manage.py runserver 8080`
 
+## Versions
+
+* Font Awesome: 6.5.1
+* Bootstrap 5.3
+
 ## Workflow:
 
 ### Data Listing
