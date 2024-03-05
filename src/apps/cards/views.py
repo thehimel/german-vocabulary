@@ -19,7 +19,6 @@ class CardDetailView(DetailView):
 
 
 class NextCardView(View):
-
     @staticmethod
     def get_random_word():
         return Word.objects.order_by("?").first()
