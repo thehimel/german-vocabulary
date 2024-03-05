@@ -22,6 +22,7 @@ class NextCardView(View):
     @staticmethod
     def get(request, action='next', slug=None):
         current_word = get_object_or_404(Word, pk=slug) if slug else None
+        next_card = None
 
         if current_word:
             if action == 'next':
@@ -32,10 +33,10 @@ class NextCardView(View):
                 next_card = Word.objects.filter(pk__lt=current_word.pk).order_by('-pk').first()
                 if not next_card:
                     messages.warning(request, _('This is the first word in this section.'))
-            else:
-                next_card = Word.objects.order_by('?').first()
+        else:
+            next_card = Word.objects.order_by('?').first()
 
-            if next_card:
-                slug = next_card.pk
+        if next_card:
+            slug = next_card.pk
 
         return redirect('cards:detail', slug=slug)
