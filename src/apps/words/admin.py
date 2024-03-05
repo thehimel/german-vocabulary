@@ -7,11 +7,11 @@ from apps.words.models.bundle import Bundle
 from apps.words.models.pos import PartOfSpeech
 
 
-@make_slug_readonly_during_update
 class LanguageAdmin(admin.ModelAdmin):
     form = LanguageForm
 
 
+@make_slug_readonly_during_update
 class WordAdmin(admin.ModelAdmin):
     form = WordForm
 

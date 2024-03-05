@@ -11,9 +11,19 @@
     {% for obj in object_list %}
       <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
         <div class="card text-bg-light mb-3" style="max-width: 18rem; min-height: 10rem;">
-          <div class="card-header">{{ obj.title }}</div>
-          <div class="card-body">
-            <h5 class="card-title">{{ obj.language }}</h5>
+          <div class="card-header" style="display: flex; justify-content: space-between;">
+            <div style="text-align: left;">{{ obj.title }}</div>
+            <div style="text-align: right;">
+              {% for article in obj.articles.all %}
+                {{ article }}
+                {% if not forloop.last %}, {% endif %}
+              {% endfor %}
+            </div>
+          </div>
+          <div class="card-body text-center">
+            <h5 class="card-title">
+              {{ obj.sentence }}
+            </h5>
             <p class="card-text">{{ obj.sentence }}</p>
           </div>
         </div>
