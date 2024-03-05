@@ -26,6 +26,7 @@ urlpatterns = [
     path("", include("apps.base.urls", namespace="base")),
     path("users/", include("apps.users.urls", namespace="users")),
     path("cards/", include("apps.cards.urls", namespace="cards")),
+    path("words/", include("apps.words.urls", namespace="words")),
 ]
 
 if settings.DEBUG:
