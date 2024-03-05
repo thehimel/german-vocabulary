@@ -18,3 +18,9 @@ a {
 .rotate-continuously {
   animation: rotateAnimation 20s infinite linear;  /* Adjust the duration as needed */
 }
+
+.patrick-hand-regular {
+  font-family: "Patrick Hand", cursive;
+  font-weight: 600;
+  font-style: normal;
+}
