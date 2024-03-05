@@ -10,5 +10,4 @@ urlpatterns = [
     path('previous/<slug:slug>/', NextCardView.as_view(), {'action': 'previous'}, name='previous'),
     path("", HomeView.as_view(), name="home"),
     path("<slug:slug>/", CardDetailView.as_view(), name="detail"),
-
 ]
