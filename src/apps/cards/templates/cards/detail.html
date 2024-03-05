@@ -19,7 +19,7 @@
         <div class="back">
           <div class="patrick-hand-regular" style="font-size: 2rem;">
               {% for article in object.articles.all %}
-                <span class="badge bg-secondary">{{ article }}</span>
+                <span class="badge bg-primary rounded-pill">{{ article }}</span>
                 <!-- {% if not forloop.last %}&nbsp;{% endif %} -->
               {% endfor %}
             </div>
