@@ -1,6 +1,6 @@
 from django.urls import path
 
-from apps.words.views import WordListView, WordDetailView
+from apps.words.views import WordDetailView, WordListView
 
 app_name = "words"
 

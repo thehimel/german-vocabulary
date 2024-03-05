@@ -1,8 +1,8 @@
-from django.views import View
 from django.contrib import messages
+from django.shortcuts import get_object_or_404, redirect
 from django.utils.translation import gettext as _
-from django.shortcuts import redirect, get_object_or_404
-from django.views.generic import TemplateView, DetailView
+from django.views import View
+from django.views.generic import DetailView, TemplateView
 
 from apps.words.models import Word
 

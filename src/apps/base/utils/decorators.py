@@ -1,7 +1,8 @@
-from django.db import models
-from typing import Type
 from functools import wraps
+from typing import Type
+
 from django.contrib import admin
+from django.db import models
 from django.utils.text import slugify
 
 
