@@ -10,28 +10,30 @@
   <div class="row justify-content-center pt-5">
     {% for obj in object_list %}
       <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
-        <div class="card text-bg-light mb-3" style="max-width: 18rem; min-height: 10rem;">
-          <div class="card-header" style="display: flex; justify-content: space-between;">
-            <div style="text-align: left;">
-              {% for article in obj.articles.all %}
-                <span class="badge bg-secondary">{{ article }}</span>
-                <!-- {% if not forloop.last %}&nbsp;{% endif %} -->
-              {% endfor %}
+        <a href="#">
+          <div class="card text-bg-light mb-3" style="max-width: 18rem; min-height: 10rem;">
+            <div class="card-header" style="display: flex; justify-content: space-between;">
+              <div style="text-align: left;">
+                {% for article in obj.articles.all %}
+                  <span class="badge bg-secondary">{{ article }}</span>
+                  <!-- {% if not forloop.last %}&nbsp;{% endif %} -->
+                {% endfor %}
+              </div>
+              <div style="text-align: right;">
+                <span class="badge bg-dark">{{ obj.level|upper }}</span>
+                <span class="badge bg-dark">{{ obj.language|upper }}</span>
+              </div>
             </div>
-            <div style="text-align: right;">
-              <span class="badge bg-dark">{{ obj.level|upper }}</span>
-              <span class="badge bg-dark">{{ obj.language|upper }}</span>
+            <div class="card-body text-center">
+              <h5 class="card-title text-dark">
+                {{ obj.title }}
+              </h5>
+              <p class="card-text">
+                <span class="badge rounded-pill bg-secondary">{{ obj.sentence }}</span>
+              </p>
             </div>
           </div>
-          <div class="card-body text-center">
-            <h5 class="card-title">
-              {{ obj.title }}
-            </h5>
-            <p class="card-text">
-              <span class="badge rounded-pill bg-secondary">{{ obj.sentence }}</span>
-            </p>
-          </div>
-        </div>
+        </a>
       </div>
     {% endfor %}
   </div>
