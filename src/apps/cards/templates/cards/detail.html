@@ -10,25 +10,29 @@
   <div class="container d-flex justify-content-center" >
     {% include 'base/messages.html' %}
   </div>
-  <div class="container d-flex justify-content-center">
+  <div class="container d-flex justify-content-center style-script-regular">
     <div class="cardContainer fade-in-container pt-3">
       <div class="flashcard" id="flashCard">
         <div class="front">
-          <h2>{{ object.title }}</h2>
+          <div class="display-1">{{ object.title }}</div>
         </div>
         <div class="back">
-          <div>
+          <div class="patrick-hand-regular" style="font-size: 2rem;">
               {% for article in object.articles.all %}
                 <span class="badge bg-secondary">{{ article }}</span>
                 <!-- {% if not forloop.last %}&nbsp;{% endif %} -->
               {% endfor %}
             </div>
-          <h2>{{ object.title }}</h2>
-          <p>{{ object.sentence }}</p>
-          <h3>Book</h3>
-          <p>This is my book.</p>
+          <div class="display-3">{{ object.title }}</div>
+          <div class="display-6">{{ object.sentence }}</div>
           <i class="fa-regular fa-circle-play" id="playButton" onclick="playText('{{ object.sentence }}', 'de-DE')"
-             style="font-size: 3em;"></i>
+               style="font-size: 3em;"></i>
+
+          <div class="dotted-line"></div>
+
+          <div class="display-3">{{ "Book" }}</div>
+          <div class="display-6">{{ "This is my book." }}</div>
+
         </div>
       </div>
     </div>

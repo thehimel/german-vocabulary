@@ -6,6 +6,18 @@ a {
   text-decoration: none !important;  /* Hide underline from anchor tags */
 }
 
+.patrick-hand-regular {
+  font-family: "Patrick Hand", cursive;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.style-script-regular {
+  font-family: "Style Script", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
 @keyframes rotateAnimation {
   from {
     transform: rotate(0deg);
@@ -19,8 +31,8 @@ a {
   animation: rotateAnimation 20s infinite linear;  /* Adjust the duration as needed */
 }
 
-.patrick-hand-regular {
-  font-family: "Patrick Hand", cursive;
-  font-weight: 600;
-  font-style: normal;
+.dotted-line {
+    border-top: 1px dotted #999; /* Change the color as needed */
+    width: 80%;
+    margin: 10px 0; /* Adjust margin as needed */
 }
