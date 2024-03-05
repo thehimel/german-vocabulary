@@ -9,7 +9,7 @@ class HomeView(TemplateView):
         if self.request.user.is_authenticated:
             return redirect("cards:any")
         else:
-            super().get(request, *args, **kwargs)
+            return super().get(request, *args, **kwargs)
 
 
 class MessageView(TemplateView):
