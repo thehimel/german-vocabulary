@@ -11,6 +11,10 @@
   width: 360px;
 }
 
+.text-shadow {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
 .rotate {
   transform: rotateY(-180deg);
   cursor: pointer;
