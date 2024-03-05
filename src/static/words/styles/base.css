@@ -1,0 +1,7 @@
+.card.word {
+    transition: box-shadow 0.3s; /* Add a smooth transition effect */
+  }
+
+.card.word:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add your desired shadow values */
+}

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Words" %}{% endblock head_title %}
+
+{% block main_content %}
+  <div class="container d-flex justify-content-center text-center pt-5 pb-4">
+    <a href="{% url 'cards:detail' slug=object.pk %}">
+        <div class="card word text-bg-light mb-3" style="min-width: 16rem; max-width: 20rem; min-height: 12rem;">
+          <div class="card-header" style="display: flex; justify-content: space-between;">
+            <div style="text-align: left;">
+              {% for article in object.articles.all %}
+                <span class="badge bg-secondary">{{ article }}</span>
+                <!-- {% if not forloop.last %}&nbsp;{% endif %} -->
+              {% endfor %}
+            </div>
+            <div style="text-align: right;">
+              <span class="badge bg-dark">{{ object.level|upper }}</span>
+              <span class="badge bg-dark">{{ object.language|upper }}</span>
+            </div>
+          </div>
+          <div class="card-body text-center">
+            <h5 class="card-title text-dark">
+              {{ object.title }}
+            </h5>
+            <p class="card-text">
+              <span class="badge rounded-pill bg-secondary">{{ object.sentence }}</span>
+            </p>
+            <p class="card-text text-dark" style="text-align: justify;">
+              {{ object.description }}
+            </p>
+          </div>
+        </div>
+      </a>
+  </div>
+{% endblock main_content %}

@@ -10,8 +10,8 @@
   <div class="row justify-content-center pt-5">
     {% for obj in object_list %}
       <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
-        <a href="#">
-          <div class="card text-bg-light mb-3" style="max-width: 18rem; min-height: 10rem;">
+        <a href="{% url 'words:detail' slug=obj.pk %}">
+          <div class="card word text-bg-light mb-3" style="max-width: 18rem; min-height: 10rem;">
             <div class="card-header" style="display: flex; justify-content: space-between;">
               <div style="text-align: left;">
                 {% for article in obj.articles.all %}
