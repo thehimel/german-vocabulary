@@ -1,8 +1,15 @@
+from django.shortcuts import redirect
 from django.views.generic import TemplateView
 
 
 class HomeView(TemplateView):
     template_name = "base/index.html"
+
+    def get(self, request, *args, **kwargs):
+        if self.request.user.is_authenticated:
+            return redirect("cards:any")
+        else:
+            super().get(request, *args, **kwargs)
 
 
 class MessageView(TemplateView):
