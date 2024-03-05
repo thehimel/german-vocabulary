@@ -36,6 +36,7 @@
   <div class="container">
     <div class="text-center pt-3">
       <a href="{% url 'cards:previous' slug=object.pk %}" class="cardButton me-2"><i class="fa-solid fa-circle-left"></i></a>
+      <a href="{% url 'cards:any' %}" class="cardButton me-2"><i class="fa-solid fa-rotate"></i></a>
       <a href="{% url 'cards:next' slug=object.pk %}" class="cardButton"><i class="fa-solid fa-circle-right"></i></a>
     </div>
   </div>
