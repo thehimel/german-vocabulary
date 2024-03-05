@@ -51,11 +51,11 @@
 
 .cardButton {
   font-size: 3em;
-  color: #900C3F;
+  color: purple;
 }
 
 .cardButton:hover {
-  color: #C70039;
+  color: lightseagreen;
 }
 
 .fade-in-container {
