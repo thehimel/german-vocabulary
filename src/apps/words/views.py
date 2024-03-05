@@ -6,4 +6,4 @@ from apps.words.models import Word
 class WordListView(ListView):
     model = Word
     template_name = 'words/index.html'
-    context_object_name = 'object_list'
+    context_object_name = 'objects'
