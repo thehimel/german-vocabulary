@@ -1,7 +1,5 @@
-./dev.sh  # Set environment to DEV.
-./dumpdata.sh  # Fetch data from the database and save to a file.
+# Fetch data from PROD database and save to a file.
+./prod.sh && ./dumpdata.sh
 
-./prod.sh  # Set environment to PROD.
-./loaddata.sh  # Insert data from that file to the database.
-
-./dev.sh # Reset environment to DEV.
+# Insert data to DEV database from that file.
+./dev.sh && ./loaddata.sh
