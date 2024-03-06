@@ -7,8 +7,8 @@
 .cardContainer {
   color: rgb(211, 211, 211);
   perspective: 600px;
-  height: 560px;
-  width: 360px;
+  height: 520px;
+  width: 320px;
 }
 
 .text-shadow {
