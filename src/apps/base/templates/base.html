@@ -9,14 +9,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>
+    {% block head_title %}
+    {% endblock head_title %}
+  </title>
+  <meta name="description" content="A simple and easy way to learn German vocabulary.">
+
   <!-- Favicon -->
   <link rel="icon" href="{% static 'base/images/favicon/favicon.ico' %}" type="image/x-icon">
 
   <!-- Open Graph Meta Tags (for social media) -->
+  <meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}{% url 'base:home' %}">
+  <meta property="og:type" content="website">
   <meta property="og:title" content="German Vocabulary">
   <meta property="og:description" content="A simple and easy way to learn German vocabulary.">
   <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'base/images/global/open-graph.jpeg' %}">
-  <meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}{% url 'base:home' %}">
+
+  <meta name="twitter:card" content="{{ request.scheme }}://{{ request.get_host }}{% static 'base/images/global/open-graph.jpeg' %}">
+  <meta property="twitter:domain" content="{{ request.get_host }}">
+  <meta property="twitter:url" content="{{ request.scheme }}://{{ request.get_host }}{% url 'base:home' %}">
+  <meta name="twitter:title" content="German Vocabulary">
+  <meta name="twitter:description" content="A simple and easy way to learn German vocabulary.">
+  <meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'base/images/global/open-graph.jpeg' %}">
 
   <!-- Font Awesome -->
   <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
@@ -38,10 +52,6 @@
   <link rel="stylesheet" href="{% static 'cards/styles/messages.css' %}">
   <link rel="stylesheet" href="{% static 'words/styles/base.css' %}">
 
-  <title>
-    {% block head_title %}
-    {% endblock head_title %}
-  </title>
   {% block extra_head %}
   {% endblock extra_head %}
 </head>
