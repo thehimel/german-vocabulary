@@ -1,0 +1,16 @@
+.modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.0); /* Set the background color to transparent */
+}
+
+/* Custom styles for the modal content */
+#autoCloseModal .modal-content {
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+
+#autoCloseModal .modal-body {
+  background: none;
+  padding: 20px;
+  text-align: center;
+}

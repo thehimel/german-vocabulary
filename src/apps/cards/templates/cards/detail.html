@@ -8,7 +8,7 @@
 
 {% block main_content %}
   <div class="container d-flex justify-content-center" >
-    {% include 'base/messages.html' %}
+    {% include 'cards/messages.html' %}
   </div>
   <div class="container d-flex justify-content-center style-script-regular">
     <div class="cardContainer fade-in-container pt-3 text-shadow">
@@ -49,4 +49,5 @@
   <script src="{% static 'cards/scripts/base.js' %}"></script>
   <script src="{% static 'cards/scripts/loadCard.js' %}"></script>
   <script src="{% static 'cards/scripts/tts.js' %}"></script>
+  <script src="{% static 'cards/scripts/messages.js' %}"></script>
 {% endblock main_content %}
