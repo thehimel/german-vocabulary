@@ -2,7 +2,6 @@
   background-color: rgba(0, 0, 0, 0.0); /* Set the background color to transparent */
 }
 
-/* Custom styles for the modal content */
 #autoCloseModal .modal-content {
   background: none;
   border: none;
@@ -13,4 +12,6 @@
   background: none;
   padding: 20px;
   text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 1.3rem;
 }
