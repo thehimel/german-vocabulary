@@ -3,7 +3,7 @@ from django.views.generic import TemplateView
 
 
 class HomeView(TemplateView):
-    template_name = "base/index.html"
+    template_name = "base/welcome.html"
 
     def get(self, request, *args, **kwargs):
         if self.request.user.is_authenticated:
