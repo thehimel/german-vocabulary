@@ -7,7 +7,7 @@
 {% block head_title %}{% trans "Words" %}{% endblock head_title %}
 
 {% block main_content %}
-  <div class="row justify-content-center pt-5">
+  <div class="row justify-content-center pt-5 ps-4 pe-4">
     {% for obj in object_list %}
       <div class="col-lg-3 col-md-4 col-sm-6 col-6 mb-3">
         <a href="{% url 'words:detail' slug=obj.pk %}">
