@@ -45,7 +45,7 @@
 }
 
 .front {
-  background: linear-gradient(to top, #900C3F, #DAF7A6);
+  background: linear-gradient(to top, #0097B2, #7ED957);
 }
 
 .back {
@@ -55,11 +55,11 @@
 
 .cardButton {
   font-size: 3em;
-  color: purple;
+  color: #8C52FF;
 }
 
 .cardButton:hover {
-  color: lightseagreen;
+  color: #5CE1E6;
 }
 
 .fade-in-container {
