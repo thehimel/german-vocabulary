@@ -7,8 +7,12 @@
 .cardContainer {
   color: rgb(211, 211, 211);
   perspective: 600px;
-  height: 500px;
+  height: 560px;
   width: 360px;
+}
+
+.text-shadow {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 
 .rotate {
@@ -51,11 +55,11 @@
 
 .cardButton {
   font-size: 3em;
-  color: #900C3F;
+  color: purple;
 }
 
 .cardButton:hover {
-  color: #C70039;
+  color: lightseagreen;
 }
 
 .fade-in-container {
