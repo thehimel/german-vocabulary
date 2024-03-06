@@ -10,12 +10,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <!-- Favicon -->
-  <link rel="icon" href="{% static 'images/favicon/favicon.ico' %}" type="image/x-icon">
+  <link rel="icon" href="{% static 'base/images/favicon/favicon.ico' %}" type="image/x-icon">
 
   <!-- Open Graph Meta Tags (for social media) -->
   <meta property="og:title" content="German Vocabulary">
   <meta property="og:description" content="A simple and easy way to learn German vocabulary.">
-  <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'images/favicon/favicon.ico' %}">
+  <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'base/images/favicon/android-chrome-512x512.png' %}">
   <meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}{% url 'base:home' %}">
 
   <!-- Font Awesome -->
