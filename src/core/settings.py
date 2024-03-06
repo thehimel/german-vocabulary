@@ -32,7 +32,7 @@ SECURE_SSL_REDIRECT = False if ENVIRONMENT == DEVELOPMENT else True
 SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config("DEBUG", cast=bool, default=False)
+DEBUG = True if ENVIRONMENT == DEVELOPMENT else config("DEBUG", cast=bool, default=False)
 
 ALLOWED_HOSTS = ["*"]
 
