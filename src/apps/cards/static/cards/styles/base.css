@@ -56,6 +56,7 @@
 .cardButton {
   font-size: 3em;
   color: #8C52FF;
+  transition: color 0.5s ease;
 }
 
 .cardButton:hover {
@@ -64,7 +65,7 @@
 
 .fade-in-container {
   opacity: 0; /* Initially set opacity to 0 */
-  transition: opacity 500ms ease; /* Add a transition for the opacity property over 1 second */
+  transition: opacity 0.5s ease; /* Add a transition for the opacity property over 1 second */
 }
 
 .fade-in-container.loaded {
