@@ -26,7 +26,7 @@ a {
 }
 
 .dotted-line {
-    border-top: 2px dotted #999; /* Change the color as needed */
+    border-top: 2px dotted floralwhite; /* Change the color as needed */
     width: 80%;
     margin: 10px 0; /* Adjust margin as needed */
 }
