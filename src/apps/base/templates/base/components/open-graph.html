@@ -1,0 +1,14 @@
+{% load static %}
+
+<meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}{% url 'base:home' %}">
+<meta property="og:type" content="website">
+<meta property="og:title" content="German Vocabulary">
+<meta property="og:description" content="A simple and easy way to learn German vocabulary.">
+<meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'base/images/global/open-graph.jpeg' %}">
+
+<meta name="twitter:card" content="{{ request.scheme }}://{{ request.get_host }}{% static 'base/images/global/open-graph.jpeg' %}">
+<meta property="twitter:domain" content="{{ request.get_host }}">
+<meta property="twitter:url" content="{{ request.scheme }}://{{ request.get_host }}{% url 'base:home' %}">
+<meta name="twitter:title" content="German Vocabulary">
+<meta name="twitter:description" content="A simple and easy way to learn German vocabulary.">
+<meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'base/images/global/open-graph.jpeg' %}">

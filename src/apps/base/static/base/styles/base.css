@@ -6,12 +6,6 @@ a {
   text-decoration: none !important;  /* Hide underline from anchor tags */
 }
 
-.patrick-hand-regular {
-  font-family: "Patrick Hand", cursive;
-  font-weight: 600;
-  font-style: normal;
-}
-
 .style-script-regular {
   font-family: "Style Script", cursive;
   font-weight: 400;
