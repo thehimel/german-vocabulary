@@ -1,4 +1,5 @@
 import argparse
+
 from files import read_data, write_data
 
 if __name__ == "__main__":
