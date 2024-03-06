@@ -15,8 +15,8 @@
   <!-- Open Graph Meta Tags (for social media) -->
   <meta property="og:title" content="German Vocabulary">
   <meta property="og:description" content="A simple and easy way to learn German vocabulary.">
-  <meta property="og:image" content="{% static 'images/favicon/favicon.ico' %}">
-  <meta property="og:url" content="{% url 'base:home' %}">
+  <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'images/favicon/favicon.ico' %}">
+  <meta property="og:url" content="{{ request.scheme }}://{{ request.get_host }}{% url 'base:home' %}">
 
   <!-- Font Awesome -->
   <link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
