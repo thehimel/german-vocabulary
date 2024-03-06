@@ -1,6 +1,6 @@
 from django.urls import path
 
-from apps.base.views import HomeView, MessageView
+from apps.base.views.base import HomeView, MessageView
 
 app_name = "base"
 
