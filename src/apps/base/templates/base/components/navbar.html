@@ -12,6 +12,8 @@
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+
+    <!-- Left Section -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
@@ -24,6 +26,11 @@
             <i class="fa-solid fa-file me-2"></i>{% trans "Flashcard" %}</a>
         </li>
       </ul>
+
+      <!-- Divider between left and right sections (visible in mobile version) -->
+      <hr class="d-lg-none">
+
+      <!-- Right Section -->
       <ul class="navbar-nav ml-auto">
         {% if request.user.is_authenticated %}
           <li class="nav-item dropdown">
