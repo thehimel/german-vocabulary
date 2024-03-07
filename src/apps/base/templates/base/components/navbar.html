@@ -15,10 +15,13 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url 'words:list' %}">{% trans "Words" %}</a>
+          <a class="nav-link active" aria-current="page" href="{% url 'words:list' %}">
+            <i class="fa-regular fa-file-word me-2"></i>{% trans "Words" %}
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'cards:any' %}">{% trans "Flashcard" %}</a>
+          <a class="nav-link" href="{% url 'cards:any' %}">
+            <i class="fa-solid fa-file me-2"></i>{% trans "Flashcard" %}</a>
         </li>
       </ul>
       <ul class="navbar-nav ml-auto">
@@ -26,7 +29,7 @@
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
                aria-expanded="false">
-              <i class="fa-regular fa-id-card me-2"></i>Account
+              <i class="fa-regular fa-id-card me-2"></i>{% trans "Account" %}
             </a>
             <ul class="dropdown-menu dropdown-menu-end width-auto" aria-labelledby="navbarDropdown">
               <li>
