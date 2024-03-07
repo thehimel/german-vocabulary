@@ -23,15 +23,23 @@
       </ul>
       <ul class="navbar-nav ml-auto">
         {% if request.user.is_authenticated %}
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'users:profile' slug=request.user.username %}">
-              <i class="fa-solid fa-user me-2"></i>{% trans "Profile" %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+               aria-expanded="false">
+              <i class="fa-regular fa-id-card me-2"></i>Account
             </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'account_logout' %}">
-              <i class="fa-solid fa-up-right-from-square me-2"></i>{% trans "Log Out" %}
-            </a>
+            <ul class="dropdown-menu dropdown-menu-end width-auto" aria-labelledby="navbarDropdown">
+              <li>
+                <a class="dropdown-item text-nowrap" href="{% url 'users:profile' slug=request.user.username %}">
+                  <i class="fa-solid fa-user me-2"></i>{% trans "Profile" %}
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item text-nowrap" href="{% url 'account_logout' %}">
+                  <i class="fa-solid fa-up-right-from-square me-2"></i>{% trans "Log Out" %}
+                </a>
+              </li>
+            </ul>
           </li>
 
         {% else %}
