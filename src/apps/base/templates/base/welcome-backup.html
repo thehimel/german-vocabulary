@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "German Vocabulary" %}{% endblock head_title %}
+
+{% block main_content %}
+  <div class="text-center m-2">
+    <img class="pb-4 img-fluid rotate-continuously" src="{% static 'base/images/favicon/android-chrome-512x512.png' %}" alt="brand-logo" width="100">
+    <div class="display-5">Welcome to German Vocabulary</div>
+    {% if request.user.is_authenticated %}
+      <div class="pt-4">
+        <a href="{% url 'cards:any' %}"><button class="btn btn-outline-secondary" type="button">Flashcards</button></a>
+      </div>
+    {% else %}
+      <div class="display-6">Log in or Sign up to Continue</div>
+      <div class="pt-4">
+        <a href="{% url 'account_signup' %}"><button class="btn btn-outline-dark me-2" type="button">Sign up</button></a>
+        <a href="{% url 'account_login' %}"><button class="btn btn-outline-secondary" type="button">Log in</button></a>
+      </div>
+    {% endif %}
+  </div>
+{% endblock main_content %}

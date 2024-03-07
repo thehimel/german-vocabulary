@@ -30,3 +30,7 @@ a {
     width: 80%;
     margin: 10px 0; /* Adjust margin as needed */
 }
+
+.width-auto {
+  min-width: auto;
+}

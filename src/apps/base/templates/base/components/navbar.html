@@ -20,43 +20,33 @@
         <li class="nav-item">
           <a class="nav-link" href="{% url 'cards:any' %}">{% trans "Flashcard" %}</a>
         </li>
-        <!--
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
-             aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
-        -->
       </ul>
-      <div class="navbar-nav ml-auto">
+      <ul class="navbar-nav ml-auto">
         {% if request.user.is_authenticated %}
-          <a class="nav-link" href="{% url 'users:profile' slug=request.user.username %}">
-            <i class="fa-solid fa-user me-2"></i>{% trans "Profile" %}
-          </a>
-          <a class="nav-link" href="{% url 'account_logout' %}">
-            <i class="fa-solid fa-up-right-from-square me-2"></i>{% trans "Log Out" %}
-          </a>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'users:profile' slug=request.user.username %}">
+              <i class="fa-solid fa-user me-2"></i>{% trans "Profile" %}
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'account_logout' %}">
+              <i class="fa-solid fa-up-right-from-square me-2"></i>{% trans "Log Out" %}
+            </a>
+          </li>
+
         {% else %}
-          <a class="nav-link" href="{% url 'account_signup' %}">
-            <i class="fa-solid fa-user-plus me-2"></i>{% trans "Sign Up" %}
-          </a>
-          <a class="nav-link" href="{% url 'account_login' %}">
-            <i class="fa-solid fa-right-to-bracket me-2"></i>{% trans "Log In" %}
-          </a>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'account_signup' %}">
+              <i class="fa-solid fa-user-plus me-2"></i>{% trans "Sign Up" %}
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'account_login' %}">
+              <i class="fa-solid fa-right-to-bracket me-2"></i>{% trans "Log In" %}
+            </a>
+          </li>
         {% endif %}
-      </div>
+      </ul>
     </div>
   </div>
 </nav>
