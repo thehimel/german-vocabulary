@@ -12,26 +12,44 @@
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+
+    <!-- Left Section -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url 'words:list' %}">{% trans "Words" %}</a>
+          <a class="nav-link active" aria-current="page" href="{% url 'words:list' %}">
+            <i class="fa-regular fa-file-word me-2"></i>{% trans "Words" %}
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'cards:any' %}">{% trans "Flashcard" %}</a>
+          <a class="nav-link" href="{% url 'cards:any' %}">
+            <i class="fa-solid fa-file me-2"></i>{% trans "Flashcard" %}</a>
         </li>
       </ul>
+
+      <!-- Divider between left and right sections (visible in mobile version) -->
+      <hr class="d-lg-none">
+
+      <!-- Right Section -->
       <ul class="navbar-nav ml-auto">
         {% if request.user.is_authenticated %}
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'users:profile' slug=request.user.username %}">
-              <i class="fa-solid fa-user me-2"></i>{% trans "Profile" %}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+               aria-expanded="false">
+              <i class="fa-regular fa-id-card me-2"></i>{% trans "Account" %}
             </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'account_logout' %}">
-              <i class="fa-solid fa-up-right-from-square me-2"></i>{% trans "Log Out" %}
-            </a>
+            <ul class="dropdown-menu dropdown-menu-end width-auto" aria-labelledby="navbarDropdown">
+              <li>
+                <a class="dropdown-item text-nowrap" href="{% url 'users:profile' slug=request.user.username %}">
+                  <i class="fa-solid fa-user me-2"></i>{% trans "Profile" %}
+                </a>
+              </li>
+              <li>
+                <a class="dropdown-item text-nowrap" href="{% url 'account_logout' %}">
+                  <i class="fa-solid fa-up-right-from-square me-2"></i>{% trans "Log Out" %}
+                </a>
+              </li>
+            </ul>
           </li>
 
         {% else %}
