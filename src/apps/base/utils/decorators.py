@@ -5,6 +5,8 @@ from django.contrib import admin
 from django.db import models
 from django.utils.text import slugify
 
+from django.shortcuts import redirect
+
 
 def auto_slugify(field_name: str):
     def decorator(model_class):
@@ -59,3 +61,16 @@ def filter_data_by_field(
         return wrapper
 
     return decorator
+
+
+def validate_language_preferences(view_func):
+    @wraps(view_func)
+    def _wrapped_view(self, *args, **kwargs):
+        primary_language = self.request.COOKIES.get("primary_language")
+
+        if not primary_language:
+            return redirect("base:language_preferences")
+
+        return view_func(self, *args, **kwargs)
+
+    return _wrapped_view

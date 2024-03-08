@@ -1,6 +1,6 @@
 from django.urls import path
 
-from apps.cards.views import CardDetailView, HomeView, NextCardView
+from apps.cards.views import CardDetailView, NextCardView
 
 app_name = "cards"
 
