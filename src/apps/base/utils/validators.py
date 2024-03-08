@@ -1,6 +1,5 @@
 from django import forms
 from django.core.exceptions import ValidationError
-from django.http import HttpRequest
 from django.shortcuts import get_object_or_404
 from django.utils.translation import gettext as _
 
@@ -58,7 +57,3 @@ def validate_field_unchanged(model, field_name):
 def validate_alphanumeric(value):
     if not value.isalnum():
         raise ValidationError("Only alphanumeric characters are allowed.")
-
-
-def is_languages_selected(request: HttpRequest):
-    return request.COOKIES.get("selected_language", None) and request.COOKIES.get("primary_language", None)

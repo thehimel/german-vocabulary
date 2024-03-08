@@ -6,7 +6,7 @@ from django.db import models
 from django.shortcuts import redirect
 from django.utils.text import slugify
 
-from apps.base.utils.validators import is_languages_selected
+from apps.base.utils.languages import is_languages_selected
 
 
 def auto_slugify(field_name: str):
