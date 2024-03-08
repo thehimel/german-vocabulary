@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.views import View
-from apps.base.utils.languages import get_language_preferences, set_language_preferences
-from apps.base.forms import LanguagePreferencesForm
+
 from apps.base.constants import IS_LANGUAGES_SELECTED
+from apps.base.forms import LanguagePreferencesForm
+from apps.base.utils.languages import get_language_preferences, set_language_preferences
 
 
 class LanguagePreferencesView(View):
