@@ -3,8 +3,7 @@ from django import forms
 from django.shortcuts import render
 from django.utils.translation import gettext as _
 from django.views import View
-from apps.base.constants import SELECTED_LANGUAGE, PRIMARY_LANGUAGE
-from apps.base.utils.languages import get_language_preferences
+from apps.base.utils.languages import get_language_preferences, set_language_preferences
 
 LANGUAGE_CHOICES = [("en", "English"), ("de", "German")]
 
@@ -35,8 +34,5 @@ class LanguagePreferencesView(View):
 
         if form.is_valid():
             response = render(request, "base/welcome.html")
-
-            response.set_cookie(SELECTED_LANGUAGE, form.cleaned_data[SELECTED_LANGUAGE])
-            response.set_cookie(PRIMARY_LANGUAGE, form.cleaned_data[PRIMARY_LANGUAGE])
-
+            set_language_preferences(response=response, form=form)
             return response
