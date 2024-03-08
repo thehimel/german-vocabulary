@@ -1,7 +1,13 @@
 .card.word {
-    transition: box-shadow 0.3s; /* Add a smooth transition effect */
-  }
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add your desired shadow values */
+}
 
 .card.word:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add your desired shadow values */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Add your desired shadow values */
+  transition: box-shadow 0.4s; /* Add a smooth transition effect */
+}
+
+.inline-content {
+  display: flex; justify-content: space-between;
 }

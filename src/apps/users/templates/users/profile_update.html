@@ -8,27 +8,27 @@
 
 {% block content %}
   <div class="container d-flex justify-content-center pt-4 pb-4">
-    <div class="card shadow" style="width: 18rem;">
-      <div class="card-body pt-4">
+    <div class="card shadow profile pt-4 pb-2">
+      <div class="card-body">
         <h5 class="card-title text-center">{% trans "Update Profile" %}</h5>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            {% url "users:profile_update" as action_url %}
+              <form class="signup" method="post" action="{{ action_url }}">
+                {% csrf_token %}
+                <div>{{ form|crispy }}</div>
+
+                {% if redirect_field_value %}
+                  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                {% endif %}
+
+                <div class="d-flex btn-group pt-1">
+                  <button type="submit" class="btn btn-success">{% trans "Update" %}</button>
+                </div>
+              </form>
+          </li>
+        </ul>
       </div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item">
-          {% url "users:profile_update" as action_url %}
-            <form class="signup" method="post" action="{{ action_url }}">
-              {% csrf_token %}
-              <div>{{ form|crispy }}</div>
-
-              {% if redirect_field_value %}
-                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-              {% endif %}
-
-              <div class="d-grid gap-2 col-12 mx-auto pb-2">
-                <button type="submit" class="btn btn-success">{% trans "Update" %}</button>
-              </div>
-            </form>
-        </li>
-      </ul>
     </div>
   </div>
 {% endblock content %}
