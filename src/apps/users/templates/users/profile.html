@@ -8,23 +8,23 @@
 
 {% block main_content %}
   <div class="container d-flex justify-content-center text-center pt-4 pb-4">
-    <div class="card shadow" style="width: 18rem;">
-      <img src="{{ object.profile_picture.url }}" class="card-img-top" alt="profile_picture">
-      <div class="card-body pt-4">
+    <div class="card shadow profile">
+      <div class="card-body">
+        <img src="{{ object.profile_picture.url }}" class="card-img-top p-4" style="border-radius: 200px;" alt="profile_picture">
         <h5 class="card-title">{{ object.full_name }}</h5>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><i class="fa-solid fa-user me-2"></i>{{ object.username }}</li>
+          <li class="list-group-item"><i class="fa-solid fa-envelope me-2"></i>{{ object.email }}</li>
+          {% if request.user.username == object.username %}
+            <li class="list-group-item d-flex btn-group pt-3 pb-3">
+              <a href="{% url 'users:profile_update' slug=user.username %}" class="btn btn-success">Edit Profile</a>
+            </li>
+            <li class="list-group-item d-flex btn-group pt-3 pb-3">
+              <a href="{% url 'account_change_password' %}" class="btn btn-danger">Change Password</a>
+            </li>
+          {% endif %}
+        </ul>
       </div>
-      <ul class="list-group list-group-flush">
-        <li class="list-group-item"><i class="fa-solid fa-user me-2"></i>{{ object.username }}</li>
-        <li class="list-group-item"><i class="fa-solid fa-envelope me-2"></i>{{ object.email }}</li>
-        {% if request.user.username == object.username %}
-          <li class="list-group-item d-flex btn-group pt-3 pb-3">
-            <a href="{% url 'users:profile_update' slug=user.username %}" class="btn btn-success">Edit Profile</a>
-          </li>
-          <div class="card-body d-flex btn-group">
-            <a href="{% url 'account_change_password' %}" class="btn btn-danger">Change Password</a>
-          </div>
-        {% endif %}
-      </ul>
     </div>
   </div>
 {% endblock main_content %}
