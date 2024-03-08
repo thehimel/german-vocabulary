@@ -4,7 +4,7 @@ from django import forms
 from django.http import HttpRequest, HttpResponse
 
 from apps.base.constants import PRIMARY_LANGUAGE, SELECTED_LANGUAGE
-from apps.base.utils.utils import get_cookie_max_age
+from apps.base.utils.cookies import get_cookie_max_age
 
 
 def is_languages_selected(request: HttpRequest):
