@@ -1,4 +1,4 @@
-{% extends "account/base_entrance.html" %}
+{% extends "base.html" %}
 
 {% load i18n allauth %}
 
@@ -6,7 +6,7 @@
 
 {% block head_title %}{% trans "Update Profile" %}{% endblock head_title %}
 
-{% block content %}
+{% block main_content %}
   <div class="container d-flex justify-content-center pt-4 pb-4">
     <div class="card shadow profile pt-4 pb-2">
       <div class="card-body">
@@ -14,21 +14,12 @@
         <ul class="list-group list-group-flush">
           <li class="list-group-item">
             {% url "users:profile_update" as action_url %}
-              <form class="signup" method="post" action="{{ action_url }}">
-                {% csrf_token %}
-                <div>{{ form|crispy }}</div>
-
-                {% if redirect_field_value %}
-                  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-                {% endif %}
-
-                <div class="d-flex btn-group pt-1">
-                  <button type="submit" class="btn btn-success">{% trans "Update" %}</button>
-                </div>
-              </form>
+            {% with button_color="btn-success" %}{% with button_text="Update" %}
+              {% include "base/components/form.html" %}
+            {% endwith %}{% endwith %}
           </li>
         </ul>
       </div>
     </div>
   </div>
-{% endblock content %}
+{% endblock main_content %}
