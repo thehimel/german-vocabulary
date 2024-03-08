@@ -1,12 +1,4 @@
-{% extends "base.html" %}
-
-{% load i18n %}
-
-{% block main_content %}
-  {% url "base:language_preferences" as action_url %}
-  {% with title="Language Preferences" %}
-    {% with button_color="btn-success" %}{% with button_text="Submit" %}
-      {% include "base/components/update.html" %}
-    {% endwith %}{% endwith %}
-  {% endwith %}
-{% endblock main_content %}
+{% url "base:language_preferences" as action_url %}
+{% with title="Update Profile" %}{% with button_color="btn-success" %}{% with button_text="Submit" %}
+  {% include "base/components/update.html" %}
+{% endwith %}{% endwith %}{% endwith %}
