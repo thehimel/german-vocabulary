@@ -28,7 +28,7 @@ class LanguagePreferencesView(View):
         context = {
             "form": form,
             "action_url_name": "base:language_preferences",
-            "title": "Update Profile",
+            "title": "Language Preferences",
             "button_color": "btn-success",
             "button_text": "Submit",
         }
