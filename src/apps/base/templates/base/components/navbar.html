@@ -32,6 +32,12 @@
 
       <!-- Right Section -->
       <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'base:language_preferences' %}">
+            <i class="fa-solid fa-gear me-2"></i>{% trans "Language Preferences" %}
+          </a>
+        </li>
+
         {% if request.user.is_authenticated %}
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
