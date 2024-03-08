@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block main_content %}
+  {% url "base:language_preferences" as action_url %}
+  {% with title="Please Select Your Language Preferences" %}
+    {% with button_color="btn-success" %}{% with button_text="Submit" %}
+        {% include "base/components/form.html" %}
+    {% endwith %}{% endwith %}
+  {% endwith %}
+  <p>
+    Note: The language preferences are saved in your cookies. By submitting your language preferences you agree to
+    allow us to use cookies to serve you better.
+  </p>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% load i18n %}
+
+{% load crispy_forms_tags %}
+
+<h2>{{ title }}</h2>
+<form method="post" action="{{ action_url }}">
+  {% csrf_token %}
+  <div>{{ form|crispy }}</div>
+  <div class="d-flex btn-group pt-1">
+    <button type="submit" class="btn {{ button_color }}">{% trans button_text %}</button>
+  </div>
+</form>
