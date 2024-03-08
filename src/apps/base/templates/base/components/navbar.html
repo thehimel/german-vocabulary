@@ -6,7 +6,7 @@
   <div class="container-fluid">
     <a class="navbar-brand" href="{% url 'base:home' %}">
       <img src="{% static 'base/images/favicon/android-chrome-512x512.png' %}" alt="brand-logo" height="24" class="d-inline-block align-text-top">
-      German Vocabulary
+      {{ brand_name }}
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,19 +16,23 @@
     <!-- Left Section -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" href="{% url 'cards:any' %}">
-            <i class="fa-solid fa-file me-2"></i>{% trans "Flashcard" %}</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="{% url 'words:list' %}">
-            <i class="fa-regular fa-file-word me-2"></i>{% trans "Words" %}
-          </a>
-        </li>
+        {% if is_languages_selected %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'cards:any' %}">
+              <i class="fa-solid fa-file me-2"></i>{% trans "Flashcard" %}</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'words:list' %}">
+              <i class="fa-regular fa-file-word me-2"></i>{% trans "Words" %}
+            </a>
+          </li>
+        {% endif %}
       </ul>
 
-      <!-- Divider between left and right sections (visible in mobile version) -->
-      <hr class="d-lg-none">
+      {% if is_languages_selected %}
+        <!-- Divider between left and right sections (visible in mobile version) -->
+        <hr class="d-lg-none">
+      {% endif %}
 
       <!-- Right Section -->
       <ul class="navbar-nav ml-auto">
