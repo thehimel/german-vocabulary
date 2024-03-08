@@ -1,17 +1,8 @@
-# views.py
-from django import forms
 from django.shortcuts import render
-from django.utils.translation import gettext as _
 from django.views import View
-
-LANGUAGE_CHOICES = [("en", "English"), ("de", "German")]
-
-
-class LanguagePreferencesForm(forms.Form):
-    selected_language = forms.ChoiceField(choices=LANGUAGE_CHOICES, label=_("Language to learn"))
-    primary_language = forms.ChoiceField(
-        choices=LANGUAGE_CHOICES, label=_("Language you already know")
-    )
+from apps.base.utils.languages import get_language_preferences, set_language_preferences
+from apps.base.forms import LanguagePreferencesForm
+from apps.base.constants import IS_LANGUAGES_SELECTED
 
 
 class LanguagePreferencesView(View):
@@ -19,11 +10,7 @@ class LanguagePreferencesView(View):
     form_class = LanguagePreferencesForm
 
     def get(self, request, *args, **kwargs):
-        cookies = request.COOKIES
-        initial_data = {
-            "selected_language": cookies.get("selected_language", None),
-            "primary_language": cookies.get("primary_language", None),
-        }
+        initial_data = get_language_preferences(request=request)
         form = self.form_class(initial=initial_data)
         context = {
             "form": form,
@@ -38,12 +25,7 @@ class LanguagePreferencesView(View):
         form = self.form_class(request.POST)
 
         if form.is_valid():
-            selected_language = form.cleaned_data["selected_language"]
-            primary_language = form.cleaned_data["primary_language"]
-
-            response = render(request, "base/welcome.html")
-
-            response.set_cookie("selected_language", selected_language)
-            response.set_cookie("primary_language", primary_language)
-
+            context = {IS_LANGUAGES_SELECTED: True}
+            response = render(request, "base/welcome.html", context)
+            set_language_preferences(response=response, form=form)
             return response

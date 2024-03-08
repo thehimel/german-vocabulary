@@ -4,8 +4,8 @@ from django.utils.translation import gettext as _
 from django.views import View
 from django.views.generic import DetailView, TemplateView
 
+from apps.base.utils.decorators import language_preferences_required
 from apps.words.models import Word
-from apps.base.utils.decorators import validate_language_preferences
 
 
 class HomeView(TemplateView):
@@ -18,7 +18,7 @@ class CardDetailView(DetailView):
     context_object_name = "object"
     slug_field = "pk"
 
-    @validate_language_preferences
+    @language_preferences_required
     def get(self, request, *args, **kwargs):
         return super().get(request, *args, **kwargs)
 

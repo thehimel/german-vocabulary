@@ -20,10 +20,12 @@ class ProfileUpdateView(UserIsOwnerMixin, UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context.update({
-            "action_url_name": "users:profile_update",
-            "title": "Update Profile",
-            "button_color": "btn-success",
-            "button_text": "Update",
-        })
+        context.update(
+            {
+                "action_url_name": "users:profile_update",
+                "title": "Update Profile",
+                "button_color": "btn-success",
+                "button_text": "Update",
+            }
+        )
         return context
