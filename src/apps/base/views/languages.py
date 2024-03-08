@@ -15,7 +15,7 @@ class LanguagePreferencesForm(forms.Form):
 
 
 class LanguagePreferencesView(View):
-    template_name = "base/languages/preferences.html"
+    template_name = "base/components/update.html"
     form_class = LanguagePreferencesForm
 
     def get(self, request, *args, **kwargs):
@@ -25,7 +25,14 @@ class LanguagePreferencesView(View):
             "primary_language": cookies.get("primary_language", None),
         }
         form = self.form_class(initial=initial_data)
-        return render(request, self.template_name, {"form": form})
+        context = {
+            "form": form,
+            "action_url_name": "base:language_preferences",
+            "title": "Update Profile",
+            "button_color": "btn-success",
+            "button_text": "Submit",
+        }
+        return render(request, self.template_name, context)
 
     def post(self, request, *args, **kwargs):
         form = self.form_class(request.POST)
@@ -33,9 +40,9 @@ class LanguagePreferencesView(View):
         if form.is_valid():
             selected_language = form.cleaned_data["selected_language"]
             primary_language = form.cleaned_data["primary_language"]
+
             response = render(request, "base/welcome.html")
 
-            # Set cookies for selected language and primary language
             response.set_cookie("selected_language", selected_language)
             response.set_cookie("primary_language", primary_language)
 

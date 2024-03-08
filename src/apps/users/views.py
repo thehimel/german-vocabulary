@@ -13,9 +13,17 @@ class ProfileView(LoginRequiredMixin, DetailView):
 
 
 class ProfileUpdateView(UserIsOwnerMixin, UpdateView):
-    """UpdateView for the user profile."""
-
-    template_name = "users/profile_update.html"
+    template_name = "base/components/update.html"
     model = get_user_model()
     fields = ["first_name", "last_name", "gender"]
     slug_field = "username"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update({
+            "action_url_name": "users:profile_update",
+            "title": "Update Profile",
+            "button_color": "btn-success",
+            "button_text": "Update",
+        })
+        return context
