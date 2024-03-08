@@ -8,9 +8,9 @@ LANGUAGE_CHOICES = [("en", "English"), ("de", "German")]
 
 
 class LanguagePreferencesForm(forms.Form):
-    selected_language = forms.ChoiceField(choices=LANGUAGE_CHOICES, label=_("The language you would like to learn"))
+    selected_language = forms.ChoiceField(choices=LANGUAGE_CHOICES, label=_("Language to learn"))
     primary_language = forms.ChoiceField(
-        choices=LANGUAGE_CHOICES, label=_("The language you already know that will help you to learn the new language")
+        choices=LANGUAGE_CHOICES, label=_("Language you already know")
     )
 
 
