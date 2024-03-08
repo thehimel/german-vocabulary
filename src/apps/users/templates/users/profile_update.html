@@ -5,6 +5,7 @@
 {% load crispy_forms_tags %}
 
 {% block main_content %}
+  {% url "users:profile_update" as action_url %}
   {% with title="Update Profile" %}{% with button_color="btn-success" %}{% with button_text="Update" %}
     {% include "base/components/update.html" %}
   {% endwith %}{% endwith %}{% endwith %}
