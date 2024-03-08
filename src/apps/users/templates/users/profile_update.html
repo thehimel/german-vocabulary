@@ -1,25 +1,11 @@
 {% extends "base.html" %}
 
-{% load i18n allauth %}
+{% load i18n %}
 
 {% load crispy_forms_tags %}
 
-{% block head_title %}{% trans "Update Profile" %}{% endblock head_title %}
-
 {% block main_content %}
-  <div class="container d-flex justify-content-center pt-4 pb-4">
-    <div class="card shadow profile pt-4 pb-2">
-      <div class="card-body">
-        <h5 class="card-title text-center">{% trans "Update Profile" %}</h5>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">
-            {% url "users:profile_update" as action_url %}
-            {% with button_color="btn-success" %}{% with button_text="Update" %}
-              {% include "base/components/form.html" %}
-            {% endwith %}{% endwith %}
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
+  {% with title="Update Profile" %}{% with button_color="btn-success" %}{% with button_text="Update" %}
+    {% include "base/components/update.html" %}
+  {% endwith %}{% endwith %}{% endwith %}
 {% endblock main_content %}
