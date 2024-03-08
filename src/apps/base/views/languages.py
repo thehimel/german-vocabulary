@@ -1,9 +1,8 @@
-# views.py
-
 from django.shortcuts import render
 from django.views import View
 from apps.base.utils.languages import get_language_preferences, set_language_preferences
 from apps.base.forms import LanguagePreferencesForm
+from apps.base.constants import IS_LANGUAGE_SELECTED
 
 
 class LanguagePreferencesView(View):
@@ -26,6 +25,7 @@ class LanguagePreferencesView(View):
         form = self.form_class(request.POST)
 
         if form.is_valid():
-            response = render(request, "base/welcome.html")
+            context = {IS_LANGUAGE_SELECTED: True}
+            response = render(request, "base/welcome.html", context)
             set_language_preferences(response=response, form=form)
             return response

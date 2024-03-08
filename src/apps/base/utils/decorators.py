@@ -7,6 +7,7 @@ from django.shortcuts import redirect
 from django.utils.text import slugify
 
 from apps.base.utils.languages import is_languages_selected
+from apps.base.constants import IS_LANGUAGE_SELECTED
 
 
 def auto_slugify(field_name: str):
@@ -73,3 +74,13 @@ def language_preferences_required(func):
         return func(self, *args, **kwargs)
 
     return wrapper
+
+
+def add_language_selected_context(view_class):
+    class DecoratedView(view_class):
+        def get_context_data(self, **kwargs):
+            context = super().get_context_data(**kwargs)
+            context[IS_LANGUAGE_SELECTED] = is_languages_selected(self.request)
+            return context
+
+    return DecoratedView

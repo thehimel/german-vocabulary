@@ -10,15 +10,32 @@
   <div class="text-center m-2">
     <img class="pb-4 img-fluid rotate-continuously" src="{% static 'base/images/favicon/android-chrome-512x512.png' %}" alt="brand-logo" width="100">
     <div class="display-5">{% trans "Welcome to German Vocabulary" %}</div>
-    {% if request.user.is_authenticated %}
+    {% if is_language_selected %}
+      <div class="display-6 pt-2">{% trans "Keep Learning" %}</div>
       <div class="pt-4">
-        <a href="{% url 'cards:any' %}"><button class="btn btn-outline-secondary" type="button">Flashcards</button></a>
+        <a href="{% url 'cards:any' %}">
+          <button class="btn btn-outline-secondary me-2" type="button">{% trans "Flashcard" %}</button>
+        </a>
+        <a href="{% url 'words:list' %}">
+          <button class="btn btn-outline-secondary" type="button">{% trans "Words" %}</button>
+        </a>
       </div>
     {% else %}
-      <div class="display-6">{% trans "Log in or Sign up to Continue" %}</div>
+      <div class="display-6">{% trans "Select an option to Continue" %}</div>
       <div class="pt-4">
-        <a href="{% url 'account_signup' %}"><button class="btn btn-outline-dark me-2" type="button">{% trans "Sign Up" %}</button></a>
-        <a href="{% url 'account_login' %}"><button class="btn btn-outline-secondary" type="button">{% trans "Log In" %}</button></a>
+        <a href="{% url 'base:language_preferences' %}">
+          <button class="btn btn-outline-success me-2" type="button">{% trans "Start Learning" %}</button>
+        </a>
+      </div>
+    {% endif %}
+    {% if not request.user.is_authenticated %}
+      <div class="pt-4">
+        <a href="{% url 'account_signup' %}">
+          <button class="btn btn-outline-dark me-2" type="button">{% trans "Sign Up" %}</button>
+        </a>
+        <a href="{% url 'account_login' %}">
+          <button class="btn btn-outline-secondary" type="button">{% trans "Log In" %}</button>
+        </a>
       </div>
     {% endif %}
   </div>

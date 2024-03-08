@@ -1,6 +1,8 @@
 from django.views.generic import TemplateView
+from apps.base.utils.decorators import add_language_selected_context
 
 
+@add_language_selected_context
 class HomeView(TemplateView):
     template_name = "base/welcome.html"
 
