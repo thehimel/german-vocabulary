@@ -1,16 +1,9 @@
 # views.py
-from django import forms
+
 from django.shortcuts import render
-from django.utils.translation import gettext as _
 from django.views import View
 from apps.base.utils.languages import get_language_preferences, set_language_preferences
-
-LANGUAGE_CHOICES = [("en", "English"), ("de", "German")]
-
-
-class LanguagePreferencesForm(forms.Form):
-    selected_language = forms.ChoiceField(choices=LANGUAGE_CHOICES, label=_("Language to learn"))
-    primary_language = forms.ChoiceField(choices=LANGUAGE_CHOICES, label=_("Language you already know"))
+from apps.base.forms import LanguagePreferencesForm
 
 
 class LanguagePreferencesView(View):

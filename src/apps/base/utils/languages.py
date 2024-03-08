@@ -19,6 +19,10 @@ def set_language_preferences(response: HttpResponse, form: forms.Form):
     response.set_cookie(PRIMARY_LANGUAGE, form.cleaned_data[PRIMARY_LANGUAGE])
 
 
-def language_choices():
+def get_language_choices():
     """TODO: Return the present languages in the database."""
-    pass
+    language_choices = [("en", "English"), ("de", "German")]
+    return {
+        SELECTED_LANGUAGE: language_choices,
+        PRIMARY_LANGUAGE: language_choices
+    }
