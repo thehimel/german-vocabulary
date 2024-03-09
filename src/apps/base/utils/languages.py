@@ -34,5 +34,5 @@ def set_language_preferences(response: HttpResponse, form: forms.Form):
 
 def get_language_choices():
     """TODO: Return the present languages in the database."""
-    language_choices = [("en", "English"), ("de", "German")]
+    language_choices = [("de", "German"), ("en", "English"), ("bn", "Bengali")]
     return {SELECTED_LANGUAGE: language_choices, PRIMARY_LANGUAGE: language_choices}
