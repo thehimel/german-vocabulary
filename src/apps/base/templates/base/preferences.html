@@ -46,5 +46,28 @@
     background-color: #007bff; /* Change to your desired color */
     color: #fff;
   }
+  
+  /* Visually hide radio buttons */
+input[type="radio"] {
+  position: absolute;
+  left: -9999px;
+}
+
+/* Style custom elements */
+.custom-radio {
+  display: inline-block;
+  padding: 10px;
+  margin: 5px;
+  cursor: pointer;
+  border: 2px solid #000; /* Change the border color */
+  background-color: #fff; /* Change the background color */
+}
+
+/* Style selected state */
+.custom-radio.selected {
+  background-color: #000; /* Change the background color for selected state */
+  color: #fff; /* Change the text color for selected state */
+}
+
 </style>
 {% endblock main_content %}
