@@ -37,9 +37,11 @@ class MyFormWizard(SessionWizardView):
 
     def get_context_data(self, form, **kwargs):
         context = super().get_context_data(form=form, **kwargs)
-        if self.steps.prev:
-            cleaned_data = self.get_cleaned_data_for_step(self.steps.prev) or {}
-            context['prev_data'] = cleaned_data
+        all_data = {}
+        for step in self.get_form_list():
+            cleaned_data = self.get_cleaned_data_for_step(step) or {}
+            all_data.update(cleaned_data)
+        context['all_data'] = all_data
         return context
 
     def done(self, form_list, **kwargs):
