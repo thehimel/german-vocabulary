@@ -49,7 +49,7 @@ class MyFormWizard(SessionWizardView):
         for form in form_list:
             data.update(form.cleaned_data)
 
-        response = render(self.request, 'base/multi_page_form/done.html', {'form_data': data})
+        response = render(self.request, 'base/welcome.html', {'form_data': data})
         for key, value in data.items():
             response.set_cookie(key, value)
 
