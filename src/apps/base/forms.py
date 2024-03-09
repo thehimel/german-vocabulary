@@ -8,8 +8,8 @@ from apps.base.utils.languages import get_language_choices
 class LanguagePreferencesForm(forms.Form):
     language_choices = get_language_choices()
     selected_language = forms.ChoiceField(
-        choices=language_choices.get(SELECTED_LANGUAGE, None), label=_("Language to learn")
+        choices=language_choices.get(SELECTED_LANGUAGE, None), label=_("Language to learn"), widget=forms.RadioSelect
     )
     primary_language = forms.ChoiceField(
-        choices=language_choices.get(PRIMARY_LANGUAGE, None), label=_("Language you already know")
+        choices=language_choices.get(PRIMARY_LANGUAGE, None), label=_("Language you already know"), widget=forms.RadioSelect
     )
