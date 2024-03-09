@@ -6,6 +6,7 @@ from django.views.generic import DetailView, TemplateView
 
 from apps.base.utils.decorators import language_preferences_required
 from apps.words.models import Word
+from apps.base.utils.languages import get_selected_language
 
 
 class HomeView(TemplateView):
@@ -25,28 +26,29 @@ class CardDetailView(DetailView):
 
 class NextCardView(View):
     @staticmethod
-    def get_random_word():
-        return Word.objects.order_by("?").first()
+    def get_random_word(language: str):
+        return Word.objects.filter(language__title=language).order_by("?").first()
 
     @staticmethod
-    def get_next_word(request, action, current_word):
+    def get_next_word(request, action, current_word, language):
         next_card = None
         if action == "next":
-            next_card = Word.objects.filter(pk__gt=current_word.pk).order_by("pk").first()
+            next_card = Word.objects.filter(language__title=language, pk__gt=current_word.pk).order_by("pk").first()
             if not next_card:
                 messages.warning(request, _("This is the last word in this section."))
         elif action == "previous":
-            next_card = Word.objects.filter(pk__lt=current_word.pk).order_by("-pk").first()
+            next_card = Word.objects.filter(language__title=language, pk__lt=current_word.pk).order_by("-pk").first()
             if not next_card:
                 messages.warning(request, _("This is the first word in this section."))
         return next_card
 
     def get(self, request, action="next", slug=None):
+        language = get_selected_language(request=request)
         current_word = get_object_or_404(Word, pk=slug) if slug else None
         next_card = (
-            self.get_next_word(request=request, action=action, current_word=current_word)
+            self.get_next_word(request=request, action=action, current_word=current_word, language=language)
             if current_word
-            else self.get_random_word()
+            else self.get_random_word(language=language)
         )
 
         if next_card:
