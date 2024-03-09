@@ -5,7 +5,7 @@ from formtools.wizard.views import SessionWizardView
 
 
 class PageOneForm(forms.Form):
-    field_one = forms.CharField()
+    firstname = forms.CharField()
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -14,7 +14,16 @@ class PageOneForm(forms.Form):
 
 
 class PageTwoForm(forms.Form):
-    field_two = forms.CharField()
+    lastname = forms.CharField()
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_tag = False
+
+
+class PageThreeForm(forms.Form):
+    email = forms.CharField()
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -23,7 +32,7 @@ class PageTwoForm(forms.Form):
 
 
 class MyFormWizard(SessionWizardView):
-    form_list = [PageOneForm, PageTwoForm]
+    form_list = [PageOneForm, PageTwoForm, PageThreeForm]
     template_name = 'base/multi_page_form/form.html'
 
     def done(self, form_list, **kwargs):
