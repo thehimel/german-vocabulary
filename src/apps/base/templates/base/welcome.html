@@ -10,7 +10,7 @@
   <div class="text-center m-2">
     <img class="pb-4 img-fluid rotate-continuously" src="{% static 'base/images/favicon/android-chrome-512x512.png' %}"
          alt="brand-logo" width="100">
-    <div class="display-5">{% trans "Welcome to German Vocabulary" %}</div>
+    <div class="display-5">{% blocktrans %}Welcome to {{ brand_name }}{% endblocktrans %}</div>
     {% if is_languages_selected %}
       <div class="display-6 pt-2">{% trans "Keep Learning" %}</div>
       <div class="pt-4">
