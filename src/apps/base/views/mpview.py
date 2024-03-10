@@ -1,30 +1,38 @@
 from django import forms
 from django.shortcuts import render
-from formtools.wizard.views import SessionWizardView
 from django.utils.translation import gettext as _
+from formtools.wizard.views import SessionWizardView
 
-from apps.base.utils.decorators import form_helper
 from apps.base.constants import PRIMARY_LANGUAGE, SELECTED_LANGUAGE
+from apps.base.utils.decorators import form_helper
 from apps.base.utils.languages import get_language_choices, get_level_choices
 
 
 @form_helper
 class PageOneForm(forms.Form):
     selected_language = forms.ChoiceField(
-        choices=get_language_choices().get(SELECTED_LANGUAGE, None), label=_("Language to learn")
+        choices=get_language_choices().get(SELECTED_LANGUAGE, None),
+        label=_("Language to learn"),
+        widget=forms.RadioSelect(),
     )
 
 
 @form_helper
 class PageTwoForm(forms.Form):
     primary_language = forms.ChoiceField(
-        choices=get_language_choices().get(PRIMARY_LANGUAGE, None), label=_("Secondary language")
+        choices=get_language_choices().get(PRIMARY_LANGUAGE, None),
+        label=_("Secondary language"),
+        widget=forms.RadioSelect(),
     )
 
 
 @form_helper
 class PageThreeForm(forms.Form):
-    level = forms.ChoiceField(choices=get_level_choices(), label=_("Difficulty Level"))
+    level = forms.ChoiceField(
+        choices=get_level_choices(),
+        label=_("Difficulty Level"),
+        widget=forms.RadioSelect(),
+    )
 
 
 class MyFormWizard(SessionWizardView):
