@@ -6,20 +6,25 @@
   <div class="container text-center">
     <form method="post" action="{% url 'base:preferences' %}">
       {% csrf_token %}
-  
-      {% for choice in form.primary_language %}
-        <div class="p-2">
-          <div class="card" style="cursor: pointer; min-height: 6rem;" onclick="selectRadio(this, '{{ choice.id_for_label }}')">
-            <div class="card-body d-flex flex-column justify-content-center">
-              <h5 class="card-title">
-                <label class="form-check-label">
-                  {{ choice.tag }}
-                  {{ choice.choice_label }}
-                </label>
-              </h5>
+    
+      {% for field in form %}
+        {% if field.field.widget.input_type == 'radio' %}
+          <div class="display-6 p-3">{{ field.label }}</div>
+          {% for choice in field %}
+            <div class="p-2">
+              <div class="card" style="cursor: pointer; min-height: 6rem;" onclick="selectRadio(this, '{{ choice.id_for_label }}')">
+                <div class="card-body d-flex flex-column justify-content-center">
+                  <h5 class="card-title">
+                    <label class="form-check-label">
+                      {{ choice.tag }}
+                      {{ choice.choice_label }}
+                    </label>
+                  </h5>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          {% endfor %}
+        {% endif %}
       {% endfor %}
   
       <button type="submit" class="btn btn-primary">Submit</button>
