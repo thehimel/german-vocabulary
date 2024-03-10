@@ -11,5 +11,5 @@ class LanguagePreferencesForm(forms.Form):
         choices=language_choices.get(SELECTED_LANGUAGE, None), label=_("Language to learn"), widget=forms.RadioSelect
     )
     primary_language = forms.ChoiceField(
-        choices=language_choices.get(PRIMARY_LANGUAGE, None), label=_("Language you already know"), widget=forms.RadioSelect
+        choices=language_choices.get(PRIMARY_LANGUAGE, None), label=_("Secondary language"), widget=forms.RadioSelect
     )
