@@ -1,13 +1,14 @@
 from django.views.generic import DetailView, ListView
 
 from apps.base.utils.decorators import language_preferences_required
-from apps.base.utils.languages import get_selected_language, get_language_level
+from apps.base.utils.languages import get_language_level, get_selected_language
 from apps.words.models import Word
 
 
 # Create your views here.
 class WordListView(ListView):
     """TODO: Return to a page, if no word is found with this language preference."""
+
     model = Word
     template_name = "words/list.html"
     context_object_name = "objects"
