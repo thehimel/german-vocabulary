@@ -44,4 +44,4 @@ def get_language_choices():
 
 def get_level_choices():
     """TODO: Return from database."""
-    return [("a1", "A1"), ("a2", "A2"), ("b1", "B1"), ("b2", "B2"), ("c1", "C1"), ("C2", "C2")]
+    return [("a1", "A1"), ("a2", "A2"), ("b1", "B1"), ("b2", "B2"), ("c1", "C1"), ("C2", "C2")][:2]
