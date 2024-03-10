@@ -21,9 +21,11 @@ class CardDetailView(DetailView):
 
     def get_object(self, queryset=None):
         pk = self.kwargs['slug']
-        bundle = Bundle.objects.filter(words__pk=pk).first()
         primary_word = Word.objects.get(pk=pk)
-        secondary_word = bundle.words.filter(language__title=get_primary_language(request=self.request)).first()
+        secondary_word = None
+        bundle = Bundle.objects.filter(words__pk=pk).first()
+        if bundle:
+            secondary_word = bundle.words.filter(language__title=get_primary_language(request=self.request)).first()
         return {"primary_word": primary_word, "secondary_word": secondary_word if secondary_word else primary_word}
 
     @language_preferences_required
