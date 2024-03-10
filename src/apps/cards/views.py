@@ -5,7 +5,7 @@ from django.views import View
 from django.views.generic import DetailView, TemplateView
 
 from apps.base.utils.decorators import language_preferences_required
-from apps.base.utils.languages import get_selected_language, get_primary_language
+from apps.base.utils.languages import get_language_level, get_primary_language, get_selected_language
 from apps.words.models import Word
 from apps.words.models.bundle import Bundle
 
@@ -17,10 +17,10 @@ class HomeView(TemplateView):
 class CardDetailView(DetailView):
     template_name = "cards/detail.html"
     model = Word
-    context_object_name = 'object'
+    context_object_name = "object"
 
     def get_object(self, queryset=None):
-        pk = self.kwargs['slug']
+        pk = self.kwargs["slug"]
         primary_word = Word.objects.get(pk=pk)
         secondary_word = None
         bundle = Bundle.objects.filter(words__pk=pk).first()
@@ -35,33 +35,45 @@ class CardDetailView(DetailView):
 
 class NextCardView(View):
     @staticmethod
-    def get_random_word(language: str):
-        return Word.objects.filter(language__title=language).order_by("?").first()
+    def get_random_word(language: str, level: str):
+        return Word.objects.filter(language__title=language, level=level).order_by("?").first()
 
     @staticmethod
-    def get_next_word(request, action, current_word, language):
+    def get_next_word(request, action, current_word, language, level):
         next_card = None
         if action == "next":
-            next_card = Word.objects.filter(language__title=language, pk__gt=current_word.pk).order_by("pk").first()
+            next_card = (
+                Word.objects.filter(language__title=language, level=level, pk__gt=current_word.pk)
+                .order_by("pk")
+                .first()
+            )
             if not next_card:
                 messages.warning(request, _("This is the last word in this section."))
         elif action == "previous":
-            next_card = Word.objects.filter(language__title=language, pk__lt=current_word.pk).order_by("-pk").first()
+            next_card = (
+                Word.objects.filter(language__title=language, level=level, pk__lt=current_word.pk)
+                .order_by("-pk")
+                .first()
+            )
             if not next_card:
                 messages.warning(request, _("This is the first word in this section."))
         return next_card
 
     def get(self, request, action="next", slug=None):
         language = get_selected_language(request=request)
+        level = get_language_level(request=request)
         current_word = get_object_or_404(Word, pk=slug) if slug else None
         next_card = (
-            self.get_next_word(request=request, action=action, current_word=current_word, language=language)
+            self.get_next_word(
+                request=request, action=action, current_word=current_word, language=language, level=level
+            )
             if current_word
-            else self.get_random_word(language=language)
+            else self.get_random_word(language=language, level=level)
         )
 
         if next_card:
             slug = next_card.pk
 
         # Redirect to home if no data in the table for this model.
+        # TODO: Redirect to a not found page if no word found with this language preference.
         return redirect("cards:detail", slug=slug) if slug else redirect("base:home")

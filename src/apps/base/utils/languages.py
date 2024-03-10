@@ -17,6 +17,10 @@ def get_language_preferences(request: HttpRequest):
     return preferences
 
 
+def get_language_level(request: HttpRequest):
+    return get_language_preferences(request=request).get(LEVEL, None)
+
+
 def get_selected_language(request: HttpRequest):
     return get_language_preferences(request=request).get(SELECTED_LANGUAGE, None)
 
@@ -40,4 +44,4 @@ def get_language_choices():
 
 def get_level_choices():
     """TODO: Return from database."""
-    return [("a1", "A1"), ("a2", "A2"), ("b1", "B1"), ("b2", "B2"), ("c1", "C1"), ("C2", "C2")]
+    return [("a1", "A1"), ("a2", "A2"), ("b1", "B1"), ("b2", "B2"), ("c1", "C1"), ("C2", "C2")][:2]
