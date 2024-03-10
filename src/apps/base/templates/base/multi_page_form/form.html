@@ -1,9 +1,0 @@
-{% load crispy_forms_tags %}
-
-{{ all_data }}
-<form action="" method="post">
-    {% csrf_token %}
-    {{ wizard.management_form }}
-    {{ wizard.form }}
-    <input type="submit" value="Next">
-</form>
