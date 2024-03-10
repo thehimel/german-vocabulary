@@ -37,7 +37,7 @@ class PageThreeForm(forms.Form):
 
 class MyFormWizard(SessionWizardView):
     form_list = [PageOneForm, PageTwoForm, PageThreeForm]
-    template_name = "base/multi_page_form/form.html"
+    template_name = "base/preferences.html"
 
     def get_context_data(self, form, **kwargs):
         context = super().get_context_data(form=form, **kwargs)
