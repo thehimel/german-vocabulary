@@ -33,14 +33,14 @@
   
   <script>
     function selectRadio(card, radioId) {
+      const styles = ['selected', 'bg-primary', 'text-light'];
+      
       // Remove the 'selected' class from all cards
       const cards = document.querySelectorAll('.card');
-      cards.forEach(function(item) {
-        item.classList.remove('selected');
-      });
+      cards.forEach(item => item.classList.remove(...styles));
 
       // Add the 'selected' class to the clicked card
-      card.classList.add('selected');
+      card.classList.add(...styles);
 
       // Check the corresponding radio input
       document.getElementById(radioId).checked = true;
@@ -48,15 +48,10 @@
   </script>
 
   <style>
-    .selected {
-      background-color: #007bff;
-      color: #fff;
-      transition: 0.5s;
-    }
-
     /* Hide radio buttons */
     input[type="radio"] {
       display: none;
     }
   </style>
+
 {% endblock main_content %}
