@@ -33,14 +33,14 @@
   
   <script>
     function selectRadio(card, radioId) {
-      const styles = ['selected', 'bg-primary', 'text-light'];
+      const selectStyles = ['selected', 'bg-primary', 'text-light'];
       
       // Remove the 'selected' class from all cards
       const cards = document.querySelectorAll('.card');
-      cards.forEach(item => item.classList.remove(...styles));
+      cards.forEach(item => item.classList.remove(...selectStyles));
 
       // Add the 'selected' class to the clicked card
-      card.classList.add(...styles);
+      card.classList.add(...selectStyles);
 
       // Check the corresponding radio input
       document.getElementById(radioId).checked = true;
