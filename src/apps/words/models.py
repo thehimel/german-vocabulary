@@ -79,7 +79,7 @@ class Word(models.Model):
     parts_of_speech = models.ManyToManyField(PartOfSpeech, verbose_name="Parts of Speech")
     sentence = models.TextField(default="", blank=True, null=True)
     level = models.CharField(
-        max_length=2, choices=[("a1", "A1"), ("a2", "A2"), ("b1", "B1"), ("b2", "B2"), ("c2", "C2")]
+        max_length=2, choices=[("a1", "A1"), ("a2", "A2"), ("b1", "B1"), ("b2", "B2"), ("c1", "C1"), ("c2", "C2")]
     )
     hidden = models.BooleanField(default=False)
 
