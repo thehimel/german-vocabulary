@@ -17,6 +17,10 @@ def get_language_preferences(request: HttpRequest):
     return preferences
 
 
+def get_language_level(request: HttpRequest):
+    return get_language_preferences(request=request).get(LEVEL, None)
+
+
 def get_selected_language(request: HttpRequest):
     return get_language_preferences(request=request).get(SELECTED_LANGUAGE, None)
 
