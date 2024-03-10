@@ -2,11 +2,9 @@
 {% load crispy_forms_tags %}
 
 {% block main_content %}
-<form method="post" action="{% url 'base:preferences' %}">
+  <form method="post" action="{% url 'base:preferences' %}">
     {% csrf_token %}
-    
-  {{ form.selected_language }}
-
+  
     {% for choice in form.primary_language %}
       <div class="p-2">
         <div class="card" style="cursor: pointer; min-height: 6rem;" onclick="selectRadio(this, '{{ choice.id_for_label }}')">
@@ -21,53 +19,53 @@
         </div>
       </div>
     {% endfor %}
-
+  
     <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+  </form>
 
-<script>
-  function selectRadio(card, radioId) {
-    // Remove the 'selected' class from all cards
-    const cards = document.querySelectorAll('.card');
-    cards.forEach(function(item) {
-      item.classList.remove('selected');
-    });
+  <script>
+    function selectRadio(card, radioId) {
+      // Remove the 'selected' class from all cards
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(function(item) {
+        item.classList.remove('selected');
+      });
+  
+      // Add the 'selected' class to the clicked card
+      card.classList.add('selected');
+  
+      // Check the corresponding radio input
+      document.getElementById(radioId).checked = true;
+    }
+  </script>
 
-    // Add the 'selected' class to the clicked card
-    card.classList.add('selected');
-
-    // Check the corresponding radio input
-    document.getElementById(radioId).checked = true;
-  }
-</script>
-
-<style>
-  .selected {
-    background-color: #007bff; /* Change to your desired color */
-    color: #fff;
+  <style>
+    .selected {
+      background-color: #007bff; /* Change to your desired color */
+      color: #fff;
+    }
+    
+    /* Visually hide radio buttons */
+  input[type="radio"] {
+    position: absolute;
+    left: -9999px;
   }
   
-  /* Visually hide radio buttons */
-input[type="radio"] {
-  position: absolute;
-  left: -9999px;
-}
-
-/* Style custom elements */
-.custom-radio {
-  display: inline-block;
-  padding: 10px;
-  margin: 5px;
-  cursor: pointer;
-  border: 2px solid #000; /* Change the border color */
-  background-color: #fff; /* Change the background color */
-}
-
-/* Style selected state */
-.custom-radio.selected {
-  background-color: #000; /* Change the background color for selected state */
-  color: #fff; /* Change the text color for selected state */
-}
-
-</style>
+  /* Style custom elements */
+  .custom-radio {
+    display: inline-block;
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+    border: 2px solid #000; /* Change the border color */
+    background-color: #fff; /* Change the background color */
+  }
+  
+  /* Style selected state */
+  .custom-radio.selected {
+    background-color: #000; /* Change the background color for selected state */
+    color: #fff; /* Change the text color for selected state */
+  }
+  
+  </style>
 {% endblock main_content %}
