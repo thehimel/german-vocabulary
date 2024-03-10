@@ -12,9 +12,9 @@
         <div class="card-body">
           <ul class="list-group list-group-flush">
             <li class="list-group-item">
-            
-              <form method="post" action="{% url 'base:preferences' %}">
+              <form method="post">
                 {% csrf_token %}
+                {{ wizard.management_form }}
                 {% for field in form %}
                   {% if field.field.widget.input_type == 'radio' %}
                     <h5 class="card-title text-center">{{ field.label }}</h5>
