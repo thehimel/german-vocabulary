@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from apps.base.utils.decorators import make_slug_readonly_during_update
 from apps.words.forms import LanguageForm, WordForm
-from apps.words.models import Image, Article, PartOfSpeech, Language, Word, Bundle
+from apps.words.models import Article, Bundle, Image, Language, PartOfSpeech, Word
 
 
 class LanguageAdmin(admin.ModelAdmin):
