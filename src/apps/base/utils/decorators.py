@@ -1,6 +1,7 @@
 from functools import wraps
 from typing import Type
 
+from crispy_forms.helper import FormHelper
 from django.contrib import admin
 from django.db import models
 from django.shortcuts import redirect
@@ -68,8 +69,18 @@ def language_preferences_required(func):
     @wraps(func)
     def wrapper(self, *args, **kwargs):
         if not is_languages_selected(request=self.request):
-            return redirect("base:language_preferences")
+            return redirect("base:get_started")
 
         return func(self, *args, **kwargs)
 
     return wrapper
+
+
+def form_helper(klass):
+    def __init__(self, *args, **kwargs):
+        super(klass, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_tag = False
+
+    klass.__init__ = __init__
+    return klass

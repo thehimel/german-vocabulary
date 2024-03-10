@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% load crispy_forms_tags %}
+
+{% block main_content %}
+  
+  <div class="container text-center">
+    <div class="container d-flex justify-content-center pt-4 pb-4">
+      <div class="card shadow profile pt-4 pb-2">
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <form method="post">
+                {% csrf_token %}
+                {{ wizard.management_form }}
+                {% for field in form %}
+                  {% if field.field.widget.input_type == 'radio' %}
+                    <h5 class="card-title text-center">{{ field.label }}</h5>
+                    {% for choice in field %}
+                      <div class="p-2">
+                        <div class="card" style="cursor: pointer; min-height: 6rem;" onclick="selectRadio(this, '{{ choice.id_for_label }}')">
+                          <div class="card-body d-flex flex-column justify-content-center">
+                            <h5 class="card-title">
+                              <label class="form-check-label">
+                              {{ choice.tag }}
+                              {{ choice.choice_label }}
+                              </label>
+                            </h5>
+                          </div>
+                        </div>
+                      </div>
+                    {% endfor %}
+                  {% endif %}
+                {% endfor %}
+              
+                <div class="d-flex btn-group p-2">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+            
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    function selectRadio(card, radioId) {
+      const selectStyles = ['selected', 'bg-primary', 'text-light'];
+      
+      // Remove the 'selected' class from all cards
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(item => item.classList.remove(...selectStyles));
+
+      // Add the 'selected' class to the clicked card
+      card.classList.add(...selectStyles);
+
+      // Check the corresponding radio input
+      document.getElementById(radioId).checked = true;
+    }
+  </script>
+
+  <style>
+    /* Hide radio buttons */
+    input[type="radio"] {
+      display: none;
+    }
+    
+    .selected {
+      transition: 0.5s;
+    }
+  </style>
+
+{% endblock main_content %}
