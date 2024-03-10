@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.utils.translation import gettext as _
 from formtools.wizard.views import SessionWizardView
 
-from apps.base.constants import PRIMARY_LANGUAGE, SELECTED_LANGUAGE
+from apps.base.constants import PRIMARY_LANGUAGE, SELECTED_LANGUAGE, IS_LANGUAGES_SELECTED
 from apps.base.utils.decorators import form_helper
 from apps.base.utils.languages import get_language_choices, get_level_choices
 
@@ -53,7 +53,7 @@ class GetStartedWizard(SessionWizardView):
         for form in form_list:
             data.update(form.cleaned_data)
 
-        response = render(self.request, "base/welcome.html", {"form_data": data})
+        response = render(self.request, "base/welcome.html", {IS_LANGUAGES_SELECTED: True})
         for key, value in data.items():
             response.set_cookie(key, value)
 
