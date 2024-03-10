@@ -1,15 +1,10 @@
+from django import forms
 from django.shortcuts import render
+from django.utils.translation import gettext as _
 from django.views import View
 
-from apps.base.constants import IS_LANGUAGES_SELECTED
-from apps.base.utils.languages import get_language_preferences, set_language_preferences
-
-
-from django import forms
-from django.utils.translation import gettext as _
-
-from apps.base.constants import PRIMARY_LANGUAGE, SELECTED_LANGUAGE
-from apps.base.utils.languages import get_language_choices
+from apps.base.constants import IS_LANGUAGES_SELECTED, PRIMARY_LANGUAGE, SELECTED_LANGUAGE
+from apps.base.utils.languages import get_language_choices, get_language_preferences, set_language_preferences
 
 
 class SelectedLanguageForm(forms.Form):

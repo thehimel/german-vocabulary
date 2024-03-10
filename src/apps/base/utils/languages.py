@@ -1,7 +1,7 @@
 from django import forms
 from django.http import HttpRequest, HttpResponse
 
-from apps.base.constants import SELECTED_LANGUAGE, PRIMARY_LANGUAGE, LEVEL
+from apps.base.constants import LEVEL, PRIMARY_LANGUAGE, SELECTED_LANGUAGE
 from apps.base.utils.cookies import get_cookie_max_age
 
 

@@ -1,6 +1,7 @@
 from django import forms
-from formtools.wizard.views import SessionWizardView
 from django.shortcuts import render
+from formtools.wizard.views import SessionWizardView
+
 from apps.base.utils.decorators import form_helper
 
 
@@ -21,7 +22,7 @@ class PageThreeForm(forms.Form):
 
 class MyFormWizard(SessionWizardView):
     form_list = [PageOneForm, PageTwoForm, PageThreeForm]
-    template_name = 'base/multi_page_form/form.html'
+    template_name = "base/multi_page_form/form.html"
 
     def get_context_data(self, form, **kwargs):
         context = super().get_context_data(form=form, **kwargs)
@@ -29,7 +30,7 @@ class MyFormWizard(SessionWizardView):
         for step in self.get_form_list():
             cleaned_data = self.get_cleaned_data_for_step(step) or {}
             all_data.update(cleaned_data)
-        context['all_data'] = all_data
+        context["all_data"] = all_data
         return context
 
     def done(self, form_list, **kwargs):
@@ -37,7 +38,7 @@ class MyFormWizard(SessionWizardView):
         for form in form_list:
             data.update(form.cleaned_data)
 
-        response = render(self.request, 'base/welcome.html', {'form_data': data})
+        response = render(self.request, "base/welcome.html", {"form_data": data})
         for key, value in data.items():
             response.set_cookie(key, value)
 
