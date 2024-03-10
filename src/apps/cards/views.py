@@ -16,8 +16,10 @@ class HomeView(TemplateView):
 class CardDetailView(DetailView):
     template_name = "cards/detail.html"
     model = Word
-    context_object_name = "object"
-    slug_field = "pk"
+    context_object_name = 'primary_word'
+
+    def get_object(self, queryset=None):
+        return Word.objects.get(pk=self.kwargs['slug'])  # Adjust the field name as needed
 
     @language_preferences_required
     def get(self, request, *args, **kwargs):
