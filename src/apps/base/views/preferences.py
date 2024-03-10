@@ -22,7 +22,7 @@ class SelectedLanguageForm(forms.Form):
 class PrimaryLanguageForm(forms.Form):
     language_choices = get_language_choices()
     primary_language = forms.ChoiceField(
-        choices=language_choices.get(PRIMARY_LANGUAGE, None), label=_("Language you already know"), widget=forms.RadioSelect
+        choices=language_choices.get(PRIMARY_LANGUAGE, None), label=_("Language of help"), widget=forms.RadioSelect
     )
 
 
