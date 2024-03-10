@@ -14,33 +14,33 @@
     <div class="cardContainer fade-in-container text-shadow pt-4 ps-2 pe-2">
       <div class="flashcard" id="flashCard">
         <div class="front">
-          <div class="display-3 style-script-regular">{{ object.title }}</div>
+          <div class="display-3 style-script-regular">{{ object.primary_word.title }}</div>
         </div>
         <div class="back">
           <div style="font-size: 1.5rem;">
-            {% for article in object.articles.all %}
+            {% for article in object.primary_word.articles.all %}
               <span class="badge bg-primary rounded-pill">{{ article }}</span>
               <!-- {% if not forloop.last %}&nbsp;{% endif %} -->
             {% endfor %}
           </div>
-          <div class="display-5 style-script-regular">{{ object.title }}</div>
-          <div style="font-size: 1.5rem;">{{ object.sentence }}</div>
-          <i class="fa-regular fa-circle-play" id="playButton" onclick="playText('{{ object.sentence }}', 'de-DE')"
+          <div class="display-5 style-script-regular">{{ object.primary_word.title }}</div>
+          <div style="font-size: 1.5rem;">{{ object.primary_word.sentence }}</div>
+          <i class="fa-regular fa-circle-play" id="playButton" onclick="playText('{{ object.primary_word.sentence }}', 'de-DE')"
                style="font-size: 2.5em;"></i>
 
           <div class="dotted-line"></div>
 
-          <div class="display-5 style-script-regular">{{ "Book" }}</div>
-          <div style="font-size: 1.5rem;">{{ "This is my book." }}</div>
+          <div class="display-5 style-script-regular">{{ object.secondary_word.title }}</div>
+          <div style="font-size: 1.5rem;">{{ object.secondary_word.sentence }}</div>
         </div>
       </div>
     </div>
   </div>
   <div class="container">
     <div class="text-center pt-3">
-      <a href="{% url 'cards:previous' slug=object.pk %}" class="cardButton me-2"><i class="fa-solid fa-circle-left"></i></a>
+      <a href="{% url 'cards:previous' slug=object.primary_word.pk %}" class="cardButton me-2"><i class="fa-solid fa-circle-left"></i></a>
       <a href="{% url 'cards:any' %}" class="cardButton me-2"><i class="fa-solid fa-rotate"></i></a>
-      <a href="{% url 'cards:next' slug=object.pk %}" class="cardButton"><i class="fa-solid fa-circle-right"></i></a>
+      <a href="{% url 'cards:next' slug=object.primary_word.pk %}" class="cardButton"><i class="fa-solid fa-circle-right"></i></a>
     </div>
   </div>
   <audio id="flipAudio" src="{% static 'cards/audio/flip_card.mp3' %}"></audio>

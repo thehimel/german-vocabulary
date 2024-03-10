@@ -5,8 +5,9 @@ from django.views import View
 from django.views.generic import DetailView, TemplateView
 
 from apps.base.utils.decorators import language_preferences_required
-from apps.base.utils.languages import get_selected_language
+from apps.base.utils.languages import get_selected_language, get_primary_language
 from apps.words.models import Word
+from apps.words.models.bundle import Bundle
 
 
 class HomeView(TemplateView):
@@ -16,8 +17,14 @@ class HomeView(TemplateView):
 class CardDetailView(DetailView):
     template_name = "cards/detail.html"
     model = Word
-    context_object_name = "object"
-    slug_field = "pk"
+    context_object_name = 'object'
+
+    def get_object(self, queryset=None):
+        pk = self.kwargs['slug']
+        bundle = Bundle.objects.filter(words__pk=pk).first()
+        primary_word = Word.objects.get(pk=pk)
+        secondary_word = bundle.words.filter(language__title=get_primary_language(request=self.request)).first()
+        return {"primary_word": primary_word, "secondary_word": secondary_word}
 
     @language_preferences_required
     def get(self, request, *args, **kwargs):
