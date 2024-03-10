@@ -69,7 +69,7 @@ def language_preferences_required(func):
     @wraps(func)
     def wrapper(self, *args, **kwargs):
         if not is_languages_selected(request=self.request):
-            return redirect("base:language_preferences")
+            return redirect("base:get_started")
 
         return func(self, *args, **kwargs)
 
