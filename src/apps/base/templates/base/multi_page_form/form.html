@@ -4,13 +4,6 @@
 <form action="" method="post">
     {% csrf_token %}
     {{ wizard.management_form }}
-    {% if wizard.form.forms %}
-        {{ wizard.form.management_form }}
-        {% for form in wizard.form.forms %}
-            {{ form|crispy }}
-        {% endfor %}
-    {% else %}
-        {{ wizard.form|crispy }}
-    {% endif %}
+    {{ wizard.form }}
     <input type="submit" value="Next">
 </form>
