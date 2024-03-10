@@ -8,6 +8,8 @@ from django.utils.text import slugify
 
 from apps.base.utils.languages import is_languages_selected
 
+from crispy_forms.helper import FormHelper
+
 
 def auto_slugify(field_name: str):
     def decorator(model_class):
@@ -73,3 +75,13 @@ def language_preferences_required(func):
         return func(self, *args, **kwargs)
 
     return wrapper
+
+
+def form_helper(klass):
+    def __init__(self, *args, **kwargs):
+        super(klass, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_tag = False
+
+    klass.__init__ = __init__
+    return klass

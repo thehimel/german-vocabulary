@@ -2,34 +2,22 @@ from django import forms
 from crispy_forms.helper import FormHelper
 from formtools.wizard.views import SessionWizardView
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from apps.base.utils.decorators import form_helper
 
 
+@form_helper
 class PageOneForm(forms.Form):
     firstname = forms.CharField()
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.helper.form_tag = False
 
-
+@form_helper
 class PageTwoForm(forms.Form):
     lastname = forms.CharField()
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.helper.form_tag = False
 
-
+@form_helper
 class PageThreeForm(forms.Form):
     email = forms.CharField()
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.helper.form_tag = False
 
 
 class MyFormWizard(SessionWizardView):
