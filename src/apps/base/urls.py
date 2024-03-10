@@ -1,8 +1,8 @@
 from django.urls import path
 
 from apps.base.views.base import HomeView, MessageView
-from apps.base.views.languages import LanguagePreferencesView
 from apps.base.views.get_started import GetStartedWizard
+from apps.base.views.languages import LanguagePreferencesView
 
 app_name = "base"
 
