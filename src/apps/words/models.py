@@ -81,7 +81,7 @@ class Word(models.Model):
     level = models.CharField(
         max_length=2, choices=[("a1", "A1"), ("a2", "A2"), ("b1", "B1"), ("b2", "B2"), ("c2", "C2")]
     )
-    # translations = models.ManyToManyField("self", blank=True, symmetrical=True)
+    hidden = models.BooleanField(default=False)
 
     class Meta:
         unique_together = ["title", "language"]
