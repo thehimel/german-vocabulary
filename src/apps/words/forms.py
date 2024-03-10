@@ -2,8 +2,7 @@ from django import forms
 
 from apps.base.utils.decorators import filter_data_by_field
 from apps.base.utils.validators import validate_field_unchanged
-from apps.words.models import Article, Language, Word
-from apps.words.models.pos import PartOfSpeech
+from apps.words.models import Article, Language, PartOfSpeech, Word
 
 
 class LanguageForm(forms.ModelForm):

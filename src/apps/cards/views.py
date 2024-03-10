@@ -6,8 +6,7 @@ from django.views.generic import DetailView, TemplateView
 
 from apps.base.utils.decorators import language_preferences_required
 from apps.base.utils.languages import get_language_level, get_primary_language, get_selected_language
-from apps.words.models import Word
-from apps.words.models.bundle import Bundle
+from apps.words.models import Bundle, Word
 
 
 class HomeView(TemplateView):
