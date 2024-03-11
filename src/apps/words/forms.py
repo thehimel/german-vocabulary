@@ -26,11 +26,5 @@ class WordForm(forms.ModelForm):
         source_class=Language,
         source_field_name="language",
     )
-    @filter_data_by_field(
-        destination_class=PartOfSpeech,
-        destination_field_name="parts_of_speech",
-        source_class=Language,
-        source_field_name="language",
-    )
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
