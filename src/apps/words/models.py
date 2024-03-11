@@ -19,7 +19,7 @@ class Image(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return str(self.image.path.split("/media/", maxsplit=1)[1])  # The part after '/media/'
+        return str(self.image.url.split("/media/", maxsplit=1)[1])  # The part after '/media/'
 
 
 @auto_slugify(field_name="article")
