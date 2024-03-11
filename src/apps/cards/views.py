@@ -5,7 +5,7 @@ from django.views import View
 from django.views.generic import DetailView, TemplateView
 
 from apps.base.utils.decorators import language_preferences_required
-from apps.base.utils.languages import get_language_level, get_primary_language, get_selected_language
+from apps.base.utils.languages import get_level, get_secondary_language, get_primary_language
 from apps.words.models import Bundle, Word
 
 
@@ -24,7 +24,7 @@ class CardDetailView(DetailView):
         secondary_word = None
         bundle = Bundle.objects.filter(words__pk=pk).first()
         if bundle:
-            secondary_word = bundle.words.filter(language__code=get_primary_language(request=self.request)).first()
+            secondary_word = bundle.words.filter(language__code=get_secondary_language(request=self.request)).first()
         return {"primary_word": primary_word, "secondary_word": secondary_word if secondary_word else primary_word}
 
     @language_preferences_required
@@ -59,8 +59,8 @@ class NextCardView(View):
         return next_card
 
     def get(self, request, action="next", slug=None):
-        language = get_selected_language(request=request)
-        level = get_language_level(request=request)
+        language = get_primary_language(request=request)
+        level = get_level(request=request)
         current_word = get_object_or_404(Word, pk=slug) if slug else None
         next_card = (
             self.get_next_word(
