@@ -1,45 +1,74 @@
 from django import forms
+from django.conf import settings
+from django.utils.translation import gettext_lazy as _
 from django.http import HttpRequest, HttpResponse
 
-from apps.base.constants import LEVEL, SECONDARY_LANGUAGE, PRIMARY_LANGUAGE
+from apps.base.constants import LEVEL, DEFAULT_PRIMARY_LANGUAGE, PRIMARY_LANGUAGE, SECONDARY_LANGUAGE
 from apps.base.utils.cookies import get_cookie_max_age
 
 
-def is_languages_selected(request: HttpRequest):
-    return request.COOKIES.get(PRIMARY_LANGUAGE, None) and request.COOKIES.get(SECONDARY_LANGUAGE, None)
+def get_language_name(code: str):
+    for lang_code, lang_name in settings.LANGUAGES:
+        if lang_code == code:
+            return lang_name
+    return None
 
 
-def get_language_preferences(request: HttpRequest):
-    fields = [LEVEL, PRIMARY_LANGUAGE, SECONDARY_LANGUAGE]
-    preferences = dict()
-    for field in fields:
-        preferences[field] = request.COOKIES.get(field, None)
-    return preferences
+def get_level(request: HttpRequest):
+    return request.COOKIES.get(LEVEL, None)
 
 
-def get_language_level(request: HttpRequest):
-    return get_language_preferences(request=request).get(LEVEL, None)
-
-
-def get_selected_language(request: HttpRequest):
-    return get_language_preferences(request=request).get(PRIMARY_LANGUAGE, None)
+def set_level(response: HttpResponse, value, max_age: int):
+    response.set_cookie(key=LEVEL, value=value, max_age=max_age)
 
 
 def get_primary_language(request: HttpRequest):
-    return get_language_preferences(request=request).get(SECONDARY_LANGUAGE, None)
+    return DEFAULT_PRIMARY_LANGUAGE or request.COOKIES.get(PRIMARY_LANGUAGE, None)
+
+
+def set_primary_language(response: HttpResponse, value, max_age: int):
+    if not DEFAULT_PRIMARY_LANGUAGE:
+        response.set_cookie(key=PRIMARY_LANGUAGE, value=value, max_age=max_age)
+
+
+def get_secondary_language(request: HttpRequest):
+    return request.COOKIES.get(SECONDARY_LANGUAGE, None)
+
+
+def set_secondary_language(response: HttpResponse, value, max_age: int):
+    response.set_cookie(key=SECONDARY_LANGUAGE, value=value, max_age=max_age)
+
+
+def is_languages_selected(request: HttpRequest):
+    return get_primary_language(request=request) and get_secondary_language(request=request)
+
+
+def get_language_preferences(request: HttpRequest):
+    return {
+        LEVEL: get_level(request=request),
+        PRIMARY_LANGUAGE: get_primary_language(request=request),
+        SECONDARY_LANGUAGE: get_secondary_language(request=request),
+    }
 
 
 def set_language_preferences(response: HttpResponse, form: forms.Form):
     max_age = get_cookie_max_age()
     cleaned_data = form.cleaned_data
-    for key, value in cleaned_data.items():
-        response.set_cookie(key=key, value=value, max_age=max_age)
+    set_level(response=response, value=cleaned_data[LEVEL], max_age=max_age)
+    set_primary_language(response=response, value=cleaned_data[PRIMARY_LANGUAGE], max_age=max_age)
+    set_secondary_language(response=response, value=cleaned_data[SECONDARY_LANGUAGE], max_age=max_age)
 
 
 def get_language_choices():
     """TODO: Return from database."""
-    language_choices = [("de", "German"), ("en", "English"), ("bn", "Bengali")]
-    return {PRIMARY_LANGUAGE: language_choices, SECONDARY_LANGUAGE: language_choices}
+    language_choices = [("de", _("German")), ("en", _("English")), ("bn", _("Bengali"))]
+    primary_language_choices = (
+        [(DEFAULT_PRIMARY_LANGUAGE, _(get_language_name(code=DEFAULT_PRIMARY_LANGUAGE)))]
+        if DEFAULT_PRIMARY_LANGUAGE
+        else language_choices
+    )
+    secondary_language_choices = [language for language in language_choices if language[0] != DEFAULT_PRIMARY_LANGUAGE]
+    return {PRIMARY_LANGUAGE: primary_language_choices, SECONDARY_LANGUAGE: secondary_language_choices}
 
 
 def get_level_choices():
