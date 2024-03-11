@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.utils.translation import gettext as _
 from formtools.wizard.views import SessionWizardView
 
-from apps.base.constants import IS_LANGUAGES_SELECTED, PRIMARY_LANGUAGE, SELECTED_LANGUAGE
+from apps.base.constants import IS_LANGUAGES_SELECTED, SECONDARY_LANGUAGE, SELECTED_LANGUAGE
 from apps.base.utils.decorators import form_helper
 from apps.base.utils.languages import get_language_choices, get_level_choices
 
@@ -19,8 +19,8 @@ class PageOneForm(forms.Form):
 
 @form_helper
 class PageTwoForm(forms.Form):
-    primary_language = forms.ChoiceField(
-        choices=get_language_choices().get(PRIMARY_LANGUAGE, None),
+    secondary_language = forms.ChoiceField(
+        choices=get_language_choices().get(SECONDARY_LANGUAGE, None),
         label=_("Secondary language"),
         widget=forms.RadioSelect(),
     )
