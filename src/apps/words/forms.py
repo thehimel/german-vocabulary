@@ -12,7 +12,7 @@ class LanguageForm(forms.ModelForm):
 
     @validate_field_unchanged(model=Language, field_name="code")
     def clean_code(self):
-        return self.cleaned_data["title"]
+        return self.cleaned_data["code"]
 
 
 class WordForm(forms.ModelForm):
