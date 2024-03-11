@@ -10,17 +10,17 @@ class LanguageAdmin(admin.ModelAdmin):
 
 
 class BundleAdmin(admin.ModelAdmin):
-    search_fields = ['title']
-    ordering = ['title']
+    search_fields = ["title"]
+    ordering = ["title"]
 
 
 @make_slug_readonly_during_update
 class WordAdmin(admin.ModelAdmin):
     form = WordForm
-    search_fields = ['title']
-    ordering = ['title']
-    list_display = ['title', 'language', 'level']
-    list_filter = ['hidden', 'level']
+    search_fields = ["title"]
+    ordering = ["title"]
+    list_display = ["title", "language", "level"]
+    list_filter = ["hidden", "level"]
 
 
 admin.site.register(Image)
