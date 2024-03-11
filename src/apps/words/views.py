@@ -20,7 +20,7 @@ class WordListView(ListView):
     def get_queryset(self):
         language = get_selected_language(request=self.request)
         level = get_language_level(request=self.request)
-        queryset = Word.objects.filter(language__title=language, level=level)
+        queryset = Word.objects.filter(language__code=language, level=level)
         return queryset
 
 

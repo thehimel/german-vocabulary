@@ -24,7 +24,7 @@ class CardDetailView(DetailView):
         secondary_word = None
         bundle = Bundle.objects.filter(words__pk=pk).first()
         if bundle:
-            secondary_word = bundle.words.filter(language__title=get_primary_language(request=self.request)).first()
+            secondary_word = bundle.words.filter(language__code=get_primary_language(request=self.request)).first()
         return {"primary_word": primary_word, "secondary_word": secondary_word if secondary_word else primary_word}
 
     @language_preferences_required
@@ -35,14 +35,14 @@ class CardDetailView(DetailView):
 class NextCardView(View):
     @staticmethod
     def get_random_word(language: str, level: str):
-        return Word.objects.filter(language__title=language, level=level).order_by("?").first()
+        return Word.objects.filter(language__code=language, level=level).order_by("?").first()
 
     @staticmethod
     def get_next_word(request, action, current_word, language, level):
         next_card = None
         if action == "next":
             next_card = (
-                Word.objects.filter(language__title=language, level=level, pk__gt=current_word.pk)
+                Word.objects.filter(language__code=language, level=level, pk__gt=current_word.pk)
                 .order_by("pk")
                 .first()
             )
@@ -50,7 +50,7 @@ class NextCardView(View):
                 messages.warning(request, _("This is the last word in this section."))
         elif action == "previous":
             next_card = (
-                Word.objects.filter(language__title=language, level=level, pk__lt=current_word.pk)
+                Word.objects.filter(language__code=language, level=level, pk__lt=current_word.pk)
                 .order_by("-pk")
                 .first()
             )

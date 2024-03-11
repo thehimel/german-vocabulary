@@ -61,12 +61,11 @@ class Language(models.Model):
         code_choices.append(language)
         languages.update([language])
 
-    title = models.CharField(unique=True, max_length=7, choices=code_choices)
+    code = models.CharField(unique=True, max_length=7, choices=code_choices)
     articles = models.ManyToManyField(Article, blank=True)
-    parts_of_speech = models.ManyToManyField(PartOfSpeech, verbose_name="Parts of Speech")
 
     def __str__(self):
-        return str(self.languages.get(self.title, self.title))
+        return str(self.languages.get(self.code, self.code))
 
 
 @auto_slugify(field_name="title")
