@@ -5,7 +5,7 @@ from formtools.wizard.views import SessionWizardView
 
 from apps.base.constants import IS_LANGUAGES_SELECTED, PRIMARY_LANGUAGE, SECONDARY_LANGUAGE
 from apps.base.utils.decorators import form_helper
-from apps.base.utils.languages import get_language_choices, get_level_choices
+from apps.base.utils.languages import get_language_choices, get_level_choices, set_language_preferences
 
 
 @form_helper
@@ -54,7 +54,6 @@ class GetStartedWizard(SessionWizardView):
             data.update(form.cleaned_data)
 
         response = render(self.request, "base/welcome.html", {IS_LANGUAGES_SELECTED: True})
-        for key, value in data.items():
-            response.set_cookie(key, value)
+        set_language_preferences(response=response, data=data)
 
         return response
