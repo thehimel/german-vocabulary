@@ -2,7 +2,7 @@
 
 ## Present
 
-* Add plural and part of speech attributes to the card and word views.
+* Add plural attribute to the card and word views.
 * Add cookie usage banner.
 
 ## Future
