@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     "apps.users",
     "apps.words",
     "apps.cards",
+    "apps.speech",
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
