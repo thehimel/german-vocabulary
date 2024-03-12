@@ -26,7 +26,7 @@ TEMPLATE_DIR = BASE_DIR / "templates"
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 ENVIRONMENT = config("ENVIRONMENT", default=DEVELOPMENT)
-SECURE_SSL_REDIRECT = False if ENVIRONMENT == DEVELOPMENT else True
+SECURE_SSL_REDIRECT = False if ENVIRONMENT == DEVELOPMENT else config("SECURE_SSL_REDIRECT", cast=bool, default=True)
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config("SECRET_KEY")
