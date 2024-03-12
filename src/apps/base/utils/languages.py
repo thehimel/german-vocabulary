@@ -1,9 +1,9 @@
 from django import forms
 from django.conf import settings
-from django.utils.translation import gettext_lazy as _
 from django.http import HttpRequest, HttpResponse
+from django.utils.translation import gettext_lazy as _
 
-from apps.base.constants import LEVEL, DEFAULT_PRIMARY_LANGUAGE, PRIMARY_LANGUAGE, SECONDARY_LANGUAGE
+from apps.base.constants import DEFAULT_PRIMARY_LANGUAGE, LEVEL, PRIMARY_LANGUAGE, SECONDARY_LANGUAGE
 from apps.base.utils.cookies import get_cookie_max_age
 
 

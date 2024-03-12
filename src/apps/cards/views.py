@@ -5,7 +5,7 @@ from django.views import View
 from django.views.generic import DetailView, TemplateView
 
 from apps.base.utils.decorators import language_preferences_required
-from apps.base.utils.languages import get_level, get_secondary_language, get_primary_language
+from apps.base.utils.languages import get_level, get_primary_language, get_secondary_language
 from apps.words.models import Bundle, Word
 
 
