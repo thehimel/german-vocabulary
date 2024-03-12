@@ -31,7 +31,8 @@ async function speakText(api_url, text, lang) {
 
 function playText(api_url, text, lang) {
   if (!playing) {
-    speakText(api_url, text, lang).then(r => togglePlayIcon());
+    togglePlayIcon();
+    speakText(api_url, text, lang).then(r => null);
   } else {
     stopSpeakText();
     togglePlayIcon();
