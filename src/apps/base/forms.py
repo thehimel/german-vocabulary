@@ -1,7 +1,7 @@
 from django import forms
 from django.utils.translation import gettext as _
 
-from apps.base.constants import SECONDARY_LANGUAGE, PRIMARY_LANGUAGE
+from apps.base.constants import PRIMARY_LANGUAGE, SECONDARY_LANGUAGE
 from apps.base.utils.languages import get_language_choices, get_level_choices
 
 

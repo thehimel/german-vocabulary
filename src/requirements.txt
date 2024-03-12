@@ -19,3 +19,4 @@ python-decouple>=3.8
 psycopg2-binary>=2.9.9
 urllib3==1.26.6
 whitenoise>=6.6.0
+gTTS>=2.5.1

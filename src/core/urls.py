@@ -27,6 +27,7 @@ urlpatterns = [
     path("users/", include("apps.users.urls", namespace="users")),
     path("cards/", include("apps.cards.urls", namespace="cards")),
     path("words/", include("apps.words.urls", namespace="words")),
+    path("api/speech/", include("apps.speech.urls", namespace="speech")),
 ]
 
 if settings.DEBUG:
