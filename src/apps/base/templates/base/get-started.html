@@ -36,7 +36,9 @@
                 {% endfor %}
               
                 <div class="d-flex btn-group p-2">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-success">
+                    {% if wizard.steps.current == wizard.steps.last %}Submit{% else %}Next{% endif %}
+                  </button>
                 </div>
               </form>
             
