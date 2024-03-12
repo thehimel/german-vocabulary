@@ -1,6 +1,5 @@
-import os
+from io import BytesIO
 
-from django.conf import settings
 from django.http import FileResponse
 from gtts import gTTS
 from rest_framework import status
@@ -17,23 +16,17 @@ class TextToSpeechAPIView(APIView):
         if not input_text:
             return Response({"error": "Text parameter is missing"}, status=status.HTTP_400_BAD_REQUEST)
 
-        output_file_path = None
-
         try:
             tts = gTTS(text=input_text, lang=language_code, slow=False)
 
-            media_root = settings.MEDIA_ROOT
-            output_file_path = os.path.join(media_root, "output.mp3")
+            output_file = BytesIO()
+            tts.write_to_fp(output_file)
+            output_file.seek(0)
 
-            tts.save(output_file_path)
-
-            response = FileResponse(open(output_file_path, "rb"), content_type="audio/mpeg")
+            response = FileResponse(output_file, content_type="audio/mpeg")
             response["Content-Disposition"] = 'attachment; filename="output.mp3"'
             return response
         except Exception as e:
             return Response(
                 {"error": f"Error generating audio: {str(e)}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
-        finally:
-            if output_file_path:
-                os.remove(output_file_path)
