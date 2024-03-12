@@ -10,7 +10,7 @@ from rest_framework.views import APIView
 
 class TextToSpeechAPIView(APIView):
     @staticmethod
-    def post(self, request, *args, **kwargs):
+    def post(request, *args, **kwargs):
         input_text = request.data.get("text", "")
         language_code = request.data.get("language_code", "en")
 
