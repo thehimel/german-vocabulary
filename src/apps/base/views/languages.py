@@ -28,5 +28,6 @@ class LanguagePreferencesView(View):
         if form.is_valid():
             context = {IS_LANGUAGES_SELECTED: True}
             response = render(request, "base/welcome.html", context)
-            set_language_preferences(response=response, form=form)
+            cleaned_data = form.cleaned_data
+            set_language_preferences(response=response, data=cleaned_data)
             return response

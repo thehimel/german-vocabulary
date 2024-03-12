@@ -51,12 +51,11 @@ def get_language_preferences(request: HttpRequest):
     }
 
 
-def set_language_preferences(response: HttpResponse, form: forms.Form):
+def set_language_preferences(response: HttpResponse, data: dict):
     max_age = get_cookie_max_age()
-    cleaned_data = form.cleaned_data
-    set_level(response=response, value=cleaned_data[LEVEL], max_age=max_age)
-    set_primary_language(response=response, value=cleaned_data[PRIMARY_LANGUAGE], max_age=max_age)
-    set_secondary_language(response=response, value=cleaned_data[SECONDARY_LANGUAGE], max_age=max_age)
+    set_level(response=response, value=data.get(LEVEL, None), max_age=max_age)
+    set_primary_language(response=response, value=data.get(PRIMARY_LANGUAGE, None), max_age=max_age)
+    set_secondary_language(response=response, value=data.get(SECONDARY_LANGUAGE, None), max_age=max_age)
 
 
 def get_language_choices():
