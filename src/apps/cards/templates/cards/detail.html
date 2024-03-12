@@ -18,11 +18,22 @@
         </div>
         <div class="back">
           <div style="font-size: 1.5rem;">
+            <!-- article -->
             {% for article in object.primary_word.articles.all %}
               <span class="badge bg-primary rounded-pill">{{ article }}</span>
               <!-- {% if not forloop.last %}&nbsp;{% endif %} -->
             {% endfor %}
+
+            <!-- part_of_speech -->
+            {% for part_of_speech in object.primary_word.parts_of_speech.all %}
+              {% for word in part_of_speech.bundle.words.all %}
+                {% if object.primary_word.language.code == word.language.code %}
+                  <span class="badge bg-secondary rounded-pill">{{ word.title }}</span>
+                {% endif %}
+              {% endfor %}
+            {% endfor %}
           </div>
+
           <div class="display-5 style-script-regular">{{ object.primary_word.title }}</div>
           <div class="ms-2 me-2" style="font-size: 1.5rem;">{{ object.primary_word.sentence }}</div>
           <i class="fa-regular fa-circle-play" id="playButton" onclick="playText('{% url 'speech:tts' %}', '{{ object.primary_word.sentence }}', '{{ object.primary_word.language.code }}')"
