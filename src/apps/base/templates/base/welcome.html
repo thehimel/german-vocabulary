@@ -30,7 +30,7 @@
       </div>
     {% endif %}
     {% if not request.user.is_authenticated %}
-      <div class="pt-4">
+      <div class="pt-2">
         <a href="{% url 'account_signup' %}">
           <button class="btn btn-outline-dark me-2" type="button">{% trans "Sign Up" %}</button>
         </a>
