@@ -1,3 +1,4 @@
+from django.db.models.functions import Lower
 from django.views.generic import DetailView, ListView
 
 from apps.base.utils.decorators import language_preferences_required
@@ -26,9 +27,9 @@ class WordListView(ListView):
         if search_query:
             queryset = queryset.filter(
                 title__icontains=search_query, language__code=language, level=level, hidden=False
-            )
+            ).order_by(Lower("title"))
         else:
-            queryset = Word.objects.filter(language__code=language, level=level, hidden=False)
+            queryset = Word.objects.filter(language__code=language, level=level, hidden=False).order_by(Lower("title"))
         return queryset
 
 

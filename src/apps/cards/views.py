@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.db.models.functions import Lower
 from django.shortcuts import get_object_or_404, redirect
 from django.utils.translation import gettext as _
 from django.views import View
@@ -37,21 +38,25 @@ class NextCardView(View):
     def get_next_word(request, action, current_word, language, level):
         next_card = None
         if action == "first":
-            next_card = Word.objects.filter(language__code=language, hidden=False).order_by("pk").first()
+            next_card = Word.objects.filter(language__code=language, hidden=False).order_by(Lower("title")).first()
         elif action == "any":
             next_card = Word.objects.filter(language__code=language, level=level, hidden=False).order_by("?").first()
         elif action == "next":
             next_card = (
-                Word.objects.filter(language__code=language, level=level, pk__gt=current_word.pk, hidden=False)
-                .order_by("pk")
+                Word.objects.filter(language__code=language, level=level, hidden=False)
+                .annotate(lower_title=Lower("title"))
+                .filter(lower_title__gt=current_word.title.lower())
+                .order_by("lower_title")
                 .first()
             )
             if not next_card:
                 messages.warning(request, _("This is the last word in this section."))
         elif action == "previous":
             next_card = (
-                Word.objects.filter(language__code=language, level=level, pk__lt=current_word.pk, hidden=False)
-                .order_by("-pk")
+                Word.objects.filter(language__code=language, level=level, hidden=False)
+                .annotate(lower_title=Lower("title"))
+                .filter(lower_title__lt=current_word.title.lower())
+                .order_by("lower_title")
                 .first()
             )
             if not next_card:
@@ -62,7 +67,9 @@ class NextCardView(View):
         language = get_primary_language(request=request)
         level = get_level(request=request)
         current_word = get_object_or_404(Word, pk=slug) if slug else None
-        next_card = self.get_next_word(request=request, action=action, current_word=current_word, language=language, level=level)
+        next_card = self.get_next_word(
+            request=request, action=action, current_word=current_word, language=language, level=level
+        )
 
         if next_card:
             slug = next_card.pk
