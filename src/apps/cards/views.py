@@ -37,34 +37,30 @@ class NextCardView(View):
     @staticmethod
     def get_next_word(request, action, current_word, language, level):
         next_word = None
-
         if action == "first":
             next_word = Word.objects.filter(language__code=language, hidden=False).order_by(Lower("title")).first()
-
         elif action == "any":
             next_word = Word.objects.filter(language__code=language, level=level, hidden=False).order_by("?").first()
-
-        elif action in ["previous", "next"]:
-            words = Word.objects.filter(language__code=language, level=level, hidden=False).order_by(Lower("title"))
-            current_word_index = None
-            for i, word in enumerate(words):
-                if word == current_word:
-                    current_word_index = i
-
-            if action == "previous":
-                previous_word_index = current_word_index - 1
-                if previous_word_index > -1:
-                    next_word = words[previous_word_index]
-                else:
-                    messages.warning(request, _("This is the first word in this section."))
-
-            elif action == "next":
-                next_word_index = current_word_index+1
-                if next_word_index < len(words):
-                    next_word = words[next_word_index]
-                else:
-                    messages.warning(request, _("This is the last word in this section."))
-
+        elif action == "next":
+            next_word = (
+                Word.objects.filter(language__code=language, level=level, hidden=False)
+                .annotate(lower_title=Lower("title"))
+                .filter(lower_title__gt=current_word.title.lower())
+                .order_by("lower_title")
+                .first()
+            )
+            if not next_word:
+                messages.warning(request, _("This is the last word in this section."))
+        elif action == "previous":
+            next_word = (
+                Word.objects.filter(language__code=language, level=level, hidden=False)
+                .annotate(lower_title=Lower("title"))
+                .filter(lower_title__lt=current_word.title.lower())
+                .order_by("lower_title")
+                .first()
+            )
+            if not next_word:
+                messages.warning(request, _("This is the first word in this section."))
         return next_word
 
     def get(self, request, action="next", slug=None):
