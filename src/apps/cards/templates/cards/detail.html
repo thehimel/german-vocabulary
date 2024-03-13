@@ -14,20 +14,44 @@
     <div class="cardContainer card-text-color fade-in-container text-shadow pt-4 ps-2 pe-2">
       <div class="flashcard" id="flashCard">
         <div class="front">
-          <div class="display-3 style-script-regular">{{ object.primary_word.title }}</div>
+          <div>
             {% if object.primary_word.linked_words.all %}
-              <div class="ms-2 me-2 mt-5" style="font-size: 1.2rem;">
-                <span class="badge bg-success rounded-pill card-text-color">
-                  <i class="fa-solid fa-link"></i>
-                  {% trans "Linked Words" %}
-                </span>
-              </div>
-              <div id="linkedWords">
-                {% for word in object.primary_word.linked_words.all %}
-                  <a href="{% url 'cards:detail' slug=word.pk %}" class="style-script-regular linked-word card-text-color ms-2 me-2" onclick="preventCardRotation(event)">{{ word.title }}</a>
+              <div class="mt-5 pt-5">
+                <!-- part_of_speech -->
+                {% for part_of_speech in object.primary_word.parts_of_speech.all %}
+                  {% for word in part_of_speech.bundle.words.all %}
+                    {% if word.language.code == "en" %}
+                      <span class="badge bg-secondary rounded-pill" style="font-size: 1rem;">{{ word.title }}</span>
+                    {% endif %}
+                  {% endfor %}
                 {% endfor %}
               </div>
             {% endif %}
+            <div class="display-3 style-script-regular">{{ object.primary_word.title }}</div>
+          </div>
+          {% if object.primary_word.linked_words.all %}
+            <div class="ms-2 me-2 mt-5" style="font-size: 1.2rem;">
+              <span class="badge bg-success rounded-pill card-text-color">
+                <i class="fa-solid fa-link"></i>
+                {% trans "Linked Words" %}
+              </span>
+            </div>
+            <div id="linkedWords">
+              {% for word in object.primary_word.linked_words.all %}
+                <!-- part_of_speech -->
+                {% for part_of_speech in word.parts_of_speech.all %}
+                  {% for word in part_of_speech.bundle.words.all %}
+                    {% if word.language.code == "en" %}
+                      <span class="badge bg-secondary rounded-pill" style="font-size: 1rem;">{{ word.title }}</span>
+                    {% endif %}
+                  {% endfor %}
+                {% endfor %}
+                <div>
+                  <a href="{% url 'cards:detail' slug=word.pk %}" class="style-script-regular linked-word card-text-color ms-2 me-2" onclick="preventCardRotation(event)">{{ word.title }}</a>
+                </div>
+              {% endfor %}
+            </div>
+          {% endif %}
         </div>
         <div class="back">
           <div style="font-size: 1.5rem;">
@@ -40,7 +64,7 @@
             <!-- part_of_speech -->
             {% for part_of_speech in object.primary_word.parts_of_speech.all %}
               {% for word in part_of_speech.bundle.words.all %}
-                {% if object.primary_word.language.code == word.language.code %}
+                {% if word.language.code == "en" %}
                   <span class="badge bg-secondary rounded-pill">{{ word.title }}</span>
                 {% endif %}
               {% endfor %}
@@ -50,7 +74,7 @@
           <div class="display-5 style-script-regular">{{ object.primary_word.title }}</div>
           <div class="ms-2 me-2" style="font-size: 1.5rem;">{{ object.primary_word.sentence }}</div>
           <i class="fa-regular fa-circle-play" id="playButton" onclick="playText('{% url 'speech:tts' %}', '{{ object.primary_word.sentence }}', '{{ object.primary_word.language.code }}')"
-               style="font-size: 2.5em;"></i>
+               style="font-size: 2.5rem;"></i>
 
           <div class="dotted-line"></div>
 
