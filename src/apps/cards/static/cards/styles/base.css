@@ -5,10 +5,17 @@
 }
 
 .cardContainer {
-  color: rgb(211, 211, 211);
   perspective: 600px;
   height: 520px;
   width: 320px;
+}
+
+.card-text-color {
+  color: rgb(211, 211, 211);
+}
+
+.card-text-color:hover {
+  color: rgb(211, 211, 211);
 }
 
 .text-shadow {
@@ -70,4 +77,14 @@
 
 .fade-in-container.loaded {
   opacity: 1; /* Set opacity to 1 when the loaded class is added */
+}
+
+.linked-word {
+  font-size: 3rem;
+  transition: 100ms;
+}
+
+.linked-word:hover {
+  font-size: 3.2rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
 }
