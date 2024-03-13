@@ -13,5 +13,19 @@
 }
 
 .search-bar {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add your desired shadow values */
+  border-radius: 4px;  /* Because the search bar is curved */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Remove default bootstrap highlight from the search bar when in focus */
+.search-bar .form-control:focus {
+  outline: none;
+  border-color: #ced4da;
+  box-shadow: none;
+}
+
+.shadow-on-mouseover {
+  border-radius: 4px;  /* Because the search bar is curved */
+  outline-color: #80bdff;
+  box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
 }
