@@ -16,24 +16,21 @@
         <div class="front">
           <div>
             {% if object.primary_word.linked_words.all %}
-              <div class="mt-5 pt-5">
-                <!-- part_of_speech -->
-                {% for part_of_speech in object.primary_word.parts_of_speech.all %}
-                  {% for word in part_of_speech.bundle.words.all %}
-                    {% if word.language.code == "en" %}
-                      <span class="badge bg-secondary rounded-pill" style="font-size: 1rem;">{{ word.title }}</span>
-                    {% endif %}
-                  {% endfor %}
+              <!-- part_of_speech -->
+              {% for part_of_speech in object.primary_word.parts_of_speech.all %}
+                {% for word in part_of_speech.bundle.words.all %}
+                  {% if word.language.code == "en" %}
+                    <span class="badge bg-primary rounded-pill" style="font-size: 1rem;">{{ word.title }}</span>
+                  {% endif %}
                 {% endfor %}
-              </div>
+              {% endfor %}
             {% endif %}
-            <div class="display-3 style-script-regular">{{ object.primary_word.title }}</div>
+            <div class="display-3 style-script-regular" style="font-size: 4rem;">{{ object.primary_word.title }}</div>
           </div>
           {% if object.primary_word.linked_words.all %}
             <div class="ms-2 me-2 mt-5" style="font-size: 1.2rem;">
-              <span class="badge bg-success rounded-pill card-text-color">
-                <i class="fa-solid fa-link"></i>
-                {% trans "Linked Words" %}
+              <span class="badge bg-secondary rounded-pill card-text-color">
+                <i class="fa-solid fa-link me-1"></i>{% trans "Linked" %}
               </span>
             </div>
             <div id="linkedWords">
@@ -42,7 +39,7 @@
                 {% for part_of_speech in word.parts_of_speech.all %}
                   {% for word in part_of_speech.bundle.words.all %}
                     {% if word.language.code == "en" %}
-                      <span class="badge bg-secondary rounded-pill" style="font-size: 1rem;">{{ word.title }}</span>
+                      <span class="badge bg-success rounded-pill" style="font-size: 1rem;">{{ word.title }}</span>
                     {% endif %}
                   {% endfor %}
                 {% endfor %}
