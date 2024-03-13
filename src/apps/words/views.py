@@ -18,9 +18,15 @@ class WordListView(ListView):
         return super().get(request, *args, **kwargs)
 
     def get_queryset(self):
+        queryset = super().get_queryset()
         language = get_primary_language(request=self.request)
         level = get_level(request=self.request)
-        queryset = Word.objects.filter(language__code=language, level=level, hidden=False)
+
+        search_query = self.request.GET.get('q')
+        if search_query:
+            queryset = queryset.filter(title__icontains=search_query, language__code=language, level=level, hidden=False)
+        else:
+            queryset = Word.objects.filter(language__code=language, level=level, hidden=False)
         return queryset
 
 
