@@ -11,10 +11,23 @@
     {% include 'cards/messages.html' %}
   </div>
   <div class="container d-flex justify-content-center text-center">
-    <div class="cardContainer fade-in-container text-shadow pt-4 ps-2 pe-2">
+    <div class="cardContainer card-text-color fade-in-container text-shadow pt-4 ps-2 pe-2">
       <div class="flashcard" id="flashCard">
         <div class="front">
           <div class="display-3 style-script-regular">{{ object.primary_word.title }}</div>
+            {% if object.primary_word.linked_words.all %}
+              <div class="ms-2 me-2 mt-5" style="font-size: 1.2rem;">
+                <span class="badge bg-success rounded-pill card-text-color">
+                  <i class="fa-solid fa-link text-warning"></i>
+                  {% trans "Linked Words" %}
+                </span>
+              </div>
+              <div id="linkedWords">
+                {% for word in object.primary_word.linked_words.all %}
+                  <a href="{% url 'cards:detail' slug=word.pk %}" class="style-script-regular linked-word card-text-color ms-2 me-2">{{ word.title }}</a>
+                {% endfor %}
+              </div>
+            {% endif %}
         </div>
         <div class="back">
           <div style="font-size: 1.5rem;">
