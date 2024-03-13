@@ -9,17 +9,27 @@
 {% block main_content %}
   <div class="container d-flex justify-content-center text-center pt-5 pb-4">
     <a href="{% url 'cards:detail' slug=object.pk %}">
-      <div class="card word text-bg-light mb-3" style="min-width: 16rem; max-width: 20rem; min-height: 12rem;">
+      <div class="card word text-bg-light mb-3" style="min-width: 16rem; max-width: 20rem; min-height: 10rem;">
         <div class="card-header inline-content" style="border-top-left-radius: 15px; border-top-right-radius: 15px;">
-          <div style="text-align: left;">
-            {% for article in object.articles.all %}
-              <span class="badge bg-secondary">{{ article }}</span>
-              <!-- {% if not forloop.last %}&nbsp;{% endif %} -->
+          {% if object.articles.all %}
+            <div style="text-align: left;">
+              {% for article in object.articles.all %}
+                <span class="badge bg-primary rounded-pill">{{ article }}</span>
+                <!-- {% if not forloop.last %}&nbsp;{% endif %} -->
+              {% endfor %}
+            </div>
+          {% endif %}
+          <div style="text-align: center;">
+            {% for part_of_speech in object.parts_of_speech.all %}
+              {% for word in part_of_speech.bundle.words.all %}
+                {% if word.language.code == "en" %}
+                  <span class="badge bg-success rounded-pill">{{ word.title }}</span>
+                {% endif %}
+              {% endfor %}
             {% endfor %}
           </div>
           <div style="text-align: right;">
-            <span class="badge bg-dark">{{ object.level|upper }}</span>
-            <span class="badge bg-dark">{{ object.language|upper }}</span>
+            <span class="badge bg-dark rounded-pill">{{ object.level|upper }}</span>
           </div>
         </div>
         <div class="card-body text-center">
