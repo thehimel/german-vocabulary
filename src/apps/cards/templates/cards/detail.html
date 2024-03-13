@@ -24,7 +24,7 @@
               </div>
               <div id="linkedWords">
                 {% for word in object.primary_word.linked_words.all %}
-                  <a href="{% url 'cards:detail' slug=word.pk %}" class="style-script-regular linked-word card-text-color ms-2 me-2">{{ word.title }}</a>
+                  <a href="{% url 'cards:detail' slug=word.pk %}" class="style-script-regular linked-word card-text-color ms-2 me-2" onclick="preventCardRotation()">{{ word.title }}</a>
                 {% endfor %}
               </div>
             {% endif %}
