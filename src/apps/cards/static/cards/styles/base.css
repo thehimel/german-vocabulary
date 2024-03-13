@@ -8,6 +8,7 @@
   perspective: 600px;
   height: 520px;
   width: 320px;
+  cursor: pointer;
 }
 
 .card-text-color {
