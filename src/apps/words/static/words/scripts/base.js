@@ -20,4 +20,18 @@ function togglePlaceholderBehavior(inputId) {
     });
 }
 
+function addShadowOnMouseover(elementId) {
+    const element = document.getElementById(elementId);
+
+    element.addEventListener('mouseover', function() {
+        this.classList.add('shadow-on-mouseover'); // Add shadow class when hovered
+    });
+
+    element.addEventListener('mouseleave', function() {
+        this.classList.remove('shadow-on-mouseover'); // Remove shadow class on mouse leave
+    });
+}
+
 togglePlaceholderBehavior('search_input');
+addShadowOnMouseover('search_bar');
+
