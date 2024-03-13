@@ -14,7 +14,7 @@
     {% if is_languages_selected %}
       <div class="display-6 pt-2">{% trans "Keep Learning" %}</div>
       <div class="pt-4">
-        <a href="{% url 'cards:any' %}">
+        <a href="{% url 'cards:first' %}">
           <button class="btn btn-outline-secondary me-2" type="button">{% trans "Flashcard" %}</button>
         </a>
         <a href="{% url 'words:list' %}">
