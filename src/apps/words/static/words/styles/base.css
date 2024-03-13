@@ -11,3 +11,7 @@
 .inline-content {
   display: flex; justify-content: space-between;
 }
+
+.search-bar {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add your desired shadow values */
+}
