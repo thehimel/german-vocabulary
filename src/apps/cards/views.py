@@ -36,43 +36,47 @@ class CardDetailView(DetailView):
 class NextCardView(View):
     @staticmethod
     def get_next_word(request, action, current_word, language, level):
-        next_card = None
+        next_word = None
+
         if action == "first":
-            next_card = Word.objects.filter(language__code=language, hidden=False).order_by(Lower("title")).first()
+            next_word = Word.objects.filter(language__code=language, hidden=False).order_by(Lower("title")).first()
+
         elif action == "any":
-            next_card = Word.objects.filter(language__code=language, level=level, hidden=False).order_by("?").first()
-        elif action == "next":
-            next_card = (
-                Word.objects.filter(language__code=language, level=level, hidden=False)
-                .annotate(lower_title=Lower("title"))
-                .filter(lower_title__gt=current_word.title.lower())
-                .order_by("lower_title")
-                .first()
-            )
-            if not next_card:
-                messages.warning(request, _("This is the last word in this section."))
-        elif action == "previous":
-            next_card = (
-                Word.objects.filter(language__code=language, level=level, hidden=False)
-                .annotate(lower_title=Lower("title"))
-                .filter(lower_title__lt=current_word.title.lower())
-                .order_by("lower_title")
-                .first()
-            )
-            if not next_card:
-                messages.warning(request, _("This is the first word in this section."))
-        return next_card
+            next_word = Word.objects.filter(language__code=language, level=level, hidden=False).order_by("?").first()
+
+        elif action in ["previous", "next"]:
+            words = Word.objects.filter(language__code=language, level=level, hidden=False).order_by(Lower("title"))
+            current_word_index = None
+            for i, word in enumerate(words):
+                if word == current_word:
+                    current_word_index = i
+
+            if action == "previous":
+                previous_word_index = current_word_index - 1
+                if previous_word_index > -1:
+                    next_word = words[previous_word_index]
+                else:
+                    messages.warning(request, _("This is the first word in this section."))
+
+            elif action == "next":
+                next_word_index = current_word_index+1
+                if next_word_index < len(words):
+                    next_word = words[next_word_index]
+                else:
+                    messages.warning(request, _("This is the last word in this section."))
+
+        return next_word
 
     def get(self, request, action="next", slug=None):
         language = get_primary_language(request=request)
         level = get_level(request=request)
         current_word = get_object_or_404(Word, pk=slug) if slug else None
-        next_card = self.get_next_word(
+        next_word = self.get_next_word(
             request=request, action=action, current_word=current_word, language=language, level=level
         )
 
-        if next_card:
-            slug = next_card.pk
+        if next_word:
+            slug = next_word.pk
 
         # Redirect to home if no data in the table for this model.
         # TODO: Redirect to a not found page if no word found with this language preference.
