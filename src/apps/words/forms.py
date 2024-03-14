@@ -32,11 +32,13 @@ class WordForm(forms.ModelForm):
         instance = kwargs.get("instance")
         if instance:
             current_language = instance.language
+            current_parts_of_speech = instance.parts_of_speech.all()
             self.fields["linked_words"].queryset = (
-                Word.objects.filter(language=current_language)
+                Word.objects.filter(language=current_language, parts_of_speech__in=current_parts_of_speech)
                 .exclude(pk=instance.pk)
                 .order_by("language__code", Lower("title"))
             )
-            self.fields["translations"].queryset = Word.objects.exclude(language=current_language).order_by(
-                "language__code", Lower("title")
-            )
+
+            self.fields["translations"].queryset = Word.objects.exclude(
+                language=current_language, parts_of_speech__in=current_parts_of_speech
+            ).order_by("language__code", Lower("title"))

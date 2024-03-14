@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.db.models.functions import Lower
+
 from apps.base.utils.decorators import make_slug_readonly_during_update
 from apps.words.forms import LanguageForm, WordForm
 from apps.words.models import Article, Bundle, Image, Language, PartOfSpeech, Word
