@@ -28,3 +28,8 @@ class WordForm(forms.ModelForm):
     )
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        instance = kwargs.get('instance')
+        if instance:
+            current_language = instance.language
+            self.fields['linked_words'].queryset = Word.objects.filter(language=current_language)
+            self.fields['translations'].queryset = Word.objects.exclude(language=current_language)
