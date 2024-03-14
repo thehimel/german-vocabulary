@@ -74,6 +74,7 @@ class Word(models.Model):
     title = models.CharField(max_length=100)
     plural = models.CharField(max_length=100, blank=True, null=True)
     linked_words = models.ManyToManyField("self", blank=True, symmetrical=True)
+    translations = models.ManyToManyField("self", blank=True, symmetrical=True)
     description = models.TextField(default="", blank=True, null=True)
     language = models.ForeignKey(Language, on_delete=models.CASCADE)
     articles = models.ManyToManyField(Article, blank=True)
