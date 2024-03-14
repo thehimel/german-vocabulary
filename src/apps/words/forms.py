@@ -1,8 +1,9 @@
 from django import forms
+from django.db.models.functions import Lower
 
 from apps.base.utils.decorators import filter_data_by_field
 from apps.base.utils.validators import validate_field_unchanged
-from apps.words.models import Article, Language, PartOfSpeech, Word
+from apps.words.models import Article, Language, Word
 
 
 class LanguageForm(forms.ModelForm):
@@ -31,7 +32,11 @@ class WordForm(forms.ModelForm):
         instance = kwargs.get("instance")
         if instance:
             current_language = instance.language
-            self.fields["linked_words"].queryset = Word.objects.filter(language=current_language).exclude(
-                pk=instance.pk
+            self.fields["linked_words"].queryset = (
+                Word.objects.filter(language=current_language)
+                .exclude(pk=instance.pk)
+                .order_by("language__code", Lower("title"))
             )
-            self.fields["translations"].queryset = Word.objects.exclude(language=current_language)
+            self.fields["translations"].queryset = Word.objects.exclude(language=current_language).order_by(
+                "language__code", Lower("title")
+            )
