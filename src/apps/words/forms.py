@@ -31,5 +31,5 @@ class WordForm(forms.ModelForm):
         instance = kwargs.get('instance')
         if instance:
             current_language = instance.language
-            self.fields['linked_words'].queryset = Word.objects.filter(language=current_language)
+            self.fields['linked_words'].queryset = Word.objects.filter(language=current_language).exclude(pk=instance.pk)
             self.fields['translations'].queryset = Word.objects.exclude(language=current_language)
