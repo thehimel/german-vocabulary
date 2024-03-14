@@ -1,5 +1,5 @@
 from django.contrib import admin
-
+from django.db.models.functions import Lower
 from apps.base.utils.decorators import make_slug_readonly_during_update
 from apps.words.forms import LanguageForm, WordForm
 from apps.words.models import Article, Bundle, Image, Language, PartOfSpeech, Word
@@ -18,7 +18,7 @@ class BundleAdmin(admin.ModelAdmin):
 class WordAdmin(admin.ModelAdmin):
     form = WordForm
     search_fields = ["title"]
-    ordering = ["title"]
+    ordering = ["language__code", Lower("title")]
     list_display = ["title", "language", "level"]
     list_filter = ["hidden", "level"]
 
