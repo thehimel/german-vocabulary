@@ -12,6 +12,8 @@ class Image(models.Model):
     title = models.CharField(max_length=100, unique=True, validators=[validate_alphanumeric])
     image = models.ImageField(default=DEFAULT_WORD_IMAGE, upload_to="words/", validators=[validate_file_size])
     description = models.TextField(default="", blank=True, null=True)
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
 
     def save(self, *args, **kwargs):
         self.title = self.title.lower()
@@ -22,18 +24,22 @@ class Image(models.Model):
         return str(self.image.url.split("/media/", maxsplit=1)[1])  # The part after '/media/'
 
 
-@auto_slugify(field_name="article")
+@auto_slugify(field_name="title")
 class Article(models.Model):
     slug = models.SlugField(editable=False)
-    article = models.CharField(max_length=5, unique=True)
+    title = models.CharField(max_length=5, unique=True)
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.article
+        return self.title
 
 
 class PartOfSpeech(models.Model):
     title = models.CharField(max_length=20, unique=True)
     bundle = models.ForeignKey("Bundle", on_delete=models.SET_NULL, null=True)
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
 
     class Meta:
         verbose_name = "Part of Speech"
@@ -63,6 +69,8 @@ class Language(models.Model):
 
     code = models.CharField(unique=True, max_length=7, choices=code_choices)
     articles = models.ManyToManyField(Article, blank=True)
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return str(self.languages.get(self.code, self.code))
@@ -84,6 +92,8 @@ class Word(models.Model):
         max_length=2, choices=[("a1", "A1"), ("a2", "A2"), ("b1", "B1"), ("b2", "B2"), ("c1", "C1"), ("c2", "C2")]
     )
     hidden = models.BooleanField(default=False)
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
 
     class Meta:
         unique_together = ["title", "language"]
@@ -99,6 +109,8 @@ class Bundle(models.Model):
     description = models.TextField(default="", blank=True, null=True)
     image = models.ManyToManyField(Image, blank=True)
     words = models.ManyToManyField(Word, blank=True)
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.title
