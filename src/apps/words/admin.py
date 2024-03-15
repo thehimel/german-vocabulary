@@ -21,7 +21,7 @@ class WordAdmin(admin.ModelAdmin):
     search_fields = ["title"]
     ordering = ["language__code", Lower("title")]
     list_display = ["title", "language", "level"]
-    list_filter = ["hidden", "level"]
+    list_filter = ["hidden", "level", "language__code"]
 
 
 admin.site.register(Image)
