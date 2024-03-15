@@ -30,3 +30,12 @@
   box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
   transition: box-shadow 0.4s;
 }
+
+.pagination-container {
+  position: sticky;
+  bottom: 0; /* Stick to the bottom of the viewport */
+  width: 100%; /* Occupy full width */
+  background-color: #fff; /* Optional: Adjust background color */
+  z-index: 1000; /* Ensure it's on top of other content */
+}
+
