@@ -37,10 +37,12 @@ class WordForm(forms.ModelForm):
                 Word.objects.filter(language=current_language, parts_of_speech__in=current_parts_of_speech)
                 .exclude(pk=instance.pk)
                 .order_by("language__code", Lower("title"))
+                .distinct()
             )
 
             self.fields["translations"].queryset = (
                 Word.objects.filter(parts_of_speech__in=current_parts_of_speech)
                 .exclude(language=current_language)
                 .order_by("language__code", Lower("title"))
+                .distinct()
             )
