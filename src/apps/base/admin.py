@@ -1,3 +1,5 @@
 from django.contrib import admin
+from apps.base.constants import BRAND_NAME
 
-# Register your models here.
+
+admin.site.site_header = BRAND_NAME
