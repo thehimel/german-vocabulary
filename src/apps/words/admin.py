@@ -12,8 +12,8 @@ class ImageAdmin(admin.ModelAdmin):
 
 
 class ArticleAdmin(admin.ModelAdmin):
-    ordering = ["-modified", "article"]
-    list_display = ["article", "modified", "created"]
+    ordering = ["-modified", "title"]
+    list_display = ["title", "modified", "created"]
 
 
 class PartOfSpeechAdmin(admin.ModelAdmin):

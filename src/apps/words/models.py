@@ -24,15 +24,15 @@ class Image(models.Model):
         return str(self.image.url.split("/media/", maxsplit=1)[1])  # The part after '/media/'
 
 
-@auto_slugify(field_name="article")
+@auto_slugify(field_name="title")
 class Article(models.Model):
     slug = models.SlugField(editable=False)
-    article = models.CharField(max_length=5, unique=True)
+    title = models.CharField(max_length=5, unique=True)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.article
+        return self.title
 
 
 class PartOfSpeech(models.Model):
