@@ -5,7 +5,7 @@ from django.utils.safestring import mark_safe
 from apps.base.utils.decorators import make_slug_readonly_during_update
 from apps.words.decorators import join_field_values
 from apps.words.forms import LanguageForm, WordForm
-from apps.words.models import Article, Bundle, Image, Language, PartOfSpeech, Word
+from apps.words.models import Article, Bundle, Image, Language, PartOfSpeech, Word, Note
 
 
 class ImageAdmin(admin.ModelAdmin):
@@ -27,6 +27,11 @@ class LanguageAdmin(admin.ModelAdmin):
     form = LanguageForm
     ordering = ["-modified", "code"]
     list_display = ["code", "modified"]
+
+
+class NoteAdmin(admin.ModelAdmin):
+    ordering = ["-modified", "language", "title"]
+    list_display = ["__str__", "language", "modified"]
 
 
 class BundleAdmin(admin.ModelAdmin):
@@ -69,5 +74,6 @@ admin.site.register(Image, ImageAdmin)
 admin.site.register(Article, ArticleAdmin)
 admin.site.register(PartOfSpeech, PartOfSpeechAdmin)
 admin.site.register(Language, LanguageAdmin)
+admin.site.register(Note, NoteAdmin)
 admin.site.register(Word, WordAdmin)
 admin.site.register(Bundle, BundleAdmin)

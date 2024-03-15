@@ -76,6 +76,17 @@ class Language(models.Model):
         return str(self.languages.get(self.code, self.code))
 
 
+class Note(models.Model):
+    title = models.TextField(default="", blank=True, null=True)
+    language = models.ForeignKey(Language, on_delete=models.CASCADE)
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        size, max_size = len(self.title), 100
+        return f"{self.title if size <= max_size else self.title[:max_size]+'...'}"
+
+
 @auto_slugify(field_name="title")
 class Word(models.Model):
     slug = models.SlugField(editable=False)
