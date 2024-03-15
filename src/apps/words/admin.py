@@ -1,9 +1,9 @@
 from django.contrib import admin
-from django.utils.safestring import mark_safe
 from django.db.models.functions import Lower
+from django.utils.safestring import mark_safe
 
-from apps.words.decorators import join_field_values
 from apps.base.utils.decorators import make_slug_readonly_during_update
+from apps.words.decorators import join_field_values
 from apps.words.forms import LanguageForm, WordForm
 from apps.words.models import Article, Bundle, Image, Language, PartOfSpeech, Word
 
@@ -44,14 +44,25 @@ class WordAdmin(admin.ModelAdmin):
     form = WordForm
     search_fields = ["title"]
     ordering = ["-modified", "language__code", Lower("title")]
-    list_display = ["title", "pos", "all_translations", "plural", "all_articles", "sentenceS", "language", "level", "modified", "all_linked_words",]
+    list_display = [
+        "title",
+        "pos",
+        "all_translations",
+        "plural",
+        "all_articles",
+        "sentenceS",
+        "language",
+        "level",
+        "modified",
+        "all_linked_words",
+    ]
     list_filter = ["hidden", "level", "language__code"]
     list_per_page = 8
 
     @staticmethod
     def sentenceS(obj):
-        sentences = [obj.sentence] + [word.sentence for word in obj.translations.all().order_by('-language__code')]
-        return mark_safe('<br>'.join(sentences))
+        sentences = [obj.sentence] + [word.sentence for word in obj.translations.all().order_by("-language__code")]
+        return mark_safe("<br>".join(sentences))
 
 
 admin.site.register(Image, ImageAdmin)
