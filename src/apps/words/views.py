@@ -4,6 +4,7 @@ from django.views.generic import DetailView, ListView
 from apps.base.utils.decorators import language_preferences_required
 from apps.base.utils.languages import get_level, get_primary_language
 from apps.words.models import Word
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 # Create your views here.
@@ -13,6 +14,7 @@ class WordListView(ListView):
     model = Word
     template_name = "words/list.html"
     context_object_name = "objects"
+    paginate_by = 8
 
     @language_preferences_required
     def get(self, request, *args, **kwargs):
@@ -31,6 +33,21 @@ class WordListView(ListView):
         else:
             queryset = Word.objects.filter(language__code=language, level=level, hidden=False).order_by(Lower("title"))
         return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        paginator = Paginator(context['object_list'], self.paginate_by)
+        page = self.request.GET.get('page')
+        try:
+            objects = paginator.page(page)
+        except PageNotAnInteger:
+            # If page is not an integer, deliver first page.
+            objects = paginator.page(1)
+        except EmptyPage:
+            # If page is out of range (e.g. 9999), deliver last page of results.
+            objects = paginator.page(paginator.num_pages)
+        context['objects'] = objects
+        return context
 
 
 class WordDetailView(DetailView):
