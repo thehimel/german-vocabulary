@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.safestring import mark_safe
 from django.db.models.functions import Lower
 
 from apps.words.decorators import join_field_values
@@ -43,9 +44,14 @@ class WordAdmin(admin.ModelAdmin):
     form = WordForm
     search_fields = ["title"]
     ordering = ["-modified", "language__code", Lower("title")]
-    list_display = ["title", "pos", "all_translations", "plural", "all_articles", "sentence", "language", "level", "modified", "all_linked_words",]
+    list_display = ["title", "pos", "all_translations", "plural", "all_articles", "sentenceS", "language", "level", "modified", "all_linked_words",]
     list_filter = ["hidden", "level", "language__code"]
-    list_per_page = 18
+    list_per_page = 8
+
+    @staticmethod
+    def sentenceS(obj):
+        sentences = [obj.sentence] + [word.sentence for word in obj.translations.all().order_by('-language__code')]
+        return mark_safe('<br>'.join(sentences))
 
 
 admin.site.register(Image, ImageAdmin)
