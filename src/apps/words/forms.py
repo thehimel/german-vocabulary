@@ -39,6 +39,8 @@ class WordForm(forms.ModelForm):
                 .order_by("language__code", Lower("title"))
             )
 
-            self.fields["translations"].queryset = Word.objects.exclude(
-                language=current_language, parts_of_speech__in=current_parts_of_speech
-            ).order_by("language__code", Lower("title"))
+            self.fields["translations"].queryset = (
+                Word.objects.filter(parts_of_speech__in=current_parts_of_speech)
+                .exclude(language=current_language)
+                .order_by("language__code", Lower("title"))
+            )
