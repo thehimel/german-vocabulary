@@ -62,10 +62,10 @@
       </div>
     {% endfor %}
   </div>
-  <div class="container d-flex justify-content-center">
+  <div class="container d-flex justify-content-center pt-4">
     {% if is_paginated %}
       <nav aria-label="Page navigation">
-        <ul class="pagination">
+        <ul class="pagination search-bar">
           {% if page_obj.has_previous %}
             <li class="page-item">
               <a class="page-link" href="?page=1" tabindex="-1" aria-disabled="true">&laquo; First</a>
