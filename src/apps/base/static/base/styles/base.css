@@ -12,6 +12,12 @@ a {
   font-style: normal;
 }
 
+.shadows-into-light-regular {
+  font-family: "Shadows Into Light", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
 @keyframes rotateAnimation {
   from {
     transform: rotate(0deg);
