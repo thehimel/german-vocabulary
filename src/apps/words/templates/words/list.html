@@ -68,17 +68,17 @@
         <ul class="pagination search-bar">
           {% if page_obj.has_previous %}
             <li class="page-item">
-              <a class="page-link" href="?page=1" tabindex="-1" aria-disabled="true">&laquo; First</a>
+              <a class="page-link" href="?page=1" tabindex="-1" aria-disabled="true"><i class="fa-solid fa-backward-step"></i></a>
             </li>
             <li class="page-item">
-              <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+              <a class="page-link" href="?page={{ page_obj.previous_page_number }}"><i class="fa-solid fa-angle-left"></i></a>
             </li>
           {% else %}
             <li class="page-item disabled" aria-disabled="true">
-              <span class="page-link">&laquo; First</span>
+              <span class="page-link"><i class="fa-solid fa-backward-step"></i></span>
             </li>
             <li class="page-item disabled" aria-disabled="true">
-              <span class="page-link">Previous</span>
+              <span class="page-link"><i class="fa-solid fa-angle-left"></i></span>
             </li>
           {% endif %}
 
@@ -98,17 +98,17 @@
 
           {% if page_obj.has_next %}
             <li class="page-item">
-              <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+              <a class="page-link" href="?page={{ page_obj.next_page_number }}"><i class="fa-solid fa-angle-right"></i></a>
             </li>
             <li class="page-item">
-              <a class="page-link" href="?page={{ paginator.num_pages }}">&raquo; Last</a>
+              <a class="page-link" href="?page={{ paginator.num_pages }}"><i class="fa-solid fa-forward-step"></i></a>
             </li>
           {% else %}
             <li class="page-item disabled" aria-disabled="true">
-              <span class="page-link">Next</span>
+              <span class="page-link"><i class="fa-solid fa-angle-right"></i></span>
             </li>
             <li class="page-item disabled" aria-disabled="true">
-              <span class="page-link">&raquo; Last</span>
+              <span class="page-link"><i class="fa-solid fa-forward-step"></i></span>
             </li>
           {% endif %}
         </ul>
