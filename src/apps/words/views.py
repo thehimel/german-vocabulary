@@ -1,10 +1,10 @@
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db.models.functions import Lower
 from django.views.generic import DetailView, ListView
 
 from apps.base.utils.decorators import language_preferences_required
 from apps.base.utils.languages import get_level, get_primary_language
 from apps.words.models import Word
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 # Create your views here.
@@ -36,8 +36,8 @@ class WordListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        paginator = Paginator(context['object_list'], self.paginate_by)
-        page = self.request.GET.get('page')
+        paginator = Paginator(context["object_list"], self.paginate_by)
+        page = self.request.GET.get("page")
         try:
             objects = paginator.page(page)
         except PageNotAnInteger:
@@ -46,7 +46,7 @@ class WordListView(ListView):
         except EmptyPage:
             # If page is out of range (e.g. 9999), deliver last page of results.
             objects = paginator.page(paginator.num_pages)
-        context['objects'] = objects
+        context["objects"] = objects
         return context
 
 

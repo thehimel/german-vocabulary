@@ -1,8 +1,8 @@
 [tool.black]
 line-length = 120
-exclude = '''^(.*\/migrations\/.*|.*\.venv.*)$'''
+exclude = '''^(.*\/migrations\/.*|.*\.venv\/.*|.*\/node_modules\/.*)$'''
 
 [tool.isort]
 profile = "black"
 line_length = 120
-skip = ["migrations", ".venv"]
+skip = ["migrations", ".venv", "node_modules"]
