@@ -57,7 +57,6 @@ INSTALLED_APPS = [
     "crispy_forms",
     "crispy_bootstrap5",
     "formtools",
-    "fontawesomefree",
     "django_extensions",
     "cloudinary_storage",
     "cloudinary",
