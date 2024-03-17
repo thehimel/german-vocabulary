@@ -5,7 +5,7 @@ from django.utils.safestring import mark_safe
 from apps.base.utils.decorators import make_slug_readonly_during_update
 from apps.words.decorators import join_field_values
 from apps.words.forms import LanguageForm, WordForm
-from apps.words.models import Article, Bundle, Image, Language, PartOfSpeech, Word, Note
+from apps.words.models import Article, Bundle, Image, Language, Note, PartOfSpeech, Word
 
 
 class ImageAdmin(admin.ModelAdmin):
