@@ -9,7 +9,6 @@ django-cloudinary-storage>=0.3.0
 django-extensions>=3.2.3
 django-formtools>=2.5.1
 djangorestframework>=3.14.0
-fontawesomefree>=6.5.1
 graphviz>=0.20.1
 gunicorn>=21.2.0
 isort>=5.13.2
