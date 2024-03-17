@@ -4,6 +4,12 @@
 
 ```
 python manage.py startapp app_name
+
+
+npm create vite@latest
+npm install
+npm run dev
+npx vite build
 ```
 
 ## Django Cleanup
