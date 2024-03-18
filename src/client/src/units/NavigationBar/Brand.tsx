@@ -4,7 +4,7 @@ function Brand() {
   return (
     <>
       <AcmeLogo />
-      <p className="font-bold text-inherit">ACME</p>
+      <p className="font-bold text-inherit">Vocabulary</p>
     </>
   );
 }
