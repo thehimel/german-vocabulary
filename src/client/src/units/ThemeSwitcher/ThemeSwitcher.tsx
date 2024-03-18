@@ -1,4 +1,5 @@
 import useDarkMode from "use-dark-mode";
+import { SunIcon, MoonIcon } from '@radix-ui/react-icons';
 
 export const ThemeSwitcher = () => {
   const darkMode = useDarkMode();
@@ -9,7 +10,7 @@ export const ThemeSwitcher = () => {
 
   return (
     <button onClick={toggleDarkMode}>
-      {darkMode.value ? "☀️" : "🌙"}
+      {darkMode.value ? <SunIcon/> : <MoonIcon/>}
     </button>
   );
 };
