@@ -1,13 +1,14 @@
 import './App.css';
 import Metadata from './units/Metadata/Metadata.tsx'
+import Cards from './units/Cards/Cards.tsx'
 
 function App() {
   return (
     <>
       <Metadata></Metadata>
-      <h1 className="text-3xl font-bold underline">
-        Hello world!
-      </h1>
+      <div className="min-h-screen flex justify-center items-center">
+        <Cards></Cards>
+      </div>
     </>
   )
 }
