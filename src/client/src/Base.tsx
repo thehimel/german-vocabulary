@@ -17,7 +17,7 @@ function Base() {
         </div>
       </div>
       <div className="flex justify-center items-center fixed bottom-0 w-full pb-4 bg-dark">
-        <Pagination showShadow color="secondary" total={10} initialPage={1}/>
+        <Pagination isCompact showControls total={10} initialPage={1} color="secondary" />
       </div>
     </div>
   )
