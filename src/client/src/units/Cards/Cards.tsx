@@ -14,7 +14,7 @@ interface CardItemProps {
 const CardItem: FC<CardItemProps> = ({ item }) => {
   return (
     <Card className="max-w-[400px]" isPressable onPress={() => console.log("item pressed")}>
-      <CardHeader className="flex gap-3">
+      <CardHeader className="flex gap-3 justify-center">
         <Image
           alt="nextui logo"
           height={40}
@@ -34,7 +34,7 @@ const CardItem: FC<CardItemProps> = ({ item }) => {
       </CardHeader>
       <Divider/>
       <CardBody>
-        <p>{item.sentence}</p>
+        <p className="text-center">{item.sentence}</p>
       </CardBody>
     </Card>
   );
