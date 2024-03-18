@@ -1,5 +1,5 @@
 import './App.css';
-import OpenGraph from './components/OpenGraph/OpenGraph.tsx'
+import OpenGraph from './units/OpenGraph/OpenGraph.tsx'
 
 function App() {
   return (
