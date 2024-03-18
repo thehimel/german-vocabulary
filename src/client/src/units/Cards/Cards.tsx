@@ -76,20 +76,6 @@ export default function Cards() {
     },
     {
       title: "Ansehen",
-      sentence: "Sein Ansehen in der Schule ist sehr hoch.",
-      article: "das",
-      parts_of_speech: "noun",
-      level: "a1",
-    },
-    {
-      title: "Ansehen",
-      sentence: "Sein Ansehen in der Schule ist sehr hoch.",
-      article: "das",
-      parts_of_speech: "noun",
-      level: "a1",
-    },
-    {
-      title: "Ansehen",
       sentence: "Sein Ansehen in der Schule ist sehr hoch. Sein Ansehen in der Schule ist sehr hoch.",
       article: "das",
       parts_of_speech: "noun",
@@ -98,7 +84,7 @@ export default function Cards() {
   ];
 
   return (
-    <div className="gap-2 grid grid-cols-2 sm:grid-cols-4 m-2">
+    <div className="gap-2 grid grid-cols-2 sm:grid-cols-3 m-2">
       {list.map((item, index) => (
         <CardItem key={index} item={item} />
       ))}
