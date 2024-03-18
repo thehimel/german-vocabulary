@@ -1,68 +1,109 @@
-import {Card, CardBody, CardFooter, Image} from "@nextui-org/react";
+import { FC } from 'react';
+import {Card, CardHeader, CardBody, Divider, Image} from "@nextui-org/react";
+
+interface CardItemProps {
+  item: {
+    title: string;
+    sentence: string;
+    article: string;
+    parts_of_speech: string;
+    level: string;
+  };
+}
+
+const CardItem: FC<CardItemProps> = ({ item }) => {
+  return (
+    <Card className="max-w-[400px]" isPressable onPress={() => console.log("item pressed")}>
+      <CardHeader className="flex gap-3">
+        <Image
+          alt="nextui logo"
+          height={40}
+          radius="sm"
+          src="https://avatars.githubusercontent.com/u/86160567?s=200&v=4"
+          width={40}
+        />
+        <div className="flex flex-col">
+          <p className="text-md">{item.title}</p>
+        </div>
+        <div className="flex flex-col">
+          <p className="text-small text-default-500">{item.article}</p>
+        </div>
+        <div className="flex flex-col">
+          <p className="text-small text-default-500">{item.parts_of_speech}</p>
+        </div>
+      </CardHeader>
+      <Divider/>
+      <CardBody>
+        <p>{item.sentence}</p>
+      </CardBody>
+    </Card>
+  );
+}
 
 export default function Cards() {
   const list = [
     {
-      title: "Orange",
-      img: "/images/fruit-1.jpeg",
-      price: "$5.50",
+      title: "Ansehen",
+      sentence: "Sein Ansehen in der Schule ist sehr hoch.",
+      article: "das",
+      parts_of_speech: "noun",
+      level: "a1",
     },
     {
-      title: "Tangerine",
-      img: "/images/fruit-2.jpeg",
-      price: "$3.00",
+      title: "Ansehen",
+      sentence: "Sein Ansehen in der Schule ist sehr hoch.",
+      article: "das",
+      parts_of_speech: "noun",
+      level: "a1",
     },
     {
-      title: "Raspberry",
-      img: "/images/fruit-3.jpeg",
-      price: "$10.00",
+      title: "Ansehen",
+      sentence: "Sein Ansehen in der Schule ist sehr hoch.",
+      article: "das",
+      parts_of_speech: "noun",
+      level: "a1",
     },
     {
-      title: "Lemon",
-      img: "/images/fruit-4.jpeg",
-      price: "$5.30",
+      title: "Ansehen",
+      sentence: "Sein Ansehen in der Schule ist sehr hoch.",
+      article: "das",
+      parts_of_speech: "noun",
+      level: "a1",
     },
     {
-      title: "Avocado",
-      img: "/images/fruit-5.jpeg",
-      price: "$15.70",
+      title: "Ansehen",
+      sentence: "Sein Ansehen in der Schule ist sehr hoch.",
+      article: "das",
+      parts_of_speech: "noun",
+      level: "a1",
     },
     {
-      title: "Lemon 2",
-      img: "/images/fruit-6.jpeg",
-      price: "$8.00",
+      title: "Ansehen",
+      sentence: "Sein Ansehen in der Schule ist sehr hoch.",
+      article: "das",
+      parts_of_speech: "noun",
+      level: "a1",
     },
     {
-      title: "Banana",
-      img: "/images/fruit-7.jpeg",
-      price: "$7.50",
+      title: "Ansehen",
+      sentence: "Sein Ansehen in der Schule ist sehr hoch.",
+      article: "das",
+      parts_of_speech: "noun",
+      level: "a1",
     },
     {
-      title: "Watermelon",
-      img: "/images/fruit-8.jpeg",
-      price: "$12.20",
+      title: "Ansehen",
+      sentence: "Sein Ansehen in der Schule ist sehr hoch. Sein Ansehen in der Schule ist sehr hoch.",
+      article: "das",
+      parts_of_speech: "noun",
+      level: "a1",
     },
   ];
 
   return (
-    <div className="gap-2 grid grid-cols-2 sm:grid-cols-4">
+    <div className="gap-2 grid grid-cols-2 sm:grid-cols-4 m-2">
       {list.map((item, index) => (
-        <Card shadow="sm" key={index} isPressable onPress={() => console.log("item pressed")}>
-          <CardBody className="overflow-visible p-0">
-            <Image
-              shadow="sm"
-              radius="lg"
-              width="100%"
-              alt={item.title}
-              className="w-full object-cover h-[140px]"
-              src={item.img}
-            />
-          </CardBody>
-          <CardFooter className="text-small justify-between">
-            <b>{item.title}</b>
-            <p className="text-default-500">{item.price}</p>
-          </CardFooter>
-        </Card>
+        <CardItem key={index} item={item} />
       ))}
     </div>
   );
