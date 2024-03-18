@@ -7,4 +7,7 @@ export default defineConfig({
   build: {
     assetsDir: 'static'
   },
+  define: {
+    "global": {},  // for use-dark-mode
+  },
 })

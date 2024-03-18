@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import {Card, CardHeader, CardBody, Divider} from "@nextui-org/react";
+import {Card, CardHeader, CardBody, Divider, Chip} from "@nextui-org/react";
 
 interface CardItemProps {
   item: {
@@ -13,16 +13,20 @@ interface CardItemProps {
 
 const CardItem: FC<CardItemProps> = ({ item }) => {
   return (
-    <Card className="max-w-[400px]" isPressable onPress={() => console.log("item pressed")}>
-      <CardHeader className="flex gap-3 justify-center">
-        <div className="flex flex-col">
-          <p className="text-md">{item.title}</p>
-        </div>
-        <div className="flex flex-col">
-          <p className="text-small text-default-500">{item.article}</p>
-        </div>
-        <div className="flex flex-col">
-          <p className="text-small text-default-500">{item.parts_of_speech}</p>
+    <Card className="max-w-[400px] shadow-sm shadow-purple-500" isPressable onPress={() => console.log("item pressed")}>
+      <CardHeader className="flex justify-center">
+        <div className="flex flex-col gap-3">
+          <div className="flex flex-row justify-center">
+            <p className="text-md">{item.title}</p>
+          </div>
+          <div className="flex flex-row gap-3">
+            <div className="flex flex-col">
+              <Chip color="secondary" variant="flat">{item.article}</Chip>
+            </div>
+            <div className="flex flex-col">
+              <Chip color="secondary" variant="faded">{item.parts_of_speech}</Chip>
+            </div>
+          </div>
         </div>
       </CardHeader>
       <Divider/>
