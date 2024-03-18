@@ -1,7 +1,7 @@
 import React from "react";
 import {Navbar, NavbarBrand, NavbarMenuToggle, NavbarMenuItem, NavbarMenu, NavbarContent, NavbarItem, Link, Button} from "@nextui-org/react";
-import {AcmeLogo} from "./AcmeLogo.jsx";
 import SearchBar from "./SearchBar.tsx";
+import Brand from "./Brand.tsx";
 
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -28,15 +28,13 @@ export default function App() {
       <NavbarContent className="sm:hidden" justify="start">
         <NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} />
         <NavbarBrand className="hidden sm:flex gap-4">
-          <AcmeLogo />
-          <p className="font-bold text-inherit">ACME</p>
+          <Brand key="start"/>
         </NavbarBrand>
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarBrand>
-          <AcmeLogo />
-          <p className="font-bold text-inherit">ACME</p>
+          <Brand key="center"/>
         </NavbarBrand>
         <NavbarItem>
           <Link color="foreground" href="#">
