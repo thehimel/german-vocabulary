@@ -16,7 +16,7 @@ function Base() {
           <Cards/>
         </div>
       </div>
-      <div className="flex justify-center items-center fixed bottom-0 w-full pb-4 bg-dark">
+      <div className="flex justify-center items-center fixed bottom-0 w-full pb-2 pt-2 bg-dark backdrop-blur-2xl">
         <Pagination isCompact showControls total={10} initialPage={1} color="secondary" />
       </div>
     </div>
