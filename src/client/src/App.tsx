@@ -1,10 +1,10 @@
 import './App.css';
-import OpenGraph from './units/OpenGraph/OpenGraph.tsx'
+import Metadata from './units/OpenGraph/Metadata.tsx'
 
 function App() {
   return (
     <>
-      <OpenGraph></OpenGraph>
+      <Metadata></Metadata>
       <div>
         <h1>Welcome</h1>
       </div>
