@@ -1,10 +1,16 @@
 import {Select, SelectItem, Avatar} from "@nextui-org/react";
+import React from "react";
 
-export default function Languages() {
+interface LanguagesProps {
+  label: string;
+}
+
+const Languages: React.FC<LanguagesProps> = ({ label }) => {
   return (
     <Select
       className="max-w-xs"
-      label="Learning"
+      label={label}
+      placeholder="Select language"
     >
       <SelectItem
         key="de"
@@ -27,3 +33,5 @@ export default function Languages() {
     </Select>
   );
 }
+
+export default Languages;

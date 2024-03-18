@@ -5,6 +5,7 @@ export default function Languages() {
     <Select
       className="max-w-xs"
       label="Level"
+      placeholder="Select level"
     >
       <SelectItem key="a1">A1</SelectItem>
       <SelectItem key="a2">A2</SelectItem>
