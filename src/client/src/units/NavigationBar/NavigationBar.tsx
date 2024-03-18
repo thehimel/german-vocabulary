@@ -26,9 +26,6 @@ export default function App() {
     >
       <NavbarContent className="sm:hidden" justify="start">
         <NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} />
-      </NavbarContent>
-
-      <NavbarContent className="sm:hidden pr-3" justify="center">
         <NavbarBrand>
           <AcmeLogo />
           <p className="font-bold text-inherit">ACME</p>
