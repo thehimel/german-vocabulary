@@ -33,7 +33,6 @@ export default function App() {
         <NavbarBrand className="hidden sm:flex gap-4">
           <Brand key="start"/>
         </NavbarBrand>
-        <ThemeSwitcher/>
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
@@ -74,6 +73,9 @@ export default function App() {
           <Button as={Link} color="primary" href="#" variant="flat">
             Sign Up
           </Button>
+        </NavbarItem>
+        <NavbarItem>
+          <ThemeSwitcher/>
         </NavbarItem>
       </NavbarContent>
 
