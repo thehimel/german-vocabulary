@@ -3,14 +3,16 @@ import React from "react";
 
 interface LanguagesProps {
   label: string;
+  defaultKey: string;
 }
 
-const Languages: React.FC<LanguagesProps> = ({ label }) => {
+const Languages: React.FC<LanguagesProps> = ({ label, defaultKey }) => {
   return (
     <Select
       className="max-w-xs"
       label={label}
       placeholder="Select language"
+      defaultSelectedKeys={[defaultKey]}
     >
       <SelectItem
         key="de"

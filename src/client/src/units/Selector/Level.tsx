@@ -6,6 +6,7 @@ export default function Languages() {
       className="max-w-xs"
       label="Level"
       placeholder="Select level"
+      defaultSelectedKeys={["a1"]}
     >
       <SelectItem key="a1">A1</SelectItem>
       <SelectItem key="a2">A2</SelectItem>

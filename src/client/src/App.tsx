@@ -17,8 +17,8 @@ function Base() {
           <NavigationBar/>
           <div className="flex justify-center items-center fixed top-unit-18 w-full p-2 bg-dark">
             <div className="flex justify-between w-full max-w-screen-lg mx-auto gap-2">
-              <Languages label="Learning"/>
-              <Languages label="With"/>
+              <Languages label="Learning" defaultKey="de"/>
+              <Languages label="With" defaultKey="en"/>
               <Level/>
             </div>
           </div>
