@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import {Card, CardHeader, CardBody, Divider, Image} from "@nextui-org/react";
+import {Card, CardHeader, CardBody, Divider} from "@nextui-org/react";
 
 interface CardItemProps {
   item: {
@@ -15,13 +15,6 @@ const CardItem: FC<CardItemProps> = ({ item }) => {
   return (
     <Card className="max-w-[400px]" isPressable onPress={() => console.log("item pressed")}>
       <CardHeader className="flex gap-3 justify-center">
-        <Image
-          alt="nextui logo"
-          height={40}
-          radius="sm"
-          src="https://avatars.githubusercontent.com/u/86160567?s=200&v=4"
-          width={40}
-        />
         <div className="flex flex-col">
           <p className="text-md">{item.title}</p>
         </div>
