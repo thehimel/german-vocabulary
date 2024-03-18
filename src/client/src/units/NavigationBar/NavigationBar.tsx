@@ -40,7 +40,7 @@ export default function App() {
           <Brand key="center"/>
         </NavbarBrand>
         <NavbarItem isActive>
-          <Link href="#" aria-current="page">
+          <Link color="foreground" aria-current="page" href="#">
             Home
           </Link>
         </NavbarItem>
@@ -62,11 +62,13 @@ export default function App() {
           <SearchBar key="end"/>
         </NavbarItem>
         <NavbarItem className="hidden lg:flex">
-          <Link href="#">Login</Link>
+          <Button as={Link} color="secondary" href="#" variant="light">
+            Sign Up
+          </Button>
         </NavbarItem>
         <NavbarItem>
-          <Button as={Link} color="primary" href="#" variant="flat">
-            Sign Up
+          <Button as={Link} color="secondary" href="#" variant="flat">
+            Login
           </Button>
         </NavbarItem>
         <NavbarItem>
