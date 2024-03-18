@@ -1,5 +1,5 @@
 import './App.css';
-import Metadata from './units/OpenGraph/Metadata.tsx'
+import Metadata from './units/Metadata/Metadata.tsx'
 
 function App() {
   return (
