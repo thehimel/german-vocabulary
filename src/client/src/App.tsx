@@ -5,9 +5,9 @@ function App() {
   return (
     <>
       <Metadata></Metadata>
-      <div>
-        <h1>Welcome</h1>
-      </div>
+      <h1 className="text-3xl font-bold underline">
+        Hello world!
+      </h1>
     </>
   )
 }
