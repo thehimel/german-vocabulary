@@ -1,9 +1,11 @@
 import React from "react";
 import {Navbar, NavbarBrand, NavbarMenuToggle, NavbarMenuItem, NavbarMenu, NavbarContent, NavbarItem, Link, Button} from "@nextui-org/react";
+import useDarkMode from "use-dark-mode";
 import SearchBar from "./SearchBar.tsx";
 import Brand from "./Brand.tsx";
 
 export default function App() {
+  const darkMode = useDarkMode(true);
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const menuItems = [
@@ -73,7 +75,7 @@ export default function App() {
         </NavbarItem>
       </NavbarContent>
 
-      <NavbarMenu>
+      <NavbarMenu className={`${darkMode.value ? 'dark' : ''}`}>
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link
