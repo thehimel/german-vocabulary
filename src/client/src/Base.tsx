@@ -9,10 +9,10 @@ function Base() {
     <div className="flex flex-col h-screen">
       <NavigationBar/>
       <div className="justify-center items-center">
-        <div className="flex justify-between w-full max-w-screen-lg mx-auto">
+        <div className="flex justify-between w-full max-w-screen-lg mx-auto gap-2 p-2">
           <Selectors/>
         </div>
-        <div className="flex pt-4">
+        <div className="flex">
           <Cards/>
         </div>
       </div>
