@@ -4,7 +4,6 @@ import Cards from './units/Cards/Cards.tsx'
 import useDarkMode from "use-dark-mode";
 import { HelmetProvider } from 'react-helmet-async';
 import NavigationBar from "./units/NavigationBar/NavigationBar.tsx";
-import {ThemeSwitcher} from "./units/ThemeSwitcher/ThemeSwitcher.tsx";
 
 function Base() {
   return (
@@ -13,7 +12,6 @@ function Base() {
         <Metadata></Metadata>
         <div className="flex flex-col h-screen">
           <NavigationBar/>
-          <ThemeSwitcher/>
           <div className="flex-grow flex justify-center items-center">
             <Cards/>
           </div>

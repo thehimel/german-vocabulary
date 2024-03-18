@@ -1,5 +1,6 @@
 import React from "react";
 import {Navbar, NavbarBrand, NavbarMenuToggle, NavbarMenuItem, NavbarMenu, NavbarContent, NavbarItem, Link, Button} from "@nextui-org/react";
+import {ThemeSwitcher} from "../ThemeSwitcher/ThemeSwitcher.tsx";
 import useDarkMode from "use-dark-mode";
 import SearchBar from "./SearchBar.tsx";
 import Brand from "./Brand.tsx";
@@ -32,6 +33,7 @@ export default function App() {
         <NavbarBrand className="hidden sm:flex gap-4">
           <Brand key="start"/>
         </NavbarBrand>
+        <ThemeSwitcher/>
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
