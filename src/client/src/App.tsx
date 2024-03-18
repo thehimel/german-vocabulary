@@ -1,14 +1,18 @@
 import './App.css';
 import Metadata from './units/Metadata/Metadata.tsx'
+import Cards from './units/Cards/Cards.tsx'
+import { HelmetProvider } from 'react-helmet-async';
 
 function App() {
   return (
-    <>
-      <Metadata></Metadata>
-      <div>
-        <h1>Welcome</h1>
-      </div>
-    </>
+    <HelmetProvider>
+      <>
+        <Metadata></Metadata>
+        <div className="min-h-screen flex justify-center items-center">
+          <Cards></Cards>
+        </div>
+      </>
+    </HelmetProvider>
   )
 }
 
