@@ -4,22 +4,22 @@ export default function Languages() {
   return (
     <Select
       className="max-w-xs"
-      label="Language to learn"
+      label="Learning"
     >
       <SelectItem
-        key="german"
+        key="de"
         startContent={<Avatar alt="German" className="w-6 h-6" src="https://flagcdn.com/de.svg" />}
       >
         German
       </SelectItem>
       <SelectItem
-        key="english"
+        key="en"
         startContent={<Avatar alt="English" className="w-6 h-6" src="https://flagcdn.com/us.svg" />}
       >
         English
       </SelectItem>
       <SelectItem
-        key="bengali"
+        key="bn"
         startContent={<Avatar alt="Bengali" className="w-6 h-6" src="https://flagcdn.com/bd.svg" />}
       >
         Bengali
