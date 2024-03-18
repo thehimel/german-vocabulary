@@ -55,8 +55,16 @@ export default function App() {
         </NavbarItem>
       </NavbarContent>
 
+      <NavbarContent className="sm:hidden" justify="center">
+        <NavbarItem>
+          <SearchBar key="center"/>
+        </NavbarItem>
+      </NavbarContent>
+
       <NavbarContent justify="end">
-        <SearchBar></SearchBar>
+        <NavbarItem className="hidden sm:flex">
+          <SearchBar key="end"/>
+        </NavbarItem>
         <NavbarItem className="hidden lg:flex">
           <Link href="#">Login</Link>
         </NavbarItem>
