@@ -1,7 +1,7 @@
 import React from 'react';
 import {Helmet} from 'react-helmet';
 
-interface OpenGraphProps {
+interface MetadataProps {
   baseUrl?: string;
   currentUrl?: string;
   imageUrl?: string;
@@ -9,15 +9,17 @@ interface OpenGraphProps {
   description?: string;
 }
 
-const OpenGraph: React.FC<OpenGraphProps> = ({
+const Metadata: React.FC<MetadataProps> = ({
   baseUrl = window.location.origin,
   currentUrl = window.location.href,
   imageUrl = `${window.location.origin}/static/global/open-graph.jpeg`,
-  brandName = 'Your Brand',
-  description = 'Your Description',
+  brandName = 'Vocabulary',
+  description = 'A simple and easy way to learn vocabulary.',
 }) => {
   return (
     <Helmet>
+      {description && <meta name="description" content="A simple and easy way to learn German vocabulary."/>}
+
       {baseUrl && <meta property="og:url" content={baseUrl}/>}
       <meta property="og:type" content="website"/>
       {brandName && <meta property="og:title" content={brandName}/>}
@@ -34,4 +36,4 @@ const OpenGraph: React.FC<OpenGraphProps> = ({
   );
 };
 
-export default OpenGraph;
+export default Metadata;
