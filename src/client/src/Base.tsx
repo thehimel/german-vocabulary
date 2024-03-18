@@ -8,11 +8,11 @@ function Base() {
   return (
     <div className="flex flex-col h-screen">
       <NavigationBar/>
-      <div className="justify-center items-center">
+      <div className="">
         <div className="flex justify-between w-full max-w-screen-lg mx-auto gap-2 p-2">
           <Selectors/>
         </div>
-        <div className="flex">
+        <div className="flex justify-center items-center">
           <Cards/>
         </div>
       </div>
