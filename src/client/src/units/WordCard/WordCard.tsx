@@ -1,12 +1,15 @@
-import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button, useDisclosure} from "@nextui-org/react";
+import {FC} from "react";
+import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button} from "@nextui-org/react";
 import { PressEvent } from "@react-types/shared";
 
-export default function Card() {
-  const {isOpen, onOpen, onOpenChange} = useDisclosure();
+interface CardProps {
+  isOpen: boolean;
+  onOpenChange: (isOpen: boolean) => void;
+}
 
+const WordCard: FC<CardProps> = ({ isOpen, onOpenChange }) => {
   return (
     <>
-      <Button onPress={onOpen}>Open Modal</Button>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           {(onClose: { (e: PressEvent): void; (e: PressEvent): void; }) => (
@@ -38,3 +41,5 @@ export default function Card() {
     </>
   );
 }
+
+export default WordCard;
