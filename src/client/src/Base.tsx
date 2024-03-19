@@ -14,7 +14,7 @@ function Base() {
       <Background isDarkMode={isDarkMode}/>
       <div className="flex flex-col h-screen">
         <NavigationBar isDarkMode={isDarkMode}/>
-        <div className={`flex flex-col flex-grow justify-center bg-background`}>
+        <div className="flex flex-col flex-grow justify-center bg-background">
           <Selectors/>
           <Words/>
         </div>
