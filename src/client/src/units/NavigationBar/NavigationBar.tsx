@@ -5,7 +5,7 @@ import useDarkMode from "use-dark-mode";
 import SearchBar from "./SearchBar.tsx";
 import Brand from "./Brand.tsx";
 
-export default function App() {
+export default function NavigationBar() {
   const darkMode = useDarkMode(true);
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
