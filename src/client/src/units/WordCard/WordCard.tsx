@@ -1,6 +1,6 @@
 import {FC} from "react";
-import {Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, Button} from "@nextui-org/react";
-import { PressEvent } from "@react-types/shared";
+import {Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader} from "@nextui-org/react";
+import {PressEvent} from "@react-types/shared";
 import useDarkMode from "use-dark-mode";
 
 interface CardProps {
@@ -13,7 +13,32 @@ const WordCard: FC<CardProps> = ({ isOpen, onOpenChange }) => {
   const bgColor = isDarkMode ? 'dark text-gray-50' : '';
   return (
     <>
-      <Modal isOpen={isOpen} placement="center" backdrop="blur" onOpenChange={onOpenChange} className={`${bgColor}`} size="xs">
+      <Modal
+        isOpen={isOpen}
+        placement="center"
+        backdrop="blur"
+        onOpenChange={onOpenChange}
+        className={`${bgColor}`}
+        size="xs"
+        motionProps={{
+          variants: {
+            enter: {
+              opacity: 1,
+              transition: {
+                duration: 0.3,
+                ease: "easeOut",
+              },
+            },
+            exit: {
+              opacity: 0,
+              transition: {
+                duration: 0.2,
+                ease: "easeIn",
+              },
+            },
+          }
+        }}
+      >
         <ModalContent>
           {(onClose: { (e: PressEvent): void; (e: PressEvent): void; }) => (
             <>
