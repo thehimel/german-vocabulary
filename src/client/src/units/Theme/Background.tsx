@@ -5,7 +5,8 @@ interface BackgroundProps {
 }
 
 const Background: React.FC<BackgroundProps> = ({ isDarkMode }) => {
-  const bgColor = isDarkMode ? "bg-gradient-to-bl from-purple-950 to-black" : "";
+  const bgClasses = 'bg-gradient-to-bl from-purple-950 to-black'
+  const bgColor = isDarkMode ? bgClasses : '';
   return (
     <div className={`fixed inset-0 ${bgColor}`}></div>
   );
