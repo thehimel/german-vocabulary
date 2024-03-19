@@ -3,14 +3,12 @@ import Cards from './units/Cards/Cards.tsx'
 import NavigationBar from "./units/NavigationBar/NavigationBar.tsx";
 import {Pagination} from "@nextui-org/react";
 import Selectors from "./units/Selector/Selectors.tsx";
-import useDarkMode from "use-dark-mode";
+import Background from "./units/Theme/Background.tsx";
 
 function Base() {
-  const darkMode = useDarkMode();
-
   return (
     <div className="relative">
-      <div className={`fixed inset-0 ${darkMode.value ? 'bg-gradient-to-bl from-purple-950 to-transparent' : ''}`}></div>
+      <Background/>
       <div className="flex flex-col h-screen">
         <NavigationBar/>
         <div className="flex flex-col h-screen justify-center items-center">
