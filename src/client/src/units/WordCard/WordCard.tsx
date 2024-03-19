@@ -41,10 +41,10 @@ const WordCard: FC<CardProps> = ({ isOpen, onOpenChange }) => {
           }
         }}
       >
-        <ModalContent>
+        <ModalContent className="text-center">
           {(onClose: { (e: PressEvent): void; (e: PressEvent): void; }) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">Modal Title</ModalHeader>
+              <ModalHeader className="flex flex-col gap-1 pt-8">Modal Title</ModalHeader>
               <ModalBody>
                 <p>
                   This is first line.
