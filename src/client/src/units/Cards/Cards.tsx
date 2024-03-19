@@ -98,10 +98,12 @@ export default function Cards() {
   ];
 
   return (
-    <div className="gap-2 grid grid-cols-2 sm:grid-cols-4 m-2">
-      {list.map((item, index) => (
-        <CardItem key={index} item={item} />
-      ))}
+    <div className="flex justify-center">
+      <div className="gap-2 grid grid-cols-2 sm:grid-cols-4 m-2">
+        {list.map((item, index) => (
+          <CardItem key={index} item={item}/>
+        ))}
+      </div>
     </div>
   );
 }
