@@ -13,7 +13,7 @@ function Base() {
     <div className="relative">
       <Background/>
       <div className="flex flex-col h-screen">
-        <NavigationBar/>
+        <NavigationBar darkMode={darkMode}/>
         <div className={`flex flex-col flex-grow justify-center ${bgColor}`}>
           <Selectors/>
           <Cards/>

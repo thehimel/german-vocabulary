@@ -1,12 +1,14 @@
 import React from "react";
 import {Navbar, NavbarBrand, NavbarMenuToggle, NavbarMenuItem, NavbarMenu, NavbarContent, NavbarItem, Link, Button} from "@nextui-org/react";
 import {ThemeSwitcher} from "../Theme/ThemeSwitcher.tsx";
-import useDarkMode from "use-dark-mode";
 import SearchBar from "./SearchBar.tsx";
 import Brand from "./Brand.tsx";
 
-export default function NavigationBar() {
-  const darkMode = useDarkMode(true);
+interface NavigationBarProps {
+  darkMode: boolean;
+}
+
+const NavigationBar: React.FC<NavigationBarProps> = ({ darkMode }) => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const menuItems = [
@@ -70,7 +72,7 @@ export default function NavigationBar() {
         </NavbarItem>
       </NavbarContent>
 
-      <NavbarMenu className={`${darkMode.value ? 'dark' : ''}`}>
+      <NavbarMenu className={`${darkMode ? 'dark' : ''}`}>
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link
@@ -89,3 +91,5 @@ export default function NavigationBar() {
     </Navbar>
   );
 }
+
+export default NavigationBar;
