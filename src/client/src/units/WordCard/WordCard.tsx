@@ -13,7 +13,7 @@ const WordCard: FC<CardProps> = ({ isOpen, onOpenChange }) => {
   const bgColor = isDarkMode ? 'dark text-gray-50' : '';
   return (
     <>
-      <Modal isOpen={isOpen} placement="center" onOpenChange={onOpenChange} className={`${bgColor}`} size="xs">
+      <Modal isOpen={isOpen} placement="center" backdrop="blur" onOpenChange={onOpenChange} className={`${bgColor}`} size="xs">
         <ModalContent>
           {(onClose: { (e: PressEvent): void; (e: PressEvent): void; }) => (
             <>
