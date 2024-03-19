@@ -1,6 +1,6 @@
 import './App.css';
 import useDarkMode from "use-dark-mode";
-import Cards from './units/Cards/Cards.tsx'
+import Words from './units/Words/Words.tsx'
 import NavigationBar from "./units/NavigationBar/NavigationBar.tsx";
 import Selectors from "./units/Selector/Selectors.tsx";
 import Background from "./units/Theme/Background.tsx";
@@ -16,7 +16,7 @@ function Base() {
         <NavigationBar isDarkMode={isDarkMode}/>
         <div className={`flex flex-col flex-grow justify-center bg-background`}>
           <Selectors/>
-          <Cards/>
+          <Words/>
         </div>
         <PaginationBar/>
       </div>
