@@ -11,7 +11,7 @@ function Base() {
   const bgColor = isDarkMode ? "bg-black" : "";
   return (
     <div className="relative">
-      <Background/>
+      <Background isDarkMode={isDarkMode}/>
       <div className="flex flex-col h-screen">
         <NavigationBar isDarkMode={isDarkMode}/>
         <div className={`flex flex-col flex-grow justify-center ${bgColor}`}>
