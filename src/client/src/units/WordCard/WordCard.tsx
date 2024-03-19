@@ -16,6 +16,7 @@ const WordCard: FC<CardProps> = ({ isOpen, onOpenChange }) => {
     <>
       <Modal
         isOpen={isOpen}
+        hideCloseButton
         placement="center"
         backdrop="blur"
         onOpenChange={onOpenChange}
