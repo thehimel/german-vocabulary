@@ -8,14 +8,13 @@ import PaginationBar from "./units/NavigationBar/PaginationBar.tsx";
 
 function Base() {
   const isDarkMode = useDarkMode().value;
-  const bgColor = isDarkMode ? "bg-black" : "";
 
   return (
     <div className="relative">
       <Background isDarkMode={isDarkMode}/>
       <div className="flex flex-col h-screen">
         <NavigationBar isDarkMode={isDarkMode}/>
-        <div className={`flex flex-col flex-grow justify-center ${bgColor}`}>
+        <div className={`flex flex-col flex-grow justify-center bg-background`}>
           <Selectors/>
           <Cards/>
         </div>
