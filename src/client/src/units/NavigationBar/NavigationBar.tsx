@@ -5,10 +5,10 @@ import SearchBar from "./SearchBar.tsx";
 import Brand from "./Brand.tsx";
 
 interface NavigationBarProps {
-  darkMode: boolean;
+  isDarkMode: boolean;
 }
 
-const NavigationBar: React.FC<NavigationBarProps> = ({ darkMode }) => {
+const NavigationBar: React.FC<NavigationBarProps> = ({ isDarkMode }) => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const menuItems = [
@@ -72,7 +72,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ darkMode }) => {
         </NavbarItem>
       </NavbarContent>
 
-      <NavbarMenu className={`${darkMode ? 'dark' : ''}`}>
+      <NavbarMenu className={`${isDarkMode ? 'dark' : ''}`}>
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link
