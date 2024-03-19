@@ -11,13 +11,7 @@ export default function App() {
 
   const menuItems = [
     "Profile",
-    "Dashboard",
-    "Activity",
-    "Analytics",
-    "System",
-    "Deployments",
-    "My Settings",
-    "Team Settings",
+    "Settings",
     "Help & Feedback",
     "Log Out",
   ];
@@ -82,7 +76,7 @@ export default function App() {
             <Link
               className="w-full"
               color={
-                index === 2 ? "warning" : index === menuItems.length - 1 ? "danger" : "foreground"
+                index === 1 ? "warning" : index === menuItems.length - 1 ? "danger" : "foreground"
               }
               href="#"
               size="lg"
