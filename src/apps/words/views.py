@@ -60,5 +60,5 @@ class WordDetailView(DetailView):
 
 
 class WordListAPIView(ListAPIView):
-    queryset = Word.objects.all()
+    queryset = Word.objects.filter(hidden=False).order_by('language__code', 'title')
     serializer_class = WordSerializer
