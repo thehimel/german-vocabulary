@@ -14,7 +14,7 @@ class TextToSpeechAPIView(APIView):
         language_code = request.query_params.get("language_code", "en")
 
         if not input_text:
-            return Response({"error": "Text parameter is missing"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"error": "The text parameter is missing."}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
             tts = gTTS(text=input_text, lang=language_code, slow=True)

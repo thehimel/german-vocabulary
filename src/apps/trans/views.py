@@ -13,6 +13,6 @@ class TranslateAPIView(APIView):
         src = data.get("source_language_code", "auto")
         dest = data.get("target_language_code", "en")
         if not text:
-            return Response({"error": "Text parameter is missing"}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({"error": "The text parameter is missing."}, status=status.HTTP_400_BAD_REQUEST)
 
         return Response({"text": translator.translate(text=text, src=src, dest=dest)})
