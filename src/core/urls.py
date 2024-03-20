@@ -27,7 +27,7 @@ urlpatterns = [
     path("users/", include("apps.users.urls", namespace="users")),
     path("cards/", include("apps.cards.urls", namespace="cards")),
     path("words/", include("apps.words.urls", namespace="words")),
-    path("api/tts/", include("apps.speech.urls", namespace="tts")),
+    path("api/tts/", include("apps.speech.urls", namespace="speech")),
     path("api/translate/", include("apps.trans.urls", namespace="trans")),
 ]
 
