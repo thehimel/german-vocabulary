@@ -10,8 +10,8 @@ from rest_framework.views import APIView
 class TextToSpeechAPIView(APIView):
     @staticmethod
     def get(request, *args, **kwargs):
-        input_text = request.data.get("text", "")
-        language_code = request.data.get("language_code", "en")
+        input_text = request.query_params.get("text", "")
+        language_code = request.query_params.get("language_code", "en")
 
         if not input_text:
             return Response({"error": "Text parameter is missing"}, status=status.HTTP_400_BAD_REQUEST)
