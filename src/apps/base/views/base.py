@@ -1,4 +1,7 @@
 from django.views.generic import TemplateView
+from django.urls import reverse
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 
 class HomeView(TemplateView):
@@ -12,3 +15,15 @@ class MessageView(TemplateView):
         context = super().get_context_data(**kwargs)
         context["title"] = self.request.GET.get("title", "You Got the Following Messages")
         return context
+
+
+class HomeAPIView(APIView):
+    @staticmethod
+    def get(request):
+        named_urls = [
+            "base:api",
+            "speech:home",
+            "trans:home",
+        ]
+        urls = [request.build_absolute_uri(reverse(named_url)) for named_url in named_urls]
+        return Response(urls)
