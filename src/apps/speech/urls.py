@@ -5,5 +5,5 @@ from apps.speech.views import TextToSpeechAPIView
 app_name = "speech"
 
 urlpatterns = [
-    path("tts/", TextToSpeechAPIView.as_view(), name="tts"),
+    path("", TextToSpeechAPIView.as_view(), name="tts"),
 ]
