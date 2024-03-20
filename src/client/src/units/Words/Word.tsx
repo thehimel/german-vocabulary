@@ -1,13 +1,14 @@
 import {FC} from "react";
-import {Card, CardBody, CardHeader, Chip, Divider, useDisclosure} from "@nextui-org/react";
+import {Card, CardBody, CardHeader, Divider, useDisclosure} from "@nextui-org/react";
 import WordCard from "../WordCard/WordCard.tsx";
+import Chips from "./Chips.tsx";
 
 interface WordItemProps {
   item: {
     title: string;
     sentence: string;
-    article: string;
-    parts_of_speech: string;
+    articles: [{ title: string; }];
+    parts_of_speech: [{ title: string; }];
     level: string;
   };
 }
@@ -23,13 +24,9 @@ const Word: FC<WordItemProps> = ({ item }) => {
             <div className="flex flex-row justify-center">
               <p className="text-md">{item.title}</p>
             </div>
-            <div className="flex flex-row gap-3">
-              <div className="flex flex-col">
-                <Chip color="secondary" variant="flat">{item.article}</Chip>
-              </div>
-              <div className="flex flex-col">
-                <Chip color="secondary" variant="faded">{item.parts_of_speech}</Chip>
-              </div>
+            <div className="flex flex-row gap-1">
+              <Chips items={item.articles} color="secondary" variant="flat"/>
+              <Chips items={item.parts_of_speech} color="secondary" variant="faded"/>
             </div>
           </div>
         </CardHeader>
