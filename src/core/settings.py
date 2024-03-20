@@ -34,6 +34,7 @@ SECRET_KEY = config("SECRET_KEY")
 DEBUG = True if ENVIRONMENT == DEVELOPMENT else config("DEBUG", cast=bool, default=False)
 
 ALLOWED_HOSTS = ["*"]
+CORS_ALLOW_ALL_ORIGINS = True
 
 # Application definition
 INSTALLED_APPS = [
@@ -51,7 +52,9 @@ INSTALLED_APPS = [
     "apps.speech",
     "apps.trans",
     # ---
+    "corsheaders",
     "rest_framework",
+    # ---
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
@@ -67,6 +70,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",  # Must be at the top.
     "django.middleware.security.SecurityMiddleware",
     # To serve static files in PaaS. To be removed if S3 is being used.
     "whitenoise.middleware.WhiteNoiseMiddleware",
