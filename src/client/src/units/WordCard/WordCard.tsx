@@ -2,7 +2,7 @@ import {FC} from "react";
 import {Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader} from "@nextui-org/react";
 import {PressEvent} from "@react-types/shared";
 import useDarkMode from "use-dark-mode";
-import {CheckIcon} from "@radix-ui/react-icons";
+import {CheckIcon, PlayIcon} from "@radix-ui/react-icons";
 
 interface CardProps {
   isOpen: boolean;
@@ -52,13 +52,14 @@ const WordCard: FC<CardProps> = ({ isOpen, onOpenChange }) => {
                 </p>
                 <p>
                   This is second line.
+                  <Button isIconOnly radius="full" variant="flat" className="ms-2"><PlayIcon /></Button>
                 </p>
                 <p>
                   This is third line.
                 </p>
               </ModalBody>
               <ModalFooter>
-                <Button isIconOnly radius="full" variant="light" onPress={onClose}>
+                <Button isIconOnly radius="full" variant="flat" onPress={onClose}>
                   <CheckIcon />
                 </Button>
               </ModalFooter>
