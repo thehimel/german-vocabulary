@@ -1,15 +1,15 @@
 import {FC} from "react";
-import {Button, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader} from "@nextui-org/react";
-import {PressEvent} from "@react-types/shared";
+import {Modal, ModalBody, ModalContent, ModalFooter, ModalHeader} from "@nextui-org/react";
 import useDarkMode from "use-dark-mode";
 import {CheckIcon, PlayIcon} from "@radix-ui/react-icons";
+import Press from "../NavigationBar/Press.tsx";
 
 interface CardProps {
   isOpen: boolean;
   onOpenChange: (isOpen: boolean) => void;
 }
 
-const WordCard: FC<CardProps> = ({ isOpen, onOpenChange }) => {
+const WordCard: FC<CardProps> = ({isOpen, onOpenChange}) => {
   const isDarkMode = useDarkMode().value;
   const bgColor = isDarkMode ? 'dark text-gray-50' : '';
   const motionProps = {
@@ -43,25 +43,16 @@ const WordCard: FC<CardProps> = ({ isOpen, onOpenChange }) => {
         motionProps={motionProps}
       >
         <ModalContent className="text-center">
-          {(onClose: { (e: PressEvent): void; (e: PressEvent): void; }) => (
+          {(onClose) => (
             <>
               <ModalHeader className="flex flex-col gap-1 pt-8">Modal Title</ModalHeader>
               <ModalBody>
-                <p>
-                  This is first line.
-                </p>
-                <p>
-                  This is second line.
-                  <Button isIconOnly radius="full" variant="flat" className="ms-2"><PlayIcon /></Button>
-                </p>
-                <p>
-                  This is third line.
-                </p>
+                <p>This is first line.</p>
+                <p>This is second line. <Press><PlayIcon /></Press></p>
+                <p>This is third line.</p>
               </ModalBody>
               <ModalFooter>
-                <Button isIconOnly radius="full" variant="flat" onPress={onClose}>
-                  <CheckIcon />
-                </Button>
+                <Press onPress={onClose}><CheckIcon /></Press>
               </ModalFooter>
             </>
           )}
