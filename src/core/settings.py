@@ -43,12 +43,15 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # ---
     "apps.base",
     "apps.users",
     "apps.words",
     "apps.cards",
     "apps.speech",
     "apps.trans",
+    # ---
+    "rest_framework",
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
