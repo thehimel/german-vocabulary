@@ -1,7 +1,7 @@
 import {FC} from "react";
 import {Modal, ModalBody, ModalContent, ModalFooter, ModalHeader} from "@nextui-org/react";
 import useDarkMode from "use-dark-mode";
-import {CheckIcon, PlayIcon} from "@radix-ui/react-icons";
+import {CheckIcon, SpeakerLoudIcon} from "@radix-ui/react-icons";
 import Press from "../NavigationBar/Press.tsx";
 
 interface CardProps {
@@ -48,11 +48,17 @@ const WordCard: FC<CardProps> = ({isOpen, onOpenChange}) => {
               <ModalHeader className="flex flex-col gap-1 pt-8">Modal Title</ModalHeader>
               <ModalBody>
                 <p>This is first line.</p>
-                <p>This is second line. <Press><PlayIcon /></Press></p>
+                <p>This is second line.
+                  <Press>
+                    <SpeakerLoudIcon className="ms-1" />
+                  </Press>
+                </p>
                 <p>This is third line.</p>
               </ModalBody>
               <ModalFooter>
-                <Press onPress={onClose}><CheckIcon /></Press>
+                <Press onPress={onClose}>
+                  <CheckIcon />
+                </Press>
               </ModalFooter>
             </>
           )}
