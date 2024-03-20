@@ -29,6 +29,7 @@ urlpatterns = [
     path("words/", include("apps.words.urls", namespace="words")),
     path("api/tts/", include("apps.speech.urls", namespace="speech")),
     path("api/translate/", include("apps.trans.urls", namespace="trans")),
+    path("api/", include("apps.api.urls", namespace="api")),
 ]
 
 if settings.DEBUG:
