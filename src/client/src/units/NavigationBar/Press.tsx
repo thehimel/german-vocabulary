@@ -6,14 +6,10 @@ interface PressProps {
 }
 
 const Press: FC<PressProps> = ({ onPress, children }) => {
-  const handleClick = () => {
-    if (onPress) {
-      onPress();
-    }
-  };
+  const handleClick = () => onPress && onPress();
 
   return (
-    <button className="cursor-pointer" onClick={handleClick}>
+    <button onClick={handleClick}>
       {children}
     </button>
   );
