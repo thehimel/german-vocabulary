@@ -12,6 +12,24 @@ interface CardProps {
 const WordCard: FC<CardProps> = ({ isOpen, onOpenChange }) => {
   const isDarkMode = useDarkMode().value;
   const bgColor = isDarkMode ? 'dark text-gray-50' : '';
+  const motionProps = {
+    variants: {
+      enter: {
+        opacity: 0.6,
+        transition: {
+          duration: 0.3,
+          ease: "easeOut",
+        },
+      },
+      exit: {
+        opacity: 0,
+        transition: {
+          duration: 0.2,
+          ease: "easeIn",
+        },
+      },
+    }
+  }
   return (
     <>
       <Modal
@@ -22,24 +40,7 @@ const WordCard: FC<CardProps> = ({ isOpen, onOpenChange }) => {
         onOpenChange={onOpenChange}
         className={`${bgColor}`}
         size="xs"
-        motionProps={{
-          variants: {
-            enter: {
-              opacity: 0.6,
-              transition: {
-                duration: 0.3,
-                ease: "easeOut",
-              },
-            },
-            exit: {
-              opacity: 0,
-              transition: {
-                duration: 0.2,
-                ease: "easeIn",
-              },
-            },
-          }
-        }}
+        motionProps={motionProps}
       >
         <ModalContent className="text-center">
           {(onClose: { (e: PressEvent): void; (e: PressEvent): void; }) => (
