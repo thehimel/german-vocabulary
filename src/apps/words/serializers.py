@@ -26,12 +26,28 @@ class NoteSerializer(serializers.ModelSerializer):
         fields = ['title']  # Add other fields as needed
 
 
+class LinkedWordSerializer(serializers.ModelSerializer):
+    language = LanguageSerializer()
+
+    class Meta:
+        model = Word
+        fields = ['title', 'language']
+
+
+class TranslationSerializer(serializers.ModelSerializer):
+    language = LanguageSerializer()
+
+    class Meta:
+        model = Word
+        fields = ['title', 'language']
+
+
 class WordSerializer(serializers.ModelSerializer):
     articles = ArticleSerializer(many=True, read_only=True)
     parts_of_speech = PartOfSpeechSerializer(many=True, read_only=True)
     notes = NoteSerializer(many=True, read_only=True)
-    linked_words = serializers.PrimaryKeyRelatedField(many=True, queryset=Word.objects.all())
-    translations = serializers.PrimaryKeyRelatedField(many=True, queryset=Word.objects.all())
+    linked_words = LinkedWordSerializer(many=True, read_only=True)
+    translations = TranslationSerializer(many=True, read_only=True)
 
     class Meta:
         model = Word
