@@ -57,7 +57,7 @@ const WordCard: FC<CardProps> = ({ isOpen, onOpenChange }) => {
                 </p>
               </ModalBody>
               <ModalFooter>
-                <Button isIconOnly radius="full" variant="light" onPress={onClose}>
+                <Button disableAnimation isIconOnly radius="full" variant="light" onPress={onClose}>
                   <CheckIcon />
                 </Button>
               </ModalFooter>
