@@ -2,7 +2,7 @@ import './App.css';
 import useDarkMode from "use-dark-mode";
 import Words from './units/Words/Words.tsx'
 import NavigationBar from "./units/NavigationBar/NavigationBar.tsx";
-import Selectors from "./units/Selector/Selectors.tsx";
+import Selectors from "./units/Selectors/Selectors.tsx";
 import Background from "./units/Theme/Background.tsx";
 import PaginationBar from "./units/NavigationBar/PaginationBar.tsx";
 
