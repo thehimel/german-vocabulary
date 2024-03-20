@@ -24,12 +24,12 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("accounts/", include("allauth.urls")),
     path("", include("apps.base.urls", namespace="base")),
+    path("api/", include("apps.api.urls", namespace="api")),
     path("users/", include("apps.users.urls", namespace="users")),
     path("cards/", include("apps.cards.urls", namespace="cards")),
     path("words/", include("apps.words.urls", namespace="words")),
     path("api/tts/", include("apps.speech.urls", namespace="speech")),
     path("api/translate/", include("apps.trans.urls", namespace="trans")),
-    path("api/", include("apps.api.urls", namespace="api")),
 ]
 
 if settings.DEBUG:
