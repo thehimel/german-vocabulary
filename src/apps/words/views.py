@@ -1,10 +1,12 @@
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db.models.functions import Lower
 from django.views.generic import DetailView, ListView
+from rest_framework.generics import ListAPIView
 
 from apps.base.utils.decorators import language_preferences_required
 from apps.base.utils.languages import get_level, get_primary_language
 from apps.words.models import Word
+from apps.words.serializers import WordSerializer
 
 
 # Create your views here.
@@ -55,3 +57,8 @@ class WordDetailView(DetailView):
     model = Word
     context_object_name = "object"
     slug_field = "pk"
+
+
+class WordListAPIView(ListAPIView):
+    queryset = Word.objects.all()
+    serializer_class = WordSerializer

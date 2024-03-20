@@ -24,6 +24,7 @@ class HomeAPIView(APIView):
             "base:api",
             "speech:home",
             "trans:home",
+            "words:api_list",
         ]
         urls = [request.build_absolute_uri(reverse(named_url)) for named_url in named_urls]
         return Response(urls)
