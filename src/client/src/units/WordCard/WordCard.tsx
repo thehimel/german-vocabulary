@@ -15,7 +15,7 @@ const WordCard: FC<CardProps> = ({ isOpen, onOpenChange }) => {
   const motionProps = {
     variants: {
       enter: {
-        opacity: 0.6,
+        opacity: 1,
         transition: {
           duration: 0.3,
           ease: "easeOut",
@@ -24,7 +24,7 @@ const WordCard: FC<CardProps> = ({ isOpen, onOpenChange }) => {
       exit: {
         opacity: 0,
         transition: {
-          duration: 0.2,
+          duration: 0.3,
           ease: "easeIn",
         },
       },
