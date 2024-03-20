@@ -1,6 +1,6 @@
 from django.urls import path
 
-from apps.base.views.base import MessageView, HomeAPIView
+from apps.base.views.base import HomeAPIView, MessageView
 from apps.base.views.client import ClientView
 from apps.base.views.get_started import GetStartedWizard
 from apps.base.views.languages import LanguagePreferencesView

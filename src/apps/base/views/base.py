@@ -1,5 +1,5 @@
-from django.views.generic import TemplateView
 from django.urls import reverse
+from django.views.generic import TemplateView
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
