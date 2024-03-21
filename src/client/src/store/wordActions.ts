@@ -11,8 +11,7 @@ export const fetchWords = () => {
       const response = await axios.get(WORDS_API_URL);
       dispatch(WordActions.updateWords(response.data));
     } catch (error) {
-      const axiosError = error as AxiosError;
-      handleAxiosError(axiosError, dispatch);
+      handleAxiosError(dispatch, WORDS_API_URL, error as AxiosError)
     }
   };
 };
