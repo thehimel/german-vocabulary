@@ -9,7 +9,7 @@ export default function Words() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get('/api/words');
+        const response = await axios.get('/api/words/');
         setWordsData(response.data);
       } catch (error) {
         setError(error as Error);
