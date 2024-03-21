@@ -16,12 +16,12 @@ const WordSlice = createSlice({
       state.words = action.payload;
       state.loading = false; // Set loading to false when data is fetched
     },
+    setLoading(state): void {
+      state.loading = true; // Set loading to true when fetching data
+    },
     setError(state, action): void {
       state.error = action.payload;
       state.loading = false; // Set loading to false on error
-    },
-    setLoading(state): void {
-      state.loading = true; // Set loading to true when fetching data
     },
   },
 });
