@@ -3,7 +3,7 @@ import {Card, CardBody, CardHeader, Divider, useDisclosure} from "@nextui-org/re
 import WordCard from "../WordCard/WordCard.tsx";
 import Chips from "./Chips.tsx";
 
-interface WordItemProps {
+export interface WordItemProps {
   item: {
     title: string;
     sentence: string;
