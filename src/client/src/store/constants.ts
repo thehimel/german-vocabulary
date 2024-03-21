@@ -1,8 +1,4 @@
-type Constants = {
-  word: string;
-}
-
-export const slices: Constants = {
+export const slices = {
   word: "word",
 }
 
