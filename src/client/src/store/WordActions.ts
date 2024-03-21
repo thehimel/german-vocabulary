@@ -18,7 +18,7 @@ export const fetchWords = () => {
       WordActions.updateWords(words)
     );
   } catch (error) {
-    console.log(error);
-  }
+      console.log(error);
+    }
   };
 };
