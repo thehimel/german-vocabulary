@@ -7,8 +7,8 @@ export const fetchWords = () => {
     const fetchData = async () => {
     const response = await axios.get('/api/words/');
     if (!response.data) {
-        throw new Error('Could not fetch cart data!');
-      }
+      throw new Error('Could not fetch cart data!');
+    }
     return response.data;
   };
 
