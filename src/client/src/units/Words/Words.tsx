@@ -1,32 +1,24 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
 import Word from './Word.tsx';
+import {useDispatch, useSelector} from "react-redux";
+import {WordState} from "../../store/WordSlice.ts";
+import {useEffect} from "react";
+import {fetchWords} from "../../store/WordActions.ts";
 
 export default function Words() {
-  const [wordsData, setWordsData] = useState([]);
-  const [error, setError] = useState<Error | null>(null);
+  const dispatch = useDispatch();
+  const words = useSelector((state: WordState) => state.words);
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await axios.get('/api/words/');
-        setWordsData(response.data);
-      } catch (error) {
-        setError(error as Error);
-      }
-    }
+    dispatch(fetchWords())
+  }, [dispatch]);
 
-    fetchData().then(() => null);
-  }, []);
+  console.log(words)
 
-  if (error) {
-      return <div>Error: {(error as unknown as Error).message}</div>;
-  }
 
   return (
     <div className="flex justify-center">
       <div className="gap-2 grid grid-cols-2 sm:grid-cols-4 m-2">
-        {wordsData.map((item, index) => (
+        {words && words.map((item, index) => (
           <Word key={index} item={item} />
         ))}
       </div>
