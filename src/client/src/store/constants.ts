@@ -6,4 +6,4 @@ export const slices: Constants = {
   word: "word",
 }
 
-export const WORDS_URL = '/api/words/'
+export const WORDS_API_URL = '/api/words/'
