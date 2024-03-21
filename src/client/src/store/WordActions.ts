@@ -9,7 +9,7 @@ export const fetchWords = () => {
     if (!response.data) {
         throw new Error('Could not fetch cart data!');
       }
-    return response;
+    return response.data;
   };
 
   try {
