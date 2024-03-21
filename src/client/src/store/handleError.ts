@@ -7,7 +7,7 @@ interface AxiosErrorResponseData {
   message: string;
 }
 
-export const handleAxiosError = (dispatch: AppDispatch, api_url: string, error: AxiosError) => {
+export const dispatchError = (dispatch: AppDispatch, api_url: string, error: AxiosError) => {
   let errorMessage = "";
   if (error.response) {
     const responseData = error.response.data as AxiosErrorResponseData;
