@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {slices} from "./slices.ts";
+import {slices} from "./constants.ts";
 import {WordProps} from "../units/Words/Word.tsx";
 
 export interface WordsProps {

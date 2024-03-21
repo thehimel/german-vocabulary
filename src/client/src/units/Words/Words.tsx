@@ -1,12 +1,12 @@
 import Word from './Word.tsx';
-import {useDispatch, useSelector} from "react-redux";
-import {WordsProps} from "../../store/WordSlice.ts";
+import {useAppDispatch, useAppSelector} from "../../store/hooks.ts";
 import {useEffect} from "react";
-import {fetchWords} from "../../store/WordActions.ts";
+import {fetchWords} from "../../store/wordActions.ts";
+import {AppDispatch} from "../../store/store.ts";
 
 export default function Words() {
-  const dispatch = useDispatch();
-  const words = useSelector((state: WordsProps) => state.word.words);
+  const dispatch: AppDispatch = useAppDispatch();
+  const words = useAppSelector((state) => state.words.words);
 
   useEffect(() => {
     dispatch(fetchWords())

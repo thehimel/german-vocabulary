@@ -1,9 +1,9 @@
-import {WordActions} from "./WordSlice.ts";
+import {WordActions} from "./wordSlice.ts";
 import axios from "axios";
-import {Dispatch} from "@reduxjs/toolkit";
+import {AppDispatch} from "./store.ts";
 
 export const fetchWords = () => {
-  return async (dispatch: Dispatch) => {
+  return async (dispatch: AppDispatch) => {
     const fetchData = async () => {
     const response = await axios.get('/api/words/');
     if (!response.data) {
@@ -18,7 +18,7 @@ export const fetchWords = () => {
       WordActions.updateWords(words)
     );
   } catch (error) {
-      console.log(error);
+      WordActions.setError(error);
     }
   };
 };
