@@ -1,14 +1,15 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {slices} from "./slices.ts";
+import {WordProps} from "../units/Words/Word.tsx";
 
-export interface WordState {
-  words: [{
-    title: string;
-    sentence: string;
-    articles: [{ title: string; }];
-    parts_of_speech: [{ title: string; }];
-    level: string;
-  }];
+export interface WordsProps {
+  word: {
+    words: [WordProps]
+  };
+}
+
+export interface WordStateProps {
+  words: [];
   primary_language: string;
   secondary_language: string;
   word: { [key: string]: string };
@@ -16,14 +17,8 @@ export interface WordState {
   error: string | null;
 }
 
-const initialState: WordState = {
-  words: [{
-    title: "",
-    sentence: "",
-    articles: [{ title: "" }],
-    parts_of_speech: [{ title: "" }],
-    level: ""
-  }],
+const initialState: WordStateProps = {
+  words: [],
   primary_language: 'de',
   secondary_language: 'en',
   word: {},
