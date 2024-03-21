@@ -3,14 +3,16 @@ import {Card, CardBody, CardHeader, Divider, useDisclosure} from "@nextui-org/re
 import WordCard from "../WordCard/WordCard.tsx";
 import Chips from "./Chips.tsx";
 
+export interface WordProps {
+  title: string;
+  sentence: string;
+  articles: [{ title: string; }];
+  parts_of_speech: [{ title: string; }];
+  level: string;
+}
+
 export interface WordItemProps {
-  item: {
-    title: string;
-    sentence: string;
-    articles: [{ title: string; }];
-    parts_of_speech: [{ title: string; }];
-    level: string;
-  };
+  item: WordProps;
 }
 
 const Word: FC<WordItemProps> = ({ item }) => {
