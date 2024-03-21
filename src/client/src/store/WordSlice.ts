@@ -1,16 +1,27 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {slices} from "./slices.ts";
 
+export interface WordState {
+  words: string[];
+  primary_language: string;
+  secondary_language: string;
+  word: { [key: string]: string };
+  loading: boolean;
+  error: string | null;
+}
+
+const initialState: WordState = {
+  words: [],
+  primary_language: 'de',
+  secondary_language: 'en',
+  word: {},
+  loading: false,
+  error: null,
+};
+
 const WordSlice = createSlice({
   name: slices.word,
-  initialState: {
-    words: [],
-    primary_language: 'de',
-    secondary_language: 'en',
-    word: {},
-    loading: false,  // Add loading state to manage API request status
-    error: null,  // Add error state to handle API request errors
-  },
+  initialState,
   reducers: {
     updateWords(state, action): void {
       state.words = action.payload;
