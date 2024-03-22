@@ -8,6 +8,7 @@ import {dispatchError} from "./handleError.ts";
 export const fetchWords = () => {
   return async (dispatch: AppDispatch) => {
     try {
+      dispatch(WordActions.setLoading());
       const response = await axios.get(WORDS_API_URL);
       dispatch(WordActions.updateWords(response.data));
     } catch (error) {

@@ -1,10 +1,9 @@
 import './App.css';
 import useDarkMode from "use-dark-mode";
-import Words from './units/Words/Words.tsx'
 import NavigationBar from "./units/NavigationBar/NavigationBar.tsx";
-import Selectors from "./units/Selectors/Selectors.tsx";
 import Background from "./units/Theme/Background.tsx";
 import PaginationBar from "./units/NavigationBar/PaginationBar.tsx";
+import Home from "./units/Screens/Home.tsx";
 
 function Base() {
   const isDarkMode = useDarkMode().value;
@@ -15,8 +14,7 @@ function Base() {
       <div className="flex flex-col h-screen">
         <NavigationBar isDarkMode={isDarkMode}/>
         <div className="flex flex-col flex-grow justify-center bg-background">
-          <Selectors/>
-          <Words/>
+          <Home/>
         </div>
         <PaginationBar/>
       </div>
