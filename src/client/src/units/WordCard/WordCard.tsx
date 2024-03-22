@@ -15,20 +15,8 @@ const WordCard: FC<CardProps> = ({isOpen, onOpenChange}) => {
   const bgColor = darkMode ? 'dark text-gray-50' : '';
   const motionProps = {
     variants: {
-      enter: {
-        opacity: 1,
-        transition: {
-          duration: 0.3,
-          ease: "easeOut",
-        },
-      },
-      exit: {
-        opacity: 0,
-        transition: {
-          duration: 0.3,
-          ease: "easeIn",
-        },
-      },
+      enter: {opacity: 1, transition: {duration: 0.3, ease: "easeOut"}},
+      exit: {opacity: 0, transition: {duration: 0.3, ease: "easeIn"}},
     }
   }
   return (
