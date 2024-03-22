@@ -32,7 +32,7 @@ const WordCard: FC<CardProps> = ({isOpen, onOpenChange}) => {
       >
         <ModalContent className="text-center">
           <ModalHeader className="flex flex-col">
-            <Content language={word.language.code} content={word.title}/>
+            <Content flag={true} language={word.language.code} content={word.title}/>
           </ModalHeader>
           <ModalBody>
             <div className="flex flex-row justify-center gap-1">
@@ -43,9 +43,9 @@ const WordCard: FC<CardProps> = ({isOpen, onOpenChange}) => {
           </ModalBody>
           <Divider className="mt-2"/>
           <ModalHeader className="flex flex-col pt-6">
-            <Content language="en" content={word.translations?.[0].title}/>
+            <Content flag={true} language={word.translations?.[0].language?.code} content={word.translations?.[0].title}/>
           </ModalHeader>
-          <Content language="en" content={word.translations?.[0].sentence}/>
+          <Content language={word.translations?.[0].language?.code} content={word.translations?.[0].sentence}/>
         </ModalContent>
       </Modal>
     </>

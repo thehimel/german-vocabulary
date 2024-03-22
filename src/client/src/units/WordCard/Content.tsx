@@ -6,6 +6,7 @@ import {Language} from "../../store/base/baseSlice.ts";
 
 
 interface ContentProps {
+  flag?: boolean;
   language: Language;
   content: string;
 }
@@ -20,11 +21,12 @@ function getCountryCode(language: string): string | undefined {
   return countryCodeMap[language];
 }
 
-const Content: FC<ContentProps> = ({ language, content }) => {
-  const imageUrl = `https://flagcdn.com/${getCountryCode(language)}.svg`;
+const Content: FC<ContentProps> = ({ flag, language, content }) => {
+  const avatar = flag ? <Avatar alt={language} className="w-6 h-6" src={`https://flagcdn.com/${getCountryCode(language)}.svg`} /> : null;
+  const speaker = language ? <Press><SpeakerLoudIcon/></Press>: null;
   return (
     <div className="flex justify-center gap-2">
-      <Avatar alt={language} className="w-6 h-6" src={imageUrl}/> {content} <Press><SpeakerLoudIcon/></Press>
+      {avatar} {content} {speaker}
     </div>
   );
 }
