@@ -23,7 +23,7 @@ const wordsSlice = createSlice({
   name: slices.word,
   initialState,
   reducers: {
-    setLoading(state): void {
+    setWordsLoading(state): void {
       state.loading = true;
     },
     setPrimaryLanguage(state, action: {payload: Language}): void {
@@ -36,7 +36,7 @@ const wordsSlice = createSlice({
       state.words = action.payload;
       state.loading = false;
     },
-    setError(state, action): void {
+    setWordError(state, action): void {
       state.error = action.payload;
       state.loading = false;
     },

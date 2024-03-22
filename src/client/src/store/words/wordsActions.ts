@@ -8,12 +8,12 @@ import {getErrorMessage} from "../handleError.ts";
 export const fetchWords = () => {
   return async (dispatch: AppDispatch) => {
     try {
-      dispatch(wordsActions.setLoading());
+      dispatch(wordsActions.setWordsLoading());
       const response = await axios.get(WORDS_API_URL);
       dispatch(wordsActions.setWords(response.data));
     } catch (error) {
       const errorMessage = getErrorMessage(WORDS_API_URL, error as AxiosError)
-      dispatch(wordsActions.setError(errorMessage));
+      dispatch(wordsActions.setWordError(errorMessage));
     }
   };
 };
