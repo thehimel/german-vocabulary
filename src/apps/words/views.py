@@ -1,12 +1,13 @@
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from django.db.models.functions import Lower
 from django.views.generic import DetailView, ListView
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import ListAPIView, RetrieveAPIView
+from rest_framework.response import Response
 
 from apps.base.utils.decorators import language_preferences_required
 from apps.base.utils.languages import get_level, get_primary_language
 from apps.words.models import Word
-from apps.words.serializers import WordListSerializer
+from apps.words.serializers import WordListSerializer, WordSerializer
 
 
 # Create your views here.
@@ -67,3 +68,22 @@ class WordListAPIView(ListAPIView):
         level = self.request.query_params.get("level", "a1")
         queryset = Word.objects.filter(hidden=False, language__code=primary_language, level=level).order_by("title")
         return queryset
+
+
+class WordDetailAPIView(RetrieveAPIView):
+    serializer_class = WordSerializer
+    queryset = Word.objects.all()
+    lookup_field = 'id'
+
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+
+        serializer_context = {'request': request}
+        secondary_language = request.query_params.get('secondary_language')
+        if secondary_language:
+            serializer_context['secondary_language'] = secondary_language
+
+        serializer = self.get_serializer(instance, context=serializer_context)
+        data = serializer.data
+
+        return Response(data)

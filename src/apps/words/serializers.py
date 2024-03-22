@@ -39,17 +39,37 @@ class TranslationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Word
-        fields = ['title', 'language']
+        fields = ['id', 'title', 'language', 'sentence']
 
 
 class WordListSerializer(serializers.ModelSerializer):
     articles = ArticleSerializer(many=True, read_only=True)
     parts_of_speech = PartOfSpeechSerializer(many=True, read_only=True)
     language = LanguageSerializer(read_only=True)
-    # notes = NoteSerializer(many=True, read_only=True)
-    # linked_words = LinkedWordSerializer(many=True, read_only=True)
-    # translations = TranslationSerializer(many=True, read_only=True)
 
     class Meta:
         model = Word
         fields = ["id", "level", "language", "title", "articles", "parts_of_speech", "sentence"]
+
+
+class WordSerializer(WordListSerializer):
+    notes = NoteSerializer(many=True, read_only=True)
+    linked_words = LinkedWordSerializer(many=True, read_only=True)
+    translations = TranslationSerializer(many=True, read_only=True)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.secondary_language = self.context.get('secondary_language', None)
+
+    class Meta(WordListSerializer.Meta):
+        fields = WordListSerializer.Meta.fields + ['notes', 'linked_words', 'translations']
+
+    def to_representation(self, instance):
+        data = super().to_representation(instance)
+        if self.secondary_language:
+            translations = instance.translations.filter(language__code=self.secondary_language)
+        else:
+            translations = instance.translations.all()
+
+        data['translations'] = TranslationSerializer(translations, many=True).data
+        return data
