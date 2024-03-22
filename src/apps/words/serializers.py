@@ -45,10 +45,11 @@ class TranslationSerializer(serializers.ModelSerializer):
 class WordListSerializer(serializers.ModelSerializer):
     articles = ArticleSerializer(many=True, read_only=True)
     parts_of_speech = PartOfSpeechSerializer(many=True, read_only=True)
+    language = LanguageSerializer(read_only=True)
     # notes = NoteSerializer(many=True, read_only=True)
     # linked_words = LinkedWordSerializer(many=True, read_only=True)
     # translations = TranslationSerializer(many=True, read_only=True)
 
     class Meta:
         model = Word
-        fields = ["id", "title", "articles", "parts_of_speech", "sentence"]
+        fields = ["id", "level", "language", "title", "articles", "parts_of_speech", "sentence"]
