@@ -26,8 +26,7 @@ const Content: FC<ContentProps> = ({ language, content }) => {
     <div className="flex justify-center gap-2">
       <Avatar alt={language} className="w-6 h-6" src={imageUrl}/> {content} <Press><SpeakerLoudIcon/></Press>
     </div>
-)
-  ;
+  );
 }
 
 export default Content;
