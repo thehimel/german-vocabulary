@@ -9,19 +9,21 @@ export interface WordStateProps {
   error: string | null;
 }
 
+const initialWord: WordProps = {
+  id: 0,
+  level: "",
+  language: { code: "" as Language },
+  title: "",
+  articles: [{ title: "" }],
+  parts_of_speech: [{ title: ""}],
+  sentence: "",
+  notes: [{ title: ""}],
+  linked_words: [{} as WordProps],
+  translations: [{} as WordProps],
+}
+
 const initialState: WordStateProps = {
-  word: {
-    id: 0,
-    level: "",
-    language: { code: "" as Language },
-    title: "",
-    articles: [{ title: "" }],
-    parts_of_speech: [{ title: ""}],
-    sentence: "",
-    notes: [{ title: ""}],
-    linked_words: [{} as WordProps],
-    translations: [{} as WordProps],
-  },
+  word: initialWord,
   loading: false,
   error: null,
 };
