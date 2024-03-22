@@ -10,14 +10,14 @@ export const fetchWord = (id: number, secondaryLanguage: Language) => {
   return async (dispatch: AppDispatch) => {
     const WORDS_API_URL_WITH_ID = `${WORDS_API_URL}/${id}/`
     try {
-      dispatch(wordActions.setLoading());
+      dispatch(wordActions.setWordLoading());
       const response = await axios.get(WORDS_API_URL_WITH_ID, {
         params: {secondary_language: secondaryLanguage}
       });
       dispatch(wordActions.setWord(response.data));
     } catch (error) {
       const errorMessage = getErrorMessage(WORDS_API_URL_WITH_ID, error as AxiosError)
-      dispatch(wordActions.setError(errorMessage));
+      dispatch(wordActions.setWordError(errorMessage));
     }
   };
 };

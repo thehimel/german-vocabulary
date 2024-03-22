@@ -17,13 +17,14 @@ const wordSlice = createSlice({
   name: slices.word,
   initialState,
   reducers: {
-    setLoading(state): void {
+    setWordLoading(state): void {
       state.loading = true;
     },
     setWord(state, action): void {
       state.word = action.payload;
+      state.loading = false;
     },
-    setError(state, action): void {
+    setWordError(state, action): void {
       state.error = action.payload;
       state.loading = false;
     },
