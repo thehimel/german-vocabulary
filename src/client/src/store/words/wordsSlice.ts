@@ -1,7 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {slices} from "../constants.ts";
 
-type Language = "de" | "en" | "bn";
+export type Language = "de" | "en" | "bn";
 
 export interface WordsStateProps {
   words: [];
