@@ -1,8 +1,8 @@
 import {wordActions} from "./wordSlice.ts";
 import axios, {AxiosError} from "axios";
-import {AppDispatch} from "./store.ts";
-import {WORDS_API_URL} from "./constants.ts";
-import {getErrorMessage} from "./handleError.ts";
+import {AppDispatch} from "../store.ts";
+import {WORDS_API_URL} from "../constants.ts";
+import {getErrorMessage} from "../handleError.ts";
 
 
 export const fetchWords = () => {

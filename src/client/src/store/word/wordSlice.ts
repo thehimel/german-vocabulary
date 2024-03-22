@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {slices} from "./constants.ts";
+import {slices} from "../constants.ts";
 
 export interface WordStateProps {
   words: [];
