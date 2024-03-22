@@ -15,7 +15,7 @@ interface BaseState {
 const initialState: BaseState = {
   darkMode: true,
   primaryLanguage: 'de',
-  secondaryLanguage: 'en',
+  secondaryLanguage: 'bn',
   level: 'a1',
 }
 
