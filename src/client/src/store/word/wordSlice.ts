@@ -1,10 +1,12 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {slices} from "../constants.ts";
 
+type Language = "de" | "en" | "bn";
+
 export interface WordStateProps {
   words: [];
-  primary_language: string;
-  secondary_language: string;
+  primary_language: Language;
+  secondary_language: Language;
   word: { [key: string]: string };
   loading: boolean;
   error: string | null;
