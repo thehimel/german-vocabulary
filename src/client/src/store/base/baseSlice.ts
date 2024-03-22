@@ -2,12 +2,12 @@ import {createSlice} from "@reduxjs/toolkit";
 import {slices} from "../constants.ts";
 
 interface BaseState {
-  isDarkMode: boolean;
+  darkMode: boolean;
 }
 
 // Define the initial state using that type
 const initialState: BaseState = {
-  isDarkMode: true,
+  darkMode: true,
 }
 
 const baseSlice = createSlice({
@@ -15,7 +15,7 @@ const baseSlice = createSlice({
   initialState,
   reducers: {
     toggleDarkMode(state): void {
-      state.isDarkMode = !state.isDarkMode;
+      state.darkMode = !state.darkMode;
     }
   }
 });
