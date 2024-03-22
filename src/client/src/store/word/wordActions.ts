@@ -8,7 +8,7 @@ import {Language} from "../base/baseSlice.ts";
 
 export const fetchWord = (id: number, secondaryLanguage: Language) => {
   return async (dispatch: AppDispatch) => {
-    const WORDS_API_URL_WITH_ID = `${WORDS_API_URL}/${id}/`
+    const WORDS_API_URL_WITH_ID = `${WORDS_API_URL}${id}/`
     try {
       dispatch(wordActions.setWordLoading());
       const response = await axios.get(WORDS_API_URL_WITH_ID, {
