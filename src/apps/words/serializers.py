@@ -51,4 +51,4 @@ class WordListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Word
-        fields = ["title", "articles", "parts_of_speech", "sentence"]
+        fields = ["id", "title", "articles", "parts_of_speech", "sentence"]
