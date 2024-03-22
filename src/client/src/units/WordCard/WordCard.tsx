@@ -3,6 +3,7 @@ import {Modal, ModalBody, ModalContent, ModalFooter, ModalHeader} from "@nextui-
 import {CheckIcon, SpeakerLoudIcon} from "@radix-ui/react-icons";
 import Press from "../NavigationBar/Press.tsx";
 import {useAppSelector} from "../../store/hooks.ts";
+import Chips from "../Words/Chips.tsx";
 
 interface CardProps {
   isOpen: boolean;
@@ -36,10 +37,13 @@ const WordCard: FC<CardProps> = ({isOpen, onOpenChange}) => {
             <>
               <ModalHeader className="flex flex-col gap-1 pt-8">{word.title}</ModalHeader>
               <ModalBody>
-                <p>{word.title}</p>
+                <div className="flex flex-row justify-center gap-1">
+                  <Chips items={word.articles} color="secondary" variant="flat"/>
+                  <Chips items={word.parts_of_speech} color="secondary" variant="faded"/>
+                </div>
                 <p>This is second line.
                   <Press>
-                    <SpeakerLoudIcon className="ms-1" />
+                    <SpeakerLoudIcon className="ms-1"/>
                   </Press>
                 </p>
                 <p>{word.sentence}</p>
