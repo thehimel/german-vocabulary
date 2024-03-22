@@ -3,7 +3,7 @@ import {slices} from "../constants.ts";
 
 type Language = "de" | "en" | "bn";
 
-export interface WordStateProps {
+export interface WordsStateProps {
   words: [];
   primary_language: Language;
   secondary_language: Language;
@@ -12,7 +12,7 @@ export interface WordStateProps {
   error: string | null;
 }
 
-const initialState: WordStateProps = {
+const initialState: WordsStateProps = {
   words: [],
   primary_language: 'de',
   secondary_language: 'en',
