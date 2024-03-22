@@ -5,8 +5,8 @@ type Language = "de" | "en" | "bn";
 
 export interface WordsStateProps {
   words: [];
-  primary_language: Language;
-  secondary_language: Language;
+  primaryLanguage: Language;
+  secondaryLanguage: Language;
   word: { [key: string]: string };
   loading: boolean;
   error: string | null;
@@ -14,8 +14,8 @@ export interface WordsStateProps {
 
 const initialState: WordsStateProps = {
   words: [],
-  primary_language: 'de',
-  secondary_language: 'en',
+  primaryLanguage: 'de',
+  secondaryLanguage: 'en',
   word: {},
   loading: false,
   error: null,
@@ -29,10 +29,10 @@ const wordsSlice = createSlice({
       state.loading = true;
     },
     setPrimaryLanguage(state, action: {payload: Language}): void {
-      state.primary_language = action.payload;
+      state.primaryLanguage = action.payload;
     },
     setSecondaryLanguage(state, action: {payload: Language}): void {
-      state.secondary_language = action.payload;
+      state.secondaryLanguage = action.payload;
     },
     setWord(state, action): void {
       state.word = action.payload;
