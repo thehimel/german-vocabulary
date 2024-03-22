@@ -3,7 +3,7 @@ import {Select, SelectItem} from "@nextui-org/react";
 export default function Languages() {
   return (
     <Select
-      className="max-w-xs"
+      className="max-w-xs w-3/5"
       label="Level"
       placeholder="Select level"
       defaultSelectedKeys={["a1"]}
