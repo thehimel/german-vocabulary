@@ -1,4 +1,5 @@
 export const slices = {
+  base: "base",
   word: "word",
 }
 
