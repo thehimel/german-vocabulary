@@ -1,9 +1,8 @@
 import {FC} from "react";
-import {Modal, ModalBody, ModalContent, ModalFooter, ModalHeader} from "@nextui-org/react";
-import {CheckIcon, SpeakerLoudIcon} from "@radix-ui/react-icons";
-import Press from "../NavigationBar/Press.tsx";
+import {Divider, Modal, ModalBody, ModalContent, ModalHeader} from "@nextui-org/react";
 import {useAppSelector} from "../../store/hooks.ts";
 import Chips from "../Words/Chips.tsx";
+import Content from "./Content.tsx";
 
 interface CardProps {
   isOpen: boolean;
@@ -24,35 +23,31 @@ const WordCard: FC<CardProps> = ({isOpen, onOpenChange}) => {
     <>
       <Modal
         isOpen={isOpen}
-        hideCloseButton
         placement="center"
         backdrop="blur"
         onOpenChange={onOpenChange}
-        className={`${bgColor} me-5`}
+        className={`${bgColor} p-4 pb-6 me-5`}
         size="xs"
         motionProps={motionProps}
       >
         <ModalContent className="text-center">
-          {(onClose) => (
+          {() => (
             <>
-              <ModalHeader className="flex flex-col gap-1 pt-8">{word.title}</ModalHeader>
+              <ModalHeader className="flex flex-col">
+                <Content content={word.title}/>
+              </ModalHeader>
               <ModalBody>
                 <div className="flex flex-row justify-center gap-1">
                   <Chips items={word.articles} color="secondary" variant="flat"/>
                   <Chips items={word.parts_of_speech} color="secondary" variant="faded"/>
                 </div>
-                <p>This is second line.
-                  <Press>
-                    <SpeakerLoudIcon className="ms-1"/>
-                  </Press>
-                </p>
-                <p>{word.sentence}</p>
+                <Content content={word.sentence}/>
               </ModalBody>
-              <ModalFooter>
-                <Press onPress={onClose}>
-                  <CheckIcon />
-                </Press>
-              </ModalFooter>
+              <Divider className="mt-2" />
+              <ModalHeader className="flex flex-col pt-6">
+                <Content content={word.translations?.[0].title}/>
+              </ModalHeader>
+              <Content content={word.translations?.[0].sentence}/>
             </>
           )}
         </ModalContent>
