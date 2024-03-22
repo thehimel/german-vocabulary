@@ -25,12 +25,12 @@ const wordSlice = createSlice({
   name: slices.word,
   initialState,
   reducers: {
+    setLoading(state): void {
+      state.loading = true; // Set loading to true when fetching data
+    },
     updateWords(state, action): void {
       state.words = action.payload;
       state.loading = false; // Set loading to false when data is fetched
-    },
-    setLoading(state): void {
-      state.loading = true; // Set loading to true when fetching data
     },
     setError(state, action): void {
       state.error = action.payload;
