@@ -26,7 +26,7 @@ const WordCard: FC<CardProps> = ({isOpen, onOpenChange}) => {
         placement="center"
         backdrop="blur"
         onOpenChange={onOpenChange}
-        className={`${bgColor} p-4 pb-6 me-5`}
+        className={`${bgColor} p-4 pb-6`}
         size="xs"
         motionProps={motionProps}
       >
