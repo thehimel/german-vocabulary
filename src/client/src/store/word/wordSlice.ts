@@ -26,15 +26,24 @@ const wordSlice = createSlice({
   initialState,
   reducers: {
     setLoading(state): void {
-      state.loading = true; // Set loading to true when fetching data
+      state.loading = true;
+    },
+    setPrimaryLanguage(state, action: {payload: Language}): void {
+      state.primary_language = action.payload;
+    },
+    setSecondaryLanguage(state, action: {payload: Language}): void {
+      state.secondary_language = action.payload;
+    },
+    setWord(state, action): void {
+      state.word = action.payload;
     },
     updateWords(state, action): void {
       state.words = action.payload;
-      state.loading = false; // Set loading to false when data is fetched
+      state.loading = false;
     },
     setError(state, action): void {
       state.error = action.payload;
-      state.loading = false; // Set loading to false on error
+      state.loading = false;
     },
   },
 });
