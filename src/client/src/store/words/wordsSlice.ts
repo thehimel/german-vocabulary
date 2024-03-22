@@ -7,7 +7,6 @@ export interface WordsStateProps {
   words: [];
   primaryLanguage: Language;
   secondaryLanguage: Language;
-  word: { [key: string]: string };
   loading: boolean;
   error: string | null;
 }
@@ -16,7 +15,6 @@ const initialState: WordsStateProps = {
   words: [],
   primaryLanguage: 'de',
   secondaryLanguage: 'en',
-  word: {},
   loading: false,
   error: null,
 };
@@ -33,9 +31,6 @@ const wordsSlice = createSlice({
     },
     setSecondaryLanguage(state, action: {payload: Language}): void {
       state.secondaryLanguage = action.payload;
-    },
-    setWord(state, action): void {
-      state.word = action.payload;
     },
     setWords(state, action): void {
       state.words = action.payload;
