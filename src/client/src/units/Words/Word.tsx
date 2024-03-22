@@ -2,8 +2,12 @@ import {FC} from "react";
 import {Card, CardBody, CardHeader, Divider, useDisclosure} from "@nextui-org/react";
 import WordCard from "../WordCard/WordCard.tsx";
 import Chips from "./Chips.tsx";
+import {useAppDispatch, useAppSelector} from "../../store/hooks.ts";
+import {AppDispatch} from "../../store/store.ts";
+import {fetchWord} from "../../store/word/wordActions.ts";
 
 export interface WordProps {
+  id: number;
   title: string;
   sentence: string;
   articles: [{ title: string; }];
@@ -17,10 +21,16 @@ export interface WordItemProps {
 
 const Word: FC<WordItemProps> = ({ item }) => {
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
+  const dispatch: AppDispatch = useAppDispatch();
+  const secondaryLanguage = useAppSelector((state) => state.words.secondaryLanguage);
+  const handlePress = () => {
+    dispatch(fetchWord(item.id, secondaryLanguage));
+    onOpen();
+  };
 
   return (
     <>
-      <Card className="max-w-[400px] shadow-sm shadow-purple-500" isPressable onPress={onOpen}>
+      <Card className="max-w-[400px] shadow-sm shadow-purple-500" isPressable onPress={handlePress}>
         <CardHeader className="flex justify-center">
           <div className="flex flex-col gap-3">
             <div className="flex flex-row justify-center">

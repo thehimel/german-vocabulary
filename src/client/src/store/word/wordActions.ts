@@ -6,7 +6,7 @@ import {getErrorMessage} from "../handleError.ts";
 import {Language} from "../words/wordsSlice.ts";
 
 
-export const fetchWord = (id: string, secondaryLanguage: Language) => {
+export const fetchWord = (id: number, secondaryLanguage: Language) => {
   return async (dispatch: AppDispatch) => {
     const WORDS_API_URL_WITH_ID = `${WORDS_API_URL}/${id}/`
     try {
