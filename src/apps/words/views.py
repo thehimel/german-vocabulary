@@ -6,7 +6,7 @@ from rest_framework.generics import ListAPIView
 from apps.base.utils.decorators import language_preferences_required
 from apps.base.utils.languages import get_level, get_primary_language
 from apps.words.models import Word
-from apps.words.serializers import WordSerializer
+from apps.words.serializers import WordListSerializer
 
 
 # Create your views here.
@@ -60,5 +60,5 @@ class WordDetailView(DetailView):
 
 
 class WordListAPIView(ListAPIView):
-    queryset = Word.objects.filter(hidden=False).order_by('language__code', 'title')
-    serializer_class = WordSerializer
+    queryset = Word.objects.filter(hidden=False).order_by("title")
+    serializer_class = WordListSerializer
