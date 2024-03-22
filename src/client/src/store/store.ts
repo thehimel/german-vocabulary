@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
-import {wordReducer} from "./word/wordSlice.ts";
+import {wordsReducer} from "./words/wordsSlice.ts";
 import {baseReducer} from "./base/baseSlice.ts";
 
 const store = configureStore({
   reducer: {
     base: baseReducer,
-    words: wordReducer,
+    words: wordsReducer,
   }
 })
 
