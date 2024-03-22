@@ -31,25 +31,21 @@ const WordCard: FC<CardProps> = ({isOpen, onOpenChange}) => {
         motionProps={motionProps}
       >
         <ModalContent className="text-center">
-          {() => (
-            <>
-              <ModalHeader className="flex flex-col">
-                <Content content={word.title}/>
-              </ModalHeader>
-              <ModalBody>
-                <div className="flex flex-row justify-center gap-1">
-                  <Chips items={word.articles} color="secondary" variant="flat"/>
-                  <Chips items={word.parts_of_speech} color="secondary" variant="faded"/>
-                </div>
-                <Content content={word.sentence}/>
-              </ModalBody>
-              <Divider className="mt-2" />
-              <ModalHeader className="flex flex-col pt-6">
-                <Content content={word.translations?.[0].title}/>
-              </ModalHeader>
-              <Content content={word.translations?.[0].sentence}/>
-            </>
-          )}
+          <ModalHeader className="flex flex-col">
+            <Content language={word.language.code} content={word.title}/>
+          </ModalHeader>
+          <ModalBody>
+            <div className="flex flex-row justify-center gap-1">
+              <Chips items={word.articles} color="secondary" variant="flat"/>
+              <Chips items={word.parts_of_speech} color="secondary" variant="faded"/>
+            </div>
+            <Content language={word.language.code} content={word.sentence}/>
+          </ModalBody>
+          <Divider className="mt-2"/>
+          <ModalHeader className="flex flex-col pt-6">
+            <Content language="en" content={word.translations?.[0].title}/>
+          </ModalHeader>
+          <Content language="en" content={word.translations?.[0].sentence}/>
         </ModalContent>
       </Modal>
     </>

@@ -5,11 +5,12 @@ import Chips from "./Chips.tsx";
 import {useAppDispatch, useAppSelector} from "../../store/hooks.ts";
 import {AppDispatch} from "../../store/store.ts";
 import {fetchWord} from "../../store/word/wordActions.ts";
+import {Language} from "../../store/base/baseSlice.ts";
 
 export interface WordProps {
   id: number;
   level: string;
-  language: { code: string };
+  language: { code: Language };
   title: string;
   articles: [{ title: string }];
   parts_of_speech: [{ title: string }];
