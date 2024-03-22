@@ -3,13 +3,12 @@ import {Navbar, NavbarBrand, NavbarMenuToggle, NavbarMenuItem, NavbarMenu, Navba
 import {ThemeSwitcher} from "../Theme/ThemeSwitcher.tsx";
 import SearchBar from "./SearchBar.tsx";
 import Brand from "./Brand.tsx";
+import {useAppSelector} from "../../store/hooks.ts";
 
-interface NavigationBarProps {
-  isDarkMode: boolean;
-}
 
-const NavigationBar: React.FC<NavigationBarProps> = ({ isDarkMode }) => {
+const NavigationBar = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const darkMode = useAppSelector((state) => state.base.darkMode);
 
   const menuItems = [
     "Profile",
@@ -72,7 +71,7 @@ const NavigationBar: React.FC<NavigationBarProps> = ({ isDarkMode }) => {
         </NavbarItem>
       </NavbarContent>
 
-      <NavbarMenu className={`${isDarkMode ? 'dark' : ''}`}>
+      <NavbarMenu className={`${darkMode ? 'dark' : ''}`}>
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link

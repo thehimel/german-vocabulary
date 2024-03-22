@@ -4,7 +4,6 @@ interface SearchIconProps {
   strokeWidth?: number;
   width?: number;
   height?: number;
-  [key: string]: any; // Allow additional props
 }
 
 export const SearchIcon = ({

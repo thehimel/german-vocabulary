@@ -1,8 +1,8 @@
 import {FC} from "react";
 import {Modal, ModalBody, ModalContent, ModalFooter, ModalHeader} from "@nextui-org/react";
-import useDarkMode from "use-dark-mode";
 import {CheckIcon, SpeakerLoudIcon} from "@radix-ui/react-icons";
 import Press from "../NavigationBar/Press.tsx";
+import {useAppSelector} from "../../store/hooks.ts";
 
 interface CardProps {
   isOpen: boolean;
@@ -10,8 +10,8 @@ interface CardProps {
 }
 
 const WordCard: FC<CardProps> = ({isOpen, onOpenChange}) => {
-  const isDarkMode = useDarkMode().value;
-  const bgColor = isDarkMode ? 'dark text-gray-50' : '';
+  const darkMode = useAppSelector((state) => state.base.darkMode);
+  const bgColor = darkMode ? 'dark text-gray-50' : '';
   const motionProps = {
     variants: {
       enter: {

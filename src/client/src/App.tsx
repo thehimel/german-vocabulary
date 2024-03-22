@@ -1,13 +1,13 @@
 import Base from "./Base.tsx";
-import useDarkMode from "use-dark-mode";
 import Metadata from "./units/Metadata/Metadata.tsx";
+import {useAppSelector} from "./store/hooks.ts";
 
 
 function App() {
-  const darkMode = useDarkMode(true);
+  const darkMode = useAppSelector((state) => state.base.darkMode);
 
   return (
-    <main className={`${darkMode.value ? 'dark' : ''} text-foreground bg-background`}>
+    <main className={`${darkMode ? 'dark' : ''} text-foreground bg-background`}>
       <Metadata/>
       <Base/>
     </main>
