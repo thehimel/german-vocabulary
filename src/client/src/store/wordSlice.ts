@@ -1,12 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {slices} from "./constants.ts";
-import {WordProps} from "../units/Words/Word.tsx";
-
-export interface WordsProps {
-  word: {
-    words: [WordProps]
-  };
-}
 
 export interface WordStateProps {
   words: [];
@@ -26,7 +19,7 @@ const initialState: WordStateProps = {
   error: null,
 };
 
-const WordSlice = createSlice({
+const wordSlice = createSlice({
   name: slices.word,
   initialState,
   reducers: {
@@ -44,5 +37,5 @@ const WordSlice = createSlice({
   },
 });
 
-export const WordActions = WordSlice.actions;
-export const WordReducer = WordSlice.reducer;
+export const wordActions = wordSlice.actions;
+export const wordReducer = wordSlice.reducer;

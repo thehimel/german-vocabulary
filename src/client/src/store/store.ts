@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
-import {WordReducer} from "./wordSlice.ts";
+import {wordReducer} from "./wordSlice.ts";
 
 const store = configureStore({
   reducer: {
-    words: WordReducer,
+    words: wordReducer,
   }
 })
 

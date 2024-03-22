@@ -1,6 +1,6 @@
 import {AxiosError} from "axios";
 import {AppDispatch} from "./store.ts";
-import {WordActions} from "./wordSlice.ts";
+import {wordActions} from "./wordSlice.ts";
 
 
 interface AxiosErrorResponseData {
@@ -15,5 +15,5 @@ export const dispatchError = (dispatch: AppDispatch, api_url: string, error: Axi
   } else {
     errorMessage = error.message || 'An unknown error occurred';
   }
-  dispatch(WordActions.setError(`${api_url}: ${errorMessage}`));
+  dispatch(wordActions.setError(`${api_url}: ${errorMessage}`));
 };
