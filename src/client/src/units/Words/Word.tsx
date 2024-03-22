@@ -8,11 +8,15 @@ import {fetchWord} from "../../store/word/wordActions.ts";
 
 export interface WordProps {
   id: number;
-  title: string;
-  sentence: string;
-  articles: [{ title: string; }];
-  parts_of_speech: [{ title: string; }];
   level: string;
+  language: { code: string };
+  title: string;
+  articles: [{ title: string }];
+  parts_of_speech: [{ title: string }];
+  sentence: string;
+  notes: [Record<string, string>];
+  linked_words: WordProps[];
+  translations: WordProps[];
 }
 
 export interface WordItemProps {
