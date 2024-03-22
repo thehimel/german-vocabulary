@@ -2,7 +2,7 @@ import {wordActions} from "./wordSlice.ts";
 import axios, {AxiosError} from "axios";
 import {AppDispatch} from "./store.ts";
 import {WORDS_API_URL} from "./constants.ts";
-import {dispatchError} from "./handleError.ts";
+import {getErrorMessage} from "./handleError.ts";
 
 
 export const fetchWords = () => {
@@ -12,7 +12,8 @@ export const fetchWords = () => {
       const response = await axios.get(WORDS_API_URL);
       dispatch(wordActions.updateWords(response.data));
     } catch (error) {
-      dispatchError(dispatch, WORDS_API_URL, error as AxiosError)
+      const errorMessage = getErrorMessage(WORDS_API_URL, error as AxiosError)
+      dispatch(wordActions.setError(errorMessage));
     }
   };
 };
