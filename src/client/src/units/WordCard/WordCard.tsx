@@ -10,6 +10,7 @@ interface CardProps {
 }
 
 const WordCard: FC<CardProps> = ({isOpen, onOpenChange}) => {
+  const word = useAppSelector((state) => state.word.word);
   const darkMode = useAppSelector((state) => state.base.darkMode);
   const bgColor = darkMode ? 'dark text-gray-50' : '';
   const motionProps = {
@@ -47,13 +48,13 @@ const WordCard: FC<CardProps> = ({isOpen, onOpenChange}) => {
             <>
               <ModalHeader className="flex flex-col gap-1 pt-8">Modal Title</ModalHeader>
               <ModalBody>
-                <p>This is first line.</p>
+                <p>{word.title}</p>
                 <p>This is second line.
                   <Press>
                     <SpeakerLoudIcon className="ms-1" />
                   </Press>
                 </p>
-                <p>This is third line.</p>
+                <p>{word.sentence}</p>
               </ModalBody>
               <ModalFooter>
                 <Press onPress={onClose}>
