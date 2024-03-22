@@ -3,7 +3,7 @@ import {wordActions} from "./wordSlice.ts";
 import axios, {AxiosError} from "axios";
 import {WORDS_API_URL} from "../constants.ts";
 import {getErrorMessage} from "../handleError.ts";
-import {Language} from "../words/wordsSlice.ts";
+import {Language} from "../base/baseSlice.ts";
 
 
 export const fetchWord = (id: number, secondaryLanguage: Language) => {

@@ -22,7 +22,7 @@ export interface WordItemProps {
 const Word: FC<WordItemProps> = ({ item }) => {
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
   const dispatch: AppDispatch = useAppDispatch();
-  const secondaryLanguage = useAppSelector((state) => state.words.secondaryLanguage);
+  const secondaryLanguage = useAppSelector((state) => state.base.secondaryLanguage);
   const handlePress = () => {
     dispatch(fetchWord(item.id, secondaryLanguage));
     onOpen();
