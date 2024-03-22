@@ -37,7 +37,7 @@ const wordSlice = createSlice({
     setWord(state, action): void {
       state.word = action.payload;
     },
-    updateWords(state, action): void {
+    setWords(state, action): void {
       state.words = action.payload;
       state.loading = false;
     },

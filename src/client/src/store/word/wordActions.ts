@@ -10,7 +10,7 @@ export const fetchWords = () => {
     try {
       dispatch(wordActions.setLoading());
       const response = await axios.get(WORDS_API_URL);
-      dispatch(wordActions.updateWords(response.data));
+      dispatch(wordActions.setWords(response.data));
     } catch (error) {
       const errorMessage = getErrorMessage(WORDS_API_URL, error as AxiosError)
       dispatch(wordActions.setError(errorMessage));
