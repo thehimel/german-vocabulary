@@ -1,8 +1,8 @@
 import {FC} from "react";
 import {Divider, Modal, ModalBody, ModalContent, ModalHeader} from "@nextui-org/react";
 import {useAppSelector} from "../../store/hooks.ts";
-import Chips from "../Words/Chips.tsx";
 import Content from "./Content.tsx";
+import ArticlesPOS from "../Words/ArticlesPOS.tsx";
 
 interface CardProps {
   isOpen: boolean;
@@ -41,10 +41,7 @@ const WordCard: FC<CardProps> = ({isOpen, onOpenChange}) => {
             <Content flag={true} language={word.language.code} content={word.title}/>
           </ModalHeader>
           <ModalBody>
-            <div className="flex flex-row justify-center gap-1">
-              { word.articles && (<Chips items={word.articles} color="secondary" variant="flat"/>) }
-              { word.parts_of_speech && (<Chips items={word.parts_of_speech} color="secondary" variant="faded"/>) }
-            </div>
+            <ArticlesPOS word={word}/>
             <Content language={word.language.code} content={word.sentence}/>
           </ModalBody>
           {translation.title && (

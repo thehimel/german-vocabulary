@@ -1,10 +1,10 @@
 import {FC} from "react";
 import {Card, CardBody, CardHeader, Divider, useDisclosure} from "@nextui-org/react";
 import WordCard from "../WordCard/WordCard.tsx";
-import Chips from "./Chips.tsx";
 import {useAppDispatch, useAppSelector} from "../../store/hooks.ts";
 import {AppDispatch} from "../../store/store.ts";
 import {fetchWord} from "../../store/word/wordActions.ts";
+import ArticlesPOS from "./ArticlesPOS.tsx";
 
 export interface WordProps {
   id: number;
@@ -40,10 +40,7 @@ const Word: FC<WordItemProps> = ({ word }) => {
             <div className="flex flex-row justify-center">
               <p className="text-md">{word.title}</p>
             </div>
-            <div className="flex flex-row justify-center gap-1">
-              { word.articles && (<Chips items={word.articles} color="secondary" variant="flat"/>) }
-              { word.parts_of_speech && (<Chips items={word.parts_of_speech} color="secondary" variant="faded"/>) }
-            </div>
+            <ArticlesPOS word={word}/>
           </div>
         </CardHeader>
         <Divider/>
