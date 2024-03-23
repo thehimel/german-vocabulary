@@ -5,10 +5,12 @@ import {WORDS_API_URL} from "../constants.ts";
 import {getErrorMessage} from "../handleError.ts";
 
 
-export const fetchWords = (primaryLanguage: string, level: string, searchQuery?: string) => {
+export const fetchWords = (primaryLanguage: string, level: string, searchQuery?: string, disableLoader?: boolean) => {
   return async (dispatch: AppDispatch) => {
     try {
-      dispatch(wordsActions.setWordsLoading());
+      if (!disableLoader) {
+        dispatch(wordsActions.setWordsLoading());
+      }
       const params: Record<string, string> = {
         primary_language: primaryLanguage,
         level: level,
