@@ -1,6 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {slices} from "../constants.ts";
-import {filterLanguageChoices} from "../../units/utils/utils.ts";
 
 export type Language = "de" | "en" | "bn";
 export type Level = "a1" | "a2" | "b1" | "b2" | "c1" | "c2";
@@ -11,10 +10,20 @@ export const languageChoices = [
   {language: "bn", label: "Bengali", country: "bd"}
 ]
 
-export interface LanguageChoices {
+export const levelChoices = [
+  {key: "a1", label: "A1"},
+  {key: "a2", label: "A2"},
+]
+
+export interface LanguageChoice {
   language: string;
   label: string;
   country: string;
+}
+
+export interface LevelChoice {
+  key: string,
+  label: string
 }
 
 interface BaseState {
@@ -23,7 +32,7 @@ interface BaseState {
   secondaryLanguage: string;
   level: string;
   isPlaying: boolean;
-  secondaryLanguageChoices: LanguageChoices[]
+  secondaryLanguageChoices: LanguageChoice[]
 }
 
 // Define the initial state using that type
@@ -33,7 +42,7 @@ const initialState: BaseState = {
   secondaryLanguage: 'bn',
   level: 'a1',
   isPlaying: false,
-  secondaryLanguageChoices: filterLanguageChoices(languageChoices, 'de'),
+  secondaryLanguageChoices: languageChoices,
 }
 
 const baseSlice = createSlice({
@@ -51,9 +60,6 @@ const baseSlice = createSlice({
     },
     setSecondaryLanguage(state, action: {payload: Language | string}): void {
       state.secondaryLanguage = action.payload;
-    },
-    setSecondaryLanguageChoices(state): void {
-      state.secondaryLanguageChoices = filterLanguageChoices(languageChoices, state.primaryLanguage);
     },
     setLevel(state, action: {payload: Level | string}): void {
       state.level = action.payload;

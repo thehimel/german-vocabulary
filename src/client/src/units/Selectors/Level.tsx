@@ -1,8 +1,16 @@
 import {Select, SelectItem} from "@nextui-org/react";
 import {FC} from "react";
-import {SelectorProps} from "./Languages.tsx";
+import {LevelChoice} from "../../store/base/baseSlice.ts";
+import {SelectorChange} from "./Selectors.tsx";
 
-const Level: FC<SelectorProps> = ({ label, defaultKey, onChange }) => {
+interface LevelSelectorProps {
+  label: string;
+  defaultKey: string;
+  choices: LevelChoice[];
+  onChange: SelectorChange;
+}
+
+const Level: FC<LevelSelectorProps> = ({ label, defaultKey, choices, onChange }) => {
   return (
     <Select
       className="max-w-xs w-3/5"
@@ -11,9 +19,9 @@ const Level: FC<SelectorProps> = ({ label, defaultKey, onChange }) => {
       defaultSelectedKeys={[defaultKey]}
       onChange={onChange}
     >
-      <SelectItem key="a1">A1</SelectItem>
-      <SelectItem key="a2">A2</SelectItem>
-      <SelectItem key="a3">A3</SelectItem>
+      {choices.map((choice: LevelChoice) => (
+        <SelectItem key={choice.key}>{choice.label}</SelectItem>
+      ))}
     </Select>
   );
 }

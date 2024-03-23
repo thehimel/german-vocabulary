@@ -1,14 +1,16 @@
 import {Select, SelectItem, Avatar} from "@nextui-org/react";
 import {SelectorChange} from "./Selectors.tsx";
 import {FC} from "react";
+import {LanguageChoice} from "../../store/base/baseSlice.ts";
 
-export interface SelectorProps {
+interface LanguageSelectorProps {
   label: string;
   defaultKey: string;
+  choices: LanguageChoice[];
   onChange: SelectorChange;
 }
 
-const Languages: FC<SelectorProps> = ({ label, defaultKey, onChange }) => {
+const Languages: FC<LanguageSelectorProps> = ({ label, defaultKey, choices, onChange }) => {
   return (
     <Select
       className="max-w-xs"
@@ -17,24 +19,14 @@ const Languages: FC<SelectorProps> = ({ label, defaultKey, onChange }) => {
       defaultSelectedKeys={[defaultKey]}
       onChange={onChange}
     >
-      <SelectItem
-        key="de"
-        startContent={<Avatar alt="German" className="w-6 h-6" src="https://flagcdn.com/de.svg" />}
-      >
-        German
-      </SelectItem>
-      <SelectItem
-        key="en"
-        startContent={<Avatar alt="English" className="w-6 h-6" src="https://flagcdn.com/us.svg" />}
-      >
-        English
-      </SelectItem>
-      <SelectItem
-        key="bn"
-        startContent={<Avatar alt="Bengali" className="w-6 h-6" src="https://flagcdn.com/bd.svg" />}
-      >
-        Bengali
-      </SelectItem>
+      {choices.map((choice: LanguageChoice) => (
+        <SelectItem
+          key={choice.language}
+          startContent={<Avatar alt={choice.label} className="w-6 h-6" src={`https://flagcdn.com/${choice.country}.svg`} />}
+        >
+          {choice.label}
+        </SelectItem>
+      ))}
     </Select>
   );
 }
