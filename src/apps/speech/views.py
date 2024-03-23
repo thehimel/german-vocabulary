@@ -11,13 +11,13 @@ class TextToSpeechAPIView(APIView):
     @staticmethod
     def get(request, *args, **kwargs):
         input_text = request.query_params.get("text", "")
-        language_code = request.query_params.get("language_code", "en")
+        language = request.query_params.get("language", "en")
 
         if not input_text:
             return Response({"error": "The text parameter is missing."}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
-            tts = gTTS(text=input_text, lang=language_code, slow=True)
+            tts = gTTS(text=input_text, lang=language, slow=True)
 
             output_file = BytesIO()
             tts.write_to_fp(output_file)
