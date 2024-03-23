@@ -27,6 +27,7 @@ export const SearchBar = ({size = "20rem",}: SearchBarProps) => {
         inputWrapper: "h-full font-normal text-default-500 bg-default-400/20 dark:bg-default-500/20",
       }}
       placeholder="Type to search..."
+      defaultValue=""
       size="sm"
       startContent={<SearchIcon size={18} />}
       type="search"
