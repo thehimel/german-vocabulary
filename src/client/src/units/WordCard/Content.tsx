@@ -1,12 +1,11 @@
 import {FC} from "react";
 import {Avatar} from "@nextui-org/react";
-import {Language} from "../../store/base/baseSlice.ts";
 import Player from "./Player/Player.tsx";
 
 
 interface ContentProps {
   flag?: boolean;
-  language: Language;
+  language: string;
   content: string;
 }
 

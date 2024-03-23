@@ -42,8 +42,8 @@ const WordCard: FC<CardProps> = ({isOpen, onOpenChange}) => {
           </ModalHeader>
           <ModalBody>
             <div className="flex flex-row justify-center gap-1">
-              <Chips items={word.articles} color="secondary" variant="flat"/>
-              <Chips items={word.parts_of_speech} color="secondary" variant="faded"/>
+              { word.articles && (<Chips items={word.articles} color="secondary" variant="flat"/>) }
+              { word.parts_of_speech && (<Chips items={word.parts_of_speech} color="secondary" variant="faded"/>) }
             </div>
             <Content language={word.language.code} content={word.sentence}/>
           </ModalBody>

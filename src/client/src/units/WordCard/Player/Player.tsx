@@ -1,6 +1,5 @@
 import { FC, useRef, useState } from "react";
 import axios from "axios";
-import { Language } from "../../../store/base/baseSlice.ts";
 import { TTS_API_URL } from "../../../store/constants.ts";
 import {SpeakerLoudIcon, SpeakerOffIcon} from "@radix-ui/react-icons";
 import {AppDispatch} from "../../../store/store.ts";
@@ -9,7 +8,7 @@ import {setIsPlayingGlobal} from "../../../store/base/baseActions.ts";
 
 interface Props {
   text: string;
-  language?: Language;
+  language?: string;
 }
 
 const Player: FC<Props> = ({ text, language }) => {
