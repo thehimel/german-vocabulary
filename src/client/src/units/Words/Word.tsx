@@ -40,9 +40,9 @@ const Word: FC<WordItemProps> = ({ item }) => {
             <div className="flex flex-row justify-center">
               <p className="text-md">{item.title}</p>
             </div>
-            <div className="flex flex-row gap-1">
-              <Chips items={item.articles} color="secondary" variant="flat"/>
-              <Chips items={item.parts_of_speech} color="secondary" variant="faded"/>
+            <div className="flex flex-row justify-center gap-1">
+              { item.articles && (<Chips items={item.articles} color="secondary" variant="flat"/>) }
+              { item.parts_of_speech && (<Chips items={item.parts_of_speech} color="secondary" variant="faded"/>) }
             </div>
           </div>
         </CardHeader>
