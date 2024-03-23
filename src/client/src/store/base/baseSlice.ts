@@ -39,7 +39,7 @@ interface BaseState {
 const initialState: BaseState = {
   darkMode: true,
   primaryLanguage: 'de',
-  secondaryLanguage: 'bn',
+  secondaryLanguage: 'en',
   level: 'a1',
   isPlaying: false,
   secondaryLanguageChoices: languageChoices,
