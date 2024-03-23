@@ -16,7 +16,13 @@ export const SearchBar = ({size = "20rem",}: SearchBarProps) => {
   const level = useAppSelector((state) => state.base.level);
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
-    dispatch(fetchWords(primaryLanguage, secondaryLanguage, level, value ? value : "", true));
+    dispatch(fetchWords({
+      primaryLanguage: primaryLanguage,
+      secondaryLanguage: secondaryLanguage,
+      level: level,
+      loader: false,
+      searchQuery: value ? value : ""
+    }));
   };
 
   return (
