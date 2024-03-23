@@ -4,7 +4,7 @@ import {ThemeSwitcher} from "../Theme/ThemeSwitcher.tsx";
 import SearchBar from "./SearchBar.tsx";
 import Brand from "./Brand.tsx";
 import {useAppSelector} from "../../store/hooks.ts";
-
+import {NavLink} from "react-router-dom";
 
 const NavigationBar = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -35,9 +35,9 @@ const NavigationBar = () => {
           <Brand key="center"/>
         </NavbarBrand>
         <NavbarItem isActive>
-          <Link color="foreground" aria-current="page" href="#">
+          <NavLink to="/">
             Home
-          </Link>
+          </NavLink>
         </NavbarItem>
         <NavbarItem>
           <Link color="foreground" href="#">
