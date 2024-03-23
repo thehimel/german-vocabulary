@@ -1,6 +1,11 @@
 import {FC} from "react";
-import {WordItemProps} from "./Word.tsx";
+
 import Chips from "./Chips.tsx";
+import {WordProps} from "./Word.tsx";
+
+export interface WordItemProps {
+  word: WordProps;
+}
 
 const ArticlesPOS: FC<WordItemProps> = ({ word }) => {
   return (

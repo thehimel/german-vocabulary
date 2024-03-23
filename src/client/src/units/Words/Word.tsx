@@ -3,7 +3,7 @@ import {Card, CardBody, CardHeader, Divider, useDisclosure} from "@nextui-org/re
 import WordCard from "../WordCard/WordCard.tsx";
 import {useAppDispatch, useAppSelector} from "../../store/hooks.ts";
 import {AppDispatch} from "../../store/store.ts";
-import {fetchWord} from "../../store/word/wordActions.ts";
+import {wordActions} from "../../store/word/wordSlice.ts";
 import ArticlesPOS from "./ArticlesPOS.tsx";
 
 export interface WordProps {
@@ -19,16 +19,17 @@ export interface WordProps {
   translations: WordProps[];
 }
 
-export interface WordItemProps {
+export interface WordWithIndexProps {
+  index: number;
   word: WordProps;
 }
 
-const Word: FC<WordItemProps> = ({ word }) => {
+const Word: FC<WordWithIndexProps> = ({ index, word }) => {
+  const words = useAppSelector((state) => state.words.words);
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
   const dispatch: AppDispatch = useAppDispatch();
-  const secondaryLanguage = useAppSelector((state) => state.base.secondaryLanguage);
   const handlePress = () => {
-    dispatch(fetchWord(word.id, secondaryLanguage));
+    dispatch(wordActions.setWord(words[index]));
     onOpen();
   };
 

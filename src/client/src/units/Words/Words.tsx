@@ -14,7 +14,7 @@ const Words: FC<WordsProps> = ({words}) => {
       <div
         className={`${size > 4 ? 'grid grid-cols-2 sm:grid-cols-4' : size > 2 ? 'grid grid-cols-2' : 'flex'} gap-2 m-2`}>
         {words.map((item, index) => (
-          <Word key={index} word={item}/>
+          <Word key={index} index={index} word={item}/>
         ))}
       </div>
     </div>

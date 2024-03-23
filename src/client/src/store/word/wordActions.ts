@@ -5,7 +5,7 @@ import {WORDS_API_URL} from "../constants.ts";
 import {getErrorMessage} from "../handleError.ts";
 
 
-export const fetchWord = (id: number, secondaryLanguage: string) => {
+export const fetchWord = ({id, secondaryLanguage}: {id: number, secondaryLanguage: string}) => {
   return async (dispatch: AppDispatch) => {
     const WORDS_API_URL_WITH_ID = `${WORDS_API_URL}${id}/`
     try {
