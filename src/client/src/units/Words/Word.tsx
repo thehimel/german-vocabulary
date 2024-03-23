@@ -20,15 +20,15 @@ export interface WordProps {
 }
 
 export interface WordItemProps {
-  item: WordProps;
+  word: WordProps;
 }
 
-const Word: FC<WordItemProps> = ({ item }) => {
+const Word: FC<WordItemProps> = ({ word }) => {
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
   const dispatch: AppDispatch = useAppDispatch();
   const secondaryLanguage = useAppSelector((state) => state.base.secondaryLanguage);
   const handlePress = () => {
-    dispatch(fetchWord(item.id, secondaryLanguage));
+    dispatch(fetchWord(word.id, secondaryLanguage));
     onOpen();
   };
 
@@ -38,17 +38,17 @@ const Word: FC<WordItemProps> = ({ item }) => {
         <CardHeader className="flex justify-center">
           <div className="flex flex-col gap-3">
             <div className="flex flex-row justify-center">
-              <p className="text-md">{item.title}</p>
+              <p className="text-md">{word.title}</p>
             </div>
             <div className="flex flex-row justify-center gap-1">
-              { item.articles && (<Chips items={item.articles} color="secondary" variant="flat"/>) }
-              { item.parts_of_speech && (<Chips items={item.parts_of_speech} color="secondary" variant="faded"/>) }
+              { word.articles && (<Chips items={word.articles} color="secondary" variant="flat"/>) }
+              { word.parts_of_speech && (<Chips items={word.parts_of_speech} color="secondary" variant="faded"/>) }
             </div>
           </div>
         </CardHeader>
         <Divider/>
         <CardBody>
-          <p className="text-center">{item.sentence}</p>
+          <p className="text-center">{word.sentence}</p>
         </CardBody>
       </Card>
       <WordCard isOpen={isOpen} onOpenChange={onOpenChange}/>
