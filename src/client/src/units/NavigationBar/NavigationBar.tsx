@@ -31,11 +31,13 @@ const NavigationBar = () => {
           </NavbarBrand>
         </NavLink>
 
-        <NavbarItem className="hidden md:flex" isActive>
-          <NavLink to="/">
-            Home
-          </NavLink>
-        </NavbarItem>
+        {/*
+          <NavbarItem className="hidden md:flex" isActive>
+            <NavLink to="/">
+              Home
+            </NavLink>
+          </NavbarItem>
+        */}
       </NavbarContent>
 
       <NavbarContent justify="end">
