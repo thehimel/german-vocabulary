@@ -77,7 +77,7 @@ const Player: FC<Props> = ({ text, language }) => {
     // If a button is pressed, the global isPlaying turns on. Therefore, all buttons becomes disabled.
     // When a button is connected to the current audio, it should not be disabled, therefore it is connected to
     // disabled=isButtonDisabled. If the button is not connected to the current audio, then disabled=isPlayingGlobal.
-    <button onClick={handleClick} disabled={isPlaying ? isButtonDisabled : isPlayingGlobal}>
+    <button className="ms-1" onClick={handleClick} disabled={isPlaying ? isButtonDisabled : isPlayingGlobal}>
       {isPlaying ? <SpeakerOffIcon /> : <SpeakerLoudIcon />}
     </button>
   );
