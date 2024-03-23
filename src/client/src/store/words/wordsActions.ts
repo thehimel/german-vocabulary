@@ -3,10 +3,9 @@ import axios, {AxiosError} from "axios";
 import {AppDispatch} from "../store.ts";
 import {WORDS_API_URL} from "../constants.ts";
 import {getErrorMessage} from "../handleError.ts";
-import {Language, Level} from "../base/baseSlice.ts";
 
 
-export const fetchWords = (primaryLanguage: Language | string, level: Level | string) => {
+export const fetchWords = (primaryLanguage: string, level: string) => {
   return async (dispatch: AppDispatch) => {
     try {
       dispatch(wordsActions.setWordsLoading());
