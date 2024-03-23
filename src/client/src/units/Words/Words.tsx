@@ -9,7 +9,7 @@ interface WordsProps {
 const Words: FC<WordsProps> = ({words}) => {
   return (
     <div className="flex justify-center">
-      <div className="gap-2 grid grid-cols-2 sm:grid-cols-4 m-2">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 m-2">
         {words.map((item, index) => (
           <Word key={index} item={item}/>
         ))}
