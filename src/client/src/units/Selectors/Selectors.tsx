@@ -18,8 +18,10 @@ function Selectors() {
 
   const changePrimaryLanguage = (e: ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value
-    dispatch(setPrimaryLanguage(value));
-    dispatch(fetchWords(value, level));
+    if (value) {
+      dispatch(setPrimaryLanguage(value));
+      dispatch(fetchWords(value, level));
+    }
   };
 
   const changeSecondaryLanguage = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -28,8 +30,10 @@ function Selectors() {
 
   const changeLevel = (e: ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value
-    dispatch(setLevel(value));
-    dispatch(fetchWords(primaryLanguage, value));
+    if (value) {
+      dispatch(setLevel(value));
+      dispatch(fetchWords(primaryLanguage, value));
+    }
   };
 
   return (
