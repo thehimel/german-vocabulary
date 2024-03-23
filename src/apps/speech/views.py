@@ -16,8 +16,10 @@ class TextToSpeechAPIView(APIView):
         if not input_text:
             return Response({"error": "The text parameter is missing."}, status=status.HTTP_400_BAD_REQUEST)
 
+        slow = False if language == "bn" else True
+
         try:
-            tts = gTTS(text=input_text, lang=language, slow=True)
+            tts = gTTS(text=input_text, lang=language, slow=slow)
 
             output_file = BytesIO()
             tts.write_to_fp(output_file)
