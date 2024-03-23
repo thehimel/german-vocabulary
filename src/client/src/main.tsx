@@ -1,4 +1,3 @@
-import React from 'react'
 import ReactDOM from 'react-dom/client'
 import {NextUIProvider} from '@nextui-org/react'
 import App from './App.tsx'
@@ -8,13 +7,11 @@ import store from "./store/store.ts";
 import {HelmetProvider} from "react-helmet-async";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <NextUIProvider>
-        <HelmetProvider>
-           <App/>
-        </HelmetProvider>
-      </NextUIProvider>
-    </Provider>
-  </React.StrictMode>
+  <Provider store={store}>
+    <NextUIProvider>
+      <HelmetProvider>
+         <App/>
+      </HelmetProvider>
+    </NextUIProvider>
+  </Provider>
 )

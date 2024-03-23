@@ -4,6 +4,7 @@ import {AppDispatch} from "../../store/store.ts";
 import {useAppDispatch, useAppSelector} from "../../store/hooks.ts";
 import {ChangeEvent} from "react";
 import {setLevel, setPrimaryLanguage, setSecondaryLanguage} from "../../store/base/baseActions.ts";
+import {fetchWords} from "../../store/words/wordsActions.ts";
 
 export type SelectorChange = (e: ChangeEvent<HTMLSelectElement>) => void;
 
@@ -13,7 +14,9 @@ function Selectors() {
   const secondaryLanguage = useAppSelector((state) => state.base.secondaryLanguage);
   const level = useAppSelector((state) => state.base.level);
   const changePrimaryLanguage = (e: ChangeEvent<HTMLSelectElement>) => {
-    dispatch(setPrimaryLanguage(e.target.value));
+    const value = e.target.value
+    dispatch(setPrimaryLanguage(value));
+    dispatch(fetchWords(value, level));
   };
 
   const changeSecondaryLanguage = (e: ChangeEvent<HTMLSelectElement>) => {
@@ -21,7 +24,9 @@ function Selectors() {
   };
 
   const changeLevel = (e: ChangeEvent<HTMLSelectElement>) => {
-    dispatch(setLevel(e.target.value));
+    const value = e.target.value
+    dispatch(setLevel(value));
+    dispatch(fetchWords(primaryLanguage, value));
   };
 
   return (
