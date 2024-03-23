@@ -7,10 +7,12 @@ interface WordsProps {
 }
 
 const Words: FC<WordsProps> = ({words}) => {
+  const size: number = words.length;
+
   return (
     <div className="flex justify-center">
       <div
-        className={`${words.length > 4 ? 'grid grid-cols-2 sm:grid-cols-4' : words.length > 2 ? 'grid grid-cols-2' : 'flex'} gap-2 m-2`}>
+        className={`${size > 4 ? 'grid grid-cols-2 sm:grid-cols-4' : size > 2 ? 'grid grid-cols-2' : 'flex'} gap-2 m-2`}>
         {words.map((item, index) => (
           <Word key={index} item={item}/>
         ))}
