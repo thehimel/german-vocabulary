@@ -12,10 +12,11 @@ interface SearchBarProps {
 export const SearchBar = ({size = "20rem",}: SearchBarProps) => {
   const dispatch: AppDispatch = useAppDispatch();
   const primaryLanguage = useAppSelector((state) => state.base.primaryLanguage);
+  const secondaryLanguage = useAppSelector((state) => state.base.secondaryLanguage);
   const level = useAppSelector((state) => state.base.level);
   const handleSearch = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
-    dispatch(fetchWords(primaryLanguage, level, value ? value : "", true));
+    dispatch(fetchWords(primaryLanguage, secondaryLanguage, level, value ? value : "", true));
   };
 
   return (

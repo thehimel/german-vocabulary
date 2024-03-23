@@ -12,7 +12,7 @@ export const languageChoices = [
 
 export const levelChoices = [
   {key: "a1", label: "A1"},
-  // {key: "a2", label: "A2"},
+  {key: "a2", label: "A2"},
 ]
 
 export interface LanguageChoice {

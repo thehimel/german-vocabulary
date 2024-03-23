@@ -12,11 +12,12 @@ const Home = () => {
   const words = useAppSelector((state) => state.words.words);
   const loading = useAppSelector((state) => state.words.loading);
   const primaryLanguage = useAppSelector((state) => state.base.primaryLanguage);
+  const secondaryLanguage = useAppSelector((state) => state.base.secondaryLanguage);
   const level = useAppSelector((state) => state.base.level);
 
   useEffect(() => {
-    dispatch(fetchWords(primaryLanguage, level))
-  }, [dispatch, level, primaryLanguage]);
+    dispatch(fetchWords(primaryLanguage, secondaryLanguage, level))
+  }, [dispatch, level, primaryLanguage, secondaryLanguage]);
 
   return (
     <>

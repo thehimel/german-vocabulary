@@ -20,19 +20,23 @@ function Selectors() {
     const value = e.target.value
     if (value) {
       dispatch(setPrimaryLanguage(value));
-      dispatch(fetchWords(value, level));
+      dispatch(fetchWords(value, secondaryLanguage, level));
     }
   };
 
   const changeSecondaryLanguage = (e: ChangeEvent<HTMLSelectElement>) => {
-    dispatch(setSecondaryLanguage(e.target.value));
+    const value = e.target.value;
+    if (value) {
+      dispatch(setSecondaryLanguage(e.target.value));
+      dispatch(fetchWords(primaryLanguage, value, level));
+    }
   };
 
   const changeLevel = (e: ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value
     if (value) {
       dispatch(setLevel(value));
-      dispatch(fetchWords(primaryLanguage, value));
+      dispatch(fetchWords(primaryLanguage, secondaryLanguage, value));
     }
   };
 
