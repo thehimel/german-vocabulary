@@ -1,7 +1,6 @@
 import './App.css';
 import NavigationBar from "./units/NavigationBar/NavigationBar.tsx";
 import Background from "./units/Theme/Background.tsx";
-import PaginationBar from "./units/NavigationBar/PaginationBar.tsx";
 import Home from "./units/Screens/Home.tsx";
 
 function Base() {
@@ -13,7 +12,7 @@ function Base() {
         <div className="flex flex-col flex-grow justify-center bg-background">
           <Home/>
         </div>
-        <PaginationBar/>
+        {/* <PaginationBar/> */}
       </div>
     </div>
   )
