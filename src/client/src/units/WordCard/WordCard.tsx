@@ -19,6 +19,12 @@ const WordCard: FC<CardProps> = ({isOpen, onOpenChange}) => {
       exit: {opacity: 0, transition: {duration: 0.3, ease: "easeIn"}},
     }
   }
+  const translation = {
+    language: word.translations?.[0]?.language?.code,
+    title: word.translations?.[0]?.title,
+    sentence: word.translations?.[0]?.sentence
+  }
+
   return (
     <>
       <Modal
@@ -41,11 +47,15 @@ const WordCard: FC<CardProps> = ({isOpen, onOpenChange}) => {
             </div>
             <Content language={word.language.code} content={word.sentence}/>
           </ModalBody>
-          <Divider className="mt-2"/>
-          <ModalHeader className="flex flex-col pt-6">
-            <Content flag={true} language={word.translations?.[0].language?.code} content={word.translations?.[0].title}/>
-          </ModalHeader>
-          <Content language={word.translations?.[0].language?.code} content={word.translations?.[0].sentence}/>
+          {translation.title && (
+            <>
+              <Divider className="mt-2" />
+              <ModalHeader className="flex flex-col pt-6">
+                <Content flag={true} language={translation.language} content={translation.title} />
+              </ModalHeader>
+              <Content language={translation.language} content={translation.sentence} />
+            </>
+          )}
         </ModalContent>
       </Modal>
     </>
