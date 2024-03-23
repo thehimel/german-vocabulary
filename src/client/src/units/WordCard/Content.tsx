@@ -25,7 +25,7 @@ const Content: FC<ContentProps> = ({ flag, language, content }) => {
   const speaker = language ? <Player text={content} language={language}/>: null;
   return (
     <div className="flex justify-center gap-2">
-      {avatar} {content} {speaker}
+      {avatar} <div>{content} {speaker}</div>
     </div>
   );
 }
