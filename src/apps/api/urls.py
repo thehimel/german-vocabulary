@@ -9,6 +9,6 @@ app_name = "api"
 urlpatterns = [
     path("", HomeAPIView.as_view(), name="home"),
     path("words/", include("apps.words.urls", namespace="words")),
-    path("translate/", TranslateAPIView.as_view(), name="translate"),
-    path("text-to-speech/", TextToSpeechAPIView.as_view(), name="text-to-speech"),
+    path("translate/", include("apps.trans.urls", namespace="trans")),
+    path("text-to-speech/", include("apps.speech.urls", namespace="speech")),
 ]

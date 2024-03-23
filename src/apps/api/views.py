@@ -9,8 +9,8 @@ class HomeAPIView(APIView):
         named_urls = [
             "api:home",
             "api:words:list",
-            "api:translate",
-            "api:text-to-speech",
+            "api:trans:home",
+            "api:speech:home",
         ]
         urls = [request.build_absolute_uri(reverse(named_url)) for named_url in named_urls]
         return Response(urls)
