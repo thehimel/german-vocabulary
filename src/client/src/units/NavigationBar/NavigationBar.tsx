@@ -60,9 +60,7 @@ const NavigationBar = () => {
           <ThemeSwitcher/>
         </NavbarItem>
 
-        <NavbarItem className="sm:hidden">
-          <NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} />
-        </NavbarItem>
+        <NavbarMenuToggle className="sm:hidden" aria-label={isMenuOpen ? "Close menu" : "Open menu"} />
       </NavbarContent>
 
       <NavbarMenu className={`${darkMode ? 'dark' : ''}`}>
