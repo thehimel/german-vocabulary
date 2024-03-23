@@ -57,12 +57,12 @@ const NavigationBar = () => {
           <SearchBar key="end"/>
         </NavbarItem>
         <NavbarItem className="hidden lg:flex">
-          <Button as={Link} color="secondary" href="#" variant="light">
+          <Button as={Link} color="secondary" href="/accounts/signup/" variant="light">
             Sign Up
           </Button>
         </NavbarItem>
         <NavbarItem>
-          <Button as={Link} color="secondary" href="#" variant="flat">
+          <Button as={Link} color="secondary" href="/accounts/login/" variant="flat">
             Login
           </Button>
         </NavbarItem>
