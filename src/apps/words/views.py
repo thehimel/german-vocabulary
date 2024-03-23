@@ -66,7 +66,10 @@ class WordListAPIView(ListAPIView):
     def get_queryset(self):
         primary_language = self.request.query_params.get("primary_language", "de")
         level = self.request.query_params.get("level", "a1")
+        search_query = self.request.query_params.get("q", None)
         queryset = Word.objects.filter(hidden=False, language__code=primary_language, level=level).order_by("title")
+        if search_query:
+            queryset = queryset.filter(title__icontains=search_query)
         return queryset
 
 
