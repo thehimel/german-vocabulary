@@ -6,9 +6,9 @@ export type Level = "a1" | "a2" | "b1" | "b2" | "c1" | "c2";
 
 interface BaseState {
   darkMode: boolean;
-  primaryLanguage: Language;
-  secondaryLanguage: Language;
-  level: Level;
+  primaryLanguage: Language | string;
+  secondaryLanguage: Language | string;
+  level: Level | string;
   isPlaying: boolean;
 }
 
@@ -31,11 +31,14 @@ const baseSlice = createSlice({
     setIsPlaying(state, action: {payload: boolean}): void {
       state.isPlaying = action.payload;
     },
-    setPrimaryLanguage(state, action: {payload: Language}): void {
+    setPrimaryLanguage(state, action: {payload: Language | string}): void {
       state.primaryLanguage = action.payload;
     },
-    setSecondaryLanguage(state, action: {payload: Language}): void {
+    setSecondaryLanguage(state, action: {payload: Language | string}): void {
       state.secondaryLanguage = action.payload;
+    },
+    setLevel(state, action: {payload: Language | string}): void {
+      state.level = action.payload;
     },
   }
 });

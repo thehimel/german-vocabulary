@@ -1,18 +1,21 @@
 import {Select, SelectItem, Avatar} from "@nextui-org/react";
-import React from "react";
+import {SelectorChange} from "./Selectors.tsx";
+import {FC} from "react";
 
-interface LanguagesProps {
+export interface SelectorProps {
   label: string;
   defaultKey: string;
+  onChange: SelectorChange;
 }
 
-const Languages: React.FC<LanguagesProps> = ({ label, defaultKey }) => {
+const Languages: FC<SelectorProps> = ({ label, defaultKey, onChange }) => {
   return (
     <Select
       className="max-w-xs"
       label={label}
       placeholder="Select language"
       defaultSelectedKeys={[defaultKey]}
+      onChange={onChange}
     >
       <SelectItem
         key="de"

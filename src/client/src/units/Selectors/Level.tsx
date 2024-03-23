@@ -1,12 +1,15 @@
 import {Select, SelectItem} from "@nextui-org/react";
+import {FC} from "react";
+import {SelectorProps} from "./Languages.tsx";
 
-export default function Languages() {
+const Level: FC<SelectorProps> = ({ label, defaultKey, onChange }) => {
   return (
     <Select
       className="max-w-xs w-3/5"
-      label="Level"
+      label={label}
       placeholder="Select level"
-      defaultSelectedKeys={["a1"]}
+      defaultSelectedKeys={[defaultKey]}
+      onChange={onChange}
     >
       <SelectItem key="a1">A1</SelectItem>
       <SelectItem key="a2">A2</SelectItem>
@@ -14,3 +17,5 @@ export default function Languages() {
     </Select>
   );
 }
+
+export default Level;
