@@ -2,9 +2,9 @@ import React from "react";
 import {Navbar, NavbarBrand, NavbarMenuToggle, NavbarMenuItem, NavbarMenu, NavbarContent, NavbarItem, Link, Button} from "@nextui-org/react";
 import {ThemeSwitcher} from "../Theme/ThemeSwitcher.tsx";
 import SearchBar from "./SearchBar.tsx";
-import Brand from "./Brand.tsx";
 import {useAppSelector} from "../../store/hooks.ts";
 import {NavLink} from "react-router-dom";
+import {AcmeLogo} from "./AcmeLogo.tsx";
 
 const NavigationBar = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -23,40 +23,27 @@ const NavigationBar = () => {
       isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
     >
-      <NavbarContent className="sm:hidden" justify="start">
-        <NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} />
-        <NavbarBrand className="hidden sm:flex gap-4">
-          <Brand key="start"/>
-        </NavbarBrand>
-      </NavbarContent>
+      <NavbarContent className="gap-4" justify="center">
+        <NavLink to="/">
+          <NavbarBrand>
+            <AcmeLogo />
+            <p className="hidden md:flex font-bold text-inherit">Vocabulary</p>
+          </NavbarBrand>
+        </NavLink>
 
-      <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        <NavbarBrand>
-          <Brand key="center"/>
-        </NavbarBrand>
-        <NavbarItem isActive>
+        <NavbarItem className="hidden md:flex" isActive>
           <NavLink to="/">
             Home
           </NavLink>
         </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            About
-          </Link>
-        </NavbarItem>
-      </NavbarContent>
-
-      <NavbarContent className="sm:hidden" justify="center">
-        <NavbarItem>
-          <SearchBar key="center"/>
-        </NavbarItem>
       </NavbarContent>
 
       <NavbarContent justify="end">
-        <NavbarItem className="hidden sm:flex">
+        <NavbarItem>
           <SearchBar key="end"/>
         </NavbarItem>
-        <NavbarItem className="hidden lg:flex">
+
+        <NavbarItem className="hidden sm:flex">
           <Button as={Link} color="secondary" href="/accounts/signup/" variant="light">
             Sign Up
           </Button>
@@ -66,8 +53,13 @@ const NavigationBar = () => {
             Login
           </Button>
         </NavbarItem>
+
         <NavbarItem>
           <ThemeSwitcher/>
+        </NavbarItem>
+
+        <NavbarItem className="sm:hidden">
+          <NavbarMenuToggle aria-label={isMenuOpen ? "Close menu" : "Open menu"} />
         </NavbarItem>
       </NavbarContent>
 
