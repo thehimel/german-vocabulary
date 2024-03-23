@@ -9,6 +9,7 @@ interface BaseState {
   primaryLanguage: Language;
   secondaryLanguage: Language;
   level: Level;
+  isPlaying: boolean;
 }
 
 // Define the initial state using that type
@@ -17,6 +18,7 @@ const initialState: BaseState = {
   primaryLanguage: 'de',
   secondaryLanguage: 'bn',
   level: 'a1',
+  isPlaying: false
 }
 
 const baseSlice = createSlice({
@@ -25,6 +27,9 @@ const baseSlice = createSlice({
   reducers: {
     toggleDarkMode(state): void {
       state.darkMode = !state.darkMode;
+    },
+    setIsPlaying(state, action: {payload: boolean}): void {
+      state.isPlaying = action.payload;
     },
     setPrimaryLanguage(state, action: {payload: Language}): void {
       state.primaryLanguage = action.payload;

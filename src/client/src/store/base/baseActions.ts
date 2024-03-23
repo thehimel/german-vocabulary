@@ -6,3 +6,9 @@ export const toggleDarkMode = () => {
     dispatch(baseActions.toggleDarkMode());
   };
 };
+
+export const setIsPlayingGlobal = (isPlaying: boolean) => {
+  return (dispatch: AppDispatch) => {
+    dispatch(baseActions.setIsPlaying(isPlaying));
+  };
+};
