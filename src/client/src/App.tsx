@@ -13,9 +13,9 @@ function App() {
       <Metadata/>
       <div className="relative">
         <Background/>
-        <div className="flex flex-col h-screen">
+        <div className="h-screen">
           <NavigationBar/>
-          <div className="flex flex-col flex-grow bg-background">
+          <div className="bg-background">
             <Home/>
           </div>
           {/* <PaginationBar/> */}
