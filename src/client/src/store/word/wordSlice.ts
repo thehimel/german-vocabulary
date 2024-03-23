@@ -2,6 +2,7 @@ import {createSlice} from "@reduxjs/toolkit";
 import {slices} from "../constants.ts";
 import {WordProps} from "../../units/Words/Word.tsx";
 import {Language} from "../base/baseSlice.ts";
+import {setIsPlayingGlobal} from "../base/baseActions.ts";
 
 export interface WordStateProps {
   word: WordProps;
@@ -38,6 +39,7 @@ const wordSlice = createSlice({
     setWord(state, action): void {
       state.word = action.payload;
       state.loading = false;
+      setIsPlayingGlobal(false);
     },
     setWordError(state, action): void {
       state.error = action.payload;
