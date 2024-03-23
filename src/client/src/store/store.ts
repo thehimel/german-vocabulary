@@ -8,6 +8,7 @@ import {FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE} from "redux-persist/e
 
 const persistConfig = {
   key: 'root',
+  version: 1,
   storage,
 };
 
