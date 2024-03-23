@@ -8,7 +8,7 @@ class HomeAPIView(APIView):
     def get(request):
         named_urls = [
             "api:home",
-            "api:words",
+            "api:words:list",
             "api:translate",
             "api:text-to-speech",
         ]
