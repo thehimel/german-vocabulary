@@ -37,7 +37,7 @@ const baseSlice = createSlice({
     setSecondaryLanguage(state, action: {payload: Language | string}): void {
       state.secondaryLanguage = action.payload;
     },
-    setLevel(state, action: {payload: Language | string}): void {
+    setLevel(state, action: {payload: Level | string}): void {
       state.level = action.payload;
     },
   }
