@@ -9,7 +9,7 @@ function Base() {
       <Background/>
       <div className="flex flex-col h-screen">
         <NavigationBar />
-        <div className="flex flex-col flex-grow justify-center bg-background">
+        <div className="flex flex-col flex-grow bg-background">
           <Home/>
         </div>
         {/* <PaginationBar/> */}
