@@ -30,4 +30,3 @@ export const setLevel = (value: Level | string) => {
     dispatch(baseActions.setLevel(value));
   };
 };
-
