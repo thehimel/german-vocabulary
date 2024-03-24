@@ -7,9 +7,10 @@ import {persistReducer, persistStore} from "redux-persist";
 import {FLUSH, PAUSE, PERSIST, PURGE, REGISTER, REHYDRATE} from "redux-persist/es/constants";
 
 const persistConfig = {
-  key: 'root',
+  key: "root",
   version: 1,
   storage,
+  blacklist: ["words", "currentIndex"],
 };
 
 // combineReducers is mandatory to avoid type issues.
