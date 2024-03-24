@@ -1,3 +1,4 @@
+import {setIsPlayingGlobal} from "../base/baseActions.ts";
 import {wordsActions} from "./wordsSlice.ts";
 import axios, {AxiosError} from "axios";
 import {AppDispatch} from "../store.ts";
@@ -35,5 +36,6 @@ export const fetchWords = ({primaryLanguage, secondaryLanguage, level, loader, s
 export const setCurrentIndex = (value: number) => {
   return (dispatch: AppDispatch) => {
     dispatch(wordsActions.setCurrentIndex(value));
+    dispatch(setIsPlayingGlobal(false));
   };
 };
