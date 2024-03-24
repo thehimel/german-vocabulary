@@ -1,4 +1,5 @@
 import {setIsPlayingGlobal} from "../base/baseActions.ts";
+import {wordActions} from "../word/wordSlice.ts";
 import {wordsActions} from "./wordsSlice.ts";
 import axios, {AxiosError} from "axios";
 import {AppDispatch} from "../store.ts";
@@ -26,6 +27,7 @@ export const fetchWords = ({primaryLanguage, secondaryLanguage, level, loader, s
       };
       const response = await axios.get(WORDS_API_URL, {params: params});
       dispatch(wordsActions.setWords(response.data));
+      dispatch(wordActions.setWordError(null));
     } catch (error) {
       const errorMessage = getErrorMessage({apiUrl: WORDS_API_URL, error: error as AxiosError});
       dispatch(wordsActions.setWordError(errorMessage));
