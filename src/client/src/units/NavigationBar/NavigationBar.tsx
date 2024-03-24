@@ -9,13 +9,7 @@ import {AcmeLogo} from "./AcmeLogo.tsx";
 const NavigationBar = () => {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const darkMode = useAppSelector((state) => state.base.darkMode);
-
-  const menuItems = [
-    "Profile",
-    "Settings",
-    "Help & Feedback",
-    "Log Out",
-  ];
+  const menuItems = ["Profile", "Settings", "Help & Feedback", "Log Out"];
 
   return (
     <Navbar
