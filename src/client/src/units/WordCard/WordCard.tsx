@@ -1,6 +1,9 @@
 import {FC} from "react";
 import {Divider, Modal, ModalBody, ModalContent, ModalHeader} from "@nextui-org/react";
-import {useAppSelector} from "../../store/hooks.ts";
+import {useAppDispatch, useAppSelector} from "../../store/hooks.ts";
+import {AppDispatch} from "../../store/store.ts";
+import {setCurrentIndex} from "../../store/words/wordsActions.ts";
+import PaginationBar from "../NavigationBar/PaginationBar.tsx";
 import {WordProps} from "../Words/Word.tsx";
 import Content from "./Content.tsx";
 import ArticlesPOS from "../Words/ArticlesPOS.tsx";
@@ -11,6 +14,7 @@ interface CardProps {
 }
 
 const WordCard: FC<CardProps> = ({isOpen, onOpenChange}) => {
+  const dispatch: AppDispatch = useAppDispatch();
   const words = useAppSelector((state) => state.words.words);
   const currentIndex = useAppSelector((state) => state.words.currentIndex);
   const word: WordProps = words[currentIndex];
@@ -28,10 +32,13 @@ const WordCard: FC<CardProps> = ({isOpen, onOpenChange}) => {
     sentence: word.translations?.[0]?.sentence
   }
 
+  const handlePageChange = (value: number) => dispatch(setCurrentIndex(value-1));
+
   return (
     <>
       <Modal
         isOpen={isOpen}
+        isDismissable={false}
         placement="center"
         backdrop="blur"
         onOpenChange={onOpenChange}
@@ -57,6 +64,7 @@ const WordCard: FC<CardProps> = ({isOpen, onOpenChange}) => {
             </>
           )}
         </ModalContent>
+        <PaginationBar initialPage={1} total={words.length} onChange={handlePageChange}/>
       </Modal>
     </>
   );

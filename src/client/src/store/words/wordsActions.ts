@@ -31,3 +31,9 @@ export const fetchWords = ({primaryLanguage, secondaryLanguage, level, loader, s
     }
   };
 };
+
+export const setCurrentIndex = (value: number) => {
+  return (dispatch: AppDispatch) => {
+    dispatch(wordsActions.setCurrentIndex(value));
+  };
+};
