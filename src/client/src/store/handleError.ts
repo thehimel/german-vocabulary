@@ -5,7 +5,7 @@ interface AxiosErrorResponseData {
   message: string;
 }
 
-export const getErrorMessage = (api_url: string, error: AxiosError) => {
+export const getErrorMessage = ({apiUrl, error} : {apiUrl: string, error: AxiosError}) => {
   let errorMessage = "";
   if (error.response) {
     const responseData = error.response.data as AxiosErrorResponseData;
@@ -13,5 +13,5 @@ export const getErrorMessage = (api_url: string, error: AxiosError) => {
   } else {
     errorMessage = error.message || 'An unknown error occurred';
   }
-  return `${api_url}: ${errorMessage}`
+  return `${apiUrl}: ${errorMessage}`
 };

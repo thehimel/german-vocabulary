@@ -15,7 +15,7 @@ export const fetchWord = ({id, secondaryLanguage}: {id: number, secondaryLanguag
       });
       dispatch(wordActions.setWord(response.data));
     } catch (error) {
-      const errorMessage = getErrorMessage(WORDS_API_URL_WITH_ID, error as AxiosError)
+      const errorMessage = getErrorMessage({apiUrl: WORDS_API_URL_WITH_ID, error: error as AxiosError});
       dispatch(wordActions.setWordError(errorMessage));
     }
   };

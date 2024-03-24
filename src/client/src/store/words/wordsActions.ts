@@ -27,7 +27,7 @@ export const fetchWords = ({primaryLanguage, secondaryLanguage, level, loader, s
       const response = await axios.get(WORDS_API_URL, {params: params});
       dispatch(wordsActions.setWords(response.data));
     } catch (error) {
-      const errorMessage = getErrorMessage(WORDS_API_URL, error as AxiosError)
+      const errorMessage = getErrorMessage({apiUrl: WORDS_API_URL, error: error as AxiosError});
       dispatch(wordsActions.setWordError(errorMessage));
     }
   };
