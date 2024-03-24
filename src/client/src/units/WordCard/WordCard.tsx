@@ -1,6 +1,7 @@
 import {FC} from "react";
 import {Divider, Modal, ModalBody, ModalContent, ModalHeader} from "@nextui-org/react";
 import {useAppSelector} from "../../store/hooks.ts";
+import {WordProps} from "../Words/Word.tsx";
 import Content from "./Content.tsx";
 import ArticlesPOS from "../Words/ArticlesPOS.tsx";
 
@@ -10,7 +11,9 @@ interface CardProps {
 }
 
 const WordCard: FC<CardProps> = ({isOpen, onOpenChange}) => {
-  const word = useAppSelector((state) => state.word.word);
+  const words = useAppSelector((state) => state.words.words);
+  const currentIndex = useAppSelector((state) => state.words.currentIndex);
+  const word: WordProps = words[currentIndex];
   const darkMode = useAppSelector((state) => state.base.darkMode);
   const bgColor = darkMode ? 'dark text-gray-50' : '';
   const motionProps = {

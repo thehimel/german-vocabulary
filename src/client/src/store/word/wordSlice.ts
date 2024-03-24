@@ -9,7 +9,7 @@ export interface WordStateProps {
   error: string | null;
 }
 
-const initialWord: WordProps = {
+export const initialWord: WordProps = {
   id: 0,
   level: "",
   language: { code: "" },
