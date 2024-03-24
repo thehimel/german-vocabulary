@@ -5,7 +5,7 @@ import {AppDispatch} from "../../../store/store.ts";
 import {useAppDispatch, useAppSelector} from "../../../store/hooks.ts";
 import {setIsPlayingGlobal} from "../../../store/base/baseActions.ts";
 import SpeakerPlayIcon from "./icons/SpeakerPlayIcon.tsx";
-import Spinner from "./icons/Spinner.tsx";
+import PlayerSpinner from "./icons/PlayerSpinner.tsx";
 import SpeakerStopIcon from "./icons/SpeakerStopIcon.tsx";
 
 interface Props {
@@ -87,7 +87,7 @@ const Player: FC<Props> = ({ text, language }) => {
     // When a button is connected to the current audio, it should not be disabled, therefore it is connected to
     // disabled=isButtonDisabled. If the button is not connected to the current audio, then disabled=isPlayingGlobal.
     <button onClick={handleClick} disabled={isPlaying ? isButtonDisabled : isPlayingGlobal}>
-      {isPlaying ? <SpeakerStopIcon /> : isLoading ? <Spinner/> : <SpeakerPlayIcon/>}
+      {isPlaying ? <SpeakerStopIcon /> : isLoading ? <PlayerSpinner/> : <SpeakerPlayIcon/>}
     </button>
   );
 };
