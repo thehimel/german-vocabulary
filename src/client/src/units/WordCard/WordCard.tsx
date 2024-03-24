@@ -46,7 +46,7 @@ const WordCard: FC<CardProps> = ({isOpen, onOpenChange}) => {
         size="xs"
         motionProps={motionProps}
       >
-        <ModalContent className="text-center">
+        <ModalContent className="flex items-center text-center">
           <ModalHeader className="flex flex-col">
             <Content flag={true} language={word.language.code} content={word.title}/>
           </ModalHeader>
@@ -63,8 +63,8 @@ const WordCard: FC<CardProps> = ({isOpen, onOpenChange}) => {
               <Content language={translation.language} content={translation.sentence} />
             </>
           )}
+          <PaginationBar initialPage={1} total={words.length} onChange={handlePageChange}/>
         </ModalContent>
-        <PaginationBar initialPage={1} total={words.length} onChange={handlePageChange}/>
       </Modal>
     </>
   );
