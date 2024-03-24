@@ -27,8 +27,8 @@ const WordCard: FC<CardProps> = ({isOpen, onOpenChange}) => {
     }
   }
   const translation = {
-    language: {code: word.translations?.[0]?.language?.code},
     title: word.translations?.[0]?.title,
+    language: {code: word.translations?.[0]?.language?.code},
     sentence: word.translations?.[0]?.sentence,
     articles: word.translations?.[0]?.articles,
     parts_of_speech: word.translations?.[0]?.parts_of_speech,
