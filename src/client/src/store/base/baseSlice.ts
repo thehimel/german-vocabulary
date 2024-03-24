@@ -2,9 +2,6 @@ import {createSlice} from "@reduxjs/toolkit";
 import {slices} from "../constants.ts";
 import {fetchWords} from "../words/wordsActions.ts";
 
-export type Language = "de" | "en" | "bn";
-export type Level = "a1" | "a2" | "b1" | "b2" | "c1" | "c2";
-
 export const languageChoices = [
   {language: "de", label: "German", country: "de"},
   {language: "en", label: "English", country: "us"},
@@ -56,15 +53,15 @@ const baseSlice = createSlice({
     setIsPlaying(state, action: {payload: boolean}): void {
       state.isPlaying = action.payload;
     },
-    setPrimaryLanguage(state, action: {payload: Language | string}): void {
+    setPrimaryLanguage(state, action: {payload: string}): void {
       const value = action.payload;
       if (value) {state.primaryLanguage = value; fetchWords(state);}
     },
-    setSecondaryLanguage(state, action: {payload: Language | string}): void {
+    setSecondaryLanguage(state, action: {payload: string}): void {
       const value = action.payload;
       if (value) {state.secondaryLanguage = value; fetchWords(state);}
     },
-    setLevel(state, action: {payload: Level | string}): void {
+    setLevel(state, action: {payload: string}): void {
       const value = action.payload;
       if (value) {state.level = value; fetchWords(state);}
     },

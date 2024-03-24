@@ -1,5 +1,5 @@
 import {AppDispatch} from "../store.ts";
-import {baseActions, Language, Level} from "./baseSlice.ts";
+import {baseActions} from "./baseSlice.ts";
 
 export const toggleDarkMode = () => {
   return (dispatch: AppDispatch) => {
@@ -13,19 +13,19 @@ export const setIsPlayingGlobal = (value: boolean) => {
   };
 };
 
-export const setPrimaryLanguage = (value: Language | string) => {
+export const setPrimaryLanguage = (value: string) => {
   return (dispatch: AppDispatch) => {
     dispatch(baseActions.setPrimaryLanguage(value));
   };
 };
 
-export const setSecondaryLanguage = (value: Language | string) => {
+export const setSecondaryLanguage = (value: string) => {
   return (dispatch: AppDispatch) => {
     dispatch(baseActions.setSecondaryLanguage(value));
   };
 };
 
-export const setLevel = (value: Level | string) => {
+export const setLevel = (value: string) => {
   return (dispatch: AppDispatch) => {
     dispatch(baseActions.setLevel(value));
   };

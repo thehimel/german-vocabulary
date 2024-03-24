@@ -1,7 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {slices} from "../constants.ts";
 import {WordProps} from "../../units/Words/Word.tsx";
-import {Language} from "../base/baseSlice.ts";
 import {setIsPlayingGlobal} from "../base/baseActions.ts";
 
 export interface WordStateProps {
@@ -13,7 +12,7 @@ export interface WordStateProps {
 const initialWord: WordProps = {
   id: 0,
   level: "",
-  language: { code: "" as Language },
+  language: { code: "" },
   title: "",
   articles: [{ title: "" }],
   parts_of_speech: [{ title: ""}],
