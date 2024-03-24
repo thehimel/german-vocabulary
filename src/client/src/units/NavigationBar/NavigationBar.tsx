@@ -1,5 +1,5 @@
 import React from "react";
-import {Navbar, NavbarBrand, NavbarMenuToggle, NavbarMenuItem, NavbarMenu, NavbarContent, NavbarItem, Link, Button} from "@nextui-org/react";
+import {Navbar, NavbarBrand, NavbarMenuToggle, NavbarMenuItem, NavbarMenu, NavbarContent, NavbarItem, Link} from "@nextui-org/react";
 import {ThemeSwitcher} from "../Theme/ThemeSwitcher.tsx";
 import SearchBar from "./SearchBar.tsx";
 import {useAppSelector} from "../../store/hooks.ts";
@@ -45,16 +45,18 @@ const NavigationBar = () => {
           <SearchBar key="end"/>
         </NavbarItem>
 
-        <NavbarItem className="hidden sm:flex">
-          <Button as={Link} color="secondary" href="/accounts/signup/" variant="light">
-            Sign Up
-          </Button>
-        </NavbarItem>
-        <NavbarItem>
-          <Button as={Link} color="secondary" href="/accounts/login/" variant="flat">
-            Login
-          </Button>
-        </NavbarItem>
+        {/*
+          <NavbarItem className="hidden sm:flex">
+            <Button as={Link} color="secondary" href="/accounts/signup/" variant="light">
+              Sign Up
+            </Button>
+          </NavbarItem>
+          <NavbarItem>
+            <Button as={Link} color="secondary" href="/accounts/login/" variant="flat">
+              Login
+            </Button>
+          </NavbarItem>
+        */}
 
         <NavbarItem>
           <ThemeSwitcher/>
