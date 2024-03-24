@@ -9,8 +9,9 @@ import ArticlesPOS from "./ArticlesPOS.tsx";
 export interface WordProps {
   id: number;
   level: string;
-  language: { code: string };
   title: string;
+  plural: string;
+  language: { code: string };
   articles: [{ title: string }];
   parts_of_speech: [{ title: string }];
   sentence: string;

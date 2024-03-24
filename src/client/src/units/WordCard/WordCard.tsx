@@ -28,6 +28,7 @@ const WordCard: FC<CardProps> = ({isOpen, onOpenChange}) => {
   }
   const translation = {
     title: word.translations?.[0]?.title,
+    plural: word.translations?.[0]?.plural,
     language: {code: word.translations?.[0]?.language?.code},
     sentence: word.translations?.[0]?.sentence,
     articles: word.translations?.[0]?.articles,
@@ -51,6 +52,7 @@ const WordCard: FC<CardProps> = ({isOpen, onOpenChange}) => {
         <ModalContent className="flex items-center text-center">
           <WordCardItem
             title={word.title}
+            plural={word.plural}
             language={word.language}
             articles={word.articles}
             parts_of_speech={word.parts_of_speech}
@@ -61,6 +63,7 @@ const WordCard: FC<CardProps> = ({isOpen, onOpenChange}) => {
               <Divider/>
               <WordCardItem
                 title={translation.title}
+                plural={translation.plural}
                 language={translation.language}
                 articles={translation.articles}
                 parts_of_speech={translation.parts_of_speech}
