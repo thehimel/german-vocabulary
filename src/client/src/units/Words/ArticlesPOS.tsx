@@ -1,17 +1,17 @@
 import {FC} from "react";
 
 import Chips from "./Chips.tsx";
-import {WordProps} from "./Word.tsx";
 
 export interface WordItemProps {
-  word: WordProps;
+  articles: [{ title: string }];
+  parts_of_speech: [{ title: string }];
 }
 
-const ArticlesPOS: FC<WordItemProps> = ({ word }) => {
+const ArticlesPOS: FC<WordItemProps> = ({ articles, parts_of_speech}) => {
   return (
     <div className="flex flex-row justify-center gap-1">
-      {word.articles && (<Chips items={word.articles} color="secondary" variant="flat"/>)}
-      {word.parts_of_speech && (<Chips items={word.parts_of_speech} color="secondary" variant="faded"/>)}
+      {articles && (<Chips items={articles} color="secondary" variant="flat"/>)}
+      {parts_of_speech && (<Chips items={parts_of_speech} color="secondary" variant="faded"/>)}
     </div>
   );
 }

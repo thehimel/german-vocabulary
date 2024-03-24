@@ -27,9 +27,11 @@ const WordCard: FC<CardProps> = ({isOpen, onOpenChange}) => {
     }
   }
   const translation = {
-    language: word.translations?.[0]?.language?.code,
+    language: {code: word.translations?.[0]?.language?.code},
     title: word.translations?.[0]?.title,
-    sentence: word.translations?.[0]?.sentence
+    sentence: word.translations?.[0]?.sentence,
+    articles: word.translations?.[0]?.articles,
+    parts_of_speech: word.translations?.[0]?.parts_of_speech,
   }
 
   const handlePageChange = (value: number) => dispatch(setCurrentIndex(value-1));
@@ -51,17 +53,18 @@ const WordCard: FC<CardProps> = ({isOpen, onOpenChange}) => {
             <Content flag={true} language={word.language.code} content={word.title}/>
           </ModalHeader>
           <ModalBody>
-            <ArticlesPOS word={word}/>
+            <ArticlesPOS articles={word.articles} parts_of_speech={word.parts_of_speech}/>
             <Content language={word.language.code} content={word.sentence}/>
           </ModalBody>
           {translation.title && (
             <>
               <Divider className="mt-2" />
               <ModalHeader className="flex flex-col pt-6">
-                <Content flag={true} language={translation.language} content={translation.title} />
+                <Content flag={true} language={translation.language.code} content={translation.title} />
               </ModalHeader>
               <ModalBody>
-                <Content language={translation.language} content={translation.sentence} />
+                <ArticlesPOS articles={translation.articles} parts_of_speech={translation.parts_of_speech}/>
+                <Content language={translation.language.code} content={translation.sentence} />
               </ModalBody>
             </>
           )}
