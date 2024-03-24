@@ -28,22 +28,22 @@ const Player: FC<Props> = ({ text, language }) => {
       try {
         const response = await axios.get(TTS_API_URL, {
           responseType: 'blob',
-          params: {
-            text: text,
-            language: language
-          }
+          params: {text: text, language: language}
         });
-        const audioBlob = new Blob([response.data], { type: 'audio/mpeg' });
+
+        const audioBlob = new Blob([response.data], { type: "audio/mpeg" });
         const audioUrl = URL.createObjectURL(audioBlob);
         const audio = new Audio(audioUrl);
         await audio.play();
+
         audio.addEventListener('ended', handleAudioEnd);
         audioRef.current = audio;
+
         setIsPlaying(true);
         setIsButtonDisabled(false);
         dispatch(setIsPlayingGlobal(true));
       } catch (error) {
-        console.error('Error occurred while fetching and playing audio:', error);
+        console.error("Error occurred while fetching and playing audio:", error);
       }
     }
   };
