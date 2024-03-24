@@ -26,14 +26,6 @@ const WordCard: FC<CardProps> = ({isOpen, onOpenChange}) => {
       exit: {opacity: 0, transition: {duration: 0.3, ease: "easeIn"}},
     }
   }
-  const translation = {
-    title: word.translations?.[0]?.title,
-    plural: word.translations?.[0]?.plural,
-    language: {code: word.translations?.[0]?.language?.code},
-    sentence: word.translations?.[0]?.sentence,
-    articles: word.translations?.[0]?.articles,
-    parts_of_speech: word.translations?.[0]?.parts_of_speech,
-  }
 
   const handlePageChange = (value: number) => dispatch(setCurrentIndex(value-1));
 
@@ -50,25 +42,11 @@ const WordCard: FC<CardProps> = ({isOpen, onOpenChange}) => {
         motionProps={motionProps}
       >
         <ModalContent className="flex items-center text-center">
-          <WordCardItem
-            title={word.title}
-            plural={word.plural}
-            language={word.language}
-            articles={word.articles}
-            parts_of_speech={word.parts_of_speech}
-            sentence={word.sentence}
-          />
-          {translation.title && (
+          <WordCardItem word={word}/>
+          {word.translations?.[0] && (
             <>
               <Divider/>
-              <WordCardItem
-                title={translation.title}
-                plural={translation.plural}
-                language={translation.language}
-                articles={translation.articles}
-                parts_of_speech={translation.parts_of_speech}
-                sentence={translation.sentence}
-              />
+              <WordCardItem word={word.translations?.[0]}/>
             </>
           )}
           <PaginationBar initialPage={1} total={words.length} onChange={handlePageChange}/>
