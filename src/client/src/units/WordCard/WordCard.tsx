@@ -1,12 +1,11 @@
 import {FC} from "react";
-import {Divider, Modal, ModalBody, ModalContent, ModalHeader} from "@nextui-org/react";
+import {Divider, Modal, ModalContent} from "@nextui-org/react";
 import {useAppDispatch, useAppSelector} from "../../store/hooks.ts";
 import {AppDispatch} from "../../store/store.ts";
 import {setCurrentIndex} from "../../store/words/wordsActions.ts";
 import PaginationBar from "../NavigationBar/PaginationBar.tsx";
 import {WordProps} from "../Words/Word.tsx";
-import Content from "./Content.tsx";
-import ArticlesPOS from "../Words/ArticlesPOS.tsx";
+import WordCardItem from "./WordCardItem.tsx";
 
 interface CardProps {
   isOpen: boolean;
@@ -44,28 +43,28 @@ const WordCard: FC<CardProps> = ({isOpen, onOpenChange}) => {
         placement="center"
         backdrop="blur"
         onOpenChange={onOpenChange}
-        className={`${bgColor} p-4 pb-6`}
+        className={`${bgColor}`}
         size="xs"
         motionProps={motionProps}
       >
         <ModalContent className="flex items-center text-center">
-          <ModalHeader className="flex flex-col">
-            <Content flag={true} language={word.language.code} content={word.title}/>
-          </ModalHeader>
-          <ModalBody>
-            <ArticlesPOS articles={word.articles} parts_of_speech={word.parts_of_speech}/>
-            <Content language={word.language.code} content={word.sentence}/>
-          </ModalBody>
+          <WordCardItem
+            title={word.title}
+            language={word.language}
+            articles={word.articles}
+            parts_of_speech={word.parts_of_speech}
+            sentence={word.sentence}
+          />
           {translation.title && (
             <>
-              <Divider className="mt-2" />
-              <ModalHeader className="flex flex-col pt-6">
-                <Content flag={true} language={translation.language.code} content={translation.title} />
-              </ModalHeader>
-              <ModalBody>
-                <ArticlesPOS articles={translation.articles} parts_of_speech={translation.parts_of_speech}/>
-                <Content language={translation.language.code} content={translation.sentence} />
-              </ModalBody>
+              <Divider/>
+              <WordCardItem
+                title={translation.title}
+                language={translation.language}
+                articles={translation.articles}
+                parts_of_speech={translation.parts_of_speech}
+                sentence={translation.sentence}
+              />
             </>
           )}
           <PaginationBar initialPage={1} total={words.length} onChange={handlePageChange}/>
