@@ -48,25 +48,23 @@ const Player: FC<Props> = ({ text, language }) => {
     }
   };
 
+  const handleAudioEnd = () => {
+    setIsPlaying(false);
+    dispatch(setIsPlayingGlobal(false));
+
+    // After stopping the audio, disable the button for some time to avoid repetitive playback.
+    setIsButtonDisabled(true);
+    setTimeout(() => {
+      setIsButtonDisabled(false);
+    }, 500);
+  };
+
   const stopAudio = () => {
     if (audioRef.current) {
       audioRef.current.pause();
       audioRef.current.currentTime = 0;
-      setIsPlaying(false);
-      dispatch(setIsPlayingGlobal(false));
-
-      // After stopping the audio, disable the button for some time to avoid repetitive playback.
-      setIsButtonDisabled(true);
-      setTimeout(() => {
-        setIsButtonDisabled(false);
-      }, 500);
+      handleAudioEnd();
     }
-  };
-
-  const handleAudioEnd = () => {
-    setIsPlaying(false);
-    setIsButtonDisabled(false);
-    dispatch(setIsPlayingGlobal(false));
   };
 
   const handleClick = () => {
