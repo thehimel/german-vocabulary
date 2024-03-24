@@ -12,8 +12,9 @@ export interface WordStateProps {
 export const initialWord: WordProps = {
   id: 0,
   level: "",
-  language: { code: "" },
   title: "",
+  plural: "",
+  language: { code: "" },
   articles: [{ title: "" }],
   parts_of_speech: [{ title: ""}],
   sentence: "",
