@@ -16,6 +16,7 @@ const WordCard: FC<CardProps> = ({isOpen, onOpenChange}) => {
   const dispatch: AppDispatch = useAppDispatch();
   const words = useAppSelector((state) => state.words.words);
   const currentIndex = useAppSelector((state) => state.words.currentIndex);
+  if (currentIndex > words.length) {dispatch(setCurrentIndex(0));}
   const word: WordProps = words[currentIndex];
   const darkMode = useAppSelector((state) => state.base.darkMode);
   const bgDark: string = "dark text-gray-50 bg-gradient-to-tr from-transparent via-violet-950 to-transparent from-10% via-40% to-80%"
