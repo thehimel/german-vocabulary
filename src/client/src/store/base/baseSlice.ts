@@ -58,11 +58,11 @@ const baseSlice = createSlice({
     },
     setPrimaryLanguage(state, action: {payload: Language | string}): void {
       const value = action.payload;
-      if (value) {state.primaryLanguage = value;fetchWords(state);}
+      if (value) {state.primaryLanguage = value; fetchWords(state);}
     },
     setSecondaryLanguage(state, action: {payload: Language | string}): void {
       const value = action.payload;
-      if (value) {state.secondaryLanguage = value;fetchWords(state);}
+      if (value) {state.secondaryLanguage = value; fetchWords(state);}
     },
     setLevel(state, action: {payload: Level | string}): void {
       const value = action.payload;
