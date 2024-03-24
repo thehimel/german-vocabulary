@@ -2,10 +2,12 @@ import {createSlice} from "@reduxjs/toolkit";
 import {slices} from "../constants.ts";
 import {WordProps} from "../../units/Words/Word.tsx";
 
+type StringOrNull = string | null;
+
 export interface WordStateProps {
   word: WordProps;
   loading: boolean;
-  error: string | null;
+  error: StringOrNull;
 }
 
 export const initialWord: WordProps = {
@@ -35,11 +37,11 @@ const wordSlice = createSlice({
     setWordLoading(state): void {
       state.loading = true;
     },
-    setWord(state, action): void {
+    setWord(state, action: {payload: WordProps}): void {
       state.word = action.payload;
       state.loading = false;
     },
-    setWordError(state, action): void {
+    setWordError(state, action: {payload: StringOrNull}): void {
       state.error = action.payload;
       state.loading = false;
     },
