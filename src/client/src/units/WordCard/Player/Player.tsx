@@ -5,6 +5,7 @@ import {SpeakerLoudIcon, SpeakerOffIcon} from "@radix-ui/react-icons";
 import {AppDispatch} from "../../../store/store.ts";
 import {useAppDispatch, useAppSelector} from "../../../store/hooks.ts";
 import {setIsPlayingGlobal} from "../../../store/base/baseActions.ts";
+import Spinner from "./icons/Spinner.tsx";
 
 interface Props {
   text: string;
@@ -18,6 +19,7 @@ const Player: FC<Props> = ({ text, language }) => {
 
   // Local state management to not interface with each other.
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(false);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -26,10 +28,14 @@ const Player: FC<Props> = ({ text, language }) => {
     setIsButtonDisabled(true); // As soon as the button is pressed, make is disabled to avoid double press.
     if (!isButtonDisabled) {
       try {
+        setIsLoading(true);
+
         const response = await axios.get(TTS_API_URL, {
           responseType: 'blob',
           params: {text: text, language: language}
         });
+
+        setIsLoading(false);
 
         const audioBlob = new Blob([response.data], { type: "audio/mpeg" });
         const audioUrl = URL.createObjectURL(audioBlob);
@@ -80,7 +86,7 @@ const Player: FC<Props> = ({ text, language }) => {
     // When a button is connected to the current audio, it should not be disabled, therefore it is connected to
     // disabled=isButtonDisabled. If the button is not connected to the current audio, then disabled=isPlayingGlobal.
     <button className="ms-1" onClick={handleClick} disabled={isPlaying ? isButtonDisabled : isPlayingGlobal}>
-      {isPlaying ? <SpeakerOffIcon /> : <SpeakerLoudIcon />}
+      {isPlaying ? <SpeakerOffIcon /> : isLoading ? <Spinner/> : <SpeakerLoudIcon />}
     </button>
   );
 };
