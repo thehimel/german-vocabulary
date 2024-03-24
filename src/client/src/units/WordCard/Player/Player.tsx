@@ -23,24 +23,28 @@ const Player: FC<Props> = ({ text, language }) => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const playAudio = async () => {
-    try {
-      const response = await axios.get(TTS_API_URL, {
-        responseType: 'blob',
-        params: {
-          text: text,
-          language: language
-        }
-      });
-      const audioBlob = new Blob([response.data], { type: 'audio/mpeg' });
-      const audioUrl = URL.createObjectURL(audioBlob);
-      const audio = new Audio(audioUrl);
-      await audio.play();
-      audio.addEventListener('ended', handleAudioEnd);
-      audioRef.current = audio;
-      setIsPlaying(true);
-      dispatch(setIsPlayingGlobal(true));
-    } catch (error) {
-      console.error('Error occurred while fetching and playing audio:', error);
+    setIsButtonDisabled(true); // As soon as the button is pressed, make is disabled to avoid double press.
+    if (!isButtonDisabled) {
+      try {
+        const response = await axios.get(TTS_API_URL, {
+          responseType: 'blob',
+          params: {
+            text: text,
+            language: language
+          }
+        });
+        const audioBlob = new Blob([response.data], { type: 'audio/mpeg' });
+        const audioUrl = URL.createObjectURL(audioBlob);
+        const audio = new Audio(audioUrl);
+        await audio.play();
+        audio.addEventListener('ended', handleAudioEnd);
+        audioRef.current = audio;
+        setIsPlaying(true);
+        setIsButtonDisabled(false);
+        dispatch(setIsPlayingGlobal(true));
+      } catch (error) {
+        console.error('Error occurred while fetching and playing audio:', error);
+      }
     }
   };
 
@@ -61,6 +65,7 @@ const Player: FC<Props> = ({ text, language }) => {
 
   const handleAudioEnd = () => {
     setIsPlaying(false);
+    setIsButtonDisabled(false);
     dispatch(setIsPlayingGlobal(false));
   };
 
