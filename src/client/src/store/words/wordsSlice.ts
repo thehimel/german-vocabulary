@@ -1,18 +1,16 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {slices} from "../constants.ts";
 
-export type IndexType = number | null;
-
 export interface WordsStateProps {
   words: [];
-  currentIndex: IndexType;
+  currentIndex: number;
   loading: boolean;
   error: string | null;
 }
 
 const initialState: WordsStateProps = {
   words: [],
-  currentIndex: null,
+  currentIndex: 0,
   loading: false,
   error: null,
 };
@@ -24,7 +22,7 @@ const wordsSlice = createSlice({
     setWordsLoading(state): void {
       state.loading = true;
     },
-    setCurrentIndex(state, action: {payload: IndexType}): void {
+    setCurrentIndex(state, action: {payload: number}): void {
       state.currentIndex = action.payload;
     },
     setWords(state, action): void {
