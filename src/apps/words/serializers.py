@@ -1,4 +1,5 @@
 from rest_framework import serializers
+
 from apps.words.models import Word, Language, PartOfSpeech, Article, Note
 
 
@@ -41,7 +42,7 @@ class TranslationSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Word
-        fields = ["id", "title", "language", "articles", "parts_of_speech", "sentence"]
+        fields = ["id", "title", "plural", "language", "articles", "parts_of_speech", "sentence"]
 
 
 class WordListSerializer(serializers.ModelSerializer):
@@ -52,7 +53,8 @@ class WordListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Word
-        fields = ["id", "level", "language", "title", "articles", "parts_of_speech", "sentence", "translations"]
+        fields = ["id", "level", "title", "plural", "language", "articles", "parts_of_speech", "sentence",
+                  "translations"]
 
     def to_representation(self, instance):
         data = super().to_representation(instance)
