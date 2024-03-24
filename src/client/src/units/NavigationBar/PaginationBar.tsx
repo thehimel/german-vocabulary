@@ -13,7 +13,7 @@ const PaginationBar: FC<PaginationBarProps> = ({initialPage, total, onChange}) =
 
   return (
     <div className={`flex fixed bottom-0 w-full z-50 justify-center pb-2 pt-2 ${darkMode ? 'dark' : ''}`}>
-      <Pagination onChange={onChange} isCompact showControls total={total} initialPage={initialPage} color="secondary" size="lg"/>
+      <Pagination isCompact showControls showShadow color="secondary" size="lg" total={total} initialPage={initialPage} onChange={onChange}/>
     </div>
   );
 }
