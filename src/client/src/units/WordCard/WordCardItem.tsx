@@ -13,7 +13,7 @@ export interface WordCardItemProps {
 
 const WordCardItem: FC<WordCardItemProps> = ({title, language, articles, parts_of_speech, sentence}) => {
   return (
-    <>
+    <div className="p-4">
       <ModalHeader className="flex flex-col">
         <Content flag={true} language={language.code} content={title}/>
       </ModalHeader>
@@ -21,7 +21,7 @@ const WordCardItem: FC<WordCardItemProps> = ({title, language, articles, parts_o
         <ArticlesPOS articles={articles} parts_of_speech={parts_of_speech}/>
         <Content language={language.code} content={sentence}/>
       </ModalBody>
-    </>
+    </div>
   );
 }
 
