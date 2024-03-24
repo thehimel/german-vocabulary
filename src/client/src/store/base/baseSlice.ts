@@ -36,9 +36,9 @@ interface BaseState {
 // Define the initial state using that type
 const initialState: BaseState = {
   darkMode: true,
-  primaryLanguage: 'de',
-  secondaryLanguage: 'en',
-  level: 'a1',
+  primaryLanguage: "de",
+  secondaryLanguage: "en",
+  level: "a1",
   isPlaying: false,
   secondaryLanguageChoices: languageChoices,
 }

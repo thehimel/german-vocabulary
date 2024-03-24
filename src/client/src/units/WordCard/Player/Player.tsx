@@ -32,7 +32,7 @@ const Player: FC<Props> = ({ text, language }) => {
         setIsLoading(true);
 
         const response = await axios.get(TTS_API_URL, {
-          responseType: 'blob',
+          responseType: "blob",
           params: {text: text, language: language}
         });
 
@@ -43,7 +43,7 @@ const Player: FC<Props> = ({ text, language }) => {
         const audio = new Audio(audioUrl);
         await audio.play();
 
-        audio.addEventListener('ended', handleAudioEnd);
+        audio.addEventListener("ended", handleAudioEnd);
         audioRef.current = audio;
 
         setIsPlaying(true);
@@ -61,9 +61,7 @@ const Player: FC<Props> = ({ text, language }) => {
 
     // After stopping the audio, disable the button for some time to avoid repetitive playback.
     setIsButtonDisabled(true);
-    setTimeout(() => {
-      setIsButtonDisabled(false);
-    }, 500);
+    setTimeout(() => setIsButtonDisabled(false), 500);
   };
 
   const stopAudio = () => {
@@ -74,13 +72,7 @@ const Player: FC<Props> = ({ text, language }) => {
     }
   };
 
-  const handleClick = () => {
-    if (isPlaying) {
-      stopAudio();
-    } else {
-      playAudio().then(() => null);
-    }
-  };
+  const handleClick = () => isPlaying ? stopAudio() : playAudio().then(() => null);
 
   return (
     // If a button is pressed, the global isPlaying turns on. Therefore, all buttons becomes disabled.
