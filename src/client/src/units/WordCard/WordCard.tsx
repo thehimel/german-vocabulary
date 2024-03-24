@@ -18,7 +18,8 @@ const WordCard: FC<CardProps> = ({isOpen, onOpenChange}) => {
   const currentIndex = useAppSelector((state) => state.words.currentIndex);
   const word: WordProps = words[currentIndex];
   const darkMode = useAppSelector((state) => state.base.darkMode);
-  const bgColor = darkMode ? 'dark text-gray-50' : '';
+  const bgDark: string = "dark text-gray-50 bg-gradient-to-tr from-transparent via-violet-950 to-transparent from-10% via-40% to-80%"
+  const bgColor: string = darkMode ? bgDark : '';
   const motionProps = {
     variants: {
       enter: {opacity: 1, transition: {duration: 0.3, ease: "easeOut"}},
@@ -43,7 +44,7 @@ const WordCard: FC<CardProps> = ({isOpen, onOpenChange}) => {
         placement="center"
         backdrop="blur"
         onOpenChange={onOpenChange}
-        className={`${bgColor}`}
+        className={`${bgColor} bg-opacity-40`}
         size="xs"
         motionProps={motionProps}
       >
