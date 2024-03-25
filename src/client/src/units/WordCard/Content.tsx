@@ -1,5 +1,5 @@
 import {FC} from "react";
-import TextAvatar from "./Player/icons/TextAvatar.tsx";
+import TextAvatar from "../Avatar/TextAvatar.tsx";
 import Player from "./Player/Player.tsx";
 
 

@@ -1,6 +1,6 @@
 import {FC} from "react";
 import {Select, SelectItem} from "@nextui-org/react";
-import TextAvatar from "../WordCard/Player/icons/TextAvatar.tsx";
+import TextAvatar from "../Avatar/TextAvatar.tsx";
 import {SelectorChange} from "./Selectors.tsx";
 import {SelectorChoice} from "../../store/base/baseSlice.ts";
 
