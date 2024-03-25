@@ -10,7 +10,7 @@ interface ContentProps {
 }
 
 const Content: FC<ContentProps> = ({ showAvatar, language_code, content }) => {
-  const avatar = showAvatar ? <TextAvatar text={language_code}/> : null;
+  const avatar = showAvatar ? <TextAvatar text={language_code} animate={true}/> : null;
   const speaker = language_code ? <Player text={content} language={language_code}/>: null;
   return (
     <div className="flex justify-center gap-2">
