@@ -14,7 +14,7 @@ export interface LanguageIconProps {
 
 const TextAvatar: FC<LanguageIconProps> = ({text, animate}) => {
   const bgColor = bgColors[text] || "bg-purple-500";
-  const animation = animate ? 'animate-pulse' : null
+  const animation = animate ? "animate-pulse" : null
   return (
     <Avatar isBordered alt={text} className={`${bgColor} ${animation} w-6 h-6 mt-0.5`} name={text.toUpperCase()} />
   );
