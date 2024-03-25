@@ -2,27 +2,21 @@ import {createSlice} from "@reduxjs/toolkit";
 import {slices} from "../constants.ts";
 import {fetchWords} from "../words/wordsActions.ts";
 
-export const languageChoices = [
-  {language: "de", label: "German", country: "de"},
-  {language: "en", label: "English", country: "us"},
-  {language: "bn", label: "Bengali", country: "bd"}
+export interface SelectorChoice {
+  key: string;
+  label: string;
+}
+
+export const languageChoices: SelectorChoice[] = [
+  {key: "de", label: "German"},
+  {key: "en", label: "English"},
+  {key: "bn", label: "Bengali"}
 ]
 
-export const levelChoices = [
+export const levelChoices: SelectorChoice[] = [
   {key: "a1", label: "A1"},
   {key: "a2", label: "A2"},
 ]
-
-export interface LanguageChoice {
-  language: string;
-  label: string;
-  country: string;
-}
-
-export interface LevelChoice {
-  key: string,
-  label: string
-}
 
 interface BaseState {
   darkMode: boolean;
@@ -30,7 +24,6 @@ interface BaseState {
   secondaryLanguage: string;
   level: string;
   isPlaying: boolean;
-  secondaryLanguageChoices: LanguageChoice[]
 }
 
 // Define the initial state using that type
@@ -40,7 +33,6 @@ const initialState: BaseState = {
   secondaryLanguage: "en",
   level: "a1",
   isPlaying: false,
-  secondaryLanguageChoices: languageChoices,
 }
 
 const baseSlice = createSlice({

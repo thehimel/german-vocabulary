@@ -1,5 +1,5 @@
-import {LanguageChoice} from "../../store/base/baseSlice.ts";
+import {SelectorChoice} from "../../store/base/baseSlice.ts";
 
-export const filterLanguageChoices = (choices: LanguageChoice[], exclude_language: string): LanguageChoice[] => {
-  return choices.filter(choice => choice.language !== exclude_language);
+export const filterLanguageChoices = (choices: SelectorChoice[], exclude_language: string): SelectorChoice[] => {
+  return choices.filter(choice => choice.key !== exclude_language);
 };

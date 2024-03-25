@@ -1,5 +1,5 @@
 import {FC} from "react";
-import LanguageAvatar from "./Player/icons/LanguageAvatar.tsx";
+import TextAvatar from "./Player/icons/TextAvatar.tsx";
 import Player from "./Player/Player.tsx";
 
 
@@ -10,7 +10,7 @@ interface ContentProps {
 }
 
 const Content: FC<ContentProps> = ({ showAvatar, language_code, content }) => {
-  const avatar = showAvatar ? <LanguageAvatar language_code={language_code}/> : null;
+  const avatar = showAvatar ? <TextAvatar text={language_code}/> : null;
   const speaker = language_code ? <Player text={content} language={language_code}/>: null;
   return (
     <div className="flex justify-center gap-2">
