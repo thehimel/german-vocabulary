@@ -3,7 +3,7 @@ import {Avatar} from "@nextui-org/react";
 
 const bgColors: Record<string, string> = {
   "de": "bg-amber-500",
-  "en": "bg-sky-500",
+  "en": "bg-violet-500",
   "bn": "bg-emerald-500",
 };
 
