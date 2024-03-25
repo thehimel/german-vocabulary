@@ -29,7 +29,6 @@ urlpatterns = [
     path("api/", include("apps.api.urls", namespace="api")),
     path("users/", include("apps.users.urls", namespace="users")),
     path("cards/", include("apps.cards.urls", namespace="cards")),
-    path("words/", include("apps.words.urls", namespace="words")),
 ]
 
 oas_urls = [
