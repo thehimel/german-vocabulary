@@ -24,7 +24,7 @@ const Selector: FC<SelectorProps> = ({ label, defaultKey, choices, onChange, sho
       className={`max-w-xs ${width ? width : ''}`}
     >
       {(choice) => (
-        <SelectItem key={choice.key} startContent={showAvatar && <TextAvatar text={choice.key}/>}>
+        <SelectItem key={choice.key} startContent={showAvatar && <TextAvatar text={choice.key} textColor="text-gray-50"/>}>
           {choice.label}
         </SelectItem>
       )}
