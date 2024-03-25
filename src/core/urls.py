@@ -19,6 +19,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
+
 from core.views import schema_view
 
 urlpatterns = [
@@ -31,8 +32,10 @@ urlpatterns = [
     path("words/", include("apps.words.urls", namespace="words")),
 ]
 
-oas_urls = [path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-            path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc')]
+oas_urls = [
+    path("swagger/", schema_view.with_ui("swagger", cache_timeout=0), name="schema-swagger-ui"),
+    path("redoc/", schema_view.with_ui("redoc", cache_timeout=0), name="schema-redoc"),
+]
 
 if settings.DEBUG:
     # To serve static files in debug mode
@@ -43,4 +46,3 @@ if settings.DEBUG:
 
     # To serve OpenAPI Specification
     urlpatterns += oas_urls
-

@@ -1,30 +1,30 @@
 from rest_framework import serializers
 
-from apps.words.models import Word, Language, PartOfSpeech, Article, Note
+from apps.words.models import Article, Language, Note, PartOfSpeech, Word
 
 
 class LanguageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Language
-        fields = ['code']
+        fields = ["code"]
 
 
 class PartOfSpeechSerializer(serializers.ModelSerializer):
     class Meta:
         model = PartOfSpeech
-        fields = ['title']
+        fields = ["title"]
 
 
 class ArticleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Article
-        fields = ['title']
+        fields = ["title"]
 
 
 class NoteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Note
-        fields = ['title']  # Add other fields as needed
+        fields = ["title"]  # Add other fields as needed
 
 
 class LinkedWordSerializer(serializers.ModelSerializer):
@@ -32,7 +32,7 @@ class LinkedWordSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Word
-        fields = ['title', 'language']
+        fields = ["title", "language"]
 
 
 class TranslationSerializer(serializers.ModelSerializer):
@@ -53,15 +53,24 @@ class WordListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Word
-        fields = ["id", "level", "title", "plural", "language", "articles", "parts_of_speech", "sentence",
-                  "translations"]
+        fields = [
+            "id",
+            "level",
+            "title",
+            "plural",
+            "language",
+            "articles",
+            "parts_of_speech",
+            "sentence",
+            "translations",
+        ]
 
     def to_representation(self, instance):
         data = super().to_representation(instance)
-        secondary_language = self.context['request'].query_params.get("secondary_language")
+        secondary_language = self.context["request"].query_params.get("secondary_language")
         if secondary_language:
             translations = instance.translations.filter(language__code=secondary_language)
-            data['translations'] = TranslationSerializer(translations, many=True).data
+            data["translations"] = TranslationSerializer(translations, many=True).data
         return data
 
 
@@ -70,4 +79,4 @@ class WordSerializer(WordListSerializer):
     linked_words = LinkedWordSerializer(many=True, read_only=True)
 
     class Meta(WordListSerializer.Meta):
-        fields = WordListSerializer.Meta.fields + ['notes', 'linked_words']
+        fields = WordListSerializer.Meta.fields + ["notes", "linked_words"]

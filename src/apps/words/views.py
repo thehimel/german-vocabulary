@@ -1,4 +1,5 @@
 from rest_framework.generics import ListAPIView, RetrieveAPIView
+
 from apps.words.models import Word
 from apps.words.serializers import WordListSerializer, WordSerializer
 
@@ -19,4 +20,4 @@ class WordListAPIView(ListAPIView):
 class WordDetailAPIView(RetrieveAPIView):
     serializer_class = WordSerializer
     queryset = Word.objects.all()
-    lookup_field = 'id'
+    lookup_field = "id"

@@ -1,4 +1,5 @@
 from django.urls import path
+
 from apps.speech.views import TextToSpeechAPIView
 
 app_name = "speech"
