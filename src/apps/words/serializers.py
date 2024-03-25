@@ -3,6 +3,12 @@ from rest_framework import serializers
 from apps.words.models import Article, Language, Note, PartOfSpeech, Word
 
 
+class WordListQueryParamsSerializer(serializers.Serializer):
+    primary_language = serializers.CharField(required=False, default="de")
+    level = serializers.CharField(required=False, default="a1")
+    q = serializers.CharField(required=False)
+
+
 class LanguageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Language
