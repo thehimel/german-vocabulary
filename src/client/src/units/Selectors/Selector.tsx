@@ -16,20 +16,18 @@ interface SelectorProps {
 const Selector: FC<SelectorProps> = ({ label, defaultKey, choices, onChange, showAvatar, width }) => {
   return (
     <Select
-      className={`max-w-xs ${width ? width : ''}`}
+      items={choices}
       label={label}
       placeholder="Select language"
       defaultSelectedKeys={[defaultKey]}
       onChange={onChange}
+      className={`max-w-xs ${width ? width : ''}`}
     >
-      {choices.map((choice: SelectorChoice) => (
-        <SelectItem
-          key={choice.key}
-          startContent={showAvatar && <TextAvatar text={choice.key}/>}
-        >
+      {(choice) => (
+        <SelectItem key={choice.key} startContent={showAvatar && <TextAvatar text={choice.key}/>}>
           {choice.label}
         </SelectItem>
-      ))}
+      )}
     </Select>
   );
 }
