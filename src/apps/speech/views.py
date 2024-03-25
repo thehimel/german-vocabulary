@@ -1,17 +1,24 @@
 from io import BytesIO
 
 from django.http import FileResponse
+from drf_yasg.utils import swagger_auto_schema
 from gtts import gTTS
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
+from apps.api.utils import serializer_to_manual_parameters
+from apps.speech.serializers import TextToSpeechSerializer
+
 
 class TextToSpeechAPIView(APIView):
-    @staticmethod
-    def get(request, *args, **kwargs):
-        input_text = request.query_params.get("text", "")
-        language = request.query_params.get("language", "en")
+    @swagger_auto_schema(manual_parameters=serializer_to_manual_parameters(TextToSpeechSerializer))
+    def get(self, request, *args, **kwargs):
+        serializer = TextToSpeechSerializer(data=request.query_params)
+        serializer.is_valid(raise_exception=True)
+
+        input_text = serializer.validated_data.get("text", "")
+        language = serializer.validated_data.get("language", "en")
 
         if not input_text:
             return Response({"error": "The text parameter is missing."}, status=status.HTTP_400_BAD_REQUEST)
