@@ -24,7 +24,7 @@ const WordCardItem: FC<WordCardItemProps> = ({word}) => {
         <ArticlesPOS articles={word.articles} parts_of_speech={word.parts_of_speech}/>
         {word.plural && (
           <div>
-            <Chip color="warning" variant="shadow">
+            <Chip color="warning" variant="shadow" className="animate-appearance-in">
               <Content language_code={word.language.code} content={word.plural}/>
             </Chip>
           </div>
