@@ -14,7 +14,7 @@ export interface LanguageIconProps {
 }
 
 const TextAvatar: FC<LanguageIconProps> = ({text, textColor, animate}) => {
-  const color = textColor ? textColor: null;
+  const color = textColor ? textColor: "text-gray-50";
   const bgColor = bgColors[text] || "bg-purple-500";
   const animation = animate ? "animate-pulse" : null
   return (
