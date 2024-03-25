@@ -8,12 +8,12 @@ import SpeakerPlayIcon from "./icons/SpeakerPlayIcon.tsx";
 import PlayerSpinner from "./icons/PlayerSpinner.tsx";
 import SpeakerStopIcon from "./icons/SpeakerStopIcon.tsx";
 
-interface Props {
+interface PlayerProps {
   text: string;
   language?: string;
 }
 
-const Player: FC<Props> = ({ text, language }) => {
+const Player: FC<PlayerProps> = ({ text, language }) => {
   // Global state management to keep track of current playback.
   const dispatch: AppDispatch = useAppDispatch();
   const isPlayingGlobal = useAppSelector((state) => state.base.isPlaying);
