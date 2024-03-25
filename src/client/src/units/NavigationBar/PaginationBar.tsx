@@ -22,6 +22,7 @@ const PaginationBar: FC<PaginationBarProps> = ({initialPage, total, onChange}) =
         total={total}
         initialPage={initialPage}
         onChange={onChange}
+        loop
       />
     </div>
   );
