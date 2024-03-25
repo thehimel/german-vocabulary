@@ -164,3 +164,6 @@ cython_debug/
 
 # Media files
 src/media/users/
+
+# OS
+.DS_Store
