@@ -6,22 +6,22 @@ import {SelectorChoice} from "../../store/base/baseSlice.ts";
 
 interface SelectorProps {
   label: string;
-  defaultKey: string;
+  defaultKey?: string;
   choices: SelectorChoice[];
   onChange: SelectorChange;
+  className?: string;
   showAvatar?: boolean;
-  width?: string;
 }
 
-const Selector: FC<SelectorProps> = ({ label, defaultKey, choices, onChange, showAvatar, width }) => {
+const Selector: FC<SelectorProps> = ({ label, defaultKey, choices, onChange, showAvatar, className }) => {
   return (
     <Select
       items={choices}
       label={label}
       placeholder="Select language"
-      defaultSelectedKeys={[defaultKey]}
+      defaultSelectedKeys={defaultKey? [defaultKey] : []}
       onChange={onChange}
-      className={`max-w-xs ${width ? width : ''}`}
+      className={className ? className : ''}
     >
       {(choice) => (
         <SelectItem key={choice.key} startContent={showAvatar && <TextAvatar text={choice.key}/>}>
