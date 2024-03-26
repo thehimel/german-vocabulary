@@ -1,5 +1,6 @@
 import Metadata from "./units/Metadata/Metadata.tsx";
 import {useAppSelector} from "./store/hooks.ts";
+import AddWord from "./units/Screens/AddWord.tsx";
 import Background from "./units/Theme/Background.tsx";
 import NavigationBar from "./units/NavigationBar/NavigationBar.tsx";
 import Home from "./units/Screens/Home.tsx";
@@ -20,6 +21,7 @@ function App() {
             <div className="bg-background">
               <Routes>
                 <Route path="/" element={<Home/>}/>
+                <Route path="add" element={<AddWord/>}/>
               </Routes>
             </div>
             {/* <PaginationBar/> */}
