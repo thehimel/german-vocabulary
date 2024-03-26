@@ -10,7 +10,7 @@ interface WordInputProps {
 
 const WordInput: FC<WordInputProps> = ({ partsOfSpeech, articles}) => {
   return (
-    <>
+    <div className="flex flex-wrap gap-2">
       <Input type="text" label="Word"/>
       <Selector label="Level" defaultKey={levelChoices[0].key} choices={levelChoices} onChange={() => null}/>
       {partsOfSpeech && <Selector label="Parts of Speech" defaultKey={partsOfSpeech[0].key} choices={partsOfSpeech} onChange={() => null}/>}
@@ -18,7 +18,7 @@ const WordInput: FC<WordInputProps> = ({ partsOfSpeech, articles}) => {
       <Input type="text" label="Plural"/>
       <Input type="text" label="Sentence"/>
       <Input type="text" label="Note"/>
-    </>
+    </div>
   );
 }
 
