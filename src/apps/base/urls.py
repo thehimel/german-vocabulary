@@ -9,6 +9,7 @@ app_name = "base"
 
 urlpatterns = [
     path("", ClientView.as_view(), name="client"),
+    path("add/", ClientView.as_view(), name="client"),
     path("home/", HomeView.as_view(), name="home"),
     path("messages/", MessageView.as_view(), name="messages"),
     path("language-preferences/", LanguagePreferencesView.as_view(), name="language_preferences"),

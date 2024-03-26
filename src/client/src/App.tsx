@@ -21,7 +21,7 @@ function App() {
             <div className="bg-background">
               <Routes>
                 <Route path="/" element={<Home/>}/>
-                <Route path="add" element={<AddWord/>}/>
+                <Route path="add/" element={<AddWord/>}/>
               </Routes>
             </div>
             {/* <PaginationBar/> */}
