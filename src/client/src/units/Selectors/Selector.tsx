@@ -9,11 +9,12 @@ interface SelectorProps {
   defaultKey?: string;
   choices: SelectorChoice[];
   onChange: SelectorChange;
+  required?: boolean;
   className?: string;
   showAvatar?: boolean;
 }
 
-const Selector: FC<SelectorProps> = ({ label, defaultKey, choices, onChange, showAvatar, className }) => {
+const Selector: FC<SelectorProps> = ({ label, defaultKey, choices, onChange, required, showAvatar, className }) => {
   return (
     <Select
       items={choices}
@@ -21,6 +22,7 @@ const Selector: FC<SelectorProps> = ({ label, defaultKey, choices, onChange, sho
       placeholder="Select language"
       defaultSelectedKeys={defaultKey? [defaultKey] : []}
       onChange={onChange}
+      required={required ? required : false}
       className={className ? className : ''}
     >
       {(choice) => (

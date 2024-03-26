@@ -18,10 +18,14 @@ function Selectors() {
   const changeLevel = (e: ChangeEvent<HTMLSelectElement>) => dispatch(setLevel(e.target.value));
 
   return (
-    <div className="flex justify-between w-full max-w-screen-lg mx-auto gap-2 pt-2 ps-2 pe-2">
-      <Selector label="Learning" showAvatar={true} defaultKey={primaryLanguage} choices={languageChoices} onChange={changePrimaryLanguage}/>
-      <Selector label="With" showAvatar={true} defaultKey={secondaryLanguage} choices={languageChoices} onChange={changeSecondaryLanguage}/>
-      <Selector label="Level" defaultKey={level} choices={levelChoices} onChange={changeLevel} className="w-3/5"/>
+    <div className="flex justify-center max-w-screen-xl mx-auto pt-2 ps-2 pe-2">
+      <div className="flex w-full gap-2">
+        <Selector label="Learning" showAvatar={true} defaultKey={primaryLanguage} choices={languageChoices}
+                  onChange={changePrimaryLanguage}/>
+        <Selector label="With" showAvatar={true} defaultKey={secondaryLanguage} choices={languageChoices}
+                  onChange={changeSecondaryLanguage}/>
+        <Selector label="Level" defaultKey={level} choices={levelChoices} onChange={changeLevel} className="w-3/5"/>
+      </div>
     </div>
   );
 }
