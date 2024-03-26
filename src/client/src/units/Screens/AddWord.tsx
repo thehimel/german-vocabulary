@@ -13,7 +13,9 @@ const AddWord = () => {
   ]
   return (
     <div className="flex justify-center mx-auto max-w-screen-xl gap-2 pt-2 ps-2 pe-2">
-      <div className="flex flex-wrap gap-4">
+      <div className="grid md:grid-cols-3 gap-2">
+        <WordInput partsOfSpeech={partsOfSpeech} articles={articles}/>
+        <WordInput partsOfSpeech={partsOfSpeech} articles={articles}/>
         <WordInput partsOfSpeech={partsOfSpeech} articles={articles}/>
       </div>
     </div>
