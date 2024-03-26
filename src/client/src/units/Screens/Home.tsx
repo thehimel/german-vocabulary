@@ -2,7 +2,7 @@ import {useEffect} from "react";
 import {AppDispatch} from "../../store/store.ts";
 import {useAppDispatch, useAppSelector} from "../../store/hooks.ts";
 import {fetchWords} from "../../store/words/wordsActions.ts";
-import WordsSkeleton from "../Skeletons/WordsSkeleton.tsx";
+import WordsSkeleton from "../Words/Skeletons/WordsSkeleton.tsx";
 import Words from "../Words/Words.tsx";
 import Selectors from "../Selectors/Selectors.tsx";
 
