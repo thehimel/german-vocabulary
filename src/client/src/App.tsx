@@ -18,7 +18,7 @@ function App() {
           <Background/>
           <div className="h-screen">
             <NavigationBar/>
-            <div className="bg-background">
+            <div className="bg-background pb-2">
               <Routes>
                 <Route path="/" element={<Home/>}/>
                 <Route path="add/" element={<AddWord/>}/>
