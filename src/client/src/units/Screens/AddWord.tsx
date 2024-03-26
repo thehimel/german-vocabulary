@@ -1,17 +1,22 @@
-import {Input} from "@nextui-org/react";
+import WordInput from "./WordInput.tsx";
 
 const AddWord = () => {
-
-
+  const articles = [
+    {key: 'der', label: 'der'},
+    {key: 'die', label: 'die'},
+    {key: 'das', label: 'das'},
+  ]
+  const partsOfSpeech = [
+    {key: 'noun', label: 'Noun'},
+    {key: 'pronoun', label: 'Pronoun'},
+    {key: 'verb', label: 'Verb'},
+  ]
   return (
-    <>
-      <div className="w-full flex flex-col gap-4">
-        <div className="flex w-full flex-wrap md:flex-nowrap mb-6 md:mb-0 gap-4">
-          <Input type="text" label="Word"/>
-          <Input type="text" label="Article"/>
-        </div>
+    <div className="flex justify-center mx-auto max-w-screen-xl gap-2 pt-2 ps-2 pe-2">
+      <div className="flex flex-wrap gap-4">
+        <WordInput partsOfSpeech={partsOfSpeech} articles={articles}/>
       </div>
-    </>
+    </div>
   );
 }
 
