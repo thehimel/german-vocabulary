@@ -1,9 +1,9 @@
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework.generics import ListAPIView, RetrieveAPIView
-
+from rest_framework.response import Response
 from apps.api.utils import serializer_to_manual_parameters
-from apps.words.models import Word
-from apps.words.serializers import WordListQueryParamsSerializer, WordListSerializer, WordSerializer
+from apps.words.models import Word, Language
+from apps.words.serializers import WordListQueryParamsSerializer, WordListSerializer, WordSerializer, LanguageSerializer
 
 
 class WordListAPIView(ListAPIView):
@@ -32,3 +32,16 @@ class WordDetailAPIView(RetrieveAPIView):
     serializer_class = WordSerializer
     queryset = Word.objects.all()
     lookup_field = "id"
+
+
+class PropertiesAPIView(ListAPIView):
+    serializer_class = LanguageSerializer
+
+    def get_queryset(self):
+        # Assuming you want to return Language objects
+        return Language.objects.all()
+
+    def list(self, request, *args, **kwargs):
+        queryset = self.get_queryset()
+        serializer = self.get_serializer(queryset, many=True)
+        return Response(serializer.data)

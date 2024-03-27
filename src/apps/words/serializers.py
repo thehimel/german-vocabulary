@@ -9,7 +9,21 @@ class WordListQueryParamsSerializer(serializers.Serializer):
     q = serializers.CharField(required=False)
 
 
+class ArticleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Article
+        fields = ["title"]
+
+
 class LanguageSerializer(serializers.ModelSerializer):
+    articles = ArticleSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Language
+        fields = ["code", "articles"]
+
+
+class SimpleLanguageSerializer(LanguageSerializer):
     class Meta:
         model = Language
         fields = ["code"]
@@ -21,12 +35,6 @@ class PartOfSpeechSerializer(serializers.ModelSerializer):
         fields = ["title"]
 
 
-class ArticleSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Article
-        fields = ["title"]
-
-
 class NoteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Note
@@ -34,7 +42,7 @@ class NoteSerializer(serializers.ModelSerializer):
 
 
 class LinkedWordSerializer(serializers.ModelSerializer):
-    language = LanguageSerializer()
+    language = SimpleLanguageSerializer()
 
     class Meta:
         model = Word
@@ -42,7 +50,7 @@ class LinkedWordSerializer(serializers.ModelSerializer):
 
 
 class TranslationSerializer(serializers.ModelSerializer):
-    language = LanguageSerializer()
+    language = SimpleLanguageSerializer()
     articles = ArticleSerializer(many=True, read_only=True)
     parts_of_speech = PartOfSpeechSerializer(many=True, read_only=True)
 
@@ -52,7 +60,7 @@ class TranslationSerializer(serializers.ModelSerializer):
 
 
 class WordListSerializer(serializers.ModelSerializer):
-    language = LanguageSerializer(read_only=True)
+    language = SimpleLanguageSerializer(read_only=True)
     articles = ArticleSerializer(many=True, read_only=True)
     parts_of_speech = PartOfSpeechSerializer(many=True, read_only=True)
     translations = TranslationSerializer(many=True, read_only=True)

@@ -1,3 +1,5 @@
-from django.shortcuts import render
+from rest_framework import generics
+from rest_framework.response import Response
 
-# Create your views here.
+from apps.words.models import Language
+from apps.words.serializers import LanguageSerializer
