@@ -44,7 +44,7 @@ const WordInput: FC<WordInputProps> = ({ language, partsOfSpeech}) => {
           <Input type="text" label="Note"/>
         </div>
       </CardBody>
-      </Card>
+    </Card>
   );
 }
 
