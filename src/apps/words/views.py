@@ -2,6 +2,7 @@ from drf_yasg.utils import swagger_auto_schema
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.response import Response
 from apps.api.utils import serializer_to_manual_parameters
+from apps.words.constants import LEVELS
 from apps.words.models import Word, Language, PartOfSpeech
 from apps.words.serializers import WordListQueryParamsSerializer, WordListSerializer, WordSerializer, \
     LanguageSerializer, PartOfSpeechSerializer
@@ -49,5 +50,9 @@ class PropertiesAPIView(ListAPIView):
         parts_of_speech = PartOfSpeech.objects.all()
         parts_of_speech_serializer = PartOfSpeechSerializer(parts_of_speech, many=True)
 
-        data = {'languages': languages_serializer.data, 'parts_of_speech': parts_of_speech_serializer.data}
+        data = {
+            'languages': languages_serializer.data,
+            'parts_of_speech': parts_of_speech_serializer.data,
+            'levels': LEVELS,
+        }
         return Response(data)

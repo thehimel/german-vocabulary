@@ -6,6 +6,7 @@ from apps.base.utils.decorators import auto_slugify
 from apps.base.utils.images import resize_image
 from apps.base.utils.validators import validate_alphanumeric, validate_file_size
 from apps.users.constants import DEFAULT_WORD_IMAGE
+from apps.words.utils import getLevelChoices
 
 
 class Image(models.Model):
@@ -104,9 +105,7 @@ class Word(models.Model):
     articles = models.ManyToManyField(Article, blank=True)
     parts_of_speech = models.ManyToManyField(PartOfSpeech, blank=True, verbose_name="Parts of Speech")
     sentence = models.TextField(default="", blank=True, null=True)
-    level = models.CharField(
-        max_length=2, choices=[("a1", "A1"), ("a2", "A2"), ("b1", "B1"), ("b2", "B2"), ("c1", "C1"), ("c2", "C2")]
-    )
+    level = models.CharField(max_length=2, choices=getLevelChoices())
     notes = models.ManyToManyField(Note, blank=True)
     hidden = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
