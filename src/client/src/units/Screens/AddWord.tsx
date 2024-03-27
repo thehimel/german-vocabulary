@@ -20,7 +20,7 @@ const AddWord = () => {
       <div className="flex justify-center mx-auto max-w-screen-xl gap-2 pt-2 ps-2 pe-2">
         <div className="grid md:grid-cols-3 gap-2">
           {languages.map(language => (
-            <WordInput key={language.code} language={language.code} articles={getSelectorChoices(language.articles)} partsOfSpeech={partsOfSpeech}/>
+            <WordInput key={language.code} language={language} partsOfSpeech={partsOfSpeech}/>
           ))}
         </div>
       </div>

@@ -23,7 +23,7 @@ interface Article {
   title: string;
 }
 
-interface Language {
+export interface Language {
   code: string;
   title: string;
   articles: Article[];

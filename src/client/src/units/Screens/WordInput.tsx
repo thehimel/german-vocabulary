@@ -1,17 +1,19 @@
 import {Card, CardBody, CardHeader, Input} from "@nextui-org/react";
 import {FC} from "react";
-import {languageChoices, levelChoices, SelectorChoice} from "../../store/base/baseSlice.ts";
+import {Language, levelChoices, SelectorChoice} from "../../store/base/baseSlice.ts";
 import Selector from "../Selectors/Selector.tsx";
-import {getLanguageStyle} from "../utils/utils.ts";
+import {getLanguageStyle, getSelectorChoices} from "../utils/utils.ts";
+import Content from "../WordCard/Content.tsx";
 
 interface WordInputProps {
-  language: string,
+  language: Language,
   partsOfSpeech?: SelectorChoice[];
   articles?: SelectorChoice[];
 }
 
-const WordInput: FC<WordInputProps> = ({ language, partsOfSpeech, articles}) => {
-  const shadowColor = `flex flex-wrap gap-2 pt-2 shadow-sm ${getLanguageStyle(language, 'shadow')}`;
+const WordInput: FC<WordInputProps> = ({ language, partsOfSpeech}) => {
+  const shadowColor = `flex flex-wrap gap-2 pt-2 shadow-sm ${getLanguageStyle(language.code, 'shadow')}`;
+  const articles = getSelectorChoices(language.articles);
   const articlesComponent = articles && articles[0]?.key ? (
     <Selector
       label="Articles"
@@ -24,7 +26,7 @@ const WordInput: FC<WordInputProps> = ({ language, partsOfSpeech, articles}) => 
   return (
     <Card className={shadowColor}>
       <CardHeader className="flex justify-center">
-        {languageChoices.find(choice => choice.key === language)?.label}
+        <Content showAvatar={true} language_code={language.code} content={language.title}/>
       </CardHeader>
       <CardBody className="pt-1">
         <div className="flex flex-wrap gap-2">

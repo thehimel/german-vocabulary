@@ -18,18 +18,18 @@ const WordCardItem: FC<WordCardItemProps> = ({word}) => {
   return (
     <div className="p-4">
       <ModalHeader className="flex flex-col">
-        <Content showAvatar={true} language_code={word.language.code} content={word.title}/>
+        <Content showAvatar showSpeaker language_code={word.language.code} content={word.title}/>
       </ModalHeader>
       <ModalBody>
         <ArticlesPOS articles={word.articles} parts_of_speech={word.parts_of_speech}/>
         {word.plural && (
           <div>
             <Chip color="warning" variant="shadow" className="animate-appearance-in">
-              <Content language_code={word.language.code} content={word.plural}/>
+              <Content showSpeaker language_code={word.language.code} content={word.plural}/>
             </Chip>
           </div>
         )}
-        <Content language_code={word.language.code} content={word.sentence}/>
+        <Content showSpeaker language_code={word.language.code} content={word.sentence}/>
       </ModalBody>
     </div>
   );
