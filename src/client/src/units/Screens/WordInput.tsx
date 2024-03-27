@@ -1,16 +1,22 @@
-import {Input} from "@nextui-org/react";
+import {Card, CardBody, Input} from "@nextui-org/react";
 import {FC} from "react";
-import {levelChoices, SelectorChoice} from "../../store/base/baseSlice.ts";
+import {languageChoices, levelChoices, SelectorChoice} from "../../store/base/baseSlice.ts";
 import Selector from "../Selectors/Selector.tsx";
 
 interface WordInputProps {
+  language: string,
   partsOfSpeech?: SelectorChoice[];
   articles?: SelectorChoice[];
 }
 
-const WordInput: FC<WordInputProps> = ({ partsOfSpeech, articles}) => {
+const WordInput: FC<WordInputProps> = ({ language, partsOfSpeech, articles}) => {
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex flex-wrap gap-2 pt-3">
+      <Card className="w-full dark:bg-zinc-800 shadow-sm shadow-purple-500">
+        <CardBody>
+          <p className="flex justify-center">{languageChoices.find(choice => choice.key === language)?.label}</p>
+        </CardBody>
+      </Card>
       <Input required type="text" label="Word"/>
       <Selector label="Level" defaultKey={levelChoices[0].key} choices={levelChoices} onChange={() => null}/>
       {partsOfSpeech && <Selector label="Parts of Speech" defaultKey={partsOfSpeech[0].key} choices={partsOfSpeech} onChange={() => null}/>}
