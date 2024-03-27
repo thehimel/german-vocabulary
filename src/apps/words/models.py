@@ -74,7 +74,7 @@ class Language(models.Model):
     modified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.name
+        return str(self.name)
 
     def save(self, *args, **kwargs):
         self.name = dict(self.languages).get(self.code, self.code)

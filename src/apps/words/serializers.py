@@ -20,7 +20,7 @@ class LanguageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Language
-        fields = ["code", "articles"]
+        fields = ["code", "name", "articles"]
 
 
 class SimpleLanguageSerializer(LanguageSerializer):
