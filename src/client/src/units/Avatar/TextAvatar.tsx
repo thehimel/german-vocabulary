@@ -1,5 +1,6 @@
 import {FC} from "react";
 import {Avatar} from "@nextui-org/react";
+import {useAppSelector} from "../../store/hooks.ts";
 
 const bgColors: Record<string, string> = {
   "de": "bg-amber-500",
@@ -14,11 +15,12 @@ export interface LanguageIconProps {
 }
 
 const TextAvatar: FC<LanguageIconProps> = ({text, textColor, animate}) => {
+  const darkMode = useAppSelector((state) => state.base.darkMode);
   const color = textColor ? textColor: "text-gray-50";
   const bgColor = bgColors[text.toLowerCase()] || "bg-purple-500";
   const animation = animate ? "animate-pulse" : null
   return (
-    <Avatar isBordered alt={text} className={`${bgColor} ${color} ${animation} w-6 h-6 mt-0.5`} name={text.toUpperCase()} />
+    <Avatar isBordered alt={text} className={`${darkMode ? 'dark': ''} ${bgColor} ${color} ${animation} w-6 h-6 mt-0.5`} name={text.toUpperCase()} />
   );
 }
 
