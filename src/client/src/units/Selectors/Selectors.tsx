@@ -24,7 +24,8 @@ function Selectors() {
                   onChange={changePrimaryLanguage}/>
         <Selector label="With" showAvatar={true} defaultKey={secondaryLanguage} choices={languageChoices}
                   onChange={changeSecondaryLanguage}/>
-        <Selector label="Level" defaultKey={level} choices={levelChoices} onChange={changeLevel} className="w-3/5"/>
+        <Selector label="Level" defaultKey={level} choices={levelChoices} className="w-3/5 sm:w-full"
+                  onChange={changeLevel}/>
       </div>
     </div>
   );
