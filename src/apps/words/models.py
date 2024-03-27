@@ -68,12 +68,17 @@ class Language(models.Model):
         languages.update([language])
 
     code = models.CharField(unique=True, max_length=7, choices=code_choices)
+    name = models.CharField(max_length=100, editable=False)
     articles = models.ManyToManyField(Article, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return str(self.languages.get(self.code, self.code))
+        return self.name
+
+    def save(self, *args, **kwargs):
+        self.name = dict(self.languages).get(self.code, self.code)
+        super().save(*args, **kwargs)
 
 
 class Note(models.Model):
