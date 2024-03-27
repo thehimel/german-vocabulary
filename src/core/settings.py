@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     "apps.cards",
     "apps.speech",
     "apps.trans",
+    "apps.preview",
     # ---
     "corsheaders",
     "rest_framework",
