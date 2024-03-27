@@ -25,7 +25,7 @@ interface Article {
 
 interface Language {
   code: string;
-  name: string;
+  title: string;
   articles: Article[];
 }
 
