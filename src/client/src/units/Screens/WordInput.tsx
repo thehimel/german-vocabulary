@@ -14,16 +14,19 @@ interface WordInputProps {
 const WordInput: FC<WordInputProps> = ({ language, partsOfSpeech}) => {
   const shadowColor = `flex flex-wrap gap-2 pt-2 shadow-sm ${getLanguageStyle(language.code, 'shadow')}`;
 
-  const initialPartOfSpeech = partsOfSpeech && partsOfSpeech[0]?.key ? partsOfSpeech[0].key : ''
+  const initialPartOfSpeech = partsOfSpeech && partsOfSpeech.length > 0 ? partsOfSpeech[0].key : ''
   const [partOfSpeech, setPartOfSpeech] = useState(initialPartOfSpeech);
   const isNoun = partOfSpeech.toLowerCase() === 'noun';
 
-  const articles = getSelectorChoices(language.articles);
-  const articlesComponent = articles && articles[0]?.key ? (
-    <Selector label="Articles" defaultKey={articles[0].key} choices={articles} onChange={() => null}/>
+  const handlePartOfSpeechChange = (e: ChangeEvent<HTMLSelectElement>) => setPartOfSpeech(e.target.value);
+  const partsOfSpeechComponent = partsOfSpeech && partsOfSpeech.length > 0 ? (
+    <Selector label="Parts of Speech" defaultKey={partsOfSpeech[0].key} choices={partsOfSpeech} onChange={handlePartOfSpeechChange}/>
   ) : null;
 
-  const handlePartOfSpeechChange = (e: ChangeEvent<HTMLSelectElement>) => setPartOfSpeech(e.target.value);
+  const articles = getSelectorChoices(language.articles);
+  const articlesComponent = articles && articles.length > 0 ? (
+    <Selector label="Articles" defaultKey={articles[0].key} choices={articles} onChange={() => null}/>
+  ) : null;
 
   return (
     <Card className={shadowColor}>
@@ -34,7 +37,7 @@ const WordInput: FC<WordInputProps> = ({ language, partsOfSpeech}) => {
         <div className="flex flex-wrap gap-2">
           <Input required type="text" label="Word"/>
           <Selector label="Level" defaultKey={levelChoices[0].key} choices={levelChoices} onChange={() => null}/>
-          {partsOfSpeech?.length && <Selector label="Parts of Speech" defaultKey={partsOfSpeech[0].key} choices={partsOfSpeech} onChange={handlePartOfSpeechChange}/>}
+          {partsOfSpeechComponent}
           { isNoun && articlesComponent }
           { isNoun && <Input type="text" label="Plural"/>}
           <Input type="text" label="Sentence"/>
