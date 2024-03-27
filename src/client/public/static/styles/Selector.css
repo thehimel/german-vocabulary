@@ -1,0 +1,15 @@
+.text-small {
+  color: #FAFAFA;
+}
+
+.text-inherit {
+  color: #FAFAFA;
+}
+
+.bg-content1 {
+  background-color: #18181B;
+}
+
+.data-\[selectable\=true\]\:focus\:bg-default:focus[data-selectable=true] {
+  background-color: #3F3F46;
+}
