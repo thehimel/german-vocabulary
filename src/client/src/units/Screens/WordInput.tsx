@@ -12,6 +12,14 @@ interface WordInputProps {
 
 const WordInput: FC<WordInputProps> = ({ language, partsOfSpeech, articles}) => {
   const shadowColor = `flex flex-wrap gap-2 pt-2 shadow-sm ${getLanguageStyle(language, 'shadow')}`;
+  const articlesComponent = articles && articles[0]?.key ? (
+    <Selector
+      label="Articles"
+      defaultKey={articles[0].key}
+      choices={articles}
+      onChange={() => null}
+    />
+  ) : null;
 
   return (
     <Card className={shadowColor}>
@@ -22,8 +30,8 @@ const WordInput: FC<WordInputProps> = ({ language, partsOfSpeech, articles}) => 
         <div className="flex flex-wrap gap-2">
           <Input required type="text" label="Word"/>
           <Selector label="Level" defaultKey={levelChoices[0].key} choices={levelChoices} onChange={() => null}/>
-          {partsOfSpeech && <Selector label="Parts of Speech" defaultKey={partsOfSpeech[0].key} choices={partsOfSpeech} onChange={() => null}/>}
-          {articles && <Selector label="Articles" defaultKey={articles[0].key} choices={articles} onChange={() => null}/>}
+          {partsOfSpeech?.length && <Selector label="Parts of Speech" defaultKey={partsOfSpeech[0].key} choices={partsOfSpeech} onChange={() => null}/>}
+          { articlesComponent }
           <Input type="text" label="Plural"/>
           <Input type="text" label="Sentence"/>
           <Input type="text" label="Note"/>

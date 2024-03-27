@@ -5,12 +5,9 @@ import WordInput from "./WordInput.tsx";
 
 const AddWord = () => {
   const parts_of_speech = useAppSelector((state) => state.base.properties.parts_of_speech);
+  const languages = useAppSelector((state) => state.base.properties.languages);
   const partsOfSpeech = getSelectorChoices(parts_of_speech);
-  const articles = [
-    {key: 'der', label: 'der'},
-    {key: 'die', label: 'die'},
-    {key: 'das', label: 'das'},
-  ]
+
   return (
     <>
       <div className="flex justify-center mx-auto max-w-screen-xl gap-2 pt-2 ps-2 pe-2">
@@ -22,9 +19,9 @@ const AddWord = () => {
       </div>
       <div className="flex justify-center mx-auto max-w-screen-xl gap-2 pt-2 ps-2 pe-2">
         <div className="grid md:grid-cols-3 gap-2">
-          <WordInput language="de" partsOfSpeech={partsOfSpeech} articles={articles}/>
-          <WordInput language="en" partsOfSpeech={partsOfSpeech} articles={articles}/>
-          <WordInput language="bn" partsOfSpeech={partsOfSpeech} articles={articles}/>
+          {languages.map(language => (
+            <WordInput key={language.code} language={language.code} articles={getSelectorChoices(language.articles)} partsOfSpeech={partsOfSpeech}/>
+          ))}
         </div>
       </div>
     </>
