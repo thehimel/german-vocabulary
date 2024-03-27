@@ -31,7 +31,7 @@ const Selector: FC<SelectorProps> = ({ label, defaultKey, choices, onChange, req
       className={className ? className : ''}
     >
       {(choice) => (
-        <SelectItem key={choice.key} startContent={showAvatar && <TextAvatar text={choice.key}/>}>
+        <SelectItem key={choice.key} startContent={showAvatar && <TextAvatar text={choice.key} animate={true}/>}>
           {choice.label}
         </SelectItem>
       )}
