@@ -1,6 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {slices} from "../constants.ts";
 import {fetchWords} from "../words/wordsActions.ts";
+import {ErrorType} from "../words/wordsSlice.ts";
 
 export interface SelectorChoice {
   key: string;
@@ -18,12 +19,38 @@ export const levelChoices: SelectorChoice[] = [
   {key: "a2", label: "A2"},
 ]
 
+interface Article {
+  title: string;
+}
+
+interface Language {
+  code: string;
+  name: string;
+  articles: Article[];
+}
+
+interface PartsOfSpeech {
+  title: string;
+}
+
+interface Properties {
+  languages: Language[];
+  partsOfSpeech: PartsOfSpeech[];
+}
+
 interface BaseState {
   darkMode: boolean;
   primaryLanguage: string;
   secondaryLanguage: string;
   level: string;
   isPlaying: boolean;
+  properties: Properties;
+  error: ErrorType;
+}
+
+const initialProperties: Properties = {
+  languages: [],
+  partsOfSpeech: [],
 }
 
 // Define the initial state using that type
@@ -33,6 +60,8 @@ const initialState: BaseState = {
   secondaryLanguage: "en",
   level: "a1",
   isPlaying: false,
+  properties: initialProperties,
+  error: null,
 }
 
 const baseSlice = createSlice({
@@ -56,6 +85,12 @@ const baseSlice = createSlice({
     setLevel(state, action: {payload: string}): void {
       const value = action.payload;
       if (value) {state.level = value; fetchWords(state);}
+    },
+    setError(state, action: {payload: ErrorType}): void {
+      state.error = action.payload;
+    },
+    setProperties(state, action: {payload: Properties}): void {
+      state.properties = action.payload;
     },
   }
 });

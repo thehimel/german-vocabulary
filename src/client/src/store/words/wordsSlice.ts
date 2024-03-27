@@ -1,11 +1,13 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {slices} from "../constants.ts";
 
+export type ErrorType = string | null;
+
 export interface WordsStateProps {
   words: [];
   currentIndex: number;
   loading: boolean;
-  error: string | null;
+  error: ErrorType;
 }
 
 const initialState: WordsStateProps = {
@@ -29,7 +31,7 @@ const wordsSlice = createSlice({
       state.words = action.payload;
       state.loading = false;
     },
-    setWordError(state, action): void {
+    setError(state, action: {payload: ErrorType}): void {
       state.error = action.payload;
       state.loading = false;
     },

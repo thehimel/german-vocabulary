@@ -10,7 +10,7 @@ const persistConfig = {
   key: "root",
   version: 1,
   storage,
-  blacklist: ["isPlaying", "loading", "error", "word", "words", "currentIndex"],
+  blacklist: ["isPlaying", "loading", "error", "word", "words", "currentIndex", "properties"],
 };
 
 // combineReducers is mandatory to avoid type issues.
