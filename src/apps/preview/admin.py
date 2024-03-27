@@ -1,3 +1,6 @@
 from django.contrib import admin
+from apps.preview.models import PreviewWord, PreviewBundle
 
-# Register your models here.
+
+admin.site.register(PreviewWord)
+admin.site.register(PreviewBundle)
