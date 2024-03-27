@@ -41,7 +41,7 @@ class PropertiesAPIView(ListAPIView):
 
     def get_queryset(self):
         # Assuming you want to return Language objects
-        return Language.objects.all()
+        return Language.objects.all().order_by('modified')
 
     def list(self, request, *args, **kwargs):
         queryset = self.get_queryset()
