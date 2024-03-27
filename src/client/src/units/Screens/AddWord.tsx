@@ -1,16 +1,15 @@
 import {Card, CardBody} from "@nextui-org/react";
+import {useAppSelector} from "../../store/hooks.ts";
+import {getSelectorChoices} from "../utils/utils.ts";
 import WordInput from "./WordInput.tsx";
 
 const AddWord = () => {
+  const parts_of_speech = useAppSelector((state) => state.base.properties.parts_of_speech);
+  const partsOfSpeech = getSelectorChoices(parts_of_speech);
   const articles = [
     {key: 'der', label: 'der'},
     {key: 'die', label: 'die'},
     {key: 'das', label: 'das'},
-  ]
-  const partsOfSpeech = [
-    {key: 'noun', label: 'Noun'},
-    {key: 'pronoun', label: 'Pronoun'},
-    {key: 'verb', label: 'Verb'},
   ]
   return (
     <>

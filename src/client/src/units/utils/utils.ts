@@ -14,3 +14,14 @@ export const getLanguageStyle = (code: string, type: 'bg' | 'shadow') => {
     const languageCode = code.toLowerCase();
     return languageStyles[languageCode]?.[type] || (type === 'bg' ? 'bg-purple-500' : 'shadow-purple-500');
 };
+
+
+export const getSelectorChoices = (items: { title: string }[]): SelectorChoice[] => {
+    const choices: SelectorChoice[] = [];
+
+    items.forEach(item => {
+        choices.push({ key: item.title.toLowerCase(), label: item.title });
+    });
+
+    return choices;
+}

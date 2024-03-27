@@ -35,7 +35,7 @@ interface PartsOfSpeech {
 
 interface Properties {
   languages: Language[];
-  partsOfSpeech: PartsOfSpeech[];
+  parts_of_speech: PartsOfSpeech[];
   levels: string[];
 }
 
@@ -51,7 +51,7 @@ interface BaseState {
 
 const initialProperties: Properties = {
   languages: [],
-  partsOfSpeech: [],
+  parts_of_speech: [],
   levels: [],
 }
 
