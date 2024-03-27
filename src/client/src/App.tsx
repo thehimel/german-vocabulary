@@ -1,5 +1,8 @@
+import {useEffect} from "react";
+import {fetchProperties} from "./store/base/baseActions.ts";
+import {AppDispatch} from "./store/store.ts";
 import Metadata from "./units/Metadata/Metadata.tsx";
-import {useAppSelector} from "./store/hooks.ts";
+import {useAppDispatch, useAppSelector} from "./store/hooks.ts";
 import AddWord from "./units/Screens/AddWord.tsx";
 import Background from "./units/Theme/Background.tsx";
 import NavigationBar from "./units/NavigationBar/NavigationBar.tsx";
@@ -9,6 +12,11 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 
 function App() {
   const darkMode = useAppSelector((state) => state.base.darkMode);
+  const dispatch: AppDispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchProperties())
+  }, [dispatch]);
 
   return (
     <BrowserRouter>
