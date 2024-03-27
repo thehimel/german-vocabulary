@@ -1,7 +1,8 @@
-import {Card, CardBody, Input} from "@nextui-org/react";
+import {Card, CardBody, CardHeader, Input} from "@nextui-org/react";
 import {FC} from "react";
 import {languageChoices, levelChoices, SelectorChoice} from "../../store/base/baseSlice.ts";
 import Selector from "../Selectors/Selector.tsx";
+import {getLanguageStyle} from "../utils/utils.ts";
 
 interface WordInputProps {
   language: string,
@@ -10,21 +11,25 @@ interface WordInputProps {
 }
 
 const WordInput: FC<WordInputProps> = ({ language, partsOfSpeech, articles}) => {
+  const shadowColor = `flex flex-wrap gap-2 pt-2 shadow-sm ${getLanguageStyle(language, 'shadow')}`;
+
   return (
-    <div className="flex flex-wrap gap-2 pt-3">
-      <Card className="w-full dark:bg-zinc-800 shadow-sm shadow-purple-500">
-        <CardBody>
-          <p className="flex justify-center">{languageChoices.find(choice => choice.key === language)?.label}</p>
-        </CardBody>
+    <Card className={shadowColor}>
+      <CardHeader className="flex justify-center">
+        {languageChoices.find(choice => choice.key === language)?.label}
+      </CardHeader>
+      <CardBody className="pt-1">
+        <div className="flex flex-wrap gap-2">
+          <Input required type="text" label="Word"/>
+          <Selector label="Level" defaultKey={levelChoices[0].key} choices={levelChoices} onChange={() => null}/>
+          {partsOfSpeech && <Selector label="Parts of Speech" defaultKey={partsOfSpeech[0].key} choices={partsOfSpeech} onChange={() => null}/>}
+          {articles && <Selector label="Articles" defaultKey={articles[0].key} choices={articles} onChange={() => null}/>}
+          <Input type="text" label="Plural"/>
+          <Input type="text" label="Sentence"/>
+          <Input type="text" label="Note"/>
+        </div>
+      </CardBody>
       </Card>
-      <Input required type="text" label="Word"/>
-      <Selector label="Level" defaultKey={levelChoices[0].key} choices={levelChoices} onChange={() => null}/>
-      {partsOfSpeech && <Selector label="Parts of Speech" defaultKey={partsOfSpeech[0].key} choices={partsOfSpeech} onChange={() => null}/>}
-      {articles && <Selector label="Articles" defaultKey={articles[0].key} choices={articles} onChange={() => null}/>}
-      <Input type="text" label="Plural"/>
-      <Input type="text" label="Sentence"/>
-      <Input type="text" label="Note"/>
-    </div>
   );
 }
 
