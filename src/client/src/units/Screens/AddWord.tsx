@@ -36,8 +36,8 @@ const AddWord = () => {
     console.log(formData);
   };
 
-  const handleSubmit = (event: SubmitEvent) => {
-    console.log(event)
+  const handleSubmit = () => {
+    console.log(formData)
   }
 
   return (
@@ -58,7 +58,7 @@ const AddWord = () => {
         </div>
       </div>
       <div className="flex justify-center max-w-screen-xl mx-auto p-2 pb-0">
-        <Button className="w-full shadow-sm shadow-purple-500 dark:bg-zinc-800">Submit</Button>
+        <Button className="w-full shadow-sm shadow-purple-500 dark:bg-zinc-800" onClick={handleSubmit}>Submit</Button>
       </div>
     </>
   );
