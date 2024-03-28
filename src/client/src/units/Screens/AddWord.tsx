@@ -45,7 +45,6 @@ const AddWord = () => {
     const updatedForms = [...formData];
     updatedForms[index][name] = value;
     setFormData(updatedForms);
-    console.log(formData);
   };
 
   const handleSubmit = (event: FormEvent) => {
