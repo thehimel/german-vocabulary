@@ -20,11 +20,11 @@ function Selectors() {
   return (
     <div className="flex justify-center max-w-screen-xl mx-auto pt-2 ps-2 pe-2">
       <div className="flex w-full gap-2">
-        <Selector label="Learning" showAvatar={true} defaultKey={primaryLanguage} choices={languageChoices}
+        <Selector label="Learning" placeholder="Select Language" showAvatar={true} defaultKey={primaryLanguage} choices={languageChoices}
                   onChange={changePrimaryLanguage}/>
-        <Selector label="With" showAvatar={true} defaultKey={secondaryLanguage} choices={languageChoices}
+        <Selector label="With" placeholder="Select Language" showAvatar={true} defaultKey={secondaryLanguage} choices={languageChoices}
                   onChange={changeSecondaryLanguage}/>
-        <Selector label="Level" defaultKey={level} choices={levelChoices} className="w-3/5 sm:w-full"
+        <Selector label="Level" placeholder="Select Level" defaultKey={level} choices={levelChoices} className="w-3/5 sm:w-full"
                   onChange={changeLevel}/>
       </div>
     </div>

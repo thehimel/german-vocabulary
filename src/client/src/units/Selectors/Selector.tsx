@@ -8,6 +8,7 @@ import {toggleDarkModeStyleSheet} from "./utils.ts";
 
 interface SelectorProps {
   label: string;
+  placeholder?: string;
   defaultKey?: string;
   choices: SelectorChoice[];
   onChange: SelectorChange;
@@ -18,7 +19,7 @@ interface SelectorProps {
   value?: string;
 }
 
-const Selector: FC<SelectorProps> = ({ name, label, defaultKey, choices, onChange, required, showAvatar, className, value }) => {
+const Selector: FC<SelectorProps> = ({ name, label, placeholder, defaultKey, choices, onChange, required, showAvatar, className, value }) => {
   const darkMode = useAppSelector((state) => state.base.darkMode);
   toggleDarkModeStyleSheet(darkMode);
 
@@ -27,7 +28,7 @@ const Selector: FC<SelectorProps> = ({ name, label, defaultKey, choices, onChang
       items={choices}
       name = {name}
       label={label}
-      placeholder="Select language"
+      placeholder={placeholder || `Select ${label}`}
       defaultSelectedKeys={defaultKey? [defaultKey] : []}
       onChange={onChange}
       required={required ? required : false}
