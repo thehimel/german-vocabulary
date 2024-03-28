@@ -15,9 +15,10 @@ interface SelectorProps {
   className?: string;
   showAvatar?: boolean;
   name?: string;
+  value?: string;
 }
 
-const Selector: FC<SelectorProps> = ({ name, label, defaultKey, choices, onChange, required, showAvatar, className }) => {
+const Selector: FC<SelectorProps> = ({ name, label, defaultKey, choices, onChange, required, showAvatar, className, value }) => {
   const darkMode = useAppSelector((state) => state.base.darkMode);
   toggleDarkModeStyleSheet(darkMode);
 
@@ -31,6 +32,7 @@ const Selector: FC<SelectorProps> = ({ name, label, defaultKey, choices, onChang
       onChange={onChange}
       required={required ? required : false}
       className={className ? className : ''}
+      value={value}
     >
       {(choice) => (
         <SelectItem key={choice.key} startContent={showAvatar && <TextAvatar text={choice.key} animate={true}/>}>

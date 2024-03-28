@@ -33,6 +33,7 @@ const AddWord = () => {
     const updatedForms = [...formData];
     updatedForms[index][name] = value;
     setFormData(updatedForms);
+    console.log(formData);
   };
 
   const handleSubmit = (event: SubmitEvent) => {
@@ -50,8 +51,8 @@ const AddWord = () => {
       </div>
       <div className="flex justify-center mx-auto max-w-screen-xl gap-2 pt-2 ps-2 pe-2">
         <div className="grid md:grid-cols-3 gap-2">
-          {languages.map(language => (
-            <WordInput key={language.code} language={language} partsOfSpeech={partsOfSpeech}/>
+          {formData.map((formData, index) => (
+            <WordInput key={formData.languageCode} formData={formData} index={index} language={languages[index]} partsOfSpeech={partsOfSpeech} onChange={handleInputChange}/>
           ))}
         </div>
       </div>

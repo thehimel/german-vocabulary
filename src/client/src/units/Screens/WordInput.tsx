@@ -6,12 +6,14 @@ import {getLanguageStyle, getSelectorChoices} from "../utils/utils.ts";
 import Content from "../WordCard/Content.tsx";
 
 interface WordInputProps {
-  language: Language,
+  formData: Record<string, string>;
+  index: number;
+  language: Language;
   partsOfSpeech?: SelectorChoice[];
-  articles?: SelectorChoice[];
+  onChange: (index: number, event: ChangeEvent<HTMLSelectElement | HTMLInputElement>) => void;
 }
 
-const WordInput: FC<WordInputProps> = ({ language, partsOfSpeech}) => {
+const WordInput: FC<WordInputProps> = ({ formData, index, language, partsOfSpeech, onChange}) => {
   const shadowColor = `flex flex-wrap gap-2 pt-2 shadow-sm ${getLanguageStyle(language.code, 'shadow')}`;
 
   const initialPartOfSpeech = partsOfSpeech && partsOfSpeech.length > 0 ? partsOfSpeech[0].key : ''
@@ -20,31 +22,33 @@ const WordInput: FC<WordInputProps> = ({ language, partsOfSpeech}) => {
 
   const handlePartOfSpeechChange = (e: ChangeEvent<HTMLSelectElement>) => setPartOfSpeech(e.target.value);
   const partsOfSpeechComponent = partsOfSpeech && partsOfSpeech.length > 0 ? (
-    <Selector name="partOfSpeech" label="Part of Speech" defaultKey={partsOfSpeech[0].key} choices={partsOfSpeech} onChange={handlePartOfSpeechChange}/>
+    <Selector name="partOfSpeech" label="Part of Speech" value={formData.partOfSpeech} defaultKey={formData.partOfSpeech} choices={partsOfSpeech} onChange={(e) => {handlePartOfSpeechChange(e); onChange(index, e)}} />
   ) : null;
 
   const articles = getSelectorChoices(language.articles);
   const articlesComponent = articles && articles.length > 0 ? (
-    <Selector name="article" label="Article" defaultKey={articles[0].key} choices={articles} onChange={() => null}/>
+    <Selector name="article" label="Article" value={formData.article} defaultKey={formData.article} choices={articles} onChange={(e) => onChange(index, e)}/>
   ) : null;
 
   return (
-    <Card className={shadowColor}>
+    <form key={index}>
+      <Card className={shadowColor}>
       <CardHeader className="flex justify-center">
         <Content showAvatar={true} language_code={language.code} content={language.title}/>
       </CardHeader>
       <CardBody className="pt-1">
         <div className="flex flex-wrap gap-2">
-          <Input required type="text" name="word" label="Word"/>
-          <Selector name="level" label="Level" defaultKey={levelChoices[0].key} choices={levelChoices} onChange={() => null}/>
+          <Input required type="text" name="word" label="Word" value={formData.word} onChange={(e) => onChange(index, e)}/>
+          <Selector name="level" label="Level" value={formData.level} defaultKey={formData.level} choices={levelChoices} onChange={(e) => onChange(index, e)}/>
           {partsOfSpeechComponent}
           { isNoun && articlesComponent }
-          { isNoun && <Input name="plural" type="text" label="Plural"/>}
-          <Input name="sentence" type="text" label="Sentence"/>
-          <Input name="note" type="text" label="Note"/>
+          { isNoun && <Input name="plural" type="text" label="Plural" onChange={(e) => onChange(index, e)}/>}
+          <Input name="sentence" type="text" label="Sentence" value={formData.sentence} onChange={(e) => onChange(index, e)}/>
+          <Input name="note" type="text" label="Note" value={formData.note} onChange={(e) => onChange(index, e)}/>
         </div>
       </CardBody>
     </Card>
+    </form>
   );
 }
 
