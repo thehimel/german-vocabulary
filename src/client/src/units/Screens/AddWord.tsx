@@ -71,14 +71,18 @@ const AddWord = () => {
             </div>
           </Card>
         </div>
+
         <div className="flex justify-center mx-auto max-w-screen-xl gap-2 pt-2 ps-2 pe-2">
-          <div className="grid md:grid-cols-3 gap-2">
-            {formData.map((formData, index) => (
-              <WordInput key={formData.languageCode} formData={formData} index={index} language={languages[index]}
-                         isNoun={isNoun} onChange={handleInputChange}/>
-            ))}
+          <div className="w-full">
+            <div className="grid md:grid-cols-3 gap-2">
+              {formData.map((formData, index) => (
+                <WordInput key={formData.languageCode} formData={formData} index={index} language={languages[index]}
+                           isNoun={isNoun} onChange={handleInputChange}/>
+              ))}
+            </div>
           </div>
         </div>
+
         <div className="flex justify-center max-w-screen-xl mx-auto p-2 pb-0">
           <Button className="w-full shadow-sm shadow-purple-500 dark:bg-zinc-800" type="submit">Submit</Button>
         </div>
