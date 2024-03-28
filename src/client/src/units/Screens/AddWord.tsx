@@ -1,6 +1,8 @@
 import {Button, Card, CardBody} from "@nextui-org/react";
 import {ChangeEvent, FormEvent, useState} from "react";
+import {levelChoices} from "../../store/base/baseSlice.ts";
 import {useAppSelector} from "../../store/hooks.ts";
+import Selector from "../Selectors/Selector.tsx";
 import {getSelectorChoices} from "../utils/utils.ts";
 import WordInput from "./WordInput.tsx";
 
@@ -8,6 +10,16 @@ const AddWord = () => {
   const parts_of_speech = useAppSelector((state) => state.base.properties.parts_of_speech);
   const languages = useAppSelector((state) => state.base.properties.languages);
   const partsOfSpeech = getSelectorChoices(parts_of_speech);
+  const initialPartOfSpeech = partsOfSpeech && partsOfSpeech.length > 0 ? partsOfSpeech[0].key : ''
+  const [partOfSpeech, setPartOfSpeech] = useState(initialPartOfSpeech);
+  const isNoun = partOfSpeech.toLowerCase() === 'noun';
+  const handlePartOfSpeechChange = (e: ChangeEvent<HTMLSelectElement>) => setPartOfSpeech(e.target.value);
+  const partsOfSpeechComponent = partsOfSpeech && partsOfSpeech.length > 0 ? (
+    <Selector isRequired name="partOfSpeech" label="Part of Speech" value={partOfSpeech} defaultKey={partOfSpeech} choices={partsOfSpeech} onChange={handlePartOfSpeechChange} />
+  ) : null;
+
+  const [level, setLevel] = useState('');
+  const handleLevelChange = (e: ChangeEvent<HTMLSelectElement>) => setLevel(e.target.value);
 
   const WordsForm = () => {
     const initialFormData: Record<string, string>[] = []
@@ -25,13 +37,21 @@ const AddWord = () => {
     ));
     return initialFormData;
   }
-
   const [formData, setFormData] = useState(WordsForm())
 
   const handleInputChange = (index: number, event: ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
     const {name, value} = event.target;
     const updatedForms = [...formData];
-    updatedForms[index][name] = value;
+
+    if (name === 'partOfSpeech') {
+      updatedForms.map((updatedForm) => {
+        updatedForm[name] = value;
+        setPartOfSpeech(value);
+        console.log(updatedForm);
+      });
+    } else {
+      updatedForms[index][name] = value;
+    }
     setFormData(updatedForms);
     console.log(formData);
   };
@@ -51,11 +71,15 @@ const AddWord = () => {
         </Card>
       </div>
       <form onSubmit={handleSubmit}>
+        <div className="flex justify-center max-w-screen-xl mx-auto gap-2 p-2 pb-0">
+          {partsOfSpeechComponent}
+          <Selector isRequired name="level" label="Level" value={level} defaultKey={level} choices={levelChoices} onChange={handleLevelChange}/>
+        </div>
         <div className="flex justify-center mx-auto max-w-screen-xl gap-2 pt-2 ps-2 pe-2">
           <div className="grid md:grid-cols-3 gap-2">
             {formData.map((formData, index) => (
               <WordInput key={formData.languageCode} formData={formData} index={index} language={languages[index]}
-                         partsOfSpeech={partsOfSpeech} onChange={handleInputChange}/>
+                         isNoun={isNoun} onChange={handleInputChange}/>
             ))}
           </div>
         </div>
