@@ -1,4 +1,5 @@
 import {Card, CardBody} from "@nextui-org/react";
+import {ChangeEvent, useState} from "react";
 import {useAppSelector} from "../../store/hooks.ts";
 import {getSelectorChoices} from "../utils/utils.ts";
 import WordInput from "./WordInput.tsx";
@@ -24,6 +25,15 @@ const AddWord = () => {
     ));
     return initialFormData;
   }
+
+  const [formData, setFormData] = useState(WordsForm())
+
+  const handleInputChange = (index: number, event: ChangeEvent<HTMLSelectElement>) => {
+    const {name, value} = event.target;
+    const updatedForms = [...formData];
+    updatedForms[index][name] = value;
+    setFormData(updatedForms);
+  };
 
   return (
     <>
