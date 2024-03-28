@@ -27,8 +27,6 @@ const AddWord = () => {
       initialFormData.push({
         languageCode: language.code,
         word: '',
-        level: '',
-        partOfSpeech: '',
         article: '',
         plural: '',
         sentence: '',
@@ -41,17 +39,10 @@ const AddWord = () => {
 
   const handleInputChange = (index: number, event: ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
     const {name, value} = event.target;
-    const updatedForms = [...formData];
+    if (name === 'partOfSpeech') {setPartOfSpeech(value);}
 
-    if (name === 'partOfSpeech') {
-      updatedForms.map((updatedForm) => {
-        updatedForm[name] = value;
-        setPartOfSpeech(value);
-        console.log(updatedForm);
-      });
-    } else {
-      updatedForms[index][name] = value;
-    }
+    const updatedForms = [...formData];
+    updatedForms[index][name] = value;
     setFormData(updatedForms);
     console.log(formData);
   };
