@@ -22,12 +22,12 @@ const WordInput: FC<WordInputProps> = ({ formData, index, language, partsOfSpeec
 
   const handlePartOfSpeechChange = (e: ChangeEvent<HTMLSelectElement>) => setPartOfSpeech(e.target.value);
   const partsOfSpeechComponent = partsOfSpeech && partsOfSpeech.length > 0 ? (
-    <Selector name="partOfSpeech" label="Part of Speech" value={formData.partOfSpeech} defaultKey={formData.partOfSpeech} choices={partsOfSpeech} onChange={(e) => {handlePartOfSpeechChange(e); onChange(index, e)}} />
+    <Selector isRequired name="partOfSpeech" label="Part of Speech" value={formData.partOfSpeech} defaultKey={formData.partOfSpeech} choices={partsOfSpeech} onChange={(e) => {handlePartOfSpeechChange(e); onChange(index, e)}} />
   ) : null;
 
   const articles = getSelectorChoices(language.articles);
   const articlesComponent = articles && articles.length > 0 ? (
-    <Selector name="article" label="Article" value={formData.article} defaultKey={formData.article} choices={articles} onChange={(e) => onChange(index, e)}/>
+    <Selector isRequired name="article" label="Article" value={formData.article} defaultKey={formData.article} choices={articles} onChange={(e) => onChange(index, e)}/>
   ) : null;
 
   return (
@@ -37,12 +37,12 @@ const WordInput: FC<WordInputProps> = ({ formData, index, language, partsOfSpeec
       </CardHeader>
       <CardBody className="pt-1">
         <div className="flex flex-wrap gap-2">
-          <Input required type="text" name="word" label="Word" value={formData.word} onChange={(e) => onChange(index, e)}/>
-          <Selector name="level" label="Level" value={formData.level} defaultKey={formData.level} choices={levelChoices} onChange={(e) => onChange(index, e)}/>
+          <Input isRequired required type="text" name="word" label="Word" value={formData.word} onChange={(e) => onChange(index, e)}/>
+          <Selector isRequired name="level" label="Level" value={formData.level} defaultKey={formData.level} choices={levelChoices} onChange={(e) => onChange(index, e)}/>
           {partsOfSpeechComponent}
           { isNoun && articlesComponent }
-          { isNoun && <Input name="plural" type="text" label="Plural" onChange={(e) => onChange(index, e)}/>}
-          <Input name="sentence" type="text" label="Sentence" value={formData.sentence} onChange={(e) => onChange(index, e)}/>
+          { isNoun && <Input isRequired name="plural" type="text" label="Plural" onChange={(e) => onChange(index, e)}/>}
+          <Input isRequired name="sentence" type="text" label="Sentence" value={formData.sentence} onChange={(e) => onChange(index, e)}/>
           <Input name="note" type="text" label="Note" value={formData.note} onChange={(e) => onChange(index, e)}/>
         </div>
       </CardBody>

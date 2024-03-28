@@ -12,14 +12,14 @@ interface SelectorProps {
   defaultKey?: string;
   choices: SelectorChoice[];
   onChange: SelectorChange;
-  required?: boolean;
+  isRequired?: boolean;
   className?: string;
   showAvatar?: boolean;
   name?: string;
   value?: string;
 }
 
-const Selector: FC<SelectorProps> = ({ name, label, placeholder, defaultKey, choices, onChange, required, showAvatar, className, value }) => {
+const Selector: FC<SelectorProps> = ({ name, label, placeholder, defaultKey, choices, onChange, isRequired, showAvatar, className, value }) => {
   const darkMode = useAppSelector((state) => state.base.darkMode);
   toggleDarkModeStyleSheet(darkMode);
 
@@ -31,7 +31,7 @@ const Selector: FC<SelectorProps> = ({ name, label, placeholder, defaultKey, cho
       placeholder={placeholder || `Select ${label}`}
       defaultSelectedKeys={defaultKey? [defaultKey] : []}
       onChange={onChange}
-      required={required ? required : false}
+      isRequired={isRequired ? isRequired : false}
       className={className ? className : ''}
       value={value}
     >
