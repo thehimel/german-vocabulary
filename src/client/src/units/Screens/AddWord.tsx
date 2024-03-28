@@ -28,7 +28,7 @@ const AddWord = () => {
 
   const [formData, setFormData] = useState(WordsForm())
 
-  const handleInputChange = (index: number, event: ChangeEvent<HTMLSelectElement>) => {
+  const handleInputChange = (index: number, event: ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
     const {name, value} = event.target;
     const updatedForms = [...formData];
     updatedForms[index][name] = value;
