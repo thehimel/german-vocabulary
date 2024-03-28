@@ -1,5 +1,5 @@
 import {Button, Card, CardBody} from "@nextui-org/react";
-import {ChangeEvent, useState} from "react";
+import {ChangeEvent, FormEvent, useState} from "react";
 import {useAppSelector} from "../../store/hooks.ts";
 import {getSelectorChoices} from "../utils/utils.ts";
 import WordInput from "./WordInput.tsx";
@@ -36,7 +36,8 @@ const AddWord = () => {
     console.log(formData);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (event: FormEvent) => {
+    event.preventDefault();
     console.log(formData)
   }
 
