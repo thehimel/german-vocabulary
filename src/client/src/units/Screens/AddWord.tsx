@@ -54,7 +54,7 @@ const AddWord = () => {
   return (
     <>
       <div className="flex justify-center mx-auto max-w-screen-xl gap-2 pt-2 ps-2 pe-2">
-        <Card className="w-full shadow-sm shadow-purple-500 p-4">
+        <Card className="w-full p-4">
           <div className="flex justify-center">
             <Chip color="warning" variant="shadow" className="animate-appearance-in">
               {word}
