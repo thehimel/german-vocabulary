@@ -64,8 +64,12 @@ const AddWord = () => {
       </div>
       <form onSubmit={handleSubmit}>
         <div className="flex justify-center max-w-screen-xl mx-auto gap-2 p-2 pb-0">
-          {partsOfSpeechComponent}
-          <Selector isRequired name="level" label="Level" value={level} defaultKey={level} choices={levelChoices} onChange={handleLevelChange}/>
+          <Card className="w-full">
+            <div className="flex justify-center gap-2 p-2">
+              {partsOfSpeechComponent}
+              <Selector isRequired name="level" label="Level" value={level} defaultKey={level} choices={levelChoices} onChange={handleLevelChange}/>
+            </div>
+          </Card>
         </div>
         <div className="flex justify-center mx-auto max-w-screen-xl gap-2 pt-2 ps-2 pe-2">
           <div className="grid md:grid-cols-3 gap-2">
