@@ -20,12 +20,12 @@ const WordInput: FC<WordInputProps> = ({ language, partsOfSpeech}) => {
 
   const handlePartOfSpeechChange = (e: ChangeEvent<HTMLSelectElement>) => setPartOfSpeech(e.target.value);
   const partsOfSpeechComponent = partsOfSpeech && partsOfSpeech.length > 0 ? (
-    <Selector label="Parts of Speech" defaultKey={partsOfSpeech[0].key} choices={partsOfSpeech} onChange={handlePartOfSpeechChange}/>
+    <Selector name="partOfSpeech" label="Part of Speech" defaultKey={partsOfSpeech[0].key} choices={partsOfSpeech} onChange={handlePartOfSpeechChange}/>
   ) : null;
 
   const articles = getSelectorChoices(language.articles);
   const articlesComponent = articles && articles.length > 0 ? (
-    <Selector label="Articles" defaultKey={articles[0].key} choices={articles} onChange={() => null}/>
+    <Selector name="article" label="Article" defaultKey={articles[0].key} choices={articles} onChange={() => null}/>
   ) : null;
 
   return (
@@ -35,13 +35,13 @@ const WordInput: FC<WordInputProps> = ({ language, partsOfSpeech}) => {
       </CardHeader>
       <CardBody className="pt-1">
         <div className="flex flex-wrap gap-2">
-          <Input required type="text" label="Word"/>
-          <Selector label="Level" defaultKey={levelChoices[0].key} choices={levelChoices} onChange={() => null}/>
+          <Input required type="text" name="word" label="Word"/>
+          <Selector name="level" label="Level" defaultKey={levelChoices[0].key} choices={levelChoices} onChange={() => null}/>
           {partsOfSpeechComponent}
           { isNoun && articlesComponent }
-          { isNoun && <Input type="text" label="Plural"/>}
-          <Input type="text" label="Sentence"/>
-          <Input type="text" label="Note"/>
+          { isNoun && <Input name="plural" type="text" label="Plural"/>}
+          <Input name="sentence" type="text" label="Sentence"/>
+          <Input name="note" type="text" label="Note"/>
         </div>
       </CardBody>
     </Card>
