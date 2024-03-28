@@ -11,8 +11,7 @@ const AddWord = () => {
   const parts_of_speech = useAppSelector((state) => state.base.properties.parts_of_speech);
   const languages = useAppSelector((state) => state.base.properties.languages);
   const partsOfSpeech = getSelectorChoices(parts_of_speech);
-  const initialPartOfSpeech = partsOfSpeech && partsOfSpeech.length > 0 ? partsOfSpeech[0].key : ''
-  const [partOfSpeech, setPartOfSpeech] = useState(initialPartOfSpeech);
+  const [partOfSpeech, setPartOfSpeech] = useState('');
   const isNoun = partOfSpeech.toLowerCase() === 'noun';
   const handlePartOfSpeechChange = (e: ChangeEvent<HTMLSelectElement>) => setPartOfSpeech(e.target.value);
   const partsOfSpeechComponent = partsOfSpeech && partsOfSpeech.length > 0 ? (
