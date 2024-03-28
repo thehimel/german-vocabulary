@@ -1,4 +1,4 @@
-import {Button, Card, CardBody} from "@nextui-org/react";
+import {Button, Card, Chip} from "@nextui-org/react";
 import {ChangeEvent, FormEvent, useState} from "react";
 import {levelChoices} from "../../store/base/baseSlice.ts";
 import {useAppSelector} from "../../store/hooks.ts";
@@ -7,6 +7,7 @@ import {getSelectorChoices} from "../utils/utils.ts";
 import WordInput from "./WordInput.tsx";
 
 const AddWord = () => {
+  const word = 'Ansehen'
   const parts_of_speech = useAppSelector((state) => state.base.properties.parts_of_speech);
   const languages = useAppSelector((state) => state.base.properties.languages);
   const partsOfSpeech = getSelectorChoices(parts_of_speech);
@@ -56,9 +57,11 @@ const AddWord = () => {
     <>
       <div className="flex justify-center mx-auto max-w-screen-xl gap-2 pt-2 ps-2 pe-2">
         <Card className="w-full shadow-sm shadow-purple-500 p-4">
-          <CardBody>
-            <p className="flex justify-center">Adding the Word: Ansehen</p>
-          </CardBody>
+          <div className="flex justify-center">
+            <Chip color="warning" variant="shadow" className="animate-appearance-in">
+              {word}
+            </Chip>
+          </div>
         </Card>
       </div>
       <form onSubmit={handleSubmit}>
