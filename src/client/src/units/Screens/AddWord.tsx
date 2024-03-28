@@ -8,6 +8,23 @@ const AddWord = () => {
   const languages = useAppSelector((state) => state.base.properties.languages);
   const partsOfSpeech = getSelectorChoices(parts_of_speech);
 
+  const WordsForm = () => {
+    const initialFormData: Record<string, string>[] = []
+    languages.map(language => (
+      initialFormData.push({
+        languageCode: language.code,
+        word: '',
+        level: '',
+        partOfSpeech: '',
+        article: '',
+        plural: '',
+        sentence: '',
+        note: '',
+      })
+    ));
+    return initialFormData;
+  }
+
   return (
     <>
       <div className="flex justify-center mx-auto max-w-screen-xl gap-2 pt-2 ps-2 pe-2">
