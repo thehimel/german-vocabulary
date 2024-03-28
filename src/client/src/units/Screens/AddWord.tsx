@@ -1,4 +1,4 @@
-import {Card, CardBody} from "@nextui-org/react";
+import {Button, Card, CardBody} from "@nextui-org/react";
 import {ChangeEvent, useState} from "react";
 import {useAppSelector} from "../../store/hooks.ts";
 import {getSelectorChoices} from "../utils/utils.ts";
@@ -52,9 +52,13 @@ const AddWord = () => {
       <div className="flex justify-center mx-auto max-w-screen-xl gap-2 pt-2 ps-2 pe-2">
         <div className="grid md:grid-cols-3 gap-2">
           {formData.map((formData, index) => (
-            <WordInput key={formData.languageCode} formData={formData} index={index} language={languages[index]} partsOfSpeech={partsOfSpeech} onChange={handleInputChange}/>
+            <WordInput key={formData.languageCode} formData={formData} index={index} language={languages[index]}
+                       partsOfSpeech={partsOfSpeech} onChange={handleInputChange}/>
           ))}
         </div>
+      </div>
+      <div className="flex justify-center max-w-screen-xl mx-auto p-2 pb-0">
+        <Button className="w-full shadow-sm shadow-purple-500 dark:bg-zinc-800">Submit</Button>
       </div>
     </>
   );
