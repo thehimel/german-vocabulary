@@ -30,8 +30,8 @@ function App() {
             <div className="bg-background pb-2">
               <Routes>
                 <Route path="/" element={<Home/>}/>
-                <Route path="add/" element={<Previews/>}/>
-                <Route path="add/:index" element={<AddWord/>}/>
+                <Route path="/add" element={<Previews/>}/>
+                <Route path="/add/:index" element={<AddWord/>}/>
               </Routes>
             </div>
             {/* <PaginationBar/> */}
