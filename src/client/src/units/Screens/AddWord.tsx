@@ -7,7 +7,7 @@ import Selector from "../Selectors/Selector.tsx";
 import {getSelectorChoices} from "../utils/utils.ts";
 import WordInput from "./WordInput.tsx";
 
-interface Preview {
+export interface Preview {
   id: number;
   title: string;
   level: string;
@@ -37,16 +37,23 @@ const AddWord = () => {
 
   const WordsForm = () => {
     const initialFormData: Record<string, string>[] = []
-    languages.map(language => (
+    languages.map(language => {
+      let word = ''
+      let article = ''
+      if (language.code === preview.language.code) {
+        word = preview.title;
+        article = preview.article ? preview.article.title : article;
+      }
+
       initialFormData.push({
         languageCode: language.code,
-        word: '',
-        article: '',
+        word: word,
+        article: article,
         plural: '',
         sentence: '',
         note: '',
-      })
-    ));
+      });
+    });
     return initialFormData;
   }
   const [formData, setFormData] = useState(WordsForm())
@@ -91,7 +98,7 @@ const AddWord = () => {
             <div className="grid md:grid-cols-3 gap-2">
               {formData.map((formData, index) => (
                 <WordInput key={formData.languageCode} formData={formData} index={index} language={languages[index]}
-                           isNoun={isNoun} onChange={handleInputChange}/>
+                           isNoun={isNoun} onChange={handleInputChange} preview={preview}/>
               ))}
             </div>
           </div>

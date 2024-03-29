@@ -4,6 +4,7 @@ import {Language} from "../../store/base/baseSlice.ts";
 import Selector from "../Selectors/Selector.tsx";
 import {getLanguageStyle, getSelectorChoices} from "../utils/utils.ts";
 import Content from "../WordCard/Content.tsx";
+import {Preview} from "./AddWord.tsx";
 
 interface WordInputProps {
   formData: Record<string, string>;
@@ -11,14 +12,16 @@ interface WordInputProps {
   language: Language;
   isNoun: boolean;
   onChange: (index: number, event: ChangeEvent<HTMLSelectElement | HTMLInputElement>) => void;
+  preview: Preview;
 }
 
-const WordInput: FC<WordInputProps> = ({ formData, index, language, isNoun, onChange}) => {
+const WordInput: FC<WordInputProps> = ({ formData, index, language, isNoun, onChange, preview}) => {
   const shadowColor = `flex flex-wrap gap-2 pt-2 shadow-sm ${getLanguageStyle(language.code, 'shadow')}`;
-
+  const isWordDisabled = preview.language.code === language.code;
+  const isArticleDisabled = !!(preview.language.code === language.code && language.articles);
   const articles = getSelectorChoices(language.articles);
   const articlesComponent = articles && articles.length > 0 ? (
-    <Selector isRequired name="article" label="Article" value={formData.article} defaultKey={formData.article} choices={articles} onChange={(e) => onChange(index, e)}/>
+    <Selector isRequired isDisabled={isArticleDisabled} name="article" label="Article" value={formData.article} defaultKey={formData.article} choices={articles} onChange={(e) => onChange(index, e)}/>
   ) : null;
 
   return (
@@ -28,7 +31,7 @@ const WordInput: FC<WordInputProps> = ({ formData, index, language, isNoun, onCh
       </CardHeader>
       <CardBody className="pt-1">
         <div className="flex flex-wrap gap-2">
-          <Input isRequired required type="text" name="word" label="Word" value={formData.word} onChange={(e) => onChange(index, e)}/>
+          <Input isRequired required isDisabled={isWordDisabled} type="text" name="word" label="Word" value={formData.word} onChange={(e) => onChange(index, e)}/>
           { isNoun && articlesComponent }
           { isNoun && <Input isRequired name="plural" type="text" label="Plural" value={formData.plural} onChange={(e) => onChange(index, e)}/>}
           <Input isRequired name="sentence" type="text" label="Sentence" value={formData.sentence} onChange={(e) => onChange(index, e)}/>
