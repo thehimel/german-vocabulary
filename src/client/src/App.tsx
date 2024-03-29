@@ -31,7 +31,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<Home/>}/>
                 <Route path="add/" element={<Previews/>}/>
-                <Route path="add-word/" element={<AddWord/>}/>
+                <Route path="add/:index" element={<AddWord/>}/>
               </Routes>
             </div>
             {/* <PaginationBar/> */}

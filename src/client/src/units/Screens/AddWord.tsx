@@ -1,5 +1,6 @@
 import {Button, Card, Chip} from "@nextui-org/react";
 import {ChangeEvent, FormEvent, useState} from "react";
+import {useParams} from "react-router-dom";
 import {levelChoices} from "../../store/base/baseSlice.ts";
 import {useAppSelector} from "../../store/hooks.ts";
 import Selector from "../Selectors/Selector.tsx";
@@ -7,7 +8,10 @@ import {getSelectorChoices} from "../utils/utils.ts";
 import WordInput from "./WordInput.tsx";
 
 const AddWord = () => {
-  const word = 'Ansehen'
+  const { index } = useParams();
+
+  const previews = useAppSelector((state) => state.previews.previews);
+  const preview: Record<string, string> = previews[index ? parseInt(index, 10) : 0];
   const parts_of_speech = useAppSelector((state) => state.base.properties.parts_of_speech);
   const languages = useAppSelector((state) => state.base.properties.languages);
   const partsOfSpeech = getSelectorChoices(parts_of_speech);
@@ -57,7 +61,7 @@ const AddWord = () => {
         <Card className="w-full p-4">
           <div className="flex justify-center">
             <Chip color="warning" variant="shadow" className="animate-appearance-in">
-              {word}
+              {preview.title}
             </Chip>
           </div>
         </Card>

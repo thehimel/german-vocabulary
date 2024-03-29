@@ -1,4 +1,5 @@
 import {FC} from "react";
+import { useNavigate } from 'react-router-dom';
 import {Card, CardBody, CardHeader, Divider, useDisclosure} from "@nextui-org/react";
 import WordCard from "../WordCard/WordCard.tsx";
 import {useAppDispatch} from "../../store/hooks.ts";
@@ -33,10 +34,14 @@ const Word: FC<WordWithIndexProps> = ({ index, word, addCard, onPress }) => {
   const parts_of_speech = word.parts_of_speech ? word.parts_of_speech : word.part_of_speech ? [word.part_of_speech] : undefined;
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
   const dispatch: AppDispatch = useAppDispatch();
+  const navigate = useNavigate();
+
   const handlePress = () => {
     if (onPress) {
       dispatch(onPress(index));
       onOpen();
+    } else {
+      navigate(`/add/${index}`);
     }
   };
 
