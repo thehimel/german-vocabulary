@@ -41,12 +41,12 @@ const Word: FC<WordWithIndexProps> = ({ index, word, addCard }) => {
   return (
     <>
       <Card className="max-w-[400px] shadow-sm shadow-purple-500 dark:bg-zinc-800" isPressable onPress={handlePress}>
-        <CardHeader className="flex justify-center">
+        <CardHeader className="flex justify-center my-auto">
           <div className="flex flex-col gap-3">
             <div className="flex flex-row justify-center">
               <p className="text-md">{word.title}</p>
             </div>
-            <ArticlesPOS articles={articles} parts_of_speech={parts_of_speech}/>
+            {(articles || parts_of_speech) && <ArticlesPOS articles={articles} parts_of_speech={parts_of_speech}/>}
           </div>
         </CardHeader>
         {word.sentence &&
