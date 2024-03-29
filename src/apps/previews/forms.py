@@ -1,7 +1,7 @@
 from django import forms
 
 from apps.base.utils.decorators import filter_data_by_field
-from apps.preview.models import PreBundle
+from apps.previews.models import PreBundle
 from apps.words.models import Article, Language
 
 

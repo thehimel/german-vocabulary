@@ -1,5 +1,5 @@
 from django.urls import path
-from apps.preview.views import PreBundleListAPIView
+from apps.previews.views import PreBundleListAPIView
 
 app_name = "preview"
 

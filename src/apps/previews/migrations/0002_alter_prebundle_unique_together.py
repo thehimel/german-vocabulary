@@ -7,7 +7,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ("words", "0003_rename_name_language_title"),
-        ("preview", "0001_initial"),
+        ("previews", "0001_initial"),
     ]
 
     operations = [
