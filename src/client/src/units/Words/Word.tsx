@@ -1,6 +1,5 @@
 import {FC} from "react";
 import {Card, CardBody, CardHeader, Divider, useDisclosure} from "@nextui-org/react";
-import {setCurrentIndex} from "../../store/words/wordsActions.ts";
 import WordCard from "../WordCard/WordCard.tsx";
 import {useAppDispatch} from "../../store/hooks.ts";
 import {AppDispatch} from "../../store/store.ts";
@@ -26,16 +25,19 @@ export interface WordWithIndexProps {
   index: number;
   word: WordProps;
   addCard?: boolean;
+  onPress?: (value: number) => (dispatch: AppDispatch) => void;
 }
 
-const Word: FC<WordWithIndexProps> = ({ index, word, addCard }) => {
+const Word: FC<WordWithIndexProps> = ({ index, word, addCard, onPress }) => {
   const articles = word.articles ? word.articles : word.article ? [word.article] : undefined;
   const parts_of_speech = word.parts_of_speech ? word.parts_of_speech : word.part_of_speech ? [word.part_of_speech] : undefined;
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
   const dispatch: AppDispatch = useAppDispatch();
   const handlePress = () => {
-    dispatch(setCurrentIndex(index));
-    onOpen();
+    if (onPress) {
+      dispatch(onPress(index));
+      onOpen();
+    }
   };
 
   return (
