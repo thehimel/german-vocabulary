@@ -14,24 +14,38 @@ from apps.words.serializers import (
 )
 
 
-class WordListAPIView(ListAPIView):
-    serializer_class = WordListSerializer
+class BaseWordListAPIView(ListAPIView):
+    model = None
+    serializer_class = None
+    query_params_serializer_class = None
 
     def get_queryset(self):
-        params_serializer = WordListQueryParamsSerializer(data=self.request.query_params)
+        params_serializer = self.query_params_serializer_class(data=self.request.query_params)
         params_serializer.is_valid(raise_exception=True)
 
         primary_language = params_serializer.validated_data.get("primary_language", "de")
         level = params_serializer.validated_data.get("level", "a1")
         search_query = params_serializer.validated_data.get("q", "")
 
-        queryset = Word.objects.filter(hidden=False, language__code=primary_language, level=level).order_by("title")
+        queryset = self.model.objects.filter(language__code=primary_language, level=level).order_by("title")
+
+        if hasattr(self.model, 'hidden'):
+            queryset = queryset.filter(hidden=False)
+        elif hasattr(self.model, 'approved'):
+            queryset = queryset.filter(approved=False)
+
         if search_query:
             queryset = queryset.filter(title__icontains=search_query)
 
         return queryset
 
-    @swagger_auto_schema(manual_parameters=serializer_to_manual_parameters(WordListQueryParamsSerializer))
+
+class WordListAPIView(BaseWordListAPIView):
+    model = Word
+    serializer_class = WordListSerializer
+    query_params_serializer_class = WordListQueryParamsSerializer
+
+    @swagger_auto_schema(manual_parameters=serializer_to_manual_parameters(query_params_serializer_class))
     def get(self, request, *args, **kwargs):
         return super().get(request, *args, **kwargs)
 
