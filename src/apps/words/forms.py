@@ -26,6 +26,7 @@ class WordForm(forms.ModelForm):
         destination_field_name="articles",
         source_class=Language,
         source_field_name="language",
+        dependency_field_name="articles"
     )
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
