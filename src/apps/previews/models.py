@@ -21,6 +21,9 @@ class PreWord(models.Model):
         verbose_name = "Word"
         unique_together = ["title", "language"]
 
+    def __str__(self):
+        return f"{self.title} | {self.language}"
+
 
 class Preview(models.Model):
     title = models.CharField(max_length=100)
