@@ -25,6 +25,7 @@ const AddWord = () => {
   const languages = useAppSelector((state) => state.base.properties.languages);
   const partsOfSpeech = getSelectorChoices(parts_of_speech);
   const initialPartOfSpeech = preview.part_of_speech ? preview.part_of_speech.title.toLowerCase() : '';
+  const initialLevel = preview.level ? preview.level : '';
   const [partOfSpeech, setPartOfSpeech] = useState(initialPartOfSpeech);
   const isNoun = partOfSpeech.toLowerCase() === 'noun';
   const handlePartOfSpeechChange = (e: ChangeEvent<HTMLSelectElement>) => setPartOfSpeech(e.target.value);
@@ -32,7 +33,7 @@ const AddWord = () => {
     <Selector isRequired isDisabled={!!initialPartOfSpeech} name="partOfSpeech" label="Part of Speech" value={partOfSpeech} defaultKey={partOfSpeech} choices={partsOfSpeech} onChange={handlePartOfSpeechChange} />
   ) : null;
 
-  const [level, setLevel] = useState('');
+  const [level, setLevel] = useState(initialLevel);
   const handleLevelChange = (e: ChangeEvent<HTMLSelectElement>) => setLevel(e.target.value);
 
   const WordsForm = () => {
@@ -88,7 +89,7 @@ const AddWord = () => {
           <Card className="w-full">
             <div className="flex justify-center gap-2 p-2">
               {partsOfSpeechComponent}
-              <Selector isRequired name="level" label="Level" value={level} defaultKey={level} choices={levelChoices} onChange={handleLevelChange}/>
+              <Selector isRequired isDisabled={!!initialLevel} name="level" label="Level" value={level} defaultKey={level} choices={levelChoices} onChange={handleLevelChange}/>
             </div>
           </Card>
         </div>
