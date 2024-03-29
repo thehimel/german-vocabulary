@@ -1,6 +1,6 @@
 from django.db.models.signals import pre_delete
 from django.dispatch import receiver
-from .models import Preview
+from apps.previews.models import Preview
 
 
 @receiver(pre_delete, sender=Preview)
