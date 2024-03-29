@@ -4,7 +4,6 @@ import {AppDispatch} from "../../store/store.ts";
 import {useAppDispatch, useAppSelector} from "../../store/hooks.ts";
 import WordsSkeleton from "../Words/Skeletons/WordsSkeleton.tsx";
 import Words from "../Words/Words.tsx";
-import Selectors from "../Selectors/Selectors.tsx";
 
 
 const Home = () => {
@@ -23,7 +22,6 @@ const Home = () => {
 
   return (
     <>
-      <Selectors/>
       {loading && <WordsSkeleton/>}
       {previews && <Words words={previews}/>}
     </>
