@@ -7,6 +7,7 @@ from .models import Preview
 def delete_related_pre_words(sender, instance, **kwargs):
     """
     Signal receiver to delete related PreWord instances when a Preview instance is deleted.
+    Note: Though sender and **kwargs are unused, they are needed for successful execution.
     """
     for word in instance.words.all():
         word.delete()
