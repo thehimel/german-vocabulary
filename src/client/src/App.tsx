@@ -4,6 +4,7 @@ import {AppDispatch} from "./store/store.ts";
 import Metadata from "./units/Metadata/Metadata.tsx";
 import {useAppDispatch, useAppSelector} from "./store/hooks.ts";
 import AddWord from "./units/Screens/AddWord.tsx";
+import Previews from "./units/Screens/Previews.tsx";
 import Background from "./units/Theme/Background.tsx";
 import NavigationBar from "./units/NavigationBar/NavigationBar.tsx";
 import Home from "./units/Screens/Home.tsx";
@@ -29,7 +30,8 @@ function App() {
             <div className="bg-background pb-2">
               <Routes>
                 <Route path="/" element={<Home/>}/>
-                <Route path="add/" element={<AddWord/>}/>
+                <Route path="add/" element={<Previews/>}/>
+                <Route path="add-word/" element={<AddWord/>}/>
               </Routes>
             </div>
             {/* <PaginationBar/> */}

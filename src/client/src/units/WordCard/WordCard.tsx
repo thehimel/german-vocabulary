@@ -44,7 +44,7 @@ const WordCard: FC<CardProps> = ({isOpen, onOpenChange}) => {
       >
         <ModalContent className="flex items-center text-center">
           <WordCardItem word={word}/>
-          {word.translations?.[0] && (
+          {word.translations.length > 0 && (
             <>
               <Divider/>
               <WordCardItem word={word.translations?.[0]}/>

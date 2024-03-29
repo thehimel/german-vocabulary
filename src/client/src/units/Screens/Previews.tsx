@@ -1,7 +1,7 @@
 import {useEffect} from "react";
+import {fetchPreviews} from "../../store/previews/previewsActions.ts";
 import {AppDispatch} from "../../store/store.ts";
 import {useAppDispatch, useAppSelector} from "../../store/hooks.ts";
-import {fetchWords} from "../../store/words/wordsActions.ts";
 import WordsSkeleton from "../Words/Skeletons/WordsSkeleton.tsx";
 import Words from "../Words/Words.tsx";
 import Selectors from "../Selectors/Selectors.tsx";
@@ -9,26 +9,23 @@ import Selectors from "../Selectors/Selectors.tsx";
 
 const Home = () => {
   const dispatch: AppDispatch = useAppDispatch();
-  const words = useAppSelector((state) => state.words.words);
-  const loading = useAppSelector((state) => state.words.loading);
+  const previews = useAppSelector((state) => state.previews.previews);
   const primaryLanguage = useAppSelector((state) => state.base.primaryLanguage);
-  const secondaryLanguage = useAppSelector((state) => state.base.secondaryLanguage);
   const level = useAppSelector((state) => state.base.level);
-
+  const loading = useAppSelector((state) => state.words.loading);
   useEffect(() => {
-    dispatch(fetchWords({
-      primaryLanguage: primaryLanguage,
-      secondaryLanguage: secondaryLanguage,
+    dispatch(fetchPreviews({
+      language: primaryLanguage,
       level: level,
       loader: true
     }))
-  }, [dispatch, level, primaryLanguage, secondaryLanguage]);
+  }, [dispatch, level, primaryLanguage]);
 
   return (
     <>
       <Selectors/>
       {loading && <WordsSkeleton/>}
-      {words && <Words addCard words={words}/>}
+      {previews && <Words words={previews}/>}
     </>
   );
 }

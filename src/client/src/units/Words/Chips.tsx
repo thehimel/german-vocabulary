@@ -2,7 +2,7 @@ import {FC} from "react";
 import {Chip} from "@nextui-org/react";
 
 interface ChipsProps {
-  items: [Record<string, string>];
+  items: Record<string, string>[];
   color: "default" | "primary" | "secondary" | "success" | "warning" | "danger" | undefined;
   variant: "shadow" | "flat" | "dot" | "solid" | "bordered" | "light" | "faded" | undefined;
 }

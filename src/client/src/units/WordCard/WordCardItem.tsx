@@ -8,8 +8,8 @@ export interface WordCardItemProps {
     title: string;
     plural: string;
     language: { code: string };
-    articles: [{ title: string }];
-    parts_of_speech: [{ title: string }];
+    articles?: [{ title: string }];
+    parts_of_speech?: [{ title: string }];
     sentence: string;
   }
 }
