@@ -27,7 +27,7 @@ const Home = () => {
   return (
     <>
       <Selectors/>
-      {loading && <WordsSkeleton/>}
+      {loading && <WordsSkeleton isFull/>}
       {words && <Words addCard words={words}/>}
     </>
   );
