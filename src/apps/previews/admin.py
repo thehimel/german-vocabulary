@@ -1,12 +1,33 @@
 from django.contrib import admin
 from django.db.models.functions import Lower
 
-from apps.previews.forms import PreWordForm
+from apps.previews.forms import PreviewForm, PreWordForm
 from apps.previews.models import Preview, PreWord
+from apps.words.decorators import join_field_values
+
+
+@join_field_values("articles", "title", "all_articles")
+@join_field_values("parts_of_speech", "title", "pos")
+class PreWordAdmin(admin.ModelAdmin):
+    form = PreWordForm
+    search_fields = ["title"]
+    ordering = ["-modified", "language__code", Lower("title")]
+    list_display = [
+        "title",
+        "language",
+        "pos",
+        "plural",
+        "all_articles",
+        "sentence",
+        "level",
+        "modified",
+    ]
+    list_filter = ["hidden", "level", "language__code"]
+    list_per_page = 8
 
 
 class PreBundleAdmin(admin.ModelAdmin):
-    form = PreWordForm
+    form = PreviewForm
     search_fields = ["title"]
     ordering = ["-modified", "language__code", Lower("title")]
     list_display = [
@@ -24,5 +45,5 @@ class PreBundleAdmin(admin.ModelAdmin):
     list_per_page = 8
 
 
-admin.site.register(PreWord)
+admin.site.register(PreWord, PreWordAdmin)
 admin.site.register(Preview, PreBundleAdmin)
