@@ -1,6 +1,7 @@
 from django.db import models
+
 from apps.words import models as word_models
-from apps.words.models import Language, PartOfSpeech, Article
+from apps.words.models import Article, Language, PartOfSpeech
 from apps.words.utils import getLevelChoices
 
 
@@ -14,7 +15,9 @@ class PreBundle(models.Model):
     level = models.CharField(max_length=2, choices=getLevelChoices())
     description = models.TextField(default="", blank=True, null=True)
     language = models.ForeignKey(Language, on_delete=models.SET_NULL, null=True)
-    part_of_speech = models.ForeignKey(PartOfSpeech, verbose_name="Part of Speech", on_delete=models.SET_NULL, null=True, blank=True)
+    part_of_speech = models.ForeignKey(
+        PartOfSpeech, verbose_name="Part of Speech", on_delete=models.SET_NULL, null=True, blank=True
+    )
     article = models.ForeignKey(Article, on_delete=models.SET_NULL, null=True, blank=True)
     words = models.ManyToManyField(PreWord, blank=True)
     in_review = models.BooleanField(default=False, verbose_name="In Review")

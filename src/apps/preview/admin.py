@@ -1,7 +1,8 @@
 from django.contrib import admin
 from django.db.models.functions import Lower
+
 from apps.preview.forms import PreWordForm
-from apps.preview.models import PreWord, PreBundle
+from apps.preview.models import PreBundle, PreWord
 from apps.words.admin import WordAdmin
 
 
