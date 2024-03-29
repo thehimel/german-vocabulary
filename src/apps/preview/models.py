@@ -25,7 +25,7 @@ class PreBundle(models.Model):
 
     class Meta:
         verbose_name = "Bundle"
-        unique_together = ["title", "language"]
+        unique_together = ["title", "language", "part_of_speech"]
 
     def __str__(self):
         return f"{self.title} | {self.language}"
