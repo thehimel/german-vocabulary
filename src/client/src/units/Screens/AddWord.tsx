@@ -1,7 +1,9 @@
 import {Button, Card, Chip} from "@nextui-org/react";
-import {ChangeEvent, FormEvent, useState} from "react";
+import {ChangeEvent, FormEvent, useEffect, useState} from "react";
 import {levelChoices} from "../../store/base/baseSlice.ts";
-import {useAppSelector} from "../../store/hooks.ts";
+import {useAppDispatch, useAppSelector} from "../../store/hooks.ts";
+import {fetchPreviews} from "../../store/previews/previewsActions.ts";
+import {AppDispatch} from "../../store/store.ts";
 import Selector from "../Selectors/Selector.tsx";
 import {getSelectorChoices} from "../utils/utils.ts";
 import WordInput from "./WordInput.tsx";
@@ -50,6 +52,17 @@ const AddWord = () => {
     event.preventDefault();
     console.log(formData)
   }
+
+  const dispatch: AppDispatch = useAppDispatch();
+  const primaryLanguage = useAppSelector((state) => state.base.primaryLanguage);
+  const globalLevel = useAppSelector((state) => state.base.level);
+  useEffect(() => {
+    dispatch(fetchPreviews({
+      language: primaryLanguage,
+      level: globalLevel,
+      loader: true
+    }))
+  }, [dispatch, globalLevel, level, primaryLanguage]);
 
   return (
     <>
