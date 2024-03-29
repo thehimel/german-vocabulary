@@ -3,7 +3,6 @@ from django.db.models.functions import Lower
 
 from apps.previews.forms import PreWordForm
 from apps.previews.models import PreBundle, PreWord
-from apps.words.admin import WordAdmin
 
 
 class PreBundleAdmin(admin.ModelAdmin):
@@ -25,5 +24,5 @@ class PreBundleAdmin(admin.ModelAdmin):
     list_per_page = 8
 
 
-admin.site.register(PreWord, WordAdmin)
+admin.site.register(PreWord)
 admin.site.register(PreBundle, PreBundleAdmin)
