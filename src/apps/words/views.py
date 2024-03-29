@@ -31,8 +31,10 @@ class BaseWordListAPIView(ListAPIView):
 
         if hasattr(self.model, "hidden"):
             queryset = queryset.filter(hidden=False)
-        elif hasattr(self.model, "approved"):
-            queryset = queryset.filter(approved=False)
+        if hasattr(self.model, "in_review"):
+            queryset = queryset.filter(in_review=False)
+        if hasattr(self.model, "merged"):
+            queryset = queryset.filter(merged=False)
 
         if search_query:
             queryset = queryset.filter(title__icontains=search_query)
