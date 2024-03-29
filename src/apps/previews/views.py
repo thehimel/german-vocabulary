@@ -1,14 +1,14 @@
 from drf_yasg.utils import swagger_auto_schema
 
 from apps.api.utils import serializer_to_manual_parameters
-from apps.previews.models import PreBundle
+from apps.previews.models import Preview
 from apps.previews.serializers import PreBundleListSerializer
 from apps.words.serializers import WordListQueryParamsSerializer
 from apps.words.views import BaseWordListAPIView
 
 
 class PreBundleListAPIView(BaseWordListAPIView):
-    model = PreBundle
+    model = Preview
     serializer_class = PreBundleListSerializer
     query_params_serializer_class = WordListQueryParamsSerializer
 

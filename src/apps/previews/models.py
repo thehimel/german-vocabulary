@@ -21,7 +21,7 @@ class PreWord(models.Model):
         unique_together = ["title", "language"]
 
 
-class PreBundle(models.Model):
+class Preview(models.Model):
     title = models.CharField(max_length=100)
     level = models.CharField(max_length=2, choices=getLevelChoices())
     description = models.TextField(default="", blank=True, null=True)
@@ -38,7 +38,6 @@ class PreBundle(models.Model):
     modified = models.DateTimeField(auto_now=True)
 
     class Meta:
-        verbose_name = "Bundle"
         unique_together = ["title", "language", "part_of_speech"]
 
     def __str__(self):

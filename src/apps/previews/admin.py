@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.db.models.functions import Lower
 
 from apps.previews.forms import PreWordForm
-from apps.previews.models import PreBundle, PreWord
+from apps.previews.models import Preview, PreWord
 
 
 class PreBundleAdmin(admin.ModelAdmin):
@@ -25,4 +25,4 @@ class PreBundleAdmin(admin.ModelAdmin):
 
 
 admin.site.register(PreWord)
-admin.site.register(PreBundle, PreBundleAdmin)
+admin.site.register(Preview, PreBundleAdmin)

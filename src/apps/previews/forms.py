@@ -1,13 +1,13 @@
 from django import forms
 
 from apps.base.utils.decorators import filter_data_by_field
-from apps.previews.models import PreBundle
+from apps.previews.models import Preview
 from apps.words.models import Article, Language
 
 
 class PreWordForm(forms.ModelForm):
     class Meta:
-        model = PreBundle
+        model = Preview
         fields = "__all__"
 
     @filter_data_by_field(
