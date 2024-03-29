@@ -70,7 +70,13 @@ const AddWord = () => {
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    console.log(formData)
+    const data = {
+      previewId: preview.id,
+      partOfSpeech: partOfSpeech,
+      level: level,
+      words: formData
+    }
+    console.log(data)
   }
 
   return (
