@@ -17,14 +17,16 @@ interface SelectorProps {
   showAvatar?: boolean;
   name?: string;
   value?: string;
+  isDisabled?: boolean;
 }
 
-const Selector: FC<SelectorProps> = ({ name, label, placeholder, defaultKey, choices, onChange, isRequired, showAvatar, className, value }) => {
+const Selector: FC<SelectorProps> = ({ name, label, placeholder, defaultKey, choices, onChange, isRequired, showAvatar, className, value, isDisabled }) => {
   const darkMode = useAppSelector((state) => state.base.darkMode);
   toggleDarkModeStyleSheet(darkMode);
 
   return (
     <Select
+      isDisabled={isDisabled}
       items={choices}
       name = {name}
       label={label}

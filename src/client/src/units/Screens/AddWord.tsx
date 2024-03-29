@@ -1,25 +1,35 @@
 import {Button, Card, Chip} from "@nextui-org/react";
 import {ChangeEvent, FormEvent, useState} from "react";
 import {useParams} from "react-router-dom";
-import {levelChoices} from "../../store/base/baseSlice.ts";
+import {Language, levelChoices} from "../../store/base/baseSlice.ts";
 import {useAppSelector} from "../../store/hooks.ts";
 import Selector from "../Selectors/Selector.tsx";
 import {getSelectorChoices} from "../utils/utils.ts";
 import WordInput from "./WordInput.tsx";
 
+interface Preview {
+  id: number;
+  title: string;
+  level: string;
+  language: Language;
+  part_of_speech: { title: string };
+  article: { title: string };
+}
+
 const AddWord = () => {
   const { index } = useParams();
 
   const previews = useAppSelector((state) => state.previews.previews);
-  const preview: Record<string, string> = previews[index ? parseInt(index, 10) : 0];
+  const preview: Preview = previews[index ? parseInt(index, 10) : 0];
   const parts_of_speech = useAppSelector((state) => state.base.properties.parts_of_speech);
   const languages = useAppSelector((state) => state.base.properties.languages);
   const partsOfSpeech = getSelectorChoices(parts_of_speech);
-  const [partOfSpeech, setPartOfSpeech] = useState('');
+  const initialPartOfSpeech = preview.part_of_speech ? preview.part_of_speech.title.toLowerCase() : '';
+  const [partOfSpeech, setPartOfSpeech] = useState(initialPartOfSpeech);
   const isNoun = partOfSpeech.toLowerCase() === 'noun';
   const handlePartOfSpeechChange = (e: ChangeEvent<HTMLSelectElement>) => setPartOfSpeech(e.target.value);
   const partsOfSpeechComponent = partsOfSpeech && partsOfSpeech.length > 0 ? (
-    <Selector isRequired name="partOfSpeech" label="Part of Speech" value={partOfSpeech} defaultKey={partOfSpeech} choices={partsOfSpeech} onChange={handlePartOfSpeechChange} />
+    <Selector isRequired isDisabled={!!initialPartOfSpeech} name="partOfSpeech" label="Part of Speech" value={partOfSpeech} defaultKey={partOfSpeech} choices={partsOfSpeech} onChange={handlePartOfSpeechChange} />
   ) : null;
 
   const [level, setLevel] = useState('');
