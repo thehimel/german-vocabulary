@@ -29,9 +29,9 @@ class BaseWordListAPIView(ListAPIView):
 
         queryset = self.model.objects.filter(language__code=primary_language, level=level).order_by("title")
 
-        if hasattr(self.model, 'hidden'):
+        if hasattr(self.model, "hidden"):
             queryset = queryset.filter(hidden=False)
-        elif hasattr(self.model, 'approved'):
+        elif hasattr(self.model, "approved"):
             queryset = queryset.filter(approved=False)
 
         if search_query:

@@ -1,4 +1,5 @@
 from django.db import models
+
 from apps.words.models import Article, Language, PartOfSpeech
 from apps.words.utils import getLevelChoices
 

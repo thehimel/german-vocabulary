@@ -1,6 +1,7 @@
-from apps.previews.models import Preview
 from rest_framework import serializers
-from apps.words.serializers import SimpleLanguageSerializer, ArticleSerializer, PartOfSpeechSerializer
+
+from apps.previews.models import Preview
+from apps.words.serializers import ArticleSerializer, PartOfSpeechSerializer, SimpleLanguageSerializer
 
 
 class PreBundleListSerializer(serializers.ModelSerializer):
