@@ -1,4 +1,5 @@
 import {combineReducers, configureStore} from '@reduxjs/toolkit'
+import {previewsReducer} from "./previews/previewsSlice.ts";
 import {wordsReducer} from "./words/wordsSlice.ts";
 import {baseReducer} from "./base/baseSlice.ts";
 import {wordReducer} from "./word/wordSlice.ts";
@@ -18,6 +19,7 @@ const rootReducer =  combineReducers({
   base: baseReducer,
   word: wordReducer,
   words: wordsReducer,
+  previews: previewsReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)
