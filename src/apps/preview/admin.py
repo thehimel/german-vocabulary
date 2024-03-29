@@ -15,9 +15,12 @@ class PreBundleAdmin(admin.ModelAdmin):
         "part_of_speech",
         "article",
         "level",
+        "in_review",
+        "approved",
+        "merged",
         "modified",
     ]
-    list_filter = ["approved", "part_of_speech", "level", "language__code"]
+    list_filter = ["in_review", "approved", "merged", "part_of_speech", "level", "language__code"]
     list_per_page = 8
 
 

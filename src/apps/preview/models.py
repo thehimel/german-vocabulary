@@ -17,7 +17,9 @@ class PreBundle(models.Model):
     part_of_speech = models.ForeignKey(PartOfSpeech, verbose_name="Part of Speech", on_delete=models.SET_NULL, null=True, blank=True)
     article = models.ForeignKey(Article, on_delete=models.SET_NULL, null=True, blank=True)
     words = models.ManyToManyField(PreWord, blank=True)
+    in_review = models.BooleanField(default=False, verbose_name="In Review")
     approved = models.BooleanField(default=False)
+    merged = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
@@ -27,6 +29,3 @@ class PreBundle(models.Model):
 
     def __str__(self):
         return f"{self.title} | {self.language}"
-
-    def in_review(self):
-        return not self.approved and self.words.count() == 0
