@@ -12,7 +12,7 @@ const Home = () => {
   const previews = useAppSelector((state) => state.previews.previews);
   const primaryLanguage = useAppSelector((state) => state.base.primaryLanguage);
   const level = useAppSelector((state) => state.base.level);
-  const loading = useAppSelector((state) => state.words.loading);
+  const loading = useAppSelector((state) => state.previews.loading);
   useEffect(() => {
     dispatch(fetchPreviews({
       language: primaryLanguage,
