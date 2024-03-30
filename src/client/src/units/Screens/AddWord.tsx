@@ -39,16 +39,16 @@ const AddWord = () => {
   const WordsForm = () => {
     const initialFormData: Record<string, string>[] = []
     languages.map(language => {
-      let word = ''
+      let title = ''
       let article = ''
       if (language.code === preview.language.code) {
-        word = preview.title;
+        title = preview.title;
         article = preview.article ? preview.article.title : article;
       }
 
       initialFormData.push({
         languageCode: language.code,
-        word: word,
+        title: title,
         article: article,
         plural: '',
         sentence: '',
