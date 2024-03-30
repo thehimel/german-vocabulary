@@ -71,7 +71,7 @@ const AddWord = () => {
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     const data = {
-      previewId: preview.id,
+      id: preview.id,
       partOfSpeech: partOfSpeech,
       level: level,
       words: formData
