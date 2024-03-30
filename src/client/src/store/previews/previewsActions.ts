@@ -17,6 +17,7 @@ export interface CreatePreview {
   id: number;
   partOfSpeech: string;
   words: Record<string, string>[];
+  fetchPreviewsParams: FetchPreviews;
 }
 
 export const fetchPreviews = ({language, level, loader, searchQuery}: FetchPreviews) => {
@@ -47,7 +48,7 @@ export const setPreviewsMessage = ({message}: {message: string}) => {
   };
 };
 
-export const createPreview = ({id, partOfSpeech, words}: CreatePreview) => {
+export const createPreview = ({id, partOfSpeech, words, fetchPreviewsParams}: CreatePreview) => {
   return async (dispatch: AppDispatch) => {
     const api_url = PREVIEW_UPDATE_API_URL.replace(':id', id.toString()); // Define your endpoint URL
     try {
@@ -57,6 +58,7 @@ export const createPreview = ({id, partOfSpeech, words}: CreatePreview) => {
       };
       const response = await axios.put(api_url, data);
       dispatch(previewsActions.setPreviewsError(null));
+      dispatch(fetchPreviews(fetchPreviewsParams));
       dispatch(previewsActions.setPreviewsMessage('Thanks for your contribution! The content will now be ' +
         'reviewed by the team!'));
       return response.data;

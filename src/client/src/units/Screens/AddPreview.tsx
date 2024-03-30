@@ -23,6 +23,8 @@ const AddPreview = () => {
   const { index } = useParams();
 
   const dispatch: AppDispatch = useAppDispatch();
+  const primaryLanguage = useAppSelector((state) => state.base.primaryLanguage);
+  const globalLevel = useAppSelector((state) => state.base.level);
   const previews = useAppSelector((state) => state.previews.previews);
   const preview: Preview = previews[index ? parseInt(index, 10) : 0];
   const parts_of_speech = useAppSelector((state) => state.base.properties.parts_of_speech);
@@ -84,7 +86,11 @@ const AddPreview = () => {
     const data: CreatePreview = {
       id: preview.id,
       partOfSpeech: partOfSpeech,
-      words: words
+      words: words,
+      fetchPreviewsParams: {
+        language: primaryLanguage,
+        level: globalLevel,
+      }
     };
     dispatch(createPreview(data));
     navigate('/add/');
