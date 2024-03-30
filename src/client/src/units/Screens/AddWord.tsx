@@ -57,7 +57,7 @@ const AddWord = () => {
     });
     return initialFormData;
   }
-  const [formData, setFormData] = useState(WordsForm())
+  let [formData, setFormData] = useState(WordsForm())
 
   const handleInputChange = (index: number, event: ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
     const {name, value} = event.target;
@@ -70,10 +70,15 @@ const AddWord = () => {
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    const data = {
-      id: preview.id,
+
+    formData = formData.map(form => ({
+      ...form,
       partOfSpeech: partOfSpeech,
       level: level,
+    }));
+
+    const data = {
+      id: preview.id,
       words: formData
     }
     console.log(data)
