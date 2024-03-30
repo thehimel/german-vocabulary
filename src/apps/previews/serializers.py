@@ -37,8 +37,6 @@ class PreWordSerializer(serializers.ModelSerializer):
         errors = []
 
         if part_of_speech == 'noun':
-            if 'article' not in data or not data['article'].strip():
-                errors.append("Article field is required and cannot be empty for 'Noun' part of speech.")
             if 'plural' not in data or not data['plural']:
                 errors.append("Plural field is required and cannot be empty for 'Noun' part of speech.")
 
