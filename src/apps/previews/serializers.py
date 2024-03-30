@@ -70,9 +70,9 @@ class PreWordSerializer(serializers.ModelSerializer):
             pre_word.save()
             return pre_word
         except IntegrityError as e:
-            raise ValidationError({"message": {"errors": [str(e)]}})
+            raise ValidationError({"message": [str(e)]})
         except Exception as e:
-            raise ValidationError({"message": {"errors": [str(e)]}})
+            raise ValidationError({"message": [str(e)]})
 
 
 class PreviewUpdateSerializer(serializers.ModelSerializer):
