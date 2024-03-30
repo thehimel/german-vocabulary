@@ -1,9 +1,9 @@
 from django.urls import path
 
-from apps.previews.views import PreBundleListAPIView
+from apps.previews.views import PreviewListAPIView
 
 app_name = "preview"
 
 urlpatterns = [
-    path("", PreBundleListAPIView.as_view(), name="list"),
+    path("", PreviewListAPIView.as_view(), name="list"),
 ]
