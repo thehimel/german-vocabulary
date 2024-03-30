@@ -1,17 +1,24 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {slices} from "../constants.ts";
-import {ErrorType} from "../words/wordsSlice.ts";
+
+export interface ErrorInterface {
+  apiUrl: string;
+  errors: string[];
+}
 
 export interface PreviewsStateProps {
   previews: [];
   loading: boolean;
-  error: ErrorType;
+  error: ErrorInterface | null;
 }
 
 const initialState: PreviewsStateProps = {
   previews: [],
   loading: false,
-  error: null,
+  error: {
+    apiUrl: '',
+    errors: [],
+  },
 };
 
 const previewsSlice = createSlice({
@@ -25,7 +32,7 @@ const previewsSlice = createSlice({
       state.previews = action.payload;
       state.loading = false;
     },
-    setPreviewsError(state, action: {payload: ErrorType}): void {
+    setPreviewsError(state, action: {payload: ErrorInterface | null}): void {
       state.error = action.payload;
       state.loading = false;
     },

@@ -2,7 +2,7 @@ import axios, {AxiosError} from "axios";
 import {PREVIEW_UPDATE_API_URL, PREVIEWS_API_URL} from "../constants.ts";
 import {getErrorMessage} from "../handleError.ts";
 import {AppDispatch} from "../store.ts";
-import {previewsActions} from "./previewsSlice.ts";
+import {ErrorInterface, previewsActions} from "./previewsSlice.ts";
 
 
 interface FetchPreviews {
@@ -35,7 +35,7 @@ export const fetchPreviews = ({language, level, loader, searchQuery}: FetchPrevi
       dispatch(previewsActions.setPreviews(response.data));
       dispatch(previewsActions.setPreviewsError(null));
     } catch (error) {
-      const errorMessage = getErrorMessage({apiUrl: api_url, error: error as AxiosError});
+      const errorMessage: ErrorInterface = getErrorMessage({apiUrl: api_url, error: error as AxiosError});
       dispatch(previewsActions.setPreviewsError(errorMessage));
     }
   };
