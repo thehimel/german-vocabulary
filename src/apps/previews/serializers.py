@@ -43,7 +43,7 @@ class PreWordSerializer(serializers.ModelSerializer):
                 errors.append("Plural field is required and cannot be empty for 'Noun' part of speech.")
 
         if errors:
-            raise serializers.ValidationError(errors)
+            raise serializers.ValidationError({"errors": errors})
 
         return data
 
@@ -57,6 +57,7 @@ class PreWordSerializer(serializers.ModelSerializer):
         part_of_speech = PartOfSpeech.objects.filter(title=part_of_speech_title).first()
 
         if part_of_speech_title.lower() != 'noun':
+            validated_data.pop('article', None)
             validated_data.pop('plural', None)
 
         pre_word = PreWord.objects.create(language=language, **validated_data)
@@ -67,3 +68,28 @@ class PreWordSerializer(serializers.ModelSerializer):
 
         pre_word.save()
         return pre_word
+
+
+class PreviewUpdateSerializer(serializers.ModelSerializer):
+    partOfSpeech = serializers.CharField(write_only=True)
+    words = PreWordSerializer(many=True)
+
+    class Meta:
+        model = Preview
+        fields = ['id', 'partOfSpeech', 'words']
+
+    def update(self, instance, validated_data):
+        part_of_speech_title = validated_data.pop('partOfSpeech')
+        part_of_speech = PartOfSpeech.objects.filter(title=part_of_speech_title).first()
+        words_data = validated_data.pop('words')
+
+        instance.words.clear()
+        for word_data in words_data:
+            pre_word_serializer = PreWordSerializer(data=word_data)
+            if pre_word_serializer.is_valid():
+                pre_word_serializer.save()
+                instance.words.add(pre_word_serializer.instance)
+
+        instance.part_of_speech = part_of_speech
+        instance.save()
+        return instance

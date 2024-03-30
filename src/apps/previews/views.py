@@ -5,7 +5,7 @@ from rest_framework.views import APIView
 
 from apps.api.utils import serializer_to_manual_parameters
 from apps.previews.models import Preview
-from apps.previews.serializers import PreviewListSerializer, PreWordSerializer
+from apps.previews.serializers import PreviewListSerializer, PreWordSerializer, PreviewUpdateSerializer
 from apps.words.serializers import WordListQueryParamsSerializer
 from apps.words.views import BaseWordListAPIView
 
@@ -27,4 +27,19 @@ class PreWordCreateView(APIView):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class PreviewUpdateAPIView(APIView):
+    @swagger_auto_schema(request_body=PreviewUpdateSerializer)
+    def put(self, request, pk):
+        try:
+            preview = Preview.objects.get(pk=pk)
+        except Preview.DoesNotExist:
+            return Response({"message": "Preview not found"}, status=status.HTTP_404_NOT_FOUND)
+
+        serializer = PreviewUpdateSerializer(preview, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)

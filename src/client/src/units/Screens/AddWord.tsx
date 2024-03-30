@@ -2,7 +2,9 @@ import {Button, Card, Chip} from "@nextui-org/react";
 import {ChangeEvent, FormEvent, useState} from "react";
 import {useParams} from "react-router-dom";
 import {Language, levelChoices} from "../../store/base/baseSlice.ts";
-import {useAppSelector} from "../../store/hooks.ts";
+import {useAppDispatch, useAppSelector} from "../../store/hooks.ts";
+import {CreatePreview, createPreview} from "../../store/previews/previewsActions.ts";
+import {AppDispatch} from "../../store/store.ts";
 import Selector from "../Selectors/Selector.tsx";
 import {getSelectorChoices} from "../utils/utils.ts";
 import WordInput from "./WordInput.tsx";
@@ -19,6 +21,7 @@ export interface Preview {
 const AddWord = () => {
   const { index } = useParams();
 
+  const dispatch: AppDispatch = useAppDispatch();
   const previews = useAppSelector((state) => state.previews.previews);
   const preview: Preview = previews[index ? parseInt(index, 10) : 0];
   const parts_of_speech = useAppSelector((state) => state.base.properties.parts_of_speech);
@@ -77,11 +80,12 @@ const AddWord = () => {
       level: level,
     }));
 
-    const data = {
+    const data: CreatePreview = {
       id: preview.id,
+      partOfSpeech: partOfSpeech,
       words: words
     }
-    console.log(data)
+    dispatch(createPreview(data))
   }
 
   return (
