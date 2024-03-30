@@ -58,3 +58,9 @@ export const createPreview = ({id, partOfSpeech, words}: CreatePreview) => {
     }
   };
 };
+
+export const setPreviewsMessage = ({message}: {message: string}) => {
+  return async (dispatch: AppDispatch) => {
+    dispatch(previewsActions.setPreviewsMessage(message));
+  };
+};
