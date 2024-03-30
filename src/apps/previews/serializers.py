@@ -41,7 +41,7 @@ class PreWordSerializer(serializers.ModelSerializer):
                 errors.append("Plural field is required and cannot be empty for 'Noun' part of speech.")
 
         if errors:
-            raise serializers.ValidationError({"errors": errors})
+            raise serializers.ValidationError({"message": {"errors": errors}})
 
         return data
 
