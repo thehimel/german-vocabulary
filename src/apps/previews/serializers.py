@@ -54,7 +54,7 @@ class PreWordSerializer(serializers.ModelSerializer):
 
         language = Language.objects.get(code=language_code)
         article = Article.objects.filter(language=language, title=article_title).first()
-        part_of_speech = PartOfSpeech.objects.filter(title=part_of_speech_title).first()
+        part_of_speech = PartOfSpeech.objects.filter(title__iexact=part_of_speech_title).first()
 
         if part_of_speech_title.lower() != 'noun':
             validated_data.pop('article', None)
@@ -80,7 +80,7 @@ class PreviewUpdateSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         part_of_speech_title = validated_data.pop('partOfSpeech')
-        part_of_speech = PartOfSpeech.objects.filter(title=part_of_speech_title).first()
+        part_of_speech = PartOfSpeech.objects.filter(title__iexact=part_of_speech_title).first()
         words_data = validated_data.pop('words')
 
         instance.words.clear()
