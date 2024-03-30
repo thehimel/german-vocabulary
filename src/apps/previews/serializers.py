@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from django.db.utils import DatabaseError
+from django.db.utils import DatabaseError, IntegrityError
 from rest_framework.exceptions import ValidationError
 
 from apps.previews.models import Preview, PreWord
@@ -69,8 +69,10 @@ class PreWordSerializer(serializers.ModelSerializer):
 
             pre_word.save()
             return pre_word
-        except (DatabaseError, Exception) as e:
-            raise ValidationError(str(e))
+        except IntegrityError as e:
+            raise ValidationError({"message": {"errors": [str(e)]}})
+        except Exception as e:
+            raise ValidationError({"message": {"errors": [str(e)]}})
 
 
 class PreviewUpdateSerializer(serializers.ModelSerializer):
