@@ -18,7 +18,7 @@ export interface Preview {
   article: { title: string };
 }
 
-const AddWord = () => {
+const AddPreview = () => {
   const { index } = useParams();
 
   const dispatch: AppDispatch = useAppDispatch();
@@ -128,4 +128,4 @@ const AddWord = () => {
   );
 }
 
-export default AddWord;
+export default AddPreview;

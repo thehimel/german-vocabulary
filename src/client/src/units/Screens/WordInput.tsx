@@ -4,7 +4,7 @@ import {Language} from "../../store/base/baseSlice.ts";
 import Selector from "../Selectors/Selector.tsx";
 import {getLanguageStyle, getSelectorChoices} from "../utils/utils.ts";
 import Content from "../WordCard/Content.tsx";
-import {Preview} from "./AddWord.tsx";
+import {Preview} from "./AddPreview.tsx";
 
 interface WordInputProps {
   formData: Record<string, string>;

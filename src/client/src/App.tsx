@@ -3,7 +3,7 @@ import {fetchProperties} from "./store/base/baseActions.ts";
 import {AppDispatch} from "./store/store.ts";
 import Metadata from "./units/Metadata/Metadata.tsx";
 import {useAppDispatch, useAppSelector} from "./store/hooks.ts";
-import AddWord from "./units/Screens/AddWord.tsx";
+import AddPreview from "./units/Screens/AddPreview.tsx";
 import Previews from "./units/Screens/Previews.tsx";
 import Background from "./units/Theme/Background.tsx";
 import NavigationBar from "./units/NavigationBar/NavigationBar.tsx";
@@ -31,7 +31,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<Home/>}/>
                 <Route path="/add" element={<Previews/>}/>
-                <Route path="/add/:index" element={<AddWord/>}/>
+                <Route path="/add/:index" element={<AddPreview/>}/>
               </Routes>
             </div>
             {/* <PaginationBar/> */}
