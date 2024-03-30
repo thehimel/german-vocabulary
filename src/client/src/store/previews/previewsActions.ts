@@ -41,6 +41,12 @@ export const fetchPreviews = ({language, level, loader, searchQuery}: FetchPrevi
   };
 };
 
+export const setPreviewsMessage = ({message}: {message: string}) => {
+  return async (dispatch: AppDispatch) => {
+    dispatch(previewsActions.setPreviewsMessage(message));
+  };
+};
+
 export const createPreview = ({id, partOfSpeech, words}: CreatePreview) => {
   return async (dispatch: AppDispatch) => {
     const api_url = PREVIEW_UPDATE_API_URL.replace(':id', id.toString()); // Define your endpoint URL
@@ -51,16 +57,12 @@ export const createPreview = ({id, partOfSpeech, words}: CreatePreview) => {
       };
       const response = await axios.put(api_url, data);
       dispatch(previewsActions.setPreviewsError(null));
+      dispatch(previewsActions.setPreviewsMessage('Thanks for your contribution. The words will now be' +
+        'carefully reviewed by our team and upon approval it will be enlisted. Feel free to submit another one!'));
       return response.data;
     } catch (error) {
       const errorMessage = getErrorMessage({apiUrl: api_url, error: error as AxiosError});
       dispatch(previewsActions.setPreviewsError(errorMessage));
     }
-  };
-};
-
-export const setPreviewsMessage = ({message}: {message: string}) => {
-  return async (dispatch: AppDispatch) => {
-    dispatch(previewsActions.setPreviewsMessage(message));
   };
 };
