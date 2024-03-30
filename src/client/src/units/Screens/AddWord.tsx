@@ -73,7 +73,7 @@ const AddWord = () => {
 
     formData = formData.map(form => ({
       ...form,
-      partOfSpeech: partOfSpeech,
+      part_of_speech: partOfSpeech,
       level: level,
     }));
 
