@@ -57,8 +57,8 @@ export const createPreview = ({id, partOfSpeech, words}: CreatePreview) => {
       };
       const response = await axios.put(api_url, data);
       dispatch(previewsActions.setPreviewsError(null));
-      dispatch(previewsActions.setPreviewsMessage('Thanks for your contribution. The words will now be' +
-        'carefully reviewed by our team and upon approval it will be enlisted. Feel free to submit another one!'));
+      dispatch(previewsActions.setPreviewsMessage('Thanks for your contribution! The content will now be ' +
+        'reviewed by the team!'));
       return response.data;
     } catch (error) {
       const errorMessage = getErrorMessage({apiUrl: api_url, error: error as AxiosError});
