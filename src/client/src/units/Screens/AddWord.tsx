@@ -84,8 +84,8 @@ const AddWord = () => {
       id: preview.id,
       partOfSpeech: partOfSpeech,
       words: words
-    }
-    dispatch(createPreview(data))
+    };
+    dispatch(createPreview(data));
   }
 
   return (
