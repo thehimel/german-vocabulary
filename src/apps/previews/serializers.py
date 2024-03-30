@@ -1,9 +1,9 @@
-from rest_framework import serializers
 from django.db.utils import DatabaseError, IntegrityError
+from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
 from apps.previews.models import Preview, PreWord
-from apps.words.models import Language, Article, PartOfSpeech
+from apps.words.models import Article, Language, PartOfSpeech
 from apps.words.serializers import ArticleSerializer, PartOfSpeechSerializer, SimpleLanguageSerializer
 
 
@@ -32,14 +32,14 @@ class PreWordSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = PreWord
-        fields = ['languageCode', 'title', 'article', 'plural', 'sentence', 'partOfSpeech', 'level']
+        fields = ["languageCode", "title", "article", "plural", "sentence", "partOfSpeech", "level"]
 
     def validate(self, data):
-        part_of_speech = data.get('partOfSpeech', '').lower()
+        part_of_speech = data.get("partOfSpeech", "").lower()
         errors = []
 
-        if part_of_speech == 'noun':
-            if 'plural' not in data or not data['plural']:
+        if part_of_speech == "noun":
+            if "plural" not in data or not data["plural"]:
                 errors.append("Plural field is required and cannot be empty for 'Noun' part of speech.")
 
         if errors:
@@ -48,30 +48,32 @@ class PreWordSerializer(serializers.ModelSerializer):
         return data
 
     def create(self, validated_data):
-        title = validated_data['title']
+        title = validated_data["title"]
         try:
-            article_title = validated_data.pop('article')
-            part_of_speech_title = validated_data.pop('partOfSpeech')
-            language_code = validated_data.pop('languageCode')
+            article_title = validated_data.pop("article")
+            part_of_speech_title = validated_data.pop("partOfSpeech")
+            language_code = validated_data.pop("languageCode")
 
             language = Language.objects.get(code=language_code)
             article = Article.objects.filter(language=language, title=article_title).first()
             part_of_speech = PartOfSpeech.objects.filter(title__iexact=part_of_speech_title).first()
 
-            if part_of_speech_title.lower() != 'noun':
-                validated_data.pop('article', None)
-                validated_data.pop('plural', None)
+            if part_of_speech_title.lower() != "noun":
+                validated_data.pop("article", None)
+                validated_data.pop("plural", None)
 
             pre_word = PreWord.objects.create(language=language, **validated_data)
             pre_word.parts_of_speech.add(part_of_speech)
 
-            if part_of_speech_title.lower() == 'noun' and article:
+            if part_of_speech_title.lower() == "noun" and article:
                 pre_word.articles.add(article)
 
             pre_word.save()
             return pre_word
         except IntegrityError as e:
-            raise ValidationError({"message": [f"Encountered integrity error during the creation of the word: {title}"]})
+            raise ValidationError(
+                {"message": [f"Encountered integrity error during the creation of the word: {title}"]}
+            )
         except Exception as e:
             raise ValidationError({"message": [f"Encountered error during the creation of the word: {title}"]})
 
@@ -82,12 +84,12 @@ class PreviewUpdateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Preview
-        fields = ['id', 'partOfSpeech', 'words']
+        fields = ["id", "partOfSpeech", "words"]
 
     def update(self, instance, validated_data):
-        part_of_speech_title = validated_data.pop('partOfSpeech')
+        part_of_speech_title = validated_data.pop("partOfSpeech")
         part_of_speech = PartOfSpeech.objects.filter(title__iexact=part_of_speech_title).first()
-        words_data = validated_data.pop('words')
+        words_data = validated_data.pop("words")
 
         instance.words.clear()
         for word_data in words_data:

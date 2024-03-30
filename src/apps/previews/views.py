@@ -5,7 +5,7 @@ from rest_framework.views import APIView
 
 from apps.api.utils import serializer_to_manual_parameters
 from apps.previews.models import Preview
-from apps.previews.serializers import PreviewListSerializer, PreWordSerializer, PreviewUpdateSerializer
+from apps.previews.serializers import PreviewListSerializer, PreviewUpdateSerializer, PreWordSerializer
 from apps.words.serializers import WordListQueryParamsSerializer
 from apps.words.views import BaseWordListAPIView
 
