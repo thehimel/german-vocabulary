@@ -1,4 +1,6 @@
 from rest_framework import serializers
+from django.db.utils import DatabaseError
+from rest_framework.exceptions import ValidationError
 
 from apps.previews.models import Preview, PreWord
 from apps.words.models import Language, Article, PartOfSpeech
@@ -46,26 +48,29 @@ class PreWordSerializer(serializers.ModelSerializer):
         return data
 
     def create(self, validated_data):
-        article_title = validated_data.pop('article')
-        part_of_speech_title = validated_data.pop('partOfSpeech')
-        language_code = validated_data.pop('languageCode')
+        try:
+            article_title = validated_data.pop('article')
+            part_of_speech_title = validated_data.pop('partOfSpeech')
+            language_code = validated_data.pop('languageCode')
 
-        language = Language.objects.get(code=language_code)
-        article = Article.objects.filter(language=language, title=article_title).first()
-        part_of_speech = PartOfSpeech.objects.filter(title__iexact=part_of_speech_title).first()
+            language = Language.objects.get(code=language_code)
+            article = Article.objects.filter(language=language, title=article_title).first()
+            part_of_speech = PartOfSpeech.objects.filter(title__iexact=part_of_speech_title).first()
 
-        if part_of_speech_title.lower() != 'noun':
-            validated_data.pop('article', None)
-            validated_data.pop('plural', None)
+            if part_of_speech_title.lower() != 'noun':
+                validated_data.pop('article', None)
+                validated_data.pop('plural', None)
 
-        pre_word = PreWord.objects.create(language=language, **validated_data)
-        pre_word.parts_of_speech.add(part_of_speech)
+            pre_word = PreWord.objects.create(language=language, **validated_data)
+            pre_word.parts_of_speech.add(part_of_speech)
 
-        if part_of_speech_title.lower() == 'noun' and article:
-            pre_word.articles.add(article)
+            if part_of_speech_title.lower() == 'noun' and article:
+                pre_word.articles.add(article)
 
-        pre_word.save()
-        return pre_word
+            pre_word.save()
+            return pre_word
+        except (DatabaseError, Exception) as e:
+            raise ValidationError(str(e))
 
 
 class PreviewUpdateSerializer(serializers.ModelSerializer):
