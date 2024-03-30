@@ -23,7 +23,7 @@ class PreviewListSerializer(serializers.ModelSerializer):
 
 
 class PreWordSerializer(serializers.ModelSerializer):
-    languageCode = serializers.CharField(write_only=True)
+    languageCode = serializers.CharField(write_only=True, min_length=2)
     partOfSpeech = serializers.CharField(write_only=True)
     article = serializers.CharField(write_only=True, required=False, allow_blank=True)
     plural = serializers.CharField(write_only=True, required=False, allow_blank=True)
