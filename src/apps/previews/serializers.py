@@ -97,5 +97,6 @@ class PreviewUpdateSerializer(serializers.ModelSerializer):
                 instance.words.add(pre_word_serializer.instance)
 
         instance.part_of_speech = part_of_speech
+        instance.in_review = True
         instance.save()
         return instance
