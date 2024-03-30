@@ -1,6 +1,6 @@
 import {Button, Card, Chip} from "@nextui-org/react";
 import {ChangeEvent, FormEvent, useState} from "react";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {Language, levelChoices} from "../../store/base/baseSlice.ts";
 import {useAppDispatch, useAppSelector} from "../../store/hooks.ts";
 import {CreatePreview, createPreview} from "../../store/previews/previewsActions.ts";
@@ -19,6 +19,7 @@ export interface Preview {
 }
 
 const AddPreview = () => {
+  const navigate = useNavigate();
   const { index } = useParams();
 
   const dispatch: AppDispatch = useAppDispatch();
@@ -86,6 +87,7 @@ const AddPreview = () => {
       words: words
     };
     dispatch(createPreview(data));
+    navigate('/add/');
   }
 
   return (
