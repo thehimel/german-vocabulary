@@ -48,6 +48,7 @@ class PreWordSerializer(serializers.ModelSerializer):
         return data
 
     def create(self, validated_data):
+        title = validated_data['title']
         try:
             article_title = validated_data.pop('article')
             part_of_speech_title = validated_data.pop('partOfSpeech')
@@ -70,9 +71,9 @@ class PreWordSerializer(serializers.ModelSerializer):
             pre_word.save()
             return pre_word
         except IntegrityError as e:
-            raise ValidationError({"message": [str(e)]})
+            raise ValidationError({"message": [f"Encountered integrity error during the creation of the word: {title}"]})
         except Exception as e:
-            raise ValidationError({"message": [str(e)]})
+            raise ValidationError({"message": [f"Encountered error during the creation of the word: {title}"]})
 
 
 class PreviewUpdateSerializer(serializers.ModelSerializer):
