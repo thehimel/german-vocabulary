@@ -50,6 +50,7 @@ export const createPreview = ({id, partOfSpeech, words}: CreatePreview) => {
         words,
       };
       const response = await axios.put(api_url, data);
+      dispatch(previewsActions.setPreviewsError(null));
       return response.data;
     } catch (error) {
       const errorMessage = getErrorMessage({apiUrl: api_url, error: error as AxiosError});
