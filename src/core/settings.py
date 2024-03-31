@@ -224,4 +224,3 @@ SIMPLE_JWT = {
 }
 
 SITE_ID = 1
-
