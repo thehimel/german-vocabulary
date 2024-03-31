@@ -33,9 +33,8 @@ const WordInput: FC<WordInputProps> = ({ formData, index, language, isNoun, onCh
         <div className="flex flex-wrap gap-2">
           <Input isRequired required isDisabled={isWordDisabled} type="text" name="title" label="Word" value={formData.title} onChange={(e) => onChange(index, e)}/>
           { isNoun && articlesComponent }
-          { isNoun && <Input isRequired name="plural" type="text" label="Plural" value={formData.plural} onChange={(e) => onChange(index, e)}/>}
+          { isNoun && <Input isRequired={language.code === 'de' || language.code === 'en'} name="plural" type="text" label="Plural" value={formData.plural} onChange={(e) => onChange(index, e)}/>}
           <Input isRequired name="sentence" type="text" label="Sentence" value={formData.sentence} onChange={(e) => onChange(index, e)}/>
-          <Input name="note" type="text" label="Note" value={formData.note} onChange={(e) => onChange(index, e)}/>
         </div>
       </CardBody>
     </Card>

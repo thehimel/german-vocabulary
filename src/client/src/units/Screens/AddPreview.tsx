@@ -58,7 +58,6 @@ const AddPreview = () => {
         article: article,
         plural: '',
         sentence: '',
-        note: '',
       });
     });
     return initialFormData;
