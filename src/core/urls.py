@@ -18,15 +18,18 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import include, path, re_path
+from allauth.account.views import confirm_email
 
 from core.views import schema_view
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("accounts/", include("allauth.urls")),
+    re_path('auth/registration/account-confirm-email/(?P<key>.+)/', confirm_email, name='account_confirm_email'),
     path("auth/", include("dj_rest_auth.urls")),
     path("auth/registration/", include("dj_rest_auth.registration.urls")),
+
     path("", include("apps.base.urls", namespace="base")),
     path("api/", include("apps.api.urls", namespace="api")),
     path("users/", include("apps.users.urls", namespace="users")),
