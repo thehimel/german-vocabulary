@@ -27,7 +27,7 @@ class BaseWordListAPIView(ListAPIView):
         level = params_serializer.validated_data.get("level", "a1")
         search_query = params_serializer.validated_data.get("q", "")
 
-        queryset = self.model.objects.filter(language__code=primary_language, level=level).order_by("title")
+        queryset = self.model.objects.filter(language__code=primary_language, level=level).order_by("created")
 
         if hasattr(self.model, "hidden"):
             queryset = queryset.filter(hidden=False)
