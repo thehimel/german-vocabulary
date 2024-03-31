@@ -1,6 +1,6 @@
 from django.db import models
 
-from apps.words.models import Article, Language, Note, PartOfSpeech
+from apps.words.models import Article, Language, Note, PartOfSpeech, Word
 from apps.words.utils import getLevelChoices
 
 
@@ -30,13 +30,13 @@ class PreWord(models.Model):
 class Preview(models.Model):
     title = models.CharField(max_length=100)
     level = models.CharField(max_length=2, choices=getLevelChoices())
-    description = models.TextField(default="", blank=True, null=True)
     language = models.ForeignKey(Language, on_delete=models.SET_NULL, null=True)
     part_of_speech = models.ForeignKey(
         PartOfSpeech, verbose_name="Part of Speech", on_delete=models.SET_NULL, null=True, blank=True
     )
     article = models.ForeignKey(Article, on_delete=models.SET_NULL, null=True, blank=True)
     words = models.ManyToManyField(PreWord, blank=True)
+    description = models.TextField(default="", blank=True, null=True)
     in_review = models.BooleanField(default=False, verbose_name="In Review")
     approved = models.BooleanField(default=False)
     merged = models.BooleanField(default=False)
@@ -45,6 +45,33 @@ class Preview(models.Model):
 
     class Meta:
         unique_together = ["title", "language", "part_of_speech"]
+
+    def save(self, *args, **kwargs):
+        if self.pk and self.approved:
+            words = []
+            for word in self.words.all():
+                existing_word = Word.objects.filter(title=word.title, language=word.language, part_of_speech=word.part_of_speech).first()
+                if existing_word:
+                    words.append(existing_word)
+                else:
+                    new_word = Word.objects.create(
+                        title=word.title,
+                        language=word.language,
+                        part_of_speech=word.part_of_speech,
+                        plural=word.plural,
+                        sentence=word.sentence,
+                        level=word.level,
+                        description=word.description,
+                        hidden=word.hidden
+                    )
+                    new_word.articles.set(word.articles.all())
+                    words.append(new_word)
+            for i, _ in enumerate(words):
+                for j, _ in enumerate(words):
+                    if words[i] != words[j]:
+                        words[i].translations.add(words[j])
+                words[i].save()
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.title} | {self.language}"
