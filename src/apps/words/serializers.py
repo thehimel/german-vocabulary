@@ -52,17 +52,17 @@ class LinkedWordSerializer(serializers.ModelSerializer):
 class TranslationSerializer(serializers.ModelSerializer):
     language = SimpleLanguageSerializer()
     articles = ArticleSerializer(many=True, read_only=True)
-    parts_of_speech = PartOfSpeechSerializer(many=True, read_only=True)
+    part_of_speech = PartOfSpeechSerializer(read_only=True)
 
     class Meta:
         model = Word
-        fields = ["id", "title", "plural", "language", "articles", "parts_of_speech", "sentence"]
+        fields = ["id", "title", "plural", "language", "articles", "part_of_speech", "sentence"]
 
 
 class WordListSerializer(serializers.ModelSerializer):
     language = SimpleLanguageSerializer(read_only=True)
     articles = ArticleSerializer(many=True, read_only=True)
-    parts_of_speech = PartOfSpeechSerializer(many=True, read_only=True)
+    part_of_speech = PartOfSpeechSerializer(read_only=True)
     translations = TranslationSerializer(many=True, read_only=True)
 
     class Meta:
@@ -74,7 +74,7 @@ class WordListSerializer(serializers.ModelSerializer):
             "plural",
             "language",
             "articles",
-            "parts_of_speech",
+            "part_of_speech",
             "sentence",
             "translations",
         ]

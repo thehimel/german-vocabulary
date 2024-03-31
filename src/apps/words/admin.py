@@ -42,7 +42,6 @@ class BundleAdmin(admin.ModelAdmin):
 
 @make_slug_readonly_during_update
 @join_field_values("articles", "title", "all_articles")
-@join_field_values("parts_of_speech", "title", "pos")
 @join_field_values("translations", "title", "all_translations")
 @join_field_values("linked_words", "title", "all_linked_words")
 class WordAdmin(admin.ModelAdmin):
@@ -51,7 +50,7 @@ class WordAdmin(admin.ModelAdmin):
     ordering = ["-modified", "language__code", Lower("title")]
     list_display = [
         "title",
-        "pos",
+        "part_of_speech",
         "all_translations",
         "plural",
         "all_articles",
@@ -61,7 +60,7 @@ class WordAdmin(admin.ModelAdmin):
         "modified",
         "all_linked_words",
     ]
-    list_filter = ["hidden", "level", "language__code"]
+    list_filter = ["hidden", "part_of_speech", "level", "language__code"]
     list_per_page = 8
 
     @staticmethod
