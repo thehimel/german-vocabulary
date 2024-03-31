@@ -62,9 +62,7 @@ class PreWordSerializer(serializers.ModelSerializer):
                 validated_data.pop("article", None)
                 validated_data.pop("plural", None)
 
-            pre_word = PreWord.objects.create(language=language, **validated_data)
-            pre_word.parts_of_speech.add(part_of_speech)
-
+            pre_word = PreWord.objects.create(language=language, part_of_speech=part_of_speech, **validated_data)
             if part_of_speech_title.lower() == "noun" and article:
                 pre_word.articles.add(article)
 
