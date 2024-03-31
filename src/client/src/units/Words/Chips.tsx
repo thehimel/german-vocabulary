@@ -11,8 +11,8 @@ const Chips: FC<ChipsProps> = ({items, color, variant}) => {
   return (
     <div className="flex flex-row gap-1">
       {items.map((item, index) => (
-        <div className={`${item.title.length == 1 && 'pt-0.5'}`}>
-          <Chip key={index} color={color} variant={variant}>
+        <div key={index} className={`${item.title.length == 1 && 'pt-0.5'}`}>
+          <Chip color={color} variant={variant}>
             {item.title}
           </Chip>
         </div>
