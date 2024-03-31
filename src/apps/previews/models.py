@@ -34,6 +34,7 @@ class Preview(models.Model):
         PartOfSpeech, verbose_name="Part of Speech", on_delete=models.SET_NULL, null=True, blank=True
     )
     article = models.ForeignKey(Article, on_delete=models.SET_NULL, null=True, blank=True)
+    plural = models.CharField(max_length=100, blank=True, null=True)
     words = models.ManyToManyField(PreWord, blank=True)
     description = models.TextField(default="", blank=True, null=True)
     in_review = models.BooleanField(default=False, verbose_name="In Review")

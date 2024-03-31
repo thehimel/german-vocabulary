@@ -21,6 +21,7 @@ class PreviewListSerializer(serializers.ModelSerializer):
             "language",
             "part_of_speech",
             "article",
+            "plural",
         ]
 
 

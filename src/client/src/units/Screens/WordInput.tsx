@@ -23,6 +23,7 @@ const WordInput: FC<WordInputProps> = ({ formData, index, language, isNoun, onCh
   const articlesComponent = articles && articles.length > 0 ? (
     <Selector isRequired isDisabled={isArticleDisabled} name="article" label="Article" value={formData.article} defaultKey={formData.article} choices={articles} onChange={(e) => onChange(index, e)}/>
   ) : null;
+  const isPluralDisabled = !!(preview.language.code === language.code && preview.plural)
 
   return (
     <Card className={shadowColor}>
@@ -33,7 +34,7 @@ const WordInput: FC<WordInputProps> = ({ formData, index, language, isNoun, onCh
         <div className="flex flex-wrap gap-2">
           <Input isRequired required isDisabled={isWordDisabled} type="text" name="title" label="Word" value={formData.title} onChange={(e) => onChange(index, e)}/>
           { isNoun && articlesComponent }
-          { isNoun && <Input isRequired={language.code === 'de' || language.code === 'en'} name="plural" type="text" label="Plural" value={formData.plural} onChange={(e) => onChange(index, e)}/>}
+          { isNoun && <Input isRequired={language.code === 'de' || language.code === 'en'} isDisabled={isPluralDisabled} name="plural" type="text" label="Plural" value={formData.plural} onChange={(e) => onChange(index, e)}/>}
           <Input isRequired name="sentence" type="text" label="Sentence" value={formData.sentence} onChange={(e) => onChange(index, e)}/>
         </div>
       </CardBody>

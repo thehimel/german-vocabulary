@@ -14,6 +14,7 @@ export interface Preview {
   title: string;
   level: string;
   language: Language;
+  plural: string;
   part_of_speech: { title: string };
   article: { title: string };
 }
@@ -47,16 +48,19 @@ const AddPreview = () => {
     languages.map(language => {
       let title = ''
       let article = ''
+      let plural = ''
+
       if (language.code === preview.language.code) {
         title = preview.title;
         article = preview.article ? preview.article.title : article;
+        plural = preview.plural ? preview.plural : plural;
       }
 
       initialFormData.push({
         languageCode: language.code,
         title: title,
         article: article,
-        plural: '',
+        plural: plural,
         sentence: '',
       });
     });
