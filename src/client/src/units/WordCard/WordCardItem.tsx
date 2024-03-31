@@ -10,6 +10,7 @@ export interface WordCardItemProps {
     language: { code: string };
     articles?: [{ title: string }];
     parts_of_speech?: [{ title: string }];
+    part_of_speech: { title: string };
     sentence: string;
   }
 }
@@ -21,7 +22,7 @@ const WordCardItem: FC<WordCardItemProps> = ({word}) => {
         <Content showAvatar showSpeaker language_code={word.language.code} content={word.title}/>
       </ModalHeader>
       <ModalBody>
-        <ArticlesPOS articles={word.articles} parts_of_speech={word.parts_of_speech}/>
+        <ArticlesPOS articles={word.articles} parts_of_speech={[word.part_of_speech]}/>
         {word.plural && (
           <div>
             <Chip color="warning" variant="shadow" className="animate-appearance-in">
