@@ -47,7 +47,7 @@ class Preview(models.Model):
         unique_together = ["title", "language", "part_of_speech"]
 
     def save(self, *args, **kwargs):
-        if self.pk and self.approved:
+        if self.pk and self.approved and not self.merged:
             words = []
             for word in self.words.all():
                 existing_word = Word.objects.filter(title=word.title, language=word.language, part_of_speech=word.part_of_speech).first()
@@ -66,11 +66,12 @@ class Preview(models.Model):
                     )
                     new_word.articles.set(word.articles.all())
                     words.append(new_word)
-            for i, _ in enumerate(words):
-                for j, _ in enumerate(words):
-                    if words[i] != words[j]:
-                        words[i].translations.add(words[j])
-                words[i].save()
+            for word in words:
+                for translation in words:
+                    if word != translation:
+                        word.translations.add(translation)
+                word.save()
+            self.merged = True
         super().save(*args, **kwargs)
 
     def __str__(self):
