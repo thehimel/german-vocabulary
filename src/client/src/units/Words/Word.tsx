@@ -31,7 +31,7 @@ export interface WordWithIndexProps {
 
 const Word: FC<WordWithIndexProps> = ({ index, word, addCard, onPress }) => {
   const articles = word.articles ? word.articles : word.article ? [word.article] : undefined;
-  const parts_of_speech = word.parts_of_speech ? word.parts_of_speech : word.part_of_speech ? [word.part_of_speech] : undefined;
+  const parts_of_speech = word.part_of_speech ? [word.part_of_speech] : undefined;
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
   const dispatch: AppDispatch = useAppDispatch();
   const navigate = useNavigate();
