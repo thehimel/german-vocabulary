@@ -50,7 +50,9 @@ class Preview(models.Model):
         if self.pk and self.approved and not self.merged:
             words = []
             for word in self.words.all():
-                existing_word = Word.objects.filter(title=word.title, language=word.language, part_of_speech=word.part_of_speech).first()
+                existing_word = Word.objects.filter(
+                    title=word.title, language=word.language, part_of_speech=word.part_of_speech
+                ).first()
                 if existing_word:
                     words.append(existing_word)
                 else:
@@ -62,7 +64,7 @@ class Preview(models.Model):
                         sentence=word.sentence,
                         level=word.level,
                         description=word.description,
-                        hidden=word.hidden
+                        hidden=word.hidden,
                     )
                     new_word.articles.set(word.articles.all())
                     words.append(new_word)

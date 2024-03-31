@@ -103,8 +103,12 @@ class Word(models.Model):
     description = models.TextField(default="", blank=True, null=True)
     language = models.ForeignKey(Language, on_delete=models.SET_NULL, null=True)
     articles = models.ManyToManyField(Article, blank=True)
-    part_of_speech = models.ForeignKey(PartOfSpeech, on_delete=models.SET_NULL, null=True, verbose_name="Part of Speech")
-    parts_of_speech = models.ManyToManyField(PartOfSpeech, blank=True, verbose_name="Parts of Speech", related_name="parts_of_speech")
+    part_of_speech = models.ForeignKey(
+        PartOfSpeech, on_delete=models.SET_NULL, null=True, verbose_name="Part of Speech"
+    )
+    parts_of_speech = models.ManyToManyField(
+        PartOfSpeech, blank=True, verbose_name="Parts of Speech", related_name="parts_of_speech"
+    )
     sentence = models.TextField(default="", blank=True, null=True)
     level = models.CharField(max_length=2, choices=getLevelChoices())
     notes = models.ManyToManyField(Note, blank=True)

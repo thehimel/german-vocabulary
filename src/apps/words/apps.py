@@ -7,4 +7,5 @@ class WordsConfig(AppConfig):
 
     def ready(self):
         from django.core.management import load_command_class
-        load_command_class('apps.words', 'update_words')
+
+        load_command_class("apps.words", "update_words")
