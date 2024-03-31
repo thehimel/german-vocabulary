@@ -1,13 +1,12 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {slices} from "../constants.ts";
 import {WordProps} from "../../units/Words/Word.tsx";
-
-type StringOrNull = string | null;
+import {ErrorInterface} from "../previews/previewsSlice.ts";
 
 export interface WordStateProps {
   word: WordProps;
   loading: boolean;
-  error: StringOrNull;
+  error: ErrorInterface | null;
 }
 
 export const initialWord: WordProps = {
@@ -41,7 +40,7 @@ const wordSlice = createSlice({
       state.word = action.payload;
       state.loading = false;
     },
-    setWordError(state, action: {payload: StringOrNull}): void {
+    setWordError(state, action: {payload: ErrorInterface | null}): void {
       state.error = action.payload;
       state.loading = false;
     },
