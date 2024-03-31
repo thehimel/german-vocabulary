@@ -25,3 +25,8 @@ export const getSelectorChoices = (items: { title: string }[]): SelectorChoice[]
 
     return choices;
 }
+
+export const getCookie = (name: string) => {
+  const cookieValue = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
+  return cookieValue ? cookieValue.pop() : '';
+}

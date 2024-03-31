@@ -1,4 +1,5 @@
 import axios, {AxiosError} from "axios";
+import {getCookie} from "../../units/utils/utils.ts";
 import {PREVIEW_UPDATE_API_URL, PREVIEWS_API_URL} from "../constants.ts";
 import {getErrorMessage} from "../handleError.ts";
 import {AppDispatch} from "../store.ts";
@@ -56,7 +57,12 @@ export const createPreview = ({id, partOfSpeech, words, fetchPreviewsParams}: Cr
         partOfSpeech,
         words,
       };
-      const response = await axios.put(api_url, data);
+      const response = await axios.put(api_url, data, {
+        headers: {
+          'X-CSRFTOKEN': getCookie('csrftoken'),
+          'Content-Type': 'application/json',
+        },
+      });
       dispatch(previewsActions.setPreviewsError(null));
       dispatch(fetchPreviews(fetchPreviewsParams));
       dispatch(previewsActions.setPreviewsMessage('Thanks for your contribution! The content will now be ' +
