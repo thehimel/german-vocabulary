@@ -10,7 +10,6 @@ class PreWord(models.Model):
     description = models.TextField(default="", blank=True, null=True)
     language = models.ForeignKey(Language, on_delete=models.SET_NULL, null=True)
     articles = models.ManyToManyField(Article, blank=True)
-    parts_of_speech = models.ManyToManyField(PartOfSpeech, blank=True, verbose_name="Parts of Speech")
     sentence = models.TextField(default="", blank=True, null=True)
     level = models.CharField(max_length=2, choices=getLevelChoices())
     hidden = models.BooleanField(default=False)

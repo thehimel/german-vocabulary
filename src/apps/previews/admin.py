@@ -7,7 +7,6 @@ from apps.words.decorators import join_field_values
 
 
 @join_field_values("articles", "title", "all_articles")
-@join_field_values("parts_of_speech", "title", "pos")
 class PreWordAdmin(admin.ModelAdmin):
     form = PreWordForm
     search_fields = ["title"]
@@ -15,7 +14,6 @@ class PreWordAdmin(admin.ModelAdmin):
     list_display = [
         "title",
         "language",
-        "pos",
         "plural",
         "all_articles",
         "sentence",
