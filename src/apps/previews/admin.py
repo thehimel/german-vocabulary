@@ -14,13 +14,14 @@ class PreWordAdmin(admin.ModelAdmin):
     list_display = [
         "title",
         "language",
+        "part_of_speech",
         "plural",
         "all_articles",
         "sentence",
         "level",
         "modified",
     ]
-    list_filter = ["hidden", "level", "language__code"]
+    list_filter = ["part_of_speech", "hidden", "level", "language__code"]
     list_per_page = 8
 
 
