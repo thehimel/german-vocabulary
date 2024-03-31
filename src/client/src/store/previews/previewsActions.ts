@@ -16,7 +16,12 @@ interface FetchPreviews {
 
 export interface CreatePreview {
   id: number;
+  title: string;
+  languageCode: string;
   partOfSpeech: string;
+  level: string;
+  article: string;
+  plural: string;
   words: Record<string, string>[];
   fetchPreviewsParams: FetchPreviews;
 }
@@ -49,14 +54,10 @@ export const setPreviewsMessage = ({message}: {message: string}) => {
   };
 };
 
-export const createPreview = ({id, partOfSpeech, words, fetchPreviewsParams}: CreatePreview) => {
+export const createPreview = (data: CreatePreview) => {
   return async (dispatch: AppDispatch) => {
-    const api_url = PREVIEW_UPDATE_API_URL.replace(':id', id.toString()); // Define your endpoint URL
+    const api_url = PREVIEW_UPDATE_API_URL.replace(':id', data.id.toString()); // Define your endpoint URL
     try {
-      const data = {
-        partOfSpeech,
-        words,
-      };
       const response = await axios.put(api_url, data, {
         headers: {
           'X-CSRFTOKEN': getCookie('csrftoken'),
@@ -64,7 +65,7 @@ export const createPreview = ({id, partOfSpeech, words, fetchPreviewsParams}: Cr
         },
       });
       dispatch(previewsActions.setPreviewsError(null));
-      dispatch(fetchPreviews(fetchPreviewsParams));
+      dispatch(fetchPreviews(data.fetchPreviewsParams));
       dispatch(previewsActions.setPreviewsMessage('Thanks for your contribution! The content will now be ' +
         'reviewed by the team!'));
       return response.data;

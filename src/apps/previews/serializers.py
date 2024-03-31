@@ -1,4 +1,4 @@
-from django.db.utils import DatabaseError, IntegrityError
+from django.db.utils import IntegrityError
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
@@ -81,12 +81,14 @@ class PreWordSerializer(serializers.ModelSerializer):
 
 
 class PreviewUpdateSerializer(serializers.ModelSerializer):
+    languageCode = serializers.CharField(write_only=True, min_length=2)
     partOfSpeech = serializers.CharField(write_only=True)
+    article = serializers.CharField(write_only=True)
     words = PreWordSerializer(many=True)
 
     class Meta:
         model = Preview
-        fields = ["id", "partOfSpeech", "words"]
+        fields = ["title", "level", "languageCode", "partOfSpeech", "article", "plural", "words"]
 
     def update(self, instance, validated_data):
         part_of_speech_title = validated_data.pop("partOfSpeech")

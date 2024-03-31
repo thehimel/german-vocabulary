@@ -42,6 +42,8 @@ const AddPreview = () => {
 
   const [level, setLevel] = useState(initialLevel);
   const handleLevelChange = (e: ChangeEvent<HTMLSelectElement>) => setLevel(e.target.value);
+  const preview_article = preview.article ? preview.article.title : '';
+  const preview_plural = preview.plural ? preview.plural : '';
 
   const WordsForm = () => {
     const initialFormData: Record<string, string>[] = []
@@ -52,8 +54,8 @@ const AddPreview = () => {
 
       if (language.code === preview.language.code) {
         title = preview.title;
-        article = preview.article ? preview.article.title : article;
-        plural = preview.plural ? preview.plural : plural;
+        article = preview_article;
+        plural = preview_plural;
       }
 
       initialFormData.push({
@@ -88,7 +90,12 @@ const AddPreview = () => {
 
     const data: CreatePreview = {
       id: preview.id,
+      title: preview.title,
+      languageCode: preview.language.code,
       partOfSpeech: partOfSpeech,
+      level: preview.level,
+      article: preview_article,
+      plural: preview_plural,
       words: words,
       fetchPreviewsParams: {
         language: primaryLanguage,
