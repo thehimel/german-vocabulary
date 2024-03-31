@@ -21,7 +21,6 @@ class PreWord(models.Model):
 
     class Meta:
         verbose_name = "Word"
-        unique_together = ["title", "language", "part_of_speech"]
 
     def __str__(self):
         return f"{self.title} | {self.language}"
