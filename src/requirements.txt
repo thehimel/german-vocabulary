@@ -11,6 +11,7 @@ django-cors-headers>=4.3.1
 django-extensions>=3.2.3
 django-formtools>=2.5.1
 djangorestframework>=3.14.0
+djangorestframework-simplejwt>=5.3.1
 drf-yasg>=1.21.7
 graphviz>=0.20.1
 gunicorn>=21.2.0

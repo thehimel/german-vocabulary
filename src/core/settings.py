@@ -55,12 +55,19 @@ INSTALLED_APPS = [
     "apps.previews",
     # ---
     "corsheaders",
-    "rest_framework",
     "drf_yasg",
+    "rest_framework_simplejwt",
     # ---
+    "rest_framework",
+    "rest_framework.authtoken",
+    "dj_rest_auth",
+    # ---
+    "django.contrib.sites",
     "allauth",
     "allauth.account",
+    "dj_rest_auth.registration",
     "allauth.socialaccount",
+    # ---
     "bootstrap5",
     "crispy_forms",
     "crispy_bootstrap5",
@@ -207,3 +214,19 @@ if ENVIRONMENT == PRODUCTION:
 
     # For images
     DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
+
+REST_AUTH = {
+    'USE_JWT': True,
+    'JWT_AUTH_COOKIE': 'JWT_AUTH_COOKIE',
+    'JWT_AUTH_REFRESH_COOKIE': 'JWT_AUTH_REFRESH_COOKIE',
+}
+
+SITE_ID = 1
+
