@@ -8,7 +8,7 @@ class PreWord(models.Model):
     title = models.CharField(max_length=100)
     language = models.ForeignKey(Language, on_delete=models.SET_NULL, null=True)
     part_of_speech = models.ForeignKey(
-        PartOfSpeech, verbose_name="Part of Speech", on_delete=models.SET_NULL, null=True, blank=True
+        PartOfSpeech, on_delete=models.SET_NULL, null=True, verbose_name="Part of Speech"
     )
     articles = models.ManyToManyField(Article, blank=True)
     plural = models.CharField(max_length=100, blank=True, null=True)
