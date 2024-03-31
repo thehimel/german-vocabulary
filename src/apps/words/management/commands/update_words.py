@@ -9,8 +9,5 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         words = Word.objects.all()
         for word in words:
-            first_part_of_speech = word.parts_of_speech.first()
-            if first_part_of_speech:
-                word.part_of_speech = first_part_of_speech
-                word.save()
+            word.save()
         self.stdout.write(self.style.SUCCESS("All Word objects updated successfully"))
