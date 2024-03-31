@@ -37,9 +37,10 @@ class PreWordSerializer(serializers.ModelSerializer):
 
     def validate(self, data):
         part_of_speech = data.get("partOfSpeech", "").lower()
+        language_code = data.get("partOfSpeech", "").lower()
         errors = []
 
-        if part_of_speech == "noun":
+        if part_of_speech == "noun" and language_code in ['de', 'en']:
             if "plural" not in data or not data["plural"]:
                 errors.append("Plural field is required and cannot be empty for 'Noun' part of speech.")
 
@@ -70,10 +71,12 @@ class PreWordSerializer(serializers.ModelSerializer):
             pre_word.save()
             return pre_word
         except IntegrityError as e:
+            print(e)
             raise ValidationError(
                 {"message": [f"Encountered integrity error during the creation of the word: {title}"]}
             )
         except Exception as e:
+            print(e)
             raise ValidationError({"message": [f"Encountered error during the creation of the word: {title}"]})
 
 
