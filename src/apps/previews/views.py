@@ -30,7 +30,15 @@ class PreWordCreateView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class PreviewUpdateAPIView(APIView):
+class PreviewCreateOrUpdateAPIView(APIView):
+    @swagger_auto_schema(request_body=PreviewUpdateSerializer)
+    def post(self, request):
+        serializer = PreviewUpdateSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
     @swagger_auto_schema(request_body=PreviewUpdateSerializer)
     def put(self, request, pk):
         try:

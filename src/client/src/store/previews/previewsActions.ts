@@ -1,6 +1,6 @@
 import axios, {AxiosError} from "axios";
 import {getCookie} from "../../units/utils/utils.ts";
-import {PREVIEW_UPDATE_API_URL, PREVIEWS_API_URL} from "../constants.ts";
+import {PREVIEW_CREATE_API_URL, PREVIEW_UPDATE_API_URL, PREVIEWS_API_URL} from "../constants.ts";
 import {getErrorMessage} from "../handleError.ts";
 import {AppDispatch} from "../store.ts";
 import {ErrorInterface, previewsActions} from "./previewsSlice.ts";
@@ -56,14 +56,21 @@ export const setPreviewsMessage = ({message}: {message: string}) => {
 
 export const createPreview = (data: CreatePreview) => {
   return async (dispatch: AppDispatch) => {
-    const api_url = data.id ? PREVIEW_UPDATE_API_URL.replace(':id', data.id.toString()) : '';
+    let api_url = ''
+    let response = {data: {}};
+    const headers = {
+      'X-CSRFTOKEN': getCookie('csrftoken'),
+      'Content-Type': 'application/json',
+    }
+
     try {
-      const response = await axios.put(api_url, data, {
-        headers: {
-          'X-CSRFTOKEN': getCookie('csrftoken'),
-          'Content-Type': 'application/json',
-        },
-      });
+      if (data.id) {
+        api_url = PREVIEW_UPDATE_API_URL.replace(':id', data.id.toString());
+        response = await axios.put(api_url, data, {headers: headers});
+      } else {
+        api_url = PREVIEW_CREATE_API_URL;
+        response = await axios.post(api_url, data, {headers: headers});
+      }
       dispatch(previewsActions.setPreviewsError(null));
       dispatch(fetchPreviews(data.fetchPreviewsParams));
       dispatch(previewsActions.setPreviewsMessage('Thanks for your contribution! The content will now be ' +
