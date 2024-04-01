@@ -1,7 +1,7 @@
-import {Button, Card, Chip} from "@nextui-org/react";
+import {Button, Card, Chip, Input} from "@nextui-org/react";
 import {ChangeEvent, FormEvent, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
-import {Language, levelChoices} from "../../store/base/baseSlice.ts";
+import {Language, languageChoices, levelChoices} from "../../store/base/baseSlice.ts";
 import {useAppDispatch, useAppSelector} from "../../store/hooks.ts";
 import {CreatePreview, createPreview} from "../../store/previews/previewsActions.ts";
 import {AppDispatch} from "../../store/store.ts";
@@ -10,13 +10,13 @@ import {getSelectorChoices} from "../utils/utils.ts";
 import WordInput from "./WordInput.tsx";
 
 export interface Preview {
-  id: number;
-  title: string;
-  level: string;
-  language: Language;
-  plural: string;
-  part_of_speech: { title: string };
-  article: { title: string };
+  id?: number;
+  title?: string;
+  level?: string;
+  language?: Language;
+  plural?: string;
+  part_of_speech?: { title: string };
+  article?: { title: string };
 }
 
 const AddPreview = () => {
@@ -26,21 +26,28 @@ const AddPreview = () => {
   const dispatch: AppDispatch = useAppDispatch();
   const primaryLanguage = useAppSelector((state) => state.base.primaryLanguage);
   const globalLevel = useAppSelector((state) => state.base.level);
-  const previews = useAppSelector((state) => state.previews.previews);
-  const preview: Preview = previews[index ? parseInt(index, 10) : 0];
+
   const parts_of_speech = useAppSelector((state) => state.base.properties.parts_of_speech);
   const languages = useAppSelector((state) => state.base.properties.languages);
   const partsOfSpeech = getSelectorChoices(parts_of_speech);
+
+  const previews = useAppSelector((state) => state.previews.previews);
+  const preview: Preview = index ? previews[parseInt(index, 10)] : {};
+
   const initialPartOfSpeech = preview.part_of_speech ? preview.part_of_speech.title.toLowerCase() : '';
   const initialLevel = preview.level ? preview.level : '';
+
+  const [title, setTitle] = useState("");
+  const [languageCode, setLanguageCode] = useState("");
   const [partOfSpeech, setPartOfSpeech] = useState(initialPartOfSpeech);
+  const [level, setLevel] = useState(initialLevel);
   const isNoun = partOfSpeech.toLowerCase() === 'noun';
+
   const handlePartOfSpeechChange = (e: ChangeEvent<HTMLSelectElement>) => setPartOfSpeech(e.target.value);
   const partsOfSpeechComponent = partsOfSpeech && partsOfSpeech.length > 0 ? (
     <Selector isRequired isDisabled={!!initialPartOfSpeech} name="partOfSpeech" label="Part of Speech" value={partOfSpeech} defaultKey={partOfSpeech} choices={partsOfSpeech} onChange={handlePartOfSpeechChange} />
   ) : null;
 
-  const [level, setLevel] = useState(initialLevel);
   const handleLevelChange = (e: ChangeEvent<HTMLSelectElement>) => setLevel(e.target.value);
   const preview_article = preview.article ? preview.article.title : '';
   const preview_plural = preview.plural ? preview.plural : '';
@@ -52,8 +59,8 @@ const AddPreview = () => {
       let article = ''
       let plural = ''
 
-      if (language.code === preview.language.code) {
-        title = preview.title;
+      if (preview.language && language.code === preview.language.code) {
+        title = preview.title || '';
         article = preview_article;
         plural = preview_plural;
       }
@@ -90,10 +97,10 @@ const AddPreview = () => {
 
     const data: CreatePreview = {
       id: preview.id,
-      title: preview.title,
-      languageCode: preview.language.code,
+      title: title,
+      languageCode: languageCode,
       partOfSpeech: partOfSpeech,
-      level: preview.level,
+      level: level,
       article: preview_article,
       plural: preview_plural,
       words: words,
@@ -103,26 +110,41 @@ const AddPreview = () => {
       }
     };
     dispatch(createPreview(data));
-    navigate('/add/');
+    // navigate('/add/');
   }
 
   return (
     <>
-      <div className="flex justify-center mx-auto max-w-screen-xl gap-2 pt-2 ps-2 pe-2">
-        <Card className="w-full p-4">
-          <div className="flex justify-center">
-            <Chip color="warning" variant="shadow" className="animate-appearance-in">
-              {preview.title}
-            </Chip>
-          </div>
-        </Card>
-      </div>
+      {index &&
+        <div className="flex justify-center mx-auto max-w-screen-xl gap-2 pt-2 ps-2 pe-2">
+          <Card className="w-full p-4">
+            <div className="flex justify-center">
+              <Chip color="warning" variant="shadow" className="animate-appearance-in">
+                {preview.title}
+              </Chip>
+            </div>
+          </Card>
+        </div>
+      }
       <form onSubmit={handleSubmit}>
+        {!index &&
+          <div className="flex justify-center max-w-screen-xl mx-auto gap-2 p-2 pb-0">
+            <Card className="w-full">
+              <div className="flex justify-center gap-2 p-2">
+                <Input isRequired name="title" type="text" label="Title" value={title} onChange={(e) => setTitle(e.target.value)}/>
+                <Selector label="Language" placeholder="Select Language" showAvatar={true} choices={languageChoices}
+                  onChange={(e) => setLanguageCode(e.target.value)}/>
+              </div>
+            </Card>
+          </div>
+        }
+
         <div className="flex justify-center max-w-screen-xl mx-auto gap-2 p-2 pb-0">
           <Card className="w-full">
             <div className="flex justify-center gap-2 p-2">
               {partsOfSpeechComponent}
-              <Selector isRequired isDisabled={!!initialLevel} name="level" label="Level" value={level} defaultKey={level} choices={levelChoices} onChange={handleLevelChange}/>
+              <Selector isRequired isDisabled={!!initialLevel} name="level" label="Level" value={level}
+                        defaultKey={level} choices={levelChoices} onChange={handleLevelChange}/>
             </div>
           </Card>
         </div>

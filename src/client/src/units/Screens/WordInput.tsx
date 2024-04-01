@@ -17,13 +17,13 @@ interface WordInputProps {
 
 const WordInput: FC<WordInputProps> = ({ formData, index, language, isNoun, onChange, preview}) => {
   const shadowColor = `flex flex-wrap gap-2 pt-2 shadow-sm ${getLanguageStyle(language.code, 'shadow')}`;
-  const isWordDisabled = preview.language.code === language.code;
-  const isArticleDisabled = !!(preview.language.code === language.code && preview.article);
+  const isWordDisabled = preview.language ? preview.language.code === language.code : false;
+  const isArticleDisabled = preview.article && preview.language ? preview.language.code === language.code : false;
   const articles = getSelectorChoices(language.articles);
   const articlesComponent = articles && articles.length > 0 ? (
     <Selector isRequired isDisabled={isArticleDisabled} name="article" label="Article" value={formData.article} defaultKey={formData.article} choices={articles} onChange={(e) => onChange(index, e)}/>
   ) : null;
-  const isPluralDisabled = !!(preview.language.code === language.code && preview.plural)
+  const isPluralDisabled = preview.language && preview.plural ? preview.language.code === language.code : false;
 
   return (
     <Card className={shadowColor}>

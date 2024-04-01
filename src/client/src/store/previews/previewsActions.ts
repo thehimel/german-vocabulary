@@ -15,7 +15,7 @@ interface FetchPreviews {
 
 
 export interface CreatePreview {
-  id: number;
+  id?: number;
   title: string;
   languageCode: string;
   partOfSpeech: string;
@@ -56,7 +56,7 @@ export const setPreviewsMessage = ({message}: {message: string}) => {
 
 export const createPreview = (data: CreatePreview) => {
   return async (dispatch: AppDispatch) => {
-    const api_url = PREVIEW_UPDATE_API_URL.replace(':id', data.id.toString()); // Define your endpoint URL
+    const api_url = data.id ? PREVIEW_UPDATE_API_URL.replace(':id', data.id.toString()) : '';
     try {
       const response = await axios.put(api_url, data, {
         headers: {

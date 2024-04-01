@@ -32,6 +32,7 @@ function App() {
                 <Route path="/" element={<Home/>}/>
                 <Route path="/add" element={<Previews/>}/>
                 <Route path="/add/:index" element={<AddPreview/>}/>
+                <Route path="/add/new" element={<AddPreview/>}/>
               </Routes>
             </div>
             {/* <PaginationBar/> */}
