@@ -34,11 +34,13 @@ const AddPreview = () => {
   const previews = useAppSelector((state) => state.previews.previews);
   const preview: Preview = index ? previews[parseInt(index, 10)] : {};
 
+  const initialTitle = preview.title ? preview.title : '';
+  const initialLanguageCode = preview.language ? preview.language.code : '';
   const initialPartOfSpeech = preview.part_of_speech ? preview.part_of_speech.title.toLowerCase() : '';
   const initialLevel = preview.level ? preview.level : '';
 
-  const [title, setTitle] = useState("");
-  const [languageCode, setLanguageCode] = useState("");
+  const [title, setTitle] = useState(initialTitle);
+  const [languageCode, setLanguageCode] = useState(initialLanguageCode);
   const [partOfSpeech, setPartOfSpeech] = useState(initialPartOfSpeech);
   const [level, setLevel] = useState(initialLevel);
   const isNoun = partOfSpeech.toLowerCase() === 'noun';
@@ -110,7 +112,7 @@ const AddPreview = () => {
       }
     };
     dispatch(createPreview(data));
-    // navigate('/add/');
+    navigate('/add/');
   }
 
   return (
@@ -132,7 +134,7 @@ const AddPreview = () => {
             <Card className="w-full">
               <div className="flex justify-center gap-2 p-2">
                 <Input isRequired name="title" type="text" label="Title" value={title} onChange={(e) => setTitle(e.target.value)}/>
-                <Selector label="Language" placeholder="Select Language" showAvatar={true} choices={languageChoices}
+                <Selector isRequired label="Language" placeholder="Select Language" showAvatar={true} choices={languageChoices}
                   onChange={(e) => setLanguageCode(e.target.value)}/>
               </div>
             </Card>

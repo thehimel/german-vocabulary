@@ -88,17 +88,21 @@ class PreviewUpdateSerializer(serializers.ModelSerializer):
         model = Preview
         fields = ["title", "level", "languageCode", "partOfSpeech", "article", "plural", "words"]
 
-    def update(self, instance, validated_data):
-        part_of_speech_title = validated_data.pop("partOfSpeech")
-        part_of_speech = PartOfSpeech.objects.filter(title__iexact=part_of_speech_title).first()
-        words_data = validated_data.pop("words")
-
+    @staticmethod
+    def _save_words(instance, words_data):
         instance.words.clear()
         for word_data in words_data:
             pre_word_serializer = PreWordSerializer(data=word_data)
             if pre_word_serializer.is_valid():
                 pre_word_serializer.save()
                 instance.words.add(pre_word_serializer.instance)
+
+    def update(self, instance, validated_data):
+        part_of_speech_title = validated_data.pop("partOfSpeech")
+        part_of_speech = PartOfSpeech.objects.filter(title__iexact=part_of_speech_title).first()
+        words_data = validated_data.pop("words")
+
+        self._save_words(instance, words_data)
 
         instance.part_of_speech = part_of_speech
         instance.in_review = True
