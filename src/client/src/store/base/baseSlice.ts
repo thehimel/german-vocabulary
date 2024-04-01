@@ -20,16 +20,19 @@ export const levelChoices: SelectorChoice[] = [
 ]
 
 interface Article {
+  id: number;
   title: string;
 }
 
 export interface Language {
+  id: number;
   code: string;
   title: string;
   articles: Article[];
 }
 
 interface PartsOfSpeech {
+  id: number;
   title: string;
 }
 
