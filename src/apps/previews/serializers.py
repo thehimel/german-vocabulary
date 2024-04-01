@@ -57,33 +57,31 @@ class PreWordSerializer(serializers.ModelSerializer):
             language_code = validated_data.pop("languageCode")
 
             language = Language.objects.get(code=language_code)
-            article = Article.objects.filter(language=language, title=article_title).first()
-            part_of_speech = PartOfSpeech.objects.filter(title__iexact=part_of_speech_title).first()
+            part_of_speech = PartOfSpeech.objects.get(title__iexact=part_of_speech_title)
 
             if part_of_speech_title.lower() != "noun":
                 validated_data.pop("article", None)
                 validated_data.pop("plural", None)
 
             pre_word = PreWord.objects.create(language=language, part_of_speech=part_of_speech, **validated_data)
-            if part_of_speech_title.lower() == "noun" and article:
+            if part_of_speech_title.lower() == "noun" and article_title:
+                article = Article.objects.get(language=language, title=article_title)
                 pre_word.articles.add(article)
 
             pre_word.save()
             return pre_word
         except IntegrityError as e:
-            print(e)
             raise ValidationError(
                 {"message": [f"Encountered integrity error during the creation of the word: {title}"]}
             )
         except Exception as e:
-            print(e)
             raise ValidationError({"message": [f"Encountered error during the creation of the word: {title}"]})
 
 
 class PreviewUpdateSerializer(serializers.ModelSerializer):
     languageCode = serializers.CharField(write_only=True, min_length=2)
     partOfSpeech = serializers.CharField(write_only=True)
-    article = serializers.CharField(write_only=True)
+    article = serializers.CharField(write_only=True, required=False, allow_blank=True)
     words = PreWordSerializer(many=True)
 
     class Meta:
