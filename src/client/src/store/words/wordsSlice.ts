@@ -31,6 +31,7 @@ const wordsSlice = createSlice({
     setWords(state, action): void {
       state.words = action.payload;
       state.loading = false;
+      state.currentIndex = 0;
     },
     setError(state, action: {payload: ErrorInterface | null}): void {
       state.error = action.payload;
