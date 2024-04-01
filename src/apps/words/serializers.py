@@ -12,7 +12,7 @@ class WordListQueryParamsSerializer(serializers.Serializer):
 class ArticleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Article
-        fields = ["title"]
+        fields = ["id", "title"]
 
 
 class LanguageSerializer(serializers.ModelSerializer):
@@ -20,25 +20,25 @@ class LanguageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Language
-        fields = ["code", "title", "articles"]
+        fields = ["id", "code", "title", "articles"]
 
 
 class SimpleLanguageSerializer(LanguageSerializer):
     class Meta:
         model = Language
-        fields = ["code"]
+        fields = ["id", "code"]
 
 
 class PartOfSpeechSerializer(serializers.ModelSerializer):
     class Meta:
         model = PartOfSpeech
-        fields = ["title"]
+        fields = ["id", "title"]
 
 
 class NoteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Note
-        fields = ["title"]  # Add other fields as needed
+        fields = ["id", "title"]  # Add other fields as needed
 
 
 class LinkedWordSerializer(serializers.ModelSerializer):
@@ -46,7 +46,7 @@ class LinkedWordSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Word
-        fields = ["title", "language"]
+        fields = ["id", "title", "language"]
 
 
 class TranslationSerializer(serializers.ModelSerializer):
