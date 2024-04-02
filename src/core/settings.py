@@ -1,5 +1,6 @@
 from pathlib import Path
 from datetime import timedelta
+from django.core.management.utils import get_random_secret_key
 
 import dj_database_url
 from decouple import config
@@ -17,7 +18,7 @@ ENVIRONMENT = config("ENVIRONMENT", default=DEVELOPMENT)
 SECURE_SSL_REDIRECT = False if ENVIRONMENT == DEVELOPMENT else config("SECURE_SSL_REDIRECT", cast=bool, default=True)
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config("SECRET_KEY")
+SECRET_KEY = config("SECRET_KEY", default=get_random_secret_key())
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True if ENVIRONMENT == DEVELOPMENT else config("DEBUG", cast=bool, default=False)
@@ -221,6 +222,7 @@ REST_AUTH = {
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(days=30),
+    "SIGNING_KEY": SECRET_KEY,
 }
 
 SITE_ID = 1
