@@ -1,10 +1,12 @@
 import {Card, CardBody} from "@nextui-org/react";
 import {Cross2Icon} from "@radix-ui/react-icons";
 import {FC, useState} from "react";
+import {Message} from "../../store/base/baseSlice.ts";
 
 interface AlertProps {
-  message: string;
+  message: Message;
 }
+
 const Alert: FC<AlertProps> = ({ message  }) => {
   const [isOpen, setIsOpen] = useState(true);
 
@@ -19,8 +21,8 @@ const Alert: FC<AlertProps> = ({ message  }) => {
             >
               <Cross2Icon />
             </button>
-            <CardBody className="items-center text-justify px-10 py-6">
-              {message}
+            <CardBody className={`items-center text-justify px-10 py-6 text-${message.type}`}>
+              {message.content}
             </CardBody>
           </Card>
         </div>

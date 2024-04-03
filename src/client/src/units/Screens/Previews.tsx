@@ -2,7 +2,6 @@ import {useEffect} from "react";
 import {fetchPreviews, setPreviewsMessage} from "../../store/previews/previewsActions.ts";
 import {AppDispatch} from "../../store/store.ts";
 import {useAppDispatch, useAppSelector} from "../../store/hooks.ts";
-import Alert from "../Alert/Alert.tsx";
 import WordsSkeleton from "../Words/Skeletons/WordsSkeleton.tsx";
 import Words from "../Words/Words.tsx";
 
@@ -37,7 +36,6 @@ const Home = () => {
 
   return (
     <>
-      {message && <Alert message={message}/>}
       {loading && <WordsSkeleton/>}
       {previews && <Words words={previews}/>}
     </>

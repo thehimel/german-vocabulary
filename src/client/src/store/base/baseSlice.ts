@@ -1,7 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {slices} from "../constants.ts";
+import {ErrorInterface} from "../previews/previewsSlice.ts";
 import {fetchWords} from "../words/wordsActions.ts";
-import {ErrorType} from "../words/wordsSlice.ts";
 
 export interface SelectorChoice {
   key: string;
@@ -42,6 +42,12 @@ interface Properties {
   levels: string[];
 }
 
+export interface Message {
+ content: string;
+ type: 'success' | 'info' | 'warning'| 'danger';
+ isShown?: boolean;
+}
+
 interface BaseState {
   darkMode: boolean;
   primaryLanguage: string;
@@ -49,7 +55,8 @@ interface BaseState {
   level: string;
   isPlaying: boolean;
   properties: Properties;
-  error: ErrorType;
+  error: ErrorInterface | null;
+  messages: Message[];
 }
 
 const initialProperties: Properties = {
@@ -67,6 +74,7 @@ const initialState: BaseState = {
   isPlaying: false,
   properties: initialProperties,
   error: null,
+  messages: [],
 }
 
 const baseSlice = createSlice({
@@ -91,12 +99,24 @@ const baseSlice = createSlice({
       const value = action.payload;
       if (value) {state.level = value; fetchWords(state);}
     },
-    setError(state, action: {payload: ErrorType}): void {
+    setError(state, action: {payload: ErrorInterface | null}): void {
       state.error = action.payload;
     },
     setProperties(state, action: {payload: Properties}): void {
       state.properties = action.payload;
     },
+    setMessage(state, action: {payload: Message}): void {
+      state.messages = state.messages ? [...state.messages, action.payload] : [action.payload];
+    },
+    removeMessage(state, action: {payload: number}): void {
+      const index = action.payload;
+      if (index >= 0 && index < state.messages.length) {
+        state.messages.splice(index, 1);
+      }
+    },
+    clearMessages(state): void {
+      state.messages = [];
+    }
   }
 });
 

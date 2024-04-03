@@ -2,7 +2,7 @@ import axios, {AxiosError} from "axios";
 import {PROPERTIES_API_URL} from "../constants.ts";
 import {getErrorMessage} from "../handleError.ts";
 import {AppDispatch} from "../store.ts";
-import {baseActions} from "./baseSlice.ts";
+import {baseActions, Message} from "./baseSlice.ts";
 
 export const toggleDarkMode = () => {
   return (dispatch: AppDispatch) => {
@@ -46,3 +46,15 @@ export const fetchProperties = () => {
     }
   };
 };
+
+export const setMessage = ({content, type} : Message) => {
+  return (dispatch: AppDispatch) => {
+    dispatch(baseActions.setMessage({content, type}));
+  };
+}
+
+export const clearMessages = () => {
+  return (dispatch: AppDispatch) => {
+    dispatch(baseActions.clearMessages());
+  };
+}

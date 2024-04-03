@@ -1,6 +1,7 @@
 import {useEffect} from "react";
 import {fetchProperties} from "./store/base/baseActions.ts";
 import {AppDispatch} from "./store/store.ts";
+import Messages from "./units/Messages/Messages.tsx";
 import Metadata from "./units/Metadata/Metadata.tsx";
 import {useAppDispatch, useAppSelector} from "./store/hooks.ts";
 import AddPreview from "./units/Screens/AddPreview.tsx";
@@ -27,6 +28,7 @@ function App() {
           <Background/>
           <div className="h-screen">
             <NavigationBar/>
+            <Messages/>
             <div className="bg-background pb-2">
               <Routes>
                 <Route path="/" element={<Home/>}/>

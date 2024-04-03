@@ -22,7 +22,6 @@ export interface Preview {
 const AddPreview = () => {
   const navigate = useNavigate();
   const { index } = useParams();
-
   const dispatch: AppDispatch = useAppDispatch();
   const primaryLanguage = useAppSelector((state) => state.base.primaryLanguage);
   const globalLevel = useAppSelector((state) => state.base.level);
@@ -88,7 +87,7 @@ const AddPreview = () => {
     setFormData(updatedForms);
   };
 
-  const handleSubmit = (event: FormEvent) => {
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
 
     const words = formData.map(form => ({
@@ -111,8 +110,10 @@ const AddPreview = () => {
         level: globalLevel,
       }
     };
-    dispatch(createPreview(data));
-    navigate('/add/');
+    const success = await dispatch(createPreview(data));
+    if (success) {
+      navigate('/add/');
+    }
   }
 
   return (

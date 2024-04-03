@@ -17,10 +17,7 @@ const initialState: PreviewsStateProps = {
   previews: [],
   message: '',
   loading: false,
-  error: {
-    apiUrl: '',
-    errors: [],
-  },
+  error: null,
 };
 
 const previewsSlice = createSlice({
