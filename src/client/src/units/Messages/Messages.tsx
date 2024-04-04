@@ -16,7 +16,7 @@ const Messages = () => {
     if (messages && messages.length > 0) {
       clearMessageTimeout = setTimeout(() => {
         dispatch(clearMessages());
-      }, 2000);
+      }, 4000);
     }
 
     return () => {
