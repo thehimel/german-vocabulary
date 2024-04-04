@@ -49,12 +49,6 @@ export const fetchPreviews = ({language, level, loader, searchQuery}: FetchPrevi
   };
 };
 
-export const setPreviewsMessage = ({message}: {message: string}) => {
-  return async (dispatch: AppDispatch) => {
-    dispatch(previewsActions.setPreviewsMessage(message));
-  };
-};
-
 export const createPreview = (data: CreatePreview) => {
   return async (dispatch: AppDispatch) => {
     let api_url = ''

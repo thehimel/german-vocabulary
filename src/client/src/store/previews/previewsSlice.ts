@@ -8,14 +8,12 @@ export interface ErrorInterface {
 
 export interface PreviewsStateProps {
   previews: [];
-  message: string | null;
   loading: boolean;
   error: ErrorInterface | null;
 }
 
 const initialState: PreviewsStateProps = {
   previews: [],
-  message: '',
   loading: false,
   error: null,
 };
@@ -30,9 +28,6 @@ const previewsSlice = createSlice({
     setPreviews(state, action): void {
       state.previews = action.payload;
       state.loading = false;
-    },
-    setPreviewsMessage(state, action: {payload: string | null}): void {
-      state.message = action.payload;
     },
     setPreviewsError(state, action: {payload: ErrorInterface | null}): void {
       state.error = action.payload;
