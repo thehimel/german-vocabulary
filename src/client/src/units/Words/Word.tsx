@@ -47,7 +47,7 @@ const Word: FC<WordWithIndexProps> = ({ index, word, addCard, onPress }) => {
 
   return (
     <>
-      <Card className="max-w-[400px] shadow-sm shadow-purple-500 dark:bg-zinc-800" isPressable onPress={handlePress}>
+      <Card className="max-w-[400px] shadow-sm shadow-purple-500 dark:bg-zinc-800" isPressable={!!onPress} onPress={handlePress}>
         <CardHeader className="flex justify-center my-auto">
           <div className="flex flex-col gap-3">
             <div className="flex flex-row justify-center">
