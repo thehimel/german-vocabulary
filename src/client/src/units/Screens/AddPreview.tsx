@@ -53,7 +53,7 @@ const AddPreview = () => {
   const preview_article = preview.article ? preview.article.title : '';
   const preview_plural = preview.plural ? preview.plural : '';
 
-  const WordsForm = () => {
+  const wordsForm = () => {
     const initialFormData: Record<string, string>[] = []
     languages.map(language => {
       let title = ''
@@ -76,7 +76,7 @@ const AddPreview = () => {
     });
     return initialFormData;
   }
-  const [formData, setFormData] = useState(WordsForm())
+  const [formData, setFormData] = useState(wordsForm())
 
   const handleInputChange = (index: number, event: ChangeEvent<HTMLSelectElement | HTMLInputElement>) => {
     const {name, value} = event.target;
@@ -111,9 +111,7 @@ const AddPreview = () => {
       }
     };
     const success = await dispatch(createPreview(data));
-    if (success) {
-      navigate('/add/');
-    }
+    if (success) index ? navigate('/add/') : setFormData(wordsForm());
   }
 
   return (
