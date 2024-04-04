@@ -50,7 +50,7 @@ const WordCard: FC<CardProps> = ({isOpen, onOpenChange}) => {
               <WordCardItem word={word.translations?.[0]}/>
             </>
           )}
-          <PaginationBar initialPage={1} total={words.length} onChange={handlePageChange}/>
+          <PaginationBar initialPage={currentIndex+1} total={words.length} onChange={handlePageChange}/>
         </ModalContent>
       </Modal>
     </>
