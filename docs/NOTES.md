@@ -68,7 +68,7 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 * Login and upload the profile picture. You need to create the parent directory "media".
 * The file will automatically get renamed. But you just need to change back the file name i.e. "profile-picture".
-* The file extension is not visible but it is same as the uploaded one. So, you do not need to add an extension.
+* The file extension is not visible, but it is same as the uploaded one. So, you do not need to add an extension.
 
 ## Generate ER Diagram
 
