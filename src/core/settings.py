@@ -80,7 +80,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    # The allauth account middleware.
+    # The allauth account middleware. Not required for authentication using REST APIs.
     "allauth.account.middleware.AccountMiddleware",
 ]
 
