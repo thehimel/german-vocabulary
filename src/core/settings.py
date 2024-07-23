@@ -72,16 +72,14 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "corsheaders.middleware.CorsMiddleware",  # Must be at the top.
     "django.middleware.security.SecurityMiddleware",
-    # To serve static files in PaaS. To be removed if S3 is being used.
-    "whitenoise.middleware.WhiteNoiseMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",  # To serve static files in PaaS. To be removed if S3 is being used.
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    # The allauth account middleware. Not required for authentication using REST APIs.
-    "allauth.account.middleware.AccountMiddleware",
+    "allauth.account.middleware.AccountMiddleware",  # The allauth account middleware.
 ]
 
 ROOT_URLCONF = "core.urls"
