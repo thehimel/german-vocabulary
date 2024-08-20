@@ -8,7 +8,7 @@ from apps.trans.serializers import TranslateWordRequestSerializer, TranslateWord
 from drf_yasg import openapi
 import json
 
-from apps.trans.gen_ai.fetch_openai import fetch_openai
+from apps.trans.gen_ai.fetch_openai import fetch_openai_basic
 from apps.trans.gen_ai.prompts import translation_prompt
 
 
@@ -29,19 +29,26 @@ class TranslateWordView(APIView):
         word = serializer.validated_data.get('word')
         language = serializer.validated_data.get('language', None)
         prompt = translation_prompt(word=word, language=language)
-        response = fetch_openai(prompt=prompt)
+        response = fetch_openai_basic(prompt=prompt)
 
         if response.status_code == 200:
-            result = response.json()
-            output = result['choices'][0]['text'].strip()
-            response_data = json.loads(output)
+            try:
+                raw_output = response.text
+                result = json.loads(raw_output)
+                output = result['choices'][0]['message']['content'].strip()
+                response_data = json.loads(output)
 
-            response_serializer = TranslateWordResponseSerializer(data=response_data)
-            if response_serializer.is_valid():
-                return Response(response_serializer.validated_data, status=status.HTTP_200_OK)
-            else:
+                response_serializer = TranslateWordResponseSerializer(data=response_data)
+                if response_serializer.is_valid():
+                    return Response(response_serializer.validated_data, status=status.HTTP_200_OK)
+                else:
+                    return Response(
+                        {"error": "Invalid response format from OpenAI."},
+                        status=status.HTTP_500_INTERNAL_SERVER_ERROR
+                    )
+            except json.JSONDecodeError as e:
                 return Response(
-                    {"error": "Invalid response format from OpenAI."},
+                    {"error": "Error decoding JSON from OpenAI response."},
                     status=status.HTTP_500_INTERNAL_SERVER_ERROR
                 )
         else:
