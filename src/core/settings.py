@@ -224,3 +224,5 @@ SIMPLE_JWT = {
 }
 
 SITE_ID = 1
+
+OPENAI_API_KEY = config("OPENAI_API_KEY", default="")
