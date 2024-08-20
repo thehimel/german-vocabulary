@@ -10,7 +10,7 @@ class TranslateWordRequestSerializer(serializers.Serializer):
     word = serializers.CharField(required=True)
     language_code = serializers.CharField(required=False, allow_blank=True)
 
-class TranslationSerializer(serializers.Serializer):
+class TranslateWordSerializer(serializers.Serializer):
     language_code = serializers.CharField()
     word = serializers.CharField()
     parts_of_speech = serializers.CharField()
@@ -21,4 +21,4 @@ class TranslationSerializer(serializers.Serializer):
     level = serializers.CharField()
 
 class TranslateWordResponseSerializer(serializers.Serializer):
-    translations = TranslationSerializer(many=True)
+    translations = TranslateWordSerializer(many=True)

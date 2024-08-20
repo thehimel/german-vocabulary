@@ -1,13 +1,13 @@
 def translation_prompt(word, language = None):
     prompt = f"""
-        Translate the{ ' '+language if language else ' '}word "{word}" into German and English.
+        Translate the{ ' '+language if language else ' '}word "{word}" into German, English, and Bengali.
 
         Output Format:
-        Provide the translation in JSON format.
-        The JSON object should have a key translations which maps to a list of objects.
+        Please provide the translation in JSON format without any additional formatting.
+        The JSON object should contain a key `translations` that maps to a list of objects.
         Each object in the list should include the following fields:
         
-        language_code: The language code for the translation. Use: de for German, en for English.
+        language_code: The language code for the translation. Use: de for German, en for English, and bn for Bengali.
         
         word: The translated word in the target language.
         

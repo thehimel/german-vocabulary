@@ -8,7 +8,7 @@ from apps.trans.serializers import TranslateWordRequestSerializer, TranslateWord
 from drf_yasg import openapi
 import json
 
-from apps.trans.gen_ai.fetch_openai import fetch_openai_basic
+from apps.trans.gen_ai.fetch_openai import fetch_openai
 from apps.trans.gen_ai.prompts import translation_prompt
 
 
@@ -29,30 +29,23 @@ class TranslateWordView(APIView):
         word = serializer.validated_data.get('word')
         language = serializer.validated_data.get('language', None)
         prompt = translation_prompt(word=word, language=language)
-        response = fetch_openai_basic(prompt=prompt)
 
-        if response.status_code == 200:
-            try:
-                raw_output = response.text
-                result = json.loads(raw_output)
-                output = result['choices'][0]['message']['content'].strip()
-                response_data = json.loads(output)
+        try:
+            completion = fetch_openai(prompt=prompt)
+            content = completion.choices[0].message.content
+            data = json.loads(content)
 
-                response_serializer = TranslateWordResponseSerializer(data=response_data)
-                if response_serializer.is_valid():
-                    return Response(response_serializer.validated_data, status=status.HTTP_200_OK)
-                else:
-                    return Response(
-                        {"error": "Invalid response format from OpenAI."},
-                        status=status.HTTP_500_INTERNAL_SERVER_ERROR
-                    )
-            except json.JSONDecodeError as e:
+            response_serializer = TranslateWordResponseSerializer(data=data)
+            if response_serializer.is_valid():
+                return Response(response_serializer.validated_data, status=status.HTTP_200_OK)
+            else:
                 return Response(
-                    {"error": "Error decoding JSON from OpenAI response."},
+                    {"error": "Invalid response format from OpenAI."},
                     status=status.HTTP_500_INTERNAL_SERVER_ERROR
                 )
-        else:
+
+        except json.JSONDecodeError as e:
             return Response(
-                {"error": f"OpenAI API error: {response.status_code}"},
+                {"error": "Error decoding JSON from OpenAI response."},
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
