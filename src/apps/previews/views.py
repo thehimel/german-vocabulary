@@ -5,15 +5,15 @@ from rest_framework.views import APIView
 
 from apps.api.utils import serializer_to_manual_parameters
 from apps.previews.models import Preview
-from apps.previews.serializers import PreviewListSerializer, PreviewUpdateSerializer, PreWordSerializer
-from apps.words.serializers import WordListQueryParamsSerializer
+from apps.previews.serializers import PreviewListSerializer, PreviewUpdateSerializer, PreWordSerializer, \
+    PreviewListQueryParamsSerializer
 from apps.words.views import BaseWordListAPIView
 
 
 class PreviewListAPIView(BaseWordListAPIView):
     model = Preview
     serializer_class = PreviewListSerializer
-    query_params_serializer_class = WordListQueryParamsSerializer
+    query_params_serializer_class = PreviewListQueryParamsSerializer
 
     @swagger_auto_schema(manual_parameters=serializer_to_manual_parameters(query_params_serializer_class))
     def get(self, request, *args, **kwargs):

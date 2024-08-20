@@ -6,6 +6,10 @@ from apps.previews.models import Preview, PreWord
 from apps.words.models import Article, Language, PartOfSpeech
 from apps.words.serializers import ArticleSerializer, PartOfSpeechSerializer, SimpleLanguageSerializer
 
+class PreviewListQueryParamsSerializer(serializers.Serializer):
+    primary_language = serializers.CharField(required=False, default="de")
+    level = serializers.CharField(required=False)
+    q = serializers.CharField(required=False)
 
 class PreviewListSerializer(serializers.ModelSerializer):
     language = SimpleLanguageSerializer(read_only=True)

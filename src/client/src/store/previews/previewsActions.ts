@@ -9,7 +9,7 @@ import {ErrorInterface, previewsActions} from "./previewsSlice.ts";
 
 interface FetchPreviews {
   language: string,
-  level: string,
+  level?: string,
   loader?: boolean,
   searchQuery?: string;
 }
@@ -36,7 +36,7 @@ export const fetchPreviews = ({language, level, loader, searchQuery}: FetchPrevi
       }
       const params: Record<string, string> = {
         primary_language: language,
-        level: level,
+        ...(level ? { level: level } : {}),
         ...(searchQuery ? { q: searchQuery } : {})
       };
       const response = await axios.get(api_url, {params: params});

@@ -10,16 +10,14 @@ const Home = () => {
   const dispatch: AppDispatch = useAppDispatch();
   const previews = useAppSelector((state) => state.previews.previews);
   const primaryLanguage = useAppSelector((state) => state.base.primaryLanguage);
-  const level = useAppSelector((state) => state.base.level);
   const loading = useAppSelector((state) => state.previews.loading);
 
   useEffect(() => {
     dispatch(fetchPreviews({
       language: primaryLanguage,
-      level: level,
       loader: true
     }))
-  }, [dispatch, level, primaryLanguage]);
+  }, [dispatch, primaryLanguage]);
 
   return (
     <>

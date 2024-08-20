@@ -24,10 +24,13 @@ class BaseWordListAPIView(ListAPIView):
         params_serializer.is_valid(raise_exception=True)
 
         primary_language = params_serializer.validated_data.get("primary_language", "de")
-        level = params_serializer.validated_data.get("level", "a1")
+        level = params_serializer.validated_data.get("level", None)
         search_query = params_serializer.validated_data.get("q", "")
 
-        queryset = self.model.objects.filter(language__code=primary_language, level=level).order_by("created")
+        queryset = self.model.objects.filter(language__code=primary_language)
+
+        if level is not None:
+            queryset = queryset.filter(level=level)
 
         if hasattr(self.model, "hidden"):
             queryset = queryset.filter(hidden=False)
