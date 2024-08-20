@@ -80,7 +80,7 @@ class PreWordSerializer(serializers.ModelSerializer):
 
 class PreviewUpdateSerializer(serializers.ModelSerializer):
     languageCode = serializers.CharField(write_only=True, min_length=2)
-    partOfSpeech = serializers.CharField(write_only=True)
+    partOfSpeech = serializers.CharField(write_only=True, required=False, allow_blank=True)
     article = serializers.CharField(write_only=True, required=False, allow_blank=True)
     words = PreWordSerializer(many=True)
 

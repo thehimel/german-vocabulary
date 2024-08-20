@@ -28,8 +28,8 @@ class PreWord(models.Model):
 
 class Preview(models.Model):
     title = models.CharField(max_length=100)
-    level = models.CharField(max_length=2, choices=getLevelChoices())
     language = models.ForeignKey(Language, on_delete=models.SET_NULL, null=True)
+    level = models.CharField(max_length=2, choices=getLevelChoices(), blank=True, null=True)
     part_of_speech = models.ForeignKey(
         PartOfSpeech, verbose_name="Part of Speech", on_delete=models.SET_NULL, null=True, blank=True
     )
