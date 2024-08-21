@@ -32,6 +32,7 @@ const CustomSelect: React.FC<CustomInputProps> = ({
       errorMessage={errorMessage}
       isDisabled={isSubmitting}
       defaultSelectedKeys={defaultKey? [defaultKey] : []}
+      hidden={false}
     >
       {(item) => (
         <SelectItem

@@ -36,6 +36,7 @@ const Selector: FC<SelectorProps> = ({ name, label, placeholder, defaultKey, cho
       isRequired={isRequired ? isRequired : false}
       className={className ? className : ''}
       value={value}
+      hidden={false}
     >
       {(choice) => (
         <SelectItem key={choice.key} startContent={showAvatar && <TextAvatar text={choice.key} animate={true}/>}>
