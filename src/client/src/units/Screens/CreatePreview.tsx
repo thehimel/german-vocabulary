@@ -31,11 +31,6 @@ const CreatePreview = () => {
   const [wordValues, setWordValues] = useState<TPreviewSchema["words"]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
-  const onSubmit = async (data: TPreviewSchema) => {
-    console.log("Form data:", data);
-    handleWordAndLanguageChange();
-  };
-
   const fetchTranslations = async (word: string, languageCode: string) => {
     try {
       setIsLoading(true);
@@ -54,6 +49,13 @@ const CreatePreview = () => {
     const languageCode = watch("languageCode");
     if (word && languageCode) {
       fetchTranslations(word, languageCode).then(() => null);
+    }
+  };
+
+  const onSubmit = async (data: TPreviewSchema) => {
+    console.log("Form data:", data);
+    if (!wordValues?.length) {
+      handleWordAndLanguageChange();
     }
   };
 
