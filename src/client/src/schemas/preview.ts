@@ -33,7 +33,23 @@ export const previewSchema = z
   .object({
     languageCode: languageCodeSchema,
     title: titleSchema,
-    words: z.array(wordSchema),
+    words: z.array(wordSchema).optional(),
   });
 
 export type TPreviewSchema = z.infer<typeof previewSchema>;
+
+export const getInitialWordValues = (languageCode: string) => ({
+  languageCode,
+  title: "",
+  level: "",
+  partOfSpeech: "",
+  article: "",
+  plural: "",
+  sentence: "",
+});
+
+export const initialPreviewValues: TPreviewSchema = {
+  languageCode: "",
+  title: "",
+  // words: ["de", "en", "bn"].map(getInitialWordValues),
+};
