@@ -38,7 +38,6 @@ const CreatePreview = () => {
       const translations: TWordSchema[] = mapTranslationsToTWordSchema(response.data.translations);
       setIsLoading(false);
       setWordValues(translations);
-      console.log(translations);
     } catch (error) {
       console.error("Error fetching translations:", error);
     }
