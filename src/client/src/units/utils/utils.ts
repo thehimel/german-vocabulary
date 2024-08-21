@@ -1,3 +1,4 @@
+import {TWordSchema} from "../../schemas/preview.ts";
 import {SelectorChoice} from "../../store/base/baseSlice.ts";
 
 export const filterLanguageChoices = (choices: SelectorChoice[], exclude_language: string): SelectorChoice[] => {
@@ -30,3 +31,25 @@ export const getCookie = (name: string) => {
   const cookieValue = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
   return cookieValue ? cookieValue.pop() : '';
 }
+
+export interface Translation {
+  language_code: string;
+  word: string;
+  level: string;
+  parts_of_speech: string;
+  article_singular: string;
+  plural: string;
+  sentence: string;
+}
+
+export const mapTranslationsToTWordSchema = (translations: Translation[]): TWordSchema[] => {
+  return translations.map((translation) => ({
+    languageCode: translation.language_code,
+    title: translation.word,
+    level: translation.level,
+    partOfSpeech: translation.parts_of_speech,
+    article: translation.article_singular || "",
+    plural: translation.plural || "",
+    sentence: translation.sentence || "",
+  }));
+};
