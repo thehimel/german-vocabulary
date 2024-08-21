@@ -13,7 +13,7 @@ const articleSchema = z.string().optional();
 const pluralSchema = z.string().optional();
 const sentenceSchema = z.string().optional();
 
-const languageKeys = languageChoices.map(choice => choice.key);
+export const languageKeys = languageChoices.map(choice => choice.key);
 type LanguageCode = typeof languageKeys[number];
 
 const languageCodeSchema = z.enum(languageKeys as [LanguageCode, ...LanguageCode[]]);

@@ -1,10 +1,17 @@
 import {zodResolver} from "@hookform/resolvers/zod";
 import {useForm} from "react-hook-form";
-import {initialPreviewValues, previewSchema, TPreviewSchema} from "../../schemas/preview.ts";
+import {initialPreviewValues, languageKeys, previewSchema, TPreviewSchema} from "../../schemas/preview.ts";
+import {languageChoices} from "../../store/base/baseSlice.ts";
+import {useAppSelector} from "../../store/hooks.ts";
 import CustomInput from "../Fields/CustomInput.tsx";
+import CustomSelect from "../Fields/CustomSelect.tsx";
 import SubmitButton from "../Fields/SubmitButton.tsx";
+import {toggleDarkModeStyleSheet} from "../Selectors/utils.ts";
 
 const CreatePreview = () => {
+  const darkMode = useAppSelector((state) => state.base.darkMode);
+  toggleDarkModeStyleSheet(darkMode);
+
   const {
     register,
     handleSubmit,
@@ -30,12 +37,15 @@ const CreatePreview = () => {
         errorMessage={errors.title?.message}
         isSubmitting={isSubmitting}
       />
-      <CustomInput
+      <CustomSelect
         fields={register("languageCode")}
+        items={languageChoices}
         value={watch("languageCode")}
-        label="Language Code"
+        label="Language"
+        placeholder={"Select Language"}
         errorMessage={errors.languageCode?.message}
         isSubmitting={isSubmitting}
+        defaultKey={languageKeys[0]}
       />
       <SubmitButton isDisabled={isSubmitting} isLoading={isSubmitting} title={"Submit"} color={"default"} />
     </form>
