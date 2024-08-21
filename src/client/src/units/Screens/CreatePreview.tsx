@@ -55,6 +55,17 @@ const CreatePreview = () => {
     console.log("Form data:", data);
     if (!wordValues?.length) {
       handleWordAndLanguageChange();
+    } else {
+      const params = {
+        title: data.title,
+        languageCode: data.languageCode,
+        words: wordValues,
+      }
+      const response = await axios.post(
+        "/api/previews/create/",
+        {...params},
+      );
+      console.log(response);
     }
   };
 

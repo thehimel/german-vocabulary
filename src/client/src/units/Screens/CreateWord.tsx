@@ -88,15 +88,13 @@ const CreateWord: React.FC<CreateWordProps> = ({language, initialValues}) => {
               isSubmitting={isSubmitting}
             />
           )}
-          {initialValues.plural && (
-            <CustomInput
-              fields={register("plural")}
-              value={watch("plural")}
-              label="Plural"
-              errorMessage={errors.plural?.message}
-              isSubmitting={isSubmitting}
-            />
-          )}
+          <CustomInput
+            fields={register("plural")}
+            value={watch("plural")}
+            label="Plural"
+            errorMessage={errors.plural?.message}
+            isSubmitting={isSubmitting}
+          />
           <CustomInput
             fields={register("sentence")}
             value={watch("sentence")}
