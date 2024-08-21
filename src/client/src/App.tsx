@@ -17,8 +17,6 @@ function App() {
   const darkMode = useAppSelector((state) => state.base.darkMode);
   const dispatch: AppDispatch = useAppDispatch();
 
-  const languages = useAppSelector((state) => state.base.properties.languages);
-  console.log(languages);
   useEffect(() => {
     dispatch(fetchProperties())
   }, [dispatch]);
