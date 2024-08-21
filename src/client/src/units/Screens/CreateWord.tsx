@@ -2,11 +2,7 @@ import {zodResolver} from "@hookform/resolvers/zod";
 import {Card, CardBody, CardHeader} from "@nextui-org/react";
 import React from "react";
 import {useForm} from "react-hook-form";
-import {
-  getInitialWordValues,
-  TWordSchema,
-  wordSchema,
-} from "../../schemas/preview.ts";
+import {TWordSchema, wordSchema} from "../../schemas/preview.ts";
 import {Language, levelChoices} from "../../store/base/baseSlice.ts";
 import {useAppSelector} from "../../store/hooks.ts";
 import CustomInput from "../Fields/CustomInput.tsx";
@@ -17,9 +13,10 @@ import Content from "../WordCard/Content.tsx";
 
 interface CreateWordProps {
   language: Language;
+  initialValues: TWordSchema;
 }
 
-const CreateWord: React.FC<CreateWordProps> = ({language}) => {
+const CreateWord: React.FC<CreateWordProps> = ({language, initialValues}) => {
   const darkMode = useAppSelector((state) => state.base.darkMode);
   toggleDarkModeStyleSheet(darkMode);
 
@@ -36,7 +33,7 @@ const CreateWord: React.FC<CreateWordProps> = ({language}) => {
     watch,
   } = useForm<TWordSchema>({
     resolver: zodResolver(wordSchema),
-    defaultValues: getInitialWordValues(language.code),
+    defaultValues: initialValues,
   });
 
   console.log(errors);
