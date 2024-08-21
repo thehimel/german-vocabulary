@@ -13,10 +13,11 @@ interface CustomInputProps {
   errorMessage?: string;
   isSubmitting: boolean;
   defaultKey?: string;
+  showAvatar?: boolean;
 }
 
 const CustomSelect: React.FC<CustomInputProps> = ({
-  fields, value, label, placeholder, items, errorMessage, isSubmitting, defaultKey, ...props
+  fields, value, label, placeholder, items, errorMessage, isSubmitting, defaultKey, showAvatar=false, ...props
 }) => {
   return (
     <Select
@@ -37,7 +38,7 @@ const CustomSelect: React.FC<CustomInputProps> = ({
       {(item) => (
         <SelectItem
           key={item.key}
-          startContent={<TextAvatar text={item.key} animate={true}/>}
+          startContent={showAvatar && <TextAvatar text={item.key} animate={true}/>}
         >
           {item.label}
         </SelectItem>

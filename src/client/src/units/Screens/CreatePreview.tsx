@@ -47,6 +47,7 @@ const CreatePreview = () => {
             placeholder={"Select Language"}
             errorMessage={errors.languageCode?.message}
             isSubmitting={isSubmitting}
+            showAvatar
           />
           <SubmitButton isDisabled={isSubmitting} isLoading={isSubmitting} title={"Submit"} color={"default"}/>
         </form>
