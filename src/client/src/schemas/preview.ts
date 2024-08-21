@@ -1,11 +1,7 @@
 import {z} from "zod";
-import {languageChoices} from "../store/base/baseSlice.ts";
+import {languageChoices, levelChoices} from "../store/base/baseSlice.ts";
 
 const titleSchema = z.string().min(1, "This field is required.");
-
-const levelSchema = z.string()
-  .min(1, "This field is required.")
-  .min(2, "This field must be at least 2 characters long.");
 
 const partOfSpeechSchema = z.string().min(1, "This field is required.");
 
@@ -15,8 +11,11 @@ const sentenceSchema = z.string().optional();
 
 export const languageKeys = languageChoices.map(choice => choice.key);
 type LanguageCode = typeof languageKeys[number];
-
 const languageCodeSchema = z.enum(languageKeys as [LanguageCode, ...LanguageCode[]]);
+
+export const levelKeys = levelChoices.map(choice => choice.key);
+type level = typeof levelKeys[number];
+const levelSchema = z.enum(languageKeys as [level, ...level[]]);
 
 export const wordSchema = z
   .object({

@@ -6,6 +6,7 @@ import Metadata from "./units/Metadata/Metadata.tsx";
 import {useAppDispatch, useAppSelector} from "./store/hooks.ts";
 import AddPreview from "./units/Screens/AddPreview.tsx";
 import CreatePreview from "./units/Screens/CreatePreview.tsx";
+import CreateWord from "./units/Screens/CreateWord.tsx";
 import Previews from "./units/Screens/Previews.tsx";
 import Background from "./units/Theme/Background.tsx";
 import NavigationBar from "./units/NavigationBar/NavigationBar.tsx";
@@ -16,6 +17,8 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 function App() {
   const darkMode = useAppSelector((state) => state.base.darkMode);
   const dispatch: AppDispatch = useAppDispatch();
+
+  const languages = useAppSelector((state) => state.base.properties.languages);
 
   useEffect(() => {
     dispatch(fetchProperties())
@@ -36,7 +39,8 @@ function App() {
                 <Route path="/add" element={<Previews/>}/>
                 <Route path="/add/:index" element={<AddPreview/>}/>
                 <Route path="/add/new" element={<AddPreview/>}/>
-                <Route path="/preview/add" element={<CreatePreview/>}/>
+                <Route path="/previews/add" element={<CreatePreview/>}/>
+                <Route path="/words/add" element={<CreateWord language={languages[0]}/>}/>
               </Routes>
             </div>
             {/* <PaginationBar/> */}
