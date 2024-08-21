@@ -103,19 +103,21 @@ class PreviewUpdateSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         title = validated_data.pop("title")
-        level = validated_data.pop("level")
         language_code = validated_data.pop("languageCode")
         language = Language.objects.get(code=language_code)
-
-        part_of_speech_title = validated_data.pop("partOfSpeech")
-        part_of_speech = PartOfSpeech.objects.filter(title__iexact=part_of_speech_title).first()
         words_data = validated_data.pop("words")
+        instance = Preview.objects.create(title=title, language=language)
 
-        instance = Preview.objects.create(title=title, language=language, level=level)
+        level = validated_data.pop("level", None)
+        if level:
+            instance.level = level
+
+        part_of_speech_title = validated_data.pop("partOfSpeech", None)
+        if part_of_speech_title:
+            instance.part_of_speech = PartOfSpeech.objects.filter(title__iexact=part_of_speech_title).first()
 
         self._save_words(instance, words_data)
 
-        instance.part_of_speech = part_of_speech
         instance.in_review = True
         instance.save()
         return instance
