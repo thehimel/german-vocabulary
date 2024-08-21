@@ -78,13 +78,19 @@ const CreatePreview = () => {
             isSubmitting={isSubmitting}
             showAvatar
           />
-          {wordValues && wordValues.map((wordValue, index) => (
-            <CreateWord
-              key={index}
-              language={languages.find(item => item.code === wordValue.languageCode)!}
-              initialValues={wordValue}
-            />
-          ))}
+          {wordValues && wordValues?.length > 0 && (
+            <div className="flex justify-center max-w-screen-xl mx-auto pt-2 ps-2 pe-2">
+              <div className="grid md:grid-cols-3 gap-2">
+                {wordValues && wordValues.map((wordValue, index) => (
+                  <CreateWord
+                    key={index}
+                    language={languages.find(item => item.code === wordValue.languageCode)!}
+                    initialValues={wordValue}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
           <SubmitButton
             isDisabled={isSubmitting || isLoading}
             isLoading={isSubmitting || isLoading}
