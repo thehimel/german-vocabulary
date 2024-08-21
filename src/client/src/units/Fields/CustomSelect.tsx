@@ -12,7 +12,7 @@ interface CustomInputProps {
   items: SelectorChoice[];
   errorMessage?: string;
   isSubmitting: boolean;
-  defaultKey: string;
+  defaultKey?: string;
 }
 
 const CustomSelect: React.FC<CustomInputProps> = ({
