@@ -10,6 +10,7 @@ import CustomInput from "../Fields/CustomInput.tsx";
 import CustomSelect from "../Fields/CustomSelect.tsx";
 import SubmitButton from "../Fields/SubmitButton.tsx";
 import {toggleDarkModeStyleSheet} from "../Selectors/utils.ts";
+import {PREVIEWS_CREATE_API_URL} from "../urls.ts";
 import {mapTranslationsToTWordSchema} from "../utils/utils.ts";
 import CreateWord from "./CreateWord.tsx";
 
@@ -60,6 +61,27 @@ const CreatePreview = () => {
     });
   };
 
+  const createPreview = async (params: TPreviewSchema) => {
+    try {
+      await axios.post(PREVIEWS_CREATE_API_URL, { ...params });
+      toast.success("Thanks for your contribution! The content will now be reviewed by the team!");
+    } catch (error: unknown) {  // Error type must be unknown or any
+      console.error("Error creating preview:", error);
+
+      if (axios.isAxiosError(error)) {
+        if (error.response) {
+          toast.error(`Error: ${error.response.data.message || "An error occurred while creating the preview."}`);
+        } else if (error.request) {
+          toast.error("No response received from the server. Please check your network connection.");
+        } else {
+          toast.error("An error occurred while setting up the request.");
+        }
+      } else {
+        toast.error("An unexpected error occurred.");
+      }
+    }
+  }
+
   const onSubmit = async (data: TPreviewSchema) => {
     console.log("Form data:", data);
     if (!wordValues?.length) {
@@ -70,12 +92,7 @@ const CreatePreview = () => {
         languageCode: data.languageCode,
         words: wordValues,
       }
-      const response = await axios.post(
-        "/api/previews/create/",
-        {...params},
-      );
-      console.log(response);
-      toast.success("Thanks for your contribution! The content will now be reviewed by the team!")
+      await createPreview(params);
     }
   };
 
