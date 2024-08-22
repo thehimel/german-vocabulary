@@ -6,6 +6,7 @@ import {useAppDispatch, useAppSelector} from "../../store/hooks.ts";
 import {CreatePreview, createPreview} from "../../store/previews/previewsActions.ts";
 import {AppDispatch} from "../../store/store.ts";
 import Selector from "../Selectors/Selector.tsx";
+import {PREVIEWS_URL} from "../urls.ts";
 import {getSelectorChoices} from "../utils/utils.ts";
 import WordInput from "./WordInput.tsx";
 
@@ -111,7 +112,7 @@ const AddPreview = () => {
       }
     };
     const success = await dispatch(createPreview(data));
-    if (success) index ? navigate('/add/') : setFormData(initialFormData());
+    if (success) index ? navigate(PREVIEWS_URL) : setFormData(initialFormData());
   }
 
   return (

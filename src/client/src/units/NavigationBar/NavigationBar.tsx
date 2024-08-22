@@ -1,6 +1,7 @@
 import React from "react";
 import {Navbar, NavbarBrand, NavbarMenuToggle, NavbarMenuItem, NavbarMenu, NavbarContent, NavbarItem, Link} from "@nextui-org/react";
 import {ThemeSwitcher} from "../Theme/ThemeSwitcher.tsx";
+import {PREVIEWS_ADD_URL, V2_PREVIEWS_ADD_URL} from "../urls.ts";
 import SearchBar from "./SearchBar.tsx";
 import {useAppSelector} from "../../store/hooks.ts";
 import {NavLink} from "react-router-dom";
@@ -26,10 +27,16 @@ const NavigationBar = () => {
         </NavLink>
 
         <NavbarItem className="hidden md:flex" isActive>
-            <NavLink to="add/">
-              Add a Word!
-            </NavLink>
-          </NavbarItem>
+          <NavLink to={PREVIEWS_ADD_URL}>
+            Add
+          </NavLink>
+        </NavbarItem>
+
+        <NavbarItem className="hidden md:flex" isActive>
+          <NavLink to={V2_PREVIEWS_ADD_URL}>
+            Add with GenAI
+          </NavLink>
+        </NavbarItem>
       </NavbarContent>
 
       <NavbarContent justify="end">

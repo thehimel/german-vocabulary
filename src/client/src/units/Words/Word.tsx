@@ -1,6 +1,7 @@
 import {FC} from "react";
 import { useNavigate } from 'react-router-dom';
 import {Card, CardBody, CardHeader, Divider, useDisclosure} from "@nextui-org/react";
+import {PREVIEWS_ADD_URL} from "../urls.ts";
 import WordCard from "../WordCard/WordCard.tsx";
 import {useAppDispatch} from "../../store/hooks.ts";
 import {AppDispatch} from "../../store/store.ts";
@@ -41,7 +42,7 @@ const Word: FC<WordWithIndexProps> = ({ index, word, addCard, onPress }) => {
       dispatch(onPress(index));
       onOpen();
     } else {
-      navigate(`/add/${index}`);
+      navigate(`${PREVIEWS_ADD_URL}${index}`);
     }
   };
 

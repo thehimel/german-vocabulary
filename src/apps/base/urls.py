@@ -9,8 +9,10 @@ app_name = "base"
 
 urlpatterns = [
     path("", ClientView.as_view(), name="client"),
-    path("add/", ClientView.as_view(), name="client"),
-    path("add/<int:index>/", ClientView.as_view(), name="client"),
+    path("previews/", ClientView.as_view(), name="client"),
+    path("previews/add/<int:index>/", ClientView.as_view(), name="client"),
+    path("previews/add/", ClientView.as_view(), name="client"),
+    path("v2/previews/add/", ClientView.as_view(), name="client"),
     path("add/new/", ClientView.as_view(), name="client"),
     path("home/", HomeView.as_view(), name="home"),
     path("messages/", MessageView.as_view(), name="messages"),

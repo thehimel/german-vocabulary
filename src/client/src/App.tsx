@@ -11,6 +11,7 @@ import Background from "./units/Theme/Background.tsx";
 import NavigationBar from "./units/NavigationBar/NavigationBar.tsx";
 import Home from "./units/Screens/Home.tsx";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {HOME_URL, PREVIEWS_ADD_INDEX_URL, PREVIEWS_ADD_URL, PREVIEWS_URL, V2_PREVIEWS_ADD_URL} from "./units/urls.ts";
 
 
 function App() {
@@ -32,11 +33,11 @@ function App() {
             <Messages/>
             <div className="bg-background pb-2">
               <Routes>
-                <Route path="/" element={<Home/>}/>
-                <Route path="/add" element={<Previews/>}/>
-                <Route path="/add/:index" element={<AddPreview/>}/>
-                <Route path="/add/new" element={<AddPreview/>}/>
-                <Route path="/previews/add" element={<CreatePreview/>}/>
+                <Route path={HOME_URL} element={<Home/>}/>
+                <Route path={PREVIEWS_URL} element={<Previews/>}/>
+                <Route path={PREVIEWS_ADD_URL} element={<AddPreview/>}/>
+                <Route path={PREVIEWS_ADD_INDEX_URL} element={<AddPreview/>}/>
+                <Route path={V2_PREVIEWS_ADD_URL} element={<CreatePreview/>}/>
               </Routes>
             </div>
             {/* <PaginationBar/> */}
