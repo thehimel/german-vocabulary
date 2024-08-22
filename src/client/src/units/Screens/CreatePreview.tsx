@@ -2,6 +2,7 @@ import {zodResolver} from "@hookform/resolvers/zod";
 import axios from "axios";
 import {useState} from "react";
 import {useForm} from "react-hook-form";
+import {toast} from "sonner";
 import {initialPreviewValues, previewSchema, TPreviewSchema, TWordSchema} from "../../schemas/preview.ts";
 import {languageChoices} from "../../store/base/baseSlice.ts";
 import {useAppSelector} from "../../store/hooks.ts";
@@ -66,6 +67,7 @@ const CreatePreview = () => {
         {...params},
       );
       console.log(response);
+      toast.success("Thanks for your contribution! The content will now be reviewed by the team!")
     }
   };
 
