@@ -1,4 +1,5 @@
 import {useEffect} from "react";
+import {Toaster} from "sonner";
 import {fetchProperties} from "./store/base/baseActions.ts";
 import {AppDispatch} from "./store/store.ts";
 import Messages from "./units/Messages/Messages.tsx";
@@ -30,6 +31,7 @@ function App() {
           <Background/>
           <div className="h-screen">
             <NavigationBar/>
+            <Toaster position="top-center" expand={true} theme={darkMode ? "dark" : "light"} />
             <Messages/>
             <div className="bg-background pb-2">
               <Routes>
