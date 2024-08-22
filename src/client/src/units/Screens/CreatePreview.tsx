@@ -25,6 +25,7 @@ const CreatePreview = () => {
     handleSubmit,
     formState: {errors, isSubmitting},
     watch,
+    reset,
   } = useForm<TPreviewSchema>({
     resolver: zodResolver(previewSchema),
     defaultValues: initialPreviewValues,
@@ -65,6 +66,8 @@ const CreatePreview = () => {
     try {
       await axios.post(PREVIEWS_CREATE_API_URL, { ...params });
       toast.success("Thanks for your contribution! The content will now be reviewed by the team!");
+      reset();
+      setWordValues([]);
     } catch (error: unknown) {  // Error type must be unknown or any
       console.error("Error creating preview:", error);
 
@@ -83,7 +86,6 @@ const CreatePreview = () => {
   }
 
   const onSubmit = async (data: TPreviewSchema) => {
-    console.log("Form data:", data);
     if (!wordValues?.length) {
       handleWordAndLanguageChange();
     } else {
