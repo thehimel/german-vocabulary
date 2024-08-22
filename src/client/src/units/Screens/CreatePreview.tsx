@@ -52,6 +52,14 @@ const CreatePreview = () => {
     }
   };
 
+  const handleWordUpdate = (index: number, updatedWord: TWordSchema) => {
+    setWordValues(prevValues => {
+      const updatedValues = [...(prevValues || [])]; // Ensure prevValues is always an array
+      updatedValues[index] = updatedWord;
+      return updatedValues;
+    });
+  };
+
   const onSubmit = async (data: TPreviewSchema) => {
     console.log("Form data:", data);
     if (!wordValues?.length) {
@@ -100,6 +108,7 @@ const CreatePreview = () => {
                     key={index}
                     language={languages.find(item => item.code === wordValue.languageCode)!}
                     initialValues={wordValue}
+                    onWordUpdate={(updatedWord) => handleWordUpdate(index, updatedWord)}
                   />
                 ))}
               </div>

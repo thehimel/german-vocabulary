@@ -1,6 +1,6 @@
 import {zodResolver} from "@hookform/resolvers/zod";
 import {Card, CardBody, CardHeader} from "@nextui-org/react";
-import React from "react";
+import React, {useEffect} from "react";
 import {useForm} from "react-hook-form";
 import {TWordSchema, wordSchema} from "../../schemas/preview.ts";
 import {Language, levelChoices, SelectorChoice} from "../../store/base/baseSlice.ts";
@@ -14,6 +14,7 @@ import Content from "../WordCard/Content.tsx";
 interface CreateWordProps {
   language: Language;
   initialValues: TWordSchema;
+  onWordUpdate: (updatedWord: TWordSchema) => void;
 }
 
 const findValueInCollection = (collection: SelectorChoice[], value: string) => {
@@ -21,7 +22,7 @@ const findValueInCollection = (collection: SelectorChoice[], value: string) => {
     return found ? value : undefined;
 };
 
-const CreateWord: React.FC<CreateWordProps> = ({language, initialValues}) => {
+const CreateWord: React.FC<CreateWordProps> = ({language, initialValues, onWordUpdate}) => {
   const darkMode = useAppSelector((state) => state.base.darkMode);
   toggleDarkModeStyleSheet(darkMode);
 
@@ -41,6 +42,15 @@ const CreateWord: React.FC<CreateWordProps> = ({language, initialValues}) => {
     resolver: zodResolver(wordSchema),
     defaultValues: initialValues,
   });
+
+  useEffect(() => {
+    const subscription = watch((value) => {
+      if (value) {
+        onWordUpdate(value as TWordSchema);
+      }
+    });
+    return () => subscription.unsubscribe();
+  }, [watch, onWordUpdate]);
 
   return (
     <Card className={shadowColor}>
