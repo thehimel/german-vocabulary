@@ -2,7 +2,7 @@ echo "Building react application..."
 cd client && npm install --force && npx vite build && rm -rf node_modules && cd ..
 
 echo "Upgrading pip..."
-python3 -m pip install --upgrade pip
+python3 -m pip install --upgrade pip setuptools
 
 echo "Installing packages..."
 pip3 install -r requirements.txt
