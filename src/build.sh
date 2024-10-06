@@ -5,7 +5,6 @@ echo "Upgrading pip..."
 python3 -m pip install --upgrade pip setuptools
 
 echo "Installing packages..."
-pip3 install -U pyinstaller
 pip3 install -r requirements.txt
 
 echo "Migrating Database..."
