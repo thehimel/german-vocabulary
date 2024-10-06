@@ -22,7 +22,7 @@ const NavigationBar = () => {
         <NavLink to="/">
           <NavbarBrand>
             <AcmeLogo />
-            <p className="hidden md:flex font-bold text-inherit">Vocabulary</p>
+            <p className="hidden md:flex font-bold text-inherit">German Words</p>
           </NavbarBrand>
         </NavLink>
 
