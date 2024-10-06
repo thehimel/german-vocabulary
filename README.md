@@ -1,4 +1,4 @@
-# germanwords-backend
+# German Words
 
 Backend for German Words
 
