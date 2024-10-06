@@ -1,38 +1,21 @@
 # German Words
 
-Backend for German Words
+## Getting Started
 
-## Run Production Server Locally
+### Initialize Client
 
-```sh
-SECRET_KEY='GET_DATA'
-DEBUG='False'
-ENVIRONMENT='PROD'
-DATABASE_URL="GET_DATA"
-```
+* Steps are mentioned [here](src/client/README.md)
 
-* Command: `python src/manage.py runserver 8080`
+### Initialize Server
 
-## Versions
+* Clone the repository.
+* Create the `.env` file from `.env-template`.
+* Upgrade pip: `python -m pip install --upgrade pip`
+* Installing packages: `pip install -r requirements.txt`
+* Migrating Database:
+  * `python3 manage.py makemigrations`
+  * `python3 manage.py migrate`
 
-* Font Awesome: 6.5.1
-* Bootstrap 5.3
+### Create Super User
 
-## Workflow:
-
-### Data Listing
-
-* Stuff member adds the data.
-* Admin will have to approve the data.
-* Only approved data will be listed in list view.
-
-## Resources
-
-* [crispy-bootstrap5](https://github.com/django-crispy-forms/crispy-bootstrap5)
-* [font-awesome-6.5.1](https://use.fontawesome.com/releases/v6.5.1/fontawesome-free-6.5.1-web.zip)
-  * Installed using cdn with [cdnjs.com](https://cdnjs.com/libraries/font-awesome)
-  * Deprecated: [Python/Django Installation Guideline](https://fontawesome.com/docs/web/use-with/python-django)
-
-## Allauth Pages Updated
-
-* `accounts/*.html`
+* `python manage.py create_superuser`
