@@ -1,5 +1,6 @@
 import React from "react";
 import {Navbar, NavbarBrand, NavbarMenuToggle, NavbarMenuItem, NavbarMenu, NavbarContent, NavbarItem, Link} from "@nextui-org/react";
+import {ALLOW_ADD_WITH_GEN_AI, BRAND_NAME} from "../../constants/global.ts";
 import {ThemeSwitcher} from "../Theme/ThemeSwitcher.tsx";
 import {PREVIEWS_ADD_URL, V2_PREVIEWS_ADD_URL} from "../urls.ts";
 import SearchBar from "./SearchBar.tsx";
@@ -22,7 +23,7 @@ const NavigationBar = () => {
         <NavLink to="/">
           <NavbarBrand>
             <AcmeLogo />
-            <p className="hidden md:flex font-bold text-inherit">German Words</p>
+            <p className="hidden md:flex font-bold text-inherit">{BRAND_NAME}</p>
           </NavbarBrand>
         </NavLink>
 
@@ -32,11 +33,13 @@ const NavigationBar = () => {
           </NavLink>
         </NavbarItem>
 
-        <NavbarItem className="hidden md:flex" isActive>
-          <NavLink to={V2_PREVIEWS_ADD_URL}>
-            Add with GenAI
-          </NavLink>
-        </NavbarItem>
+        {ALLOW_ADD_WITH_GEN_AI && (
+          <NavbarItem className="hidden md:flex" isActive>
+            <NavLink to={V2_PREVIEWS_ADD_URL}>
+              Add with GenAI
+            </NavLink>
+          </NavbarItem>
+        )}
       </NavbarContent>
 
       <NavbarContent justify="end">
