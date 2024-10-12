@@ -1,12 +1,14 @@
 import {Button, Card, Chip, Input} from "@nextui-org/react";
-import {ChangeEvent, FormEvent, useState} from "react";
+import {ChangeEvent, FormEvent, useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
+import {toast} from "sonner";
+import {ALLOW_ADD} from "../../constants/global.ts";
 import {Language, languageChoices, levelChoices} from "../../store/base/baseSlice.ts";
 import {useAppDispatch, useAppSelector} from "../../store/hooks.ts";
 import {CreatePreview, createPreview} from "../../store/previews/previewsActions.ts";
 import {AppDispatch} from "../../store/store.ts";
 import Selector from "../Selectors/Selector.tsx";
-import {PREVIEWS_URL} from "../urls.ts";
+import {HOME_URL, PREVIEWS_URL} from "../urls.ts";
 import {getSelectorChoices} from "../utils/utils.ts";
 import WordInput from "./WordInput.tsx";
 
@@ -44,6 +46,13 @@ const AddPreview = () => {
   const [partOfSpeech, setPartOfSpeech] = useState(initialPartOfSpeech);
   const [level, setLevel] = useState(initialLevel);
   const isNoun = partOfSpeech.toLowerCase() === 'noun';
+
+  useEffect(() => {
+    if (!ALLOW_ADD) {
+      toast.error("Adding preview is disabled.");
+      navigate(HOME_URL);
+    }
+  }, [navigate]);
 
   const handlePartOfSpeechChange = (e: ChangeEvent<HTMLSelectElement>) => setPartOfSpeech(e.target.value);
   const partsOfSpeechComponent = partsOfSpeech && partsOfSpeech.length > 0 ? (
