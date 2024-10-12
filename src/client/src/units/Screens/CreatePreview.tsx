@@ -3,6 +3,7 @@ import axios from "axios";
 import {useState} from "react";
 import {useForm} from "react-hook-form";
 import {toast} from "sonner";
+import {ALLOW_ADD_WITH_GEN_AI} from "../../constants/global.ts";
 import {initialPreviewValues, previewSchema, TPreviewSchema, TWordSchema} from "../../schemas/preview.ts";
 import {languageChoices} from "../../store/base/baseSlice.ts";
 import {useAppSelector} from "../../store/hooks.ts";
@@ -35,6 +36,11 @@ const CreatePreview = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const fetchTranslations = async (word: string, languageCode: string) => {
+    if (!ALLOW_ADD_WITH_GEN_AI) {
+      toast.error("Fetching translations via GenAI is disabled.");
+      return;
+    }
+
     try {
       setIsLoading(true);
       const response = await axios.post("/api/translate/word/", { word, language_code: languageCode });
