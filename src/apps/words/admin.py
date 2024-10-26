@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.db.models.functions import Lower
 from django.utils.safestring import mark_safe
+from django.utils.html import format_html
 
 from apps.base.utils.decorators import make_slug_readonly_during_update
 from apps.words.decorators import join_field_values
@@ -8,9 +9,24 @@ from apps.words.forms import LanguageForm, WordForm
 from apps.words.models import Article, Bundle, Image, Language, Note, PartOfSpeech, Word
 
 
+@admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
     ordering = ["-modified", "title"]
-    list_display = ["title", "__str__", "modified"]
+    list_display = ["title", "image_preview", "modified"]
+    search_fields = ["title", "description"]
+    list_filter = ["created", "modified"]
+    readonly_fields = ["created", "modified"]
+
+    fieldsets = (
+        (None, {"fields": ("title", "description", "image")}),
+        ("Timestamps", {"fields": ("created", "modified")}),
+    )
+
+    def image_preview(self, obj):
+        if obj.image:
+            return format_html('<img src="{}" width="50" height="50" style="object-fit: cover;" />', obj.image.url)
+        return "-"
+    image_preview.short_description = "Preview"
 
 
 class ArticleAdmin(admin.ModelAdmin):
@@ -69,7 +85,6 @@ class WordAdmin(admin.ModelAdmin):
         return mark_safe("<br>".join(sentences))
 
 
-admin.site.register(Image, ImageAdmin)
 admin.site.register(Article, ArticleAdmin)
 admin.site.register(PartOfSpeech, PartOfSpeechAdmin)
 admin.site.register(Language, LanguageAdmin)

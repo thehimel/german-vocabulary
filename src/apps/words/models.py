@@ -1,6 +1,8 @@
 from django.conf import settings
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.db.models.signals import pre_save
+from django.dispatch import receiver
 
 from apps.base.utils.decorators import auto_slugify
 from apps.base.utils.images import resize_image
@@ -9,20 +11,48 @@ from apps.users.constants import DEFAULT_WORD_IMAGE
 from apps.words.utils import getLevelChoices
 
 
+@auto_slugify(field_name="title")
 class Image(models.Model):
-    title = models.CharField(max_length=100, unique=True, validators=[validate_alphanumeric])
-    image = models.ImageField(default=DEFAULT_WORD_IMAGE, upload_to="words/", validators=[validate_file_size])
-    description = models.TextField(default="", blank=True, null=True)
+    """
+    Model to store images associated with vocabulary words.
+    Includes a title, an image, and optional description.
+    """
+
+    title = models.CharField(
+        max_length=100,
+        unique=True,
+        validators=[validate_alphanumeric],
+        help_text=_("Alphanumeric title of the image.")
+    )
+    image = models.ImageField(
+        default=DEFAULT_WORD_IMAGE,
+        upload_to="words/",
+        validators=[validate_file_size],
+        help_text=_("Image file associated with the vocabulary word.")
+    )
+    description = models.TextField(blank=True, null=True, help_text=_("Optional description of the image."))
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
-    def save(self, *args, **kwargs):
-        self.title = self.title.lower()
-        resize_image(instance=self, field_name="image", title=self.title)
-        super().save(*args, **kwargs)
-
     def __str__(self):
-        return str(self.image.url.split("/media/", maxsplit=1)[1])  # The part after '/media/'
+        # Returns title if available, else part of the image path for readability
+        return self.title or self.image.url.split("/media/")[1] if self.image else _("No image available")
+
+    class Meta:
+        ordering = ["-created"]
+        verbose_name = _("Image")
+        verbose_name_plural = _("Images")
+
+@receiver(pre_save, sender=Image)
+def pre_save_image(sender, instance, **kwargs):
+    """
+    Pre-save signal to resize the image and ensure title is lowercase.
+    """
+    instance.title = instance.title.lower()
+    try:
+        resize_image(instance=instance, field_name="image", title=instance.title)
+    except Exception as e:
+        print(f"Error resizing image: {e}")
 
 
 @auto_slugify(field_name="title")
