@@ -26,6 +26,7 @@ class ImageAdmin(admin.ModelAdmin):
         if obj.image:
             return format_html('<img src="{}" width="50" height="50" style="object-fit: cover;" />', obj.image.url)
         return "-"
+
     image_preview.short_description = "Preview"
 
 
