@@ -226,3 +226,17 @@ SIMPLE_JWT = {
 SITE_ID = 1
 
 OPENAI_API_KEY = config("OPENAI_API_KEY", default="")
+
+# Redis Configuration for Railway TTS Caching
+REDIS_URL = config("REDIS_URL", default="redis://localhost:6379")
+
+# Optional: Django Cache Framework with Redis (for other caching needs)
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+        'LOCATION': REDIS_URL,
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
+        }
+    }
+}

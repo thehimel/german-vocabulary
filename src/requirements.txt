@@ -26,3 +26,4 @@ setuptools>=71.1.0
 gTTS>=2.5.1
 # googletrans==4.0.0-rc1
 openai>=1.41.1
+redis>=6.2.0
