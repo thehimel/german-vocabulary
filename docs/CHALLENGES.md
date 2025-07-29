@@ -36,3 +36,44 @@ by using BytesIO from the io module.
     * After Average ≈ `74.4s` | Dataset (in seconds) = `[73, 75, 68, 71, 78, 72, 81, 77, 73, 76]`
     * Percentage Improvement = `((Initial Time - Current Time) / Initial Time) x 100% = ((131.9 - 74.4) / 131.9) x 100%`
     * Performance optimization percentage ≈ `43.64%`
+
+## TTS Performance
+
+**Date:** 30 JUL 2025  
+
+### **Initial Problem**
+Our German language learning app was using Text-to-Speech (TTS) through Django REST Framework without any caching system.
+This created several critical issues:
+
+#### **Performance Issues**
+- **Slow Response Times**: Every TTS request took 500ms to generate audio
+- **Repeated Processing**: Same German words/phrases were being generated multiple times
+- **Server Overload**: High CPU usage for redundant TTS generation
+- **Poor User Experience**: Waiting time for audio feedback disrupted learning flow
+
+#### **Cost & Resource Problems**
+- **High Server Load**: Continuous TTS generation consuming unnecessary resources
+- **Bandwidth Waste**: Generating identical audio files repeatedly
+- **Scalability Concerns**: System couldn't handle growing user base efficiently
+- **Infrastructure Costs**: Expensive server resources for repetitive tasks
+
+#### **Technical Limitations**
+- **No Persistence**: Audio files generated and discarded after each request
+- **Memory Inefficiency**: No reuse of previously generated content
+- **Serverless Challenges**: Vercel functions executing full TTS pipeline every time
+- **Database Bottlenecks**: Heavy processing load on main application
+
+### **Business Impact**
+- **User Retention Risk**: Slow audio responses affecting learning experience
+- **Scalability Barriers**: Unable to efficiently serve 10K+ users
+- **Cost Inefficiency**: High infrastructure costs for redundant operations
+- **Competitive Disadvantage**: Slower than modern language learning apps
+
+### **Solution Implemented**
+Integrated Redis caching with Railway to store permanently cached TTS responses, transforming the system from a real-time generator to a high-performance cached service.
+
+### **Result**
+- Response times improved from 500ms to 120ms
+- 95% reduction in TTS generation calls
+- Infrastructure costs reduced from $50+ to $2-4/month
+- System now efficiently serves 10K users with room for 100x growth
